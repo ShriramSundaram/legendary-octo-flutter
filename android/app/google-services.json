@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1071132829119",
+    "project_id": "germanreminderapp",
+    "storage_bucket": "germanreminderapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1071132829119:android:58573d51cb84c9cb6e2d0a",
+        "android_client_info": {
+          "package_name": "com.example.germanreminder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1071132829119-jcq21cm6ruvq5i3lqc1janlg9fcneojd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvYKkSmp-N-D_Ifg1auNWo25Sj_tuW_6c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1071132829119-jcq21cm6ruvq5i3lqc1janlg9fcneojd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
