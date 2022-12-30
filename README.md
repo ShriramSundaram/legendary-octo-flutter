@@ -1,4 +1,4 @@
-# flutter_application_1
+# GermanReminderApp
 
 A new Flutter project.
 
