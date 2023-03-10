@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -5,6 +6,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class UserCollectionDatabase extends StatelessWidget {
   final List<String> doumentsIdList = [];
   UserCollectionDatabase({Key? key}) : super(key: key);
+
+  final currentUser = FirebaseAuth.instance.currentUser;
 
   CollectionReference user = FirebaseFirestore.instance.collection('User');
 
@@ -16,7 +19,7 @@ class UserCollectionDatabase extends StatelessWidget {
         ),
         body: Container(
             child: FutureBuilder<DocumentSnapshot>(
-          future: user.doc('my-wordsList').get(),
+          future: user.doc(currentUser!.uid).get(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
               Map<String, dynamic> dataCurr =

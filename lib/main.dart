@@ -5,7 +5,10 @@ import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:germanreminder/frontPage.dart';
 import 'package:path_provider/path_provider.dart';
 import 'writeFile.dart';
 import 'notification_api.dart';
@@ -13,6 +16,7 @@ import 'secondPage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'databaseFirebase.dart';
 import 'userCollectionDatabase.dart';
+import 'onboardingScreen.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,21 +35,15 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(
-        title: 'German Reminder App',
-      ),
+      home: FrontPage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({
-    Key? key,
-    required this.title,
-  }) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
-  final FileUtils germanWords = FileUtils();
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -63,6 +61,8 @@ class _MyHomePageState extends State<MyHomePage> {
   int? _dropDownValueMM;
   int? _dropDownValueSS;
   List<String> germanUserWordsList = [];
+
+  final currentUser = FirebaseAuth.instance.currentUser;
 
   final myTextController = TextEditingController();
 
@@ -84,11 +84,13 @@ class _MyHomePageState extends State<MyHomePage> {
     DocumentSnapshot<Map<String, dynamic>> data = await FirebaseFirestore
         .instance
         .collection('User')
-        .doc('my-wordsList')
+        .doc(currentUser!.uid)
         .get();
-    print(data['wordStorage'][0]);
-    for (var i = 0; i < data['wordStorage'].length; i++) {
-      germanUserWordsList.add(data['wordStorage'][i]);
+    //print(data['wordStorage'][0]);
+    if (data.exists) {
+      for (var i = 0; i < data['wordStorage'].length; i++) {
+        germanUserWordsList.add(data['wordStorage'][i]);
+      }
     }
   }
 
@@ -137,25 +139,29 @@ class _MyHomePageState extends State<MyHomePage> {
         MaterialPageRoute(builder: (context) => UserCollectionDatabase()));
   }
 
+  Future<void> signOut() async {
+    await FirebaseAuth.instance.signOut();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('German Reminder'),
+        automaticallyImplyLeading: false,
         actions: [
-          Text(
-            "Load",
-            softWrap: true,
-            textAlign: TextAlign.center,
-            textScaleFactor: 1,
-            maxLines: 2,
-          ),
           IconButton(
             onPressed: () {
               initState();
             },
             icon: const Icon(Icons.upload_rounded),
             tooltip: "Updated New Words",
+          ),
+          IconButton(
+            onPressed: () {
+              signOut();
+            },
+            icon: Icon(Icons.logout_rounded),
           )
         ],
       ),
@@ -189,12 +195,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                 TextStyle(fontSize: 15.0, color: Colors.black)),
                         items: items_hh.map(buildMenuItem).toList(),
                         onChanged: (value) => {
-                          if (_dropDownValueHH is int)
-                            {
-                              hhInput = value as int,
-                            },
+                          hhInput = value as int,
                           setState(
-                            () => this._dropDownValueHH = value as int,
+                            () => this._dropDownValueHH = value,
                           )
                         },
                       )),
@@ -210,12 +213,9 @@ class _MyHomePageState extends State<MyHomePage> {
                               TextStyle(fontSize: 15.0, color: Colors.black)),
                       items: items_mm.map(buildMenuItem).toList(),
                       onChanged: (value) => {
-                        if (_dropDownValueMM is int)
-                          {
-                            mmInput = value as int,
-                          },
+                        mmInput = value as int,
                         setState(
-                          () => this._dropDownValueMM = value as int,
+                          () => this._dropDownValueMM = value,
                         )
                       },
                     ),
@@ -232,9 +232,9 @@ class _MyHomePageState extends State<MyHomePage> {
                           style:
                               TextStyle(fontSize: 15.0, color: Colors.black)),
                       onChanged: (value) => {
-                        if (_dropDownValueSS is int) {ssInput = value as int},
+                        ssInput = value as int,
                         setState(
-                          () => this._dropDownValueSS = value as int,
+                          () => this._dropDownValueSS = value,
                         )
                       },
                     ),
@@ -255,21 +255,19 @@ class _MyHomePageState extends State<MyHomePage> {
                         "Set Time",
                         style: TextStyle(fontSize: 13.0, color: Colors.black),
                       ))),
-              const Text(
-                'German Remainder',
+              Text(
+                currentUser!.email!,
                 style: TextStyle(
                     fontSize: 45.0,
                     fontFamily: "Waterfall",
                     fontStyle: FontStyle.normal),
               ),
               Container(
-                  width: 300,
-                  height: 50,
-                  alignment: Alignment.centerLeft,
-                  padding: const EdgeInsets.all(8.0),
-                  decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(20.0)))),
+                width: 300,
+                height: 50,
+                alignment: Alignment.centerLeft,
+                padding: const EdgeInsets.all(8.0),
+              ),
               Row(children: [
                 Container(
                   alignment: Alignment.center,
@@ -304,13 +302,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
               ),
               Container(
-                  width: 300,
-                  height: 50,
-                  alignment: Alignment.bottomLeft,
-                  padding: const EdgeInsets.all(8.0),
-                  decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(20.0)))),
+                width: 300,
+                height: 50,
+                alignment: Alignment.bottomLeft,
+                padding: const EdgeInsets.all(8.0),
+              ),
               Row(children: [
                 Container(
                   width: 300,
@@ -347,7 +343,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: () {
                   setState(() {
                     if (!genericCollection.contains(myTextController.text)) {
-                      WriteToCloud(word: myTextController.text);
+                      WriteToCloud(word: myTextController.text.trim());
                     } else {
                       // This Part of Code is not Working, Need to Investigate
                       const AnimatedDefaultTextStyle(
@@ -399,12 +395,27 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future WriteToCloud({required String word}) async {
     final userData =
-        FirebaseFirestore.instance.collection('User').doc('my-wordsList');
+        FirebaseFirestore.instance.collection('User').doc(currentUser!.uid);
     if (!germanUserWordsList.contains(word)) {
       germanUserWordsList.add(word);
     } else {
       // ignore: todo
       // Widget Should Come or Pop up should come "WORD ALREDY EXIST!!!"
+      showDialog(
+          context: context,
+          builder: (context) => CupertinoAlertDialog(
+                title: Text('Alert !!!!'),
+                content: Text('Word already present in UserDatabase'),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      //OnClickedUserDatabase();
+                      Navigator.pop(context);
+                    },
+                    child: Text('Close'),
+                  )
+                ],
+              ));
     }
 
     final json = {'wordStorage': germanUserWordsList};
