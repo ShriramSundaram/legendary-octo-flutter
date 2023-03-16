@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:germanreminder/forgetPasswordPage.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'signupPage.dart';
 import 'main.dart';
@@ -13,6 +14,8 @@ class OnBoardingScreen extends StatefulWidget {
 class _OnBoardingScreen extends State<OnBoardingScreen> {
   final EmailController = TextEditingController();
   final PasswordController = TextEditingController();
+
+  bool _obscureText = true;
 
   Future SignIn() async {
     try {
@@ -79,25 +82,65 @@ class _OnBoardingScreen extends State<OnBoardingScreen> {
               image: Image.asset('assets/german.png'),
               decoration: getPageDecoration()),
           PageViewModel(
-              title: 'How Does it Work',
-              body: ' Step:1 User Sign In \n Step:2 User Should Press PLAY Button (selects the random words from Generic Database and Display it) \n' +
-                  'Step:3 User can Choose if the word needs to be reminded or not. If needed to be reminded, then User can select the X Time(HH::MM::SS) Above and Press SET TIME button. Automatically the selected word will be reminded after X time. If not then Press PLAY button again untill User finds non familier word',
-              image: Image.asset('assets/works.png'),
+              title: " In just 3 steps!!!",
+              bodyWidget: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  RichText(
+                    text: TextSpan(
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 18,
+                            letterSpacing: 1.5,
+                            fontFamily: "OpenSans"),
+                        children: <TextSpan>[
+                          TextSpan(
+                              text: '\nStep 1 :',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 20)),
+                          TextSpan(text: ' User SignUp / LogIn '),
+                          TextSpan(
+                              text: '\n\nStep 2 :',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 20)),
+                          TextSpan(
+                              text:
+                                  ' User can press PLAY Button to display random words from Generic Database. '),
+                          TextSpan(
+                              text: '\n\nStep 3 :',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 20)),
+                          TextSpan(
+                              text: ' If displayed word needs to be reminded, User can select the Time(HH::MM::SS) Above and Press TimerIcon. The selected word will be reminded after specified time.' +
+                                  ' Alternatively user can click on PLAY button repeatedly until user finds unfamilier word. ')
+                        ]),
+                  )
+                ],
+              ),
+              image: Image.asset(
+                'assets/works.png',
+                height: 200,
+                fit: BoxFit.fitHeight,
+              ),
               decoration: getPageDecoration()),
           PageViewModel(
-              title: 'LogIn / Sign Up',
+              title: " Login / SignUp \n",
               bodyWidget: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                      width: 400,
-                      height: 50,
+                      width: 320,
+                      height: 55,
                       alignment: Alignment.center,
                       padding: const EdgeInsets.all(16.0),
                       margin: EdgeInsets.only(left: 0.0),
-                      decoration: const BoxDecoration(
-                          color: Colors.yellow,
+                      decoration: BoxDecoration(
+                          //color: Color.fromARGB(255, 147, 13, 145),
+                          border: Border.all(
+                              color: Colors.blue, style: BorderStyle.solid),
                           borderRadius:
-                              BorderRadius.all(Radius.circular(30.0))),
+                              BorderRadius.all(Radius.circular(20.0))),
                       child: TextField(
                         toolbarOptions: const ToolbarOptions(
                             copy: true,
@@ -110,75 +153,111 @@ class _OnBoardingScreen extends State<OnBoardingScreen> {
                         cursorRadius: const Radius.circular(2.0),
                         style: const TextStyle(
                             fontFamily: "OpenSans",
-                            fontSize: 12.0,
-                            color: Colors.blue,
+                            fontSize: 18.0,
+                            color: Colors.black,
                             fontWeight: FontWeight.bold),
                       )),
-                  Container(
-                    width: 200,
-                    height: 20,
+                  SizedBox(
+                    height: 10,
                   ),
                   Container(
-                      width: 400,
-                      height: 50,
+                      width: 320,
+                      height: 55,
                       alignment: Alignment.center,
                       padding: const EdgeInsets.all(16.0),
                       margin: EdgeInsets.only(left: 0.0),
-                      decoration: const BoxDecoration(
-                          color: Colors.yellow,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.blue),
                           borderRadius:
-                              BorderRadius.all(Radius.circular(30.0))),
+                              BorderRadius.all(Radius.circular(20.0))),
                       child: TextField(
-                        obscureText: true,
+                        obscureText: _obscureText,
                         toolbarOptions: const ToolbarOptions(
                             copy: true,
                             cut: true,
                             paste: true,
                             selectAll: true),
-                        decoration: const InputDecoration.collapsed(
-                            hintText: "Password", fillColor: Colors.deepOrange),
+                        decoration: InputDecoration(
+                            isCollapsed: true,
+                            hintText: "Password",
+                            hintMaxLines: 1,
+                            suffixIcon: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  _obscureText = !_obscureText;
+                                });
+                              },
+                              child: Icon(_obscureText
+                                  ? Icons.visibility
+                                  : Icons.visibility_off),
+                            )),
                         controller: PasswordController,
                         cursorRadius: const Radius.circular(2.0),
                         style: const TextStyle(
                             fontFamily: "OpenSans",
-                            fontSize: 12.0,
-                            color: Colors.blue,
+                            fontSize: 18.0,
+                            color: Colors.black,
                             fontWeight: FontWeight.bold),
                       )),
-                  Container(
-                      width: 150,
-                      padding: const EdgeInsets.all(16.0),
-                      child: ElevatedButton(
-                          onPressed: () {
-                            SignIn();
-                          },
-                          child: const Text(
-                            "LogIn",
-                            style:
-                                TextStyle(fontSize: 13.0, color: Colors.black),
-                          )))
                 ],
               ),
-              footer: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                      width: 150,
-                      padding: const EdgeInsets.all(8.0),
-                      //margin: const EdgeInsets.only(right: 80),
-                      child: ElevatedButton(
-                          onPressed: () {
-                            goToSignUpPage(context);
-                          },
-                          child: const Text(
-                            "Sign Up",
-                            style:
-                                TextStyle(fontSize: 13.0, color: Colors.black),
-                          )))
-                ],
+              footer: SingleChildScrollView(
+                  child: Column(children: [
+                Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 45.0),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          GestureDetector(
+                              onTap: () {
+                                goToForgotPasswordPage(context);
+                              },
+                              child: const Text(
+                                "\nForgot Password ?",
+                                style: TextStyle(
+                                    fontSize: 15.0,
+                                    color: Colors.blue,
+                                    fontWeight: FontWeight.bold),
+                              ))
+                        ])),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(height: 100),
+                    Container(
+                        width: 150,
+                        padding: const EdgeInsets.all(16.0),
+                        child: ElevatedButton(
+                            onPressed: () {
+                              SignIn();
+                            },
+                            child: const Text(
+                              "LogIn",
+                              style: TextStyle(
+                                  fontSize: 15.0, color: Colors.black),
+                            ))),
+                    Container(
+                        width: 150,
+                        padding: const EdgeInsets.all(16.0),
+                        //margin: const EdgeInsets.only(right: 80),
+                        child: ElevatedButton(
+                            onPressed: () {
+                              goToSignUpPage(context);
+                            },
+                            child: const Text(
+                              "Sign Up",
+                              style: TextStyle(
+                                  fontSize: 15.0, color: Colors.black),
+                            )))
+                  ],
+                ),
+              ])),
+              image: Image.asset(
+                'assets/german.png',
+                height: 250,
+                fit: BoxFit.fitHeight,
               ),
-              image: Image.asset('assets/german.png'),
-              decoration: getPageDecoration())
+              decoration: getLoginPageDecoration())
         ],
         onDone: () => goToOnBoardingScreen(context),
         showNextButton: true,
@@ -195,9 +274,22 @@ class _OnBoardingScreen extends State<OnBoardingScreen> {
   void goToOnBoardingScreen(context) => Navigator.of(context)
       .pushReplacement(MaterialPageRoute(builder: (_) => OnBoardingScreen()));
 
+  void goToForgotPasswordPage(context) => Navigator.of(context)
+      .push(MaterialPageRoute(builder: (_) => ForgetPasswordPage()));
+
   PageDecoration getPageDecoration() => PageDecoration(
-      titleTextStyle: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-      bodyTextStyle: TextStyle(fontSize: 16),
+      titleTextStyle: TextStyle(
+        fontSize: 28,
+        fontWeight: FontWeight.bold,
+      ),
+      bodyTextStyle:
+          TextStyle(fontSize: 16, letterSpacing: 1.5, fontFamily: "OpenSans"),
       titlePadding: EdgeInsets.all(16).copyWith(bottom: 0),
+      pageColor: Colors.white);
+
+  PageDecoration getLoginPageDecoration() => PageDecoration(
+      titleTextStyle: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+      bodyTextStyle: TextStyle(fontSize: 16),
+      titlePadding: EdgeInsets.all(8).copyWith(bottom: 0),
       pageColor: Colors.white);
 }

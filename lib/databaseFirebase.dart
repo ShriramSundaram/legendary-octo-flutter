@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 
-class ViewGenericDatabase extends StatelessWidget {
+class ViewGenericDatabase extends StatefulWidget {
+  const ViewGenericDatabase({Key? key}) : super(key: key);
+
+  @override
+  State<ViewGenericDatabase> createState() => _ViewGenericDatabaseState();
+}
+
+class _ViewGenericDatabaseState extends State<ViewGenericDatabase> {
+  int selectedIndex = 0;
   final List<String> doumentsIdList = [];
-  ViewGenericDatabase({Key? key}) : super(key: key);
+  FlutterTts flutterTts = FlutterTts();
 
   // Get the documents Id's from Firebase - NOT USED NOW, FUTURE USE
   Future getDocuIdFireBase() async {
@@ -13,6 +22,14 @@ class ViewGenericDatabase extends StatelessWidget {
             doumentsIdList.add(element.reference.id);
           }),
         );
+  }
+
+  void speak(String text) async {
+    await flutterTts.setLanguage("DE");
+    //await flutterTts.setSpeechRate(1.0);
+    await flutterTts.setVolume(1.0);
+    await flutterTts.setPitch(1.0);
+    await flutterTts.speak(text);
   }
 
   CollectionReference user = FirebaseFirestore.instance.collection('Generic');
@@ -37,12 +54,27 @@ class ViewGenericDatabase extends StatelessWidget {
                 physics: BouncingScrollPhysics(),
                 itemBuilder: (context, index) {
                   return ListTile(
-                    title: Text(dataCurr['wordStorage'][index]),
-                    tileColor: Colors.amber,
-                    leading: Icon(Icons.wordpress),
-                    textColor: Colors.cyan,
-                    minLeadingWidth: 5,
-                  );
+                      title: Text(dataCurr['wordStorage'][index]),
+                      leading: Icon(Icons.wordpress, color: Colors.black),
+                      textColor: Colors.black,
+                      minLeadingWidth: 5,
+                      tileColor: selectedIndex == index ? Colors.blue : null,
+                      onTap: () {
+                        setState(() {
+                          selectedIndex = index;
+                        });
+                      },
+                      trailing: GestureDetector(
+                        onTap: () {
+                          print('Selected index ' + selectedIndex.toString());
+                          print('Selected Word ' +
+                              dataCurr['wordStorage'][selectedIndex]
+                                  .toString());
+                          speak(dataCurr['wordStorage'][selectedIndex]
+                              .toString());
+                        },
+                        child: Icon(Icons.spatial_audio_off_rounded),
+                      ));
                 },
               );
             } else {

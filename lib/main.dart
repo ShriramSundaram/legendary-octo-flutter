@@ -8,7 +8,10 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:germanreminder/frontPage.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:path_provider/path_provider.dart';
 import 'writeFile.dart';
 import 'notification_api.dart';
@@ -33,7 +36,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'DE',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        // primarySwatch: Colors.green,
+        brightness: Brightness.light,
+        //primaryColor: Color.fromARGB(255, 0, 135, 245)
+        //scaffoldBackgroundColor: Color.fromARGB(255, 177, 140, 240)
       ),
       home: FrontPage(),
     );
@@ -67,6 +73,8 @@ class _MyHomePageState extends State<MyHomePage> {
   final myTextController = TextEditingController();
 
   List genericCollection = ["Guten Morgen", "Guten Abend"];
+
+  FlutterTts flutterTts = FlutterTts();
 
   Future getFireBaseGenericCollection() async {
     DocumentSnapshot<Map<String, dynamic>> data = await FirebaseFirestore
@@ -143,28 +151,120 @@ class _MyHomePageState extends State<MyHomePage> {
     await FirebaseAuth.instance.signOut();
   }
 
+  Future speak(String text) async {
+    await flutterTts.setLanguage("DE");
+    //await flutterTts.setSpeechRate(1.0);
+    await flutterTts.setVolume(1.0);
+    await flutterTts.setPitch(1.0);
+    await flutterTts.speak(text);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('German Reminder'),
-        automaticallyImplyLeading: false,
-        actions: [
-          IconButton(
-            onPressed: () {
-              initState();
-            },
-            icon: const Icon(Icons.upload_rounded),
-            tooltip: "Updated New Words",
+      appBar: PreferredSize(
+          child: AppBar(
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  width: 250,
+                  height: 35,
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.symmetric(horizontal: 30),
+                  child: Text(
+                    " \t German Reminder",
+                    style: TextStyle(
+                        fontSize: 20.0,
+                        fontFamily: "OpenSans",
+                        fontStyle: FontStyle.normal,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white),
+                  ),
+                ),
+              ],
+            ),
+            centerTitle: true,
+            flexibleSpace: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              textDirection: TextDirection.ltr,
+              children: [
+                SizedBox(
+                  height: 62,
+                ),
+                Row(
+                  children: [
+                    SizedBox(
+                      height: 40,
+                    ),
+                    Container(
+                      width: 70,
+                      child: Text(
+                        "Welcome ",
+                        style: GoogleFonts.roboto(
+                            fontSize: 16, color: Colors.deepOrangeAccent),
+                      ),
+                    ),
+                    Container(
+                      width: 300,
+                      child: Text(
+                        currentUser!.email! + ' !',
+                        style: GoogleFonts.roboto(
+                            fontSize: 16, color: Colors.deepOrangeAccent),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            automaticallyImplyLeading: false,
+            actions: [
+              IconButton(
+                onPressed: () {
+                  initState();
+                },
+                icon: const Icon(Icons.help),
+                tooltip: "Help",
+                iconSize: 25,
+                color: Colors.deepOrangeAccent,
+                selectedIcon: Tooltip(
+                  message: 'Help / Contact',
+                ),
+              ),
+              IconButton(
+                onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) => CupertinoAlertDialog(
+                            title: Text(' Logout !!'),
+                            content: Text(' Are you sure You want to Logout?'),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  signOut();
+                                  Navigator.pop(context);
+                                },
+                                child: Text(' YES'),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text(' NO '),
+                              )
+                            ],
+                          ));
+                },
+                icon: Icon(Icons.logout_rounded),
+                tooltip: "LogOut",
+                iconSize: 25,
+                color: Colors.deepOrangeAccent,
+              ),
+            ],
           ),
-          IconButton(
-            onPressed: () {
-              signOut();
-            },
-            icon: Icon(Icons.logout_rounded),
-          )
-        ],
-      ),
+          preferredSize: Size.fromHeight(78)),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(25.0),
         scrollDirection: Axis.vertical,
@@ -174,9 +274,9 @@ class _MyHomePageState extends State<MyHomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               const SizedBox(
-                width: 100.0,
+                width: 200.0,
                 child: Text(
-                  " Set Timer",
+                  " Set timer to remind",
                   style: TextStyle(fontSize: 20.0, color: Colors.blue),
                 ),
               ),
@@ -184,150 +284,169 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Container(
-                      width: 75,
+                      width: 95,
+                      padding: const EdgeInsets.all(8.0),
+                      child: ButtonTheme(
+                          alignedDropdown: true,
+                          child: DropdownButton(
+                            value: _dropDownValueHH,
+                            borderRadius: BorderRadius.circular(20),
+                            dropdownColor: Colors.blueAccent,
+                            hint: Text("HH",
+                                style: TextStyle(
+                                    fontSize: 18.0, color: Colors.black)),
+                            items: items_hh.map(buildMenuItem).toList(),
+                            onChanged: (value) => {
+                              hhInput = value as int,
+                              setState(
+                                () => this._dropDownValueHH = value,
+                              )
+                            },
+                          ))),
+                  Container(
+                      width: 95,
                       padding: const EdgeInsets.all(8.0),
                       margin: const EdgeInsets.only(right: 10),
-                      child: DropdownButton(
-                        value: _dropDownValueHH,
-                        dropdownColor: Colors.blueAccent,
-                        hint: Text("HH",
-                            style:
-                                TextStyle(fontSize: 15.0, color: Colors.black)),
-                        items: items_hh.map(buildMenuItem).toList(),
-                        onChanged: (value) => {
-                          hhInput = value as int,
-                          setState(
-                            () => this._dropDownValueHH = value,
-                          )
-                        },
+                      child: ButtonTheme(
+                        alignedDropdown: true,
+                        child: DropdownButton(
+                          value: _dropDownValueMM,
+                          borderRadius: BorderRadius.circular(20),
+                          dropdownColor: Colors.blueAccent,
+                          hint: Text("MM",
+                              style: TextStyle(
+                                  fontSize: 18.0, color: Colors.black)),
+                          items: items_mm.map(buildMenuItem).toList(),
+                          onChanged: (value) => {
+                            mmInput = value as int,
+                            setState(
+                              () => this._dropDownValueMM = value,
+                            )
+                          },
+                        ),
                       )),
                   Container(
-                    width: 75,
-                    padding: const EdgeInsets.all(8.0),
-                    margin: const EdgeInsets.only(right: 10),
-                    child: DropdownButton(
-                      value: _dropDownValueMM,
-                      dropdownColor: Colors.blueAccent,
-                      hint: Text("MM",
-                          style:
-                              TextStyle(fontSize: 15.0, color: Colors.black)),
-                      items: items_mm.map(buildMenuItem).toList(),
-                      onChanged: (value) => {
-                        mmInput = value as int,
-                        setState(
-                          () => this._dropDownValueMM = value,
-                        )
-                      },
-                    ),
-                  ),
+                      width: 95,
+                      padding: const EdgeInsets.all(8.0),
+                      margin: const EdgeInsets.only(right: 10),
+                      child: ButtonTheme(
+                        alignedDropdown: true,
+                        child: DropdownButton(
+                          value: _dropDownValueSS,
+                          borderRadius: BorderRadius.circular(20),
+                          items: items_ss.map(buildMenuItem).toList(),
+                          dropdownColor: Colors.blueAccent,
+                          hint: Text("SS",
+                              style: TextStyle(
+                                  fontSize: 18.0, color: Colors.black)),
+                          onChanged: (value) => {
+                            ssInput = value as int,
+                            setState(
+                              () => this._dropDownValueSS = value,
+                            )
+                          },
+                        ),
+                      )),
                   Container(
-                    width: 75,
-                    padding: const EdgeInsets.all(8.0),
-                    margin: const EdgeInsets.only(right: 10),
-                    child: DropdownButton(
-                      value: _dropDownValueSS,
-                      items: items_ss.map(buildMenuItem).toList(),
-                      dropdownColor: Colors.blueAccent,
-                      hint: Text("SS",
-                          style:
-                              TextStyle(fontSize: 15.0, color: Colors.black)),
-                      onChanged: (value) => {
-                        ssInput = value as int,
-                        setState(
-                          () => this._dropDownValueSS = value,
-                        )
-                      },
-                    ),
+                    width: 30,
+                    child: IconButton(
+                        onPressed: () {
+                          if (hhInput != 0 || mmInput != 0 || ssInput != 0) {
+                            timerStart();
+                          }
+                        },
+                        splashRadius: 25.0,
+                        splashColor: Colors.orangeAccent,
+                        icon: const Icon(
+                          Icons.access_alarm,
+                          size: 30,
+                          color: Colors.blueAccent,
+                        )),
                   ),
                 ],
               ),
-              Container(
-                  width: 85,
-                  padding: const EdgeInsets.all(8.0),
-                  margin: const EdgeInsets.only(left: 10),
-                  child: ElevatedButton(
-                      onPressed: () {
-                        if (hhInput != 0 || mmInput != 0 || ssInput != 0) {
-                          timerStart();
-                        }
-                      },
-                      child: const Text(
-                        "Set Time",
-                        style: TextStyle(fontSize: 13.0, color: Colors.black),
-                      ))),
-              Text(
-                currentUser!.email!,
-                style: TextStyle(
-                    fontSize: 45.0,
-                    fontFamily: "Waterfall",
-                    fontStyle: FontStyle.normal),
-              ),
-              Container(
-                width: 300,
-                height: 50,
-                alignment: Alignment.centerLeft,
-                padding: const EdgeInsets.all(8.0),
+              SizedBox(
+                height: 40,
               ),
               Row(children: [
-                Container(
-                  alignment: Alignment.center,
-                  padding: const EdgeInsets.all(16.0),
-                  decoration: const BoxDecoration(
-                      color: Colors.green,
-                      borderRadius: BorderRadius.all(Radius.circular(20.0))),
-                  // margin: const EdgeInsets.symmetric(),
-                  child: Text(
-                    genericCollection[_index],
-                    textScaleFactor: 5.0,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                        color: Colors.orangeAccent, fontSize: 5.0),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Container(
+                    width: 320,
+                    alignment: Alignment.center,
+                    padding: const EdgeInsets.all(16.0),
+                    decoration: BoxDecoration(
+                        //color: Color.fromARGB(255, 147, 13, 145),
+                        border: Border.all(color: Colors.blue),
+                        borderRadius: BorderRadius.all(Radius.circular(20.0))),
+                    // margin: const EdgeInsets.symmetric(),
+                    child: Text(
+                      genericCollection[_index],
+                      textScaleFactor: 5.0,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 5.0,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
-                  // color: Colors.green,
                 ),
               ]),
-              IconButton(
-                icon: const Icon(Icons.play_arrow),
-                color: Colors.orangeAccent,
-                iconSize: 45.0,
-                tooltip: "Start",
-                splashRadius: 25.0,
-                splashColor: Colors.orangeAccent,
-                onPressed: () {
-                  setState(() {
-                    //_index++;
-                    var ran = Random();
-                    _index = ran.nextInt(genericCollection.length);
-                  });
-                },
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.volume_up),
+                    color: Colors.deepOrangeAccent,
+                    iconSize: 45.0,
+                    tooltip: "Audio",
+                    splashRadius: 25.0,
+                    splashColor: Colors.orangeAccent,
+                    onPressed: () {
+                      speak(genericCollection[_index]);
+                    },
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.play_arrow),
+                    color: Colors.deepOrangeAccent,
+                    iconSize: 45.0,
+                    tooltip: "Start",
+                    splashRadius: 25.0,
+                    splashColor: Colors.orangeAccent,
+                    onPressed: () {
+                      setState(() {
+                        //_index++;
+                        var ran = Random();
+                        _index = ran.nextInt(genericCollection.length);
+                      });
+                    },
+                  ),
+                ],
               ),
-              Container(
-                width: 300,
-                height: 50,
-                alignment: Alignment.bottomLeft,
-                padding: const EdgeInsets.all(8.0),
+              SizedBox(
+                height: 40,
               ),
               Row(children: [
                 Container(
-                  width: 300,
+                  width: 340,
                   alignment: Alignment.center,
-                  padding: const EdgeInsets.all(16.0),
-                  margin: EdgeInsets.only(left: 0.0),
-                  decoration: const BoxDecoration(
-                      color: Colors.yellow,
-                      borderRadius: BorderRadius.all(Radius.circular(20.0))),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: TextField(
                     toolbarOptions: const ToolbarOptions(
                         copy: true, cut: true, paste: true, selectAll: true),
-                    decoration: const InputDecoration.collapsed(
-                        hintText: "Add  New  Word",
-                        fillColor: Colors.deepOrange),
+                    decoration: const InputDecoration(
+                      hintText: "Add  New  Word",
+                      fillColor: Colors.deepOrange,
+                      border: OutlineInputBorder(
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(20.0))),
+                    ),
                     controller: myTextController,
-                    cursorRadius: const Radius.circular(2.0),
                     style: const TextStyle(
                         fontFamily: "OpenSans",
-                        fontSize: 20.0,
-                        color: Colors.blue,
+                        fontSize: 16.0,
+                        color: Colors.black,
                         fontWeight: FontWeight.bold),
                     scrollController:
                         ScrollController(keepScrollOffset: mounted),
@@ -365,12 +484,12 @@ class _MyHomePageState extends State<MyHomePage> {
         items: <Widget>[
           const Icon(
             Icons.home,
-            color: Colors.orangeAccent,
+            color: Colors.deepOrangeAccent,
             size: 30.0,
           ),
           IconButton(
             icon: const Icon(Icons.storage),
-            color: Colors.orangeAccent,
+            color: Colors.deepOrangeAccent,
             tooltip: "Storage",
             splashRadius: 25.0,
             splashColor: Colors.orangeAccent,
@@ -380,7 +499,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           IconButton(
             icon: const Icon(Icons.description_outlined),
-            color: Colors.orangeAccent,
+            color: Colors.deepOrangeAccent,
             tooltip: "User Storage",
             splashRadius: 25.0,
             splashColor: Colors.orangeAccent,

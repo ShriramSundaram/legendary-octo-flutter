@@ -19,6 +19,9 @@ class _SignUpPageState extends State<SignUpPage> {
 
   final currentUser = FirebaseAuth.instance.currentUser;
 
+  bool _obscureTextConfirmPassword = true;
+  bool _obscureTextPassword = true;
+
   Future SignUp() async {
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -28,12 +31,14 @@ class _SignUpPageState extends State<SignUpPage> {
             context: context,
             builder: (context) => CupertinoAlertDialog(
                   title: Text('Congratulations!!!!'),
-                  content: Text('You have signed Up Successfully'),
+                  content: Text(
+                      'You have signed Up Successfully, Verification Email sent to your mail id'),
                   actions: [
                     TextButton(
                       onPressed: () {
                         goToFrontPage(context);
                         SettingUpUserDatabase();
+                        SendVerificationEmail();
                       },
                       child: Text('Close'),
                     )
@@ -47,7 +52,8 @@ class _SignUpPageState extends State<SignUpPage> {
             context: context,
             builder: (context) => CupertinoAlertDialog(
                   title: Text('Alert !!!!'),
-                  content: Text('Weak Password'),
+                  content: Text('Weak Password \n' +
+                      'Mininum 8 Characters (AlphaNumeric)'),
                   actions: [
                     TextButton(
                       onPressed: () {
@@ -111,8 +117,45 @@ class _SignUpPageState extends State<SignUpPage> {
                 ));
         print('wrong password!!');
       }
-    } catch (e) {
-      print(e);
+    }
+    (e) {
+      showDialog(
+          context: context,
+          builder: (context) => CupertinoAlertDialog(
+                title: Text('Alert !!!!'),
+                content: Text(e.code.toString()),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      goToFrontPage(context);
+                      // SettingUpUserDatabase();
+                    },
+                    child: Text('Close'),
+                  )
+                ],
+              ));
+    };
+  }
+
+  Future SendVerificationEmail() async {
+    try {
+      FirebaseAuth.instance.currentUser!.sendEmailVerification();
+    } on FirebaseAuthException catch (e) {
+      showDialog(
+          context: context,
+          builder: (context) => CupertinoAlertDialog(
+                title: Text('Alert !!!!'),
+                content: Text(e.message.toString()),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      goToFrontPage(context);
+                      // SettingUpUserDatabase();
+                    },
+                    child: Text('Close'),
+                  )
+                ],
+              ));
     }
   }
 
@@ -155,6 +198,7 @@ class _SignUpPageState extends State<SignUpPage> {
         appBar: AppBar(
           title: Text('SignUp', textDirection: TextDirection.ltr),
           automaticallyImplyLeading: false,
+          centerTitle: true,
           actions: [
             IconButton(
                 icon: Icon(Icons.arrow_back),
@@ -169,16 +213,20 @@ class _SignUpPageState extends State<SignUpPage> {
             width: 250,
             child: Icon(
               Icons.lock,
-              size: 200,
+              size: 170,
             ),
           ),
           Container(
-            width: 350,
+            height: 15,
+          ),
+          Container(
+            width: 320,
             alignment: Alignment.center,
             padding: const EdgeInsets.all(16.0),
             margin: EdgeInsets.only(top: 20.0),
-            decoration: const BoxDecoration(
-                color: Colors.yellow,
+            decoration: BoxDecoration(
+                border:
+                    Border.all(color: Colors.blue, style: BorderStyle.solid),
                 borderRadius: BorderRadius.all(Radius.circular(20.0))),
             child: TextField(
               toolbarOptions: const ToolbarOptions(
@@ -190,71 +238,98 @@ class _SignUpPageState extends State<SignUpPage> {
               style: const TextStyle(
                   fontFamily: "OpenSans",
                   fontSize: 20.0,
-                  color: Colors.blue,
+                  color: Colors.black,
                   fontWeight: FontWeight.bold),
               scrollController: ScrollController(keepScrollOffset: mounted),
             ),
           ),
           Container(
-            width: 350,
+            width: 320,
+            height: 60,
             alignment: Alignment.center,
             padding: const EdgeInsets.all(16.0),
             margin: EdgeInsets.only(top: 20.0),
-            decoration: const BoxDecoration(
-                color: Colors.yellow,
+            decoration: BoxDecoration(
+                border:
+                    Border.all(color: Colors.blue, style: BorderStyle.solid),
                 borderRadius: BorderRadius.all(Radius.circular(20.0))),
             child: TextField(
-              obscureText: true,
+              obscureText: _obscureTextPassword,
               toolbarOptions: const ToolbarOptions(
                   copy: true, cut: true, paste: true, selectAll: true),
-              decoration: const InputDecoration.collapsed(
-                  hintText: " Password ", fillColor: Colors.deepOrange),
+              decoration: InputDecoration(
+                  isCollapsed: true,
+                  hintText: "Password",
+                  suffixIcon: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _obscureTextPassword = !_obscureTextPassword;
+                      });
+                    },
+                    child: Icon(_obscureTextPassword
+                        ? Icons.visibility
+                        : Icons.visibility_off),
+                  )),
               controller: password,
               cursorRadius: const Radius.circular(2.0),
               style: const TextStyle(
                   fontFamily: "OpenSans",
                   fontSize: 20.0,
-                  color: Colors.blue,
+                  color: Colors.black,
                   fontWeight: FontWeight.bold),
               scrollController: ScrollController(keepScrollOffset: mounted),
             ),
           ),
           Container(
-            width: 350,
+            width: 320,
+            height: 60,
             alignment: Alignment.center,
             padding: const EdgeInsets.all(16.0),
             margin: EdgeInsets.only(top: 20.0),
-            decoration: const BoxDecoration(
-                color: Colors.yellow,
+            decoration: BoxDecoration(
+                border:
+                    Border.all(color: Colors.blue, style: BorderStyle.solid),
                 borderRadius: BorderRadius.all(Radius.circular(20.0))),
             child: TextField(
-              obscureText: true,
+              obscureText: _obscureTextConfirmPassword,
               toolbarOptions: const ToolbarOptions(
                   copy: true, cut: true, paste: true, selectAll: true),
-              decoration: const InputDecoration.collapsed(
-                  hintText: " Confirm Password ", fillColor: Colors.deepOrange),
+              decoration: InputDecoration(
+                  isCollapsed: true,
+                  hintText: "Confirm Password",
+                  suffixIcon: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _obscureTextConfirmPassword =
+                            !_obscureTextConfirmPassword;
+                      });
+                    },
+                    child: Icon(_obscureTextConfirmPassword
+                        ? Icons.visibility
+                        : Icons.visibility_off),
+                  )),
               controller: confirmPassword,
               cursorRadius: const Radius.circular(2.0),
               style: const TextStyle(
                   fontFamily: "OpenSans",
                   fontSize: 20.0,
-                  color: Colors.blue,
+                  color: Colors.black,
                   fontWeight: FontWeight.bold),
               scrollController: ScrollController(keepScrollOffset: mounted),
             ),
           ),
           SizedBox(
             width: 10,
-            height: 20,
+            height: 40,
           ),
           Container(
-              height: 60,
+              width: 320,
+              height: 50,
               alignment: Alignment.center,
-              padding: const EdgeInsets.all(15.0),
+              padding: const EdgeInsets.all(16.0),
               margin: EdgeInsets.symmetric(horizontal: 20.0),
               decoration: BoxDecoration(
-                  color: Colors.deepPurple[300],
-                  borderRadius: BorderRadius.circular(8)),
+                  color: Colors.blue, borderRadius: BorderRadius.circular(20)),
               child: MaterialButton(
                   highlightElevation: 2.0,
                   splashColor: Colors.blue,
@@ -263,8 +338,28 @@ class _SignUpPageState extends State<SignUpPage> {
                   },
                   child: const Text(
                     "SignUp",
-                    style: TextStyle(fontSize: 20.0, color: Colors.black),
-                  )))
+                    style: TextStyle(fontSize: 16.0, color: Colors.black),
+                  ))),
+          SizedBox(
+            width: 10,
+            height: 20,
+          ),
+          SizedBox(
+            width: 250,
+            child: GestureDetector(
+              onTap: () {
+                goToFrontPage(context);
+              },
+              child: Text(
+                "\tI already have an account !! ",
+                style: TextStyle(
+                    fontSize: 18.0,
+                    decoration: TextDecoration.underline,
+                    color: Colors.blue,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
         ]))));
   }
 }
