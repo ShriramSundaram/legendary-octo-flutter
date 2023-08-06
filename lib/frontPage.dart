@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:germanreminder/main.dart';
+import 'package:germanreminder/verifyEmailPage.dart';
 import 'onboardingScreen.dart';
 
 class FrontPage extends StatelessWidget {
@@ -13,7 +13,7 @@ class FrontPage extends StatelessWidget {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return MyHomePage(title: 'DE');
+            return VerifyEmailPage();
           } else {
             return OnBoardingScreen();
           }

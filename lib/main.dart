@@ -9,10 +9,16 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:germanreminder/frontPage.dart';
+import 'package:germanreminder/profilePage.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:responsive_framework/responsive_framework.dart';
+import 'package:rxdart/rxdart.dart';
 import 'writeFile.dart';
 import 'notification_api.dart';
 import 'secondPage.dart';
@@ -24,6 +30,9 @@ import 'onboardingScreen.dart';
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await Hive.initFlutter();
+
+  var box = await Hive.openBox('LocalDatabase');
   runApp(const MyApp());
 }
 
@@ -34,13 +43,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'DE',
-      theme: ThemeData(
-        // primarySwatch: Colors.green,
-        brightness: Brightness.light,
-        //primaryColor: Color.fromARGB(255, 0, 135, 245)
-        //scaffoldBackgroundColor: Color.fromARGB(255, 177, 140, 240)
-      ),
+      builder: (context, widget) => ResponsiveWrapper.builder(
+          BouncingScrollWrapper.builder(context, widget!),
+          maxWidth: 1200,
+          minWidth: 450,
+          defaultScale: true,
+          breakpoints: [
+            ResponsiveBreakpoint.resize(450, name: MOBILE),
+            ResponsiveBreakpoint.autoScale(800, name: TABLET),
+            ResponsiveBreakpoint.autoScale(1000, name: TABLET),
+            ResponsiveBreakpoint.autoScale(1200, name: DESKTOP),
+            ResponsiveBreakpoint.autoScale(2460, name: "4K"),
+          ],
+          background: Container(color: Color(0xFF7E2323))),
+      debugShowCheckedModeBanner: false,
       home: FrontPage(),
     );
   }
@@ -114,7 +130,6 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void timerStart() {
-    notificationEnable();
     Timer(Duration(hours: (hhInput), minutes: (mmInput), seconds: (ssInput)),
         () {
       NotificationApi.showNotification(
@@ -123,6 +138,17 @@ class _MyHomePageState extends State<MyHomePage> {
           description: 'The word',
           payload: Text(genericCollection[_index]).data);
     });
+  }
+
+  void onDidReceiveNotificationResponse(payload) async {
+    if (payload != null) {
+      debugPrint('notification payload: $payload');
+    }
+    await Navigator.push(
+      context,
+      MaterialPageRoute<void>(
+          builder: (context) => SecondPage(payload: payload)),
+    );
   }
 
   void listenNotification() =>
@@ -147,8 +173,17 @@ class _MyHomePageState extends State<MyHomePage> {
         MaterialPageRoute(builder: (context) => UserCollectionDatabase()));
   }
 
+  void OnClickedProfilePage() {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => ProfilePage()));
+  }
+
+  void goToFrontScreen(context) => Navigator.of(context)
+      .push(MaterialPageRoute(builder: (_) => FrontPage()));
+
   Future<void> signOut() async {
     await FirebaseAuth.instance.signOut();
+    goToFrontScreen(context);
   }
 
   Future speak(String text) async {
@@ -161,78 +196,51 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    var currentWidth = MediaQuery.of(context).size.width;
+    var currentHeight = MediaQuery.of(context).size.width;
+    final double statusbarHeight = MediaQuery.of(context).padding.top;
+    print(statusbarHeight);
     return Scaffold(
       appBar: PreferredSize(
           child: AppBar(
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  width: 250,
-                  height: 35,
-                  alignment: Alignment.center,
-                  padding: EdgeInsets.symmetric(horizontal: 30),
-                  child: Text(
-                    " \t German Reminder",
-                    style: TextStyle(
-                        fontSize: 20.0,
-                        fontFamily: "OpenSans",
-                        fontStyle: FontStyle.normal,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
-                  ),
+            title: Center(
+              child: Container(
+                width: currentWidth * 0.6,
+                height: statusbarHeight,
+                alignment: Alignment.center,
+                padding: EdgeInsets.symmetric(horizontal: 30),
+                child: Text(
+                  " German Reminder",
+                  style: GoogleFonts.roboto(
+                      fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-              ],
+              ),
             ),
             centerTitle: true,
-            flexibleSpace: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              textDirection: TextDirection.ltr,
-              children: [
-                SizedBox(
-                  height: 62,
+            flexibleSpace: SafeArea(
+              child: SizedBox(
+                height: statusbarHeight * 5,
+                child: Padding(
+                  padding: EdgeInsets.only(top: 50),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: 80,
+                        child: Text(
+                          "Welcome ",
+                          style: GoogleFonts.tinos(
+                              fontSize: 16,
+                              color: Color.fromARGB(255, 25, 6, 0)),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-                Row(
-                  children: [
-                    SizedBox(
-                      height: 40,
-                    ),
-                    Container(
-                      width: 70,
-                      child: Text(
-                        "Welcome ",
-                        style: GoogleFonts.roboto(
-                            fontSize: 16, color: Colors.deepOrangeAccent),
-                      ),
-                    ),
-                    Container(
-                      width: 300,
-                      child: Text(
-                        currentUser!.email! + ' !',
-                        style: GoogleFonts.roboto(
-                            fontSize: 16, color: Colors.deepOrangeAccent),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+              ),
             ),
             automaticallyImplyLeading: false,
             actions: [
-              IconButton(
-                onPressed: () {
-                  initState();
-                },
-                icon: const Icon(Icons.help),
-                tooltip: "Help",
-                iconSize: 25,
-                color: Colors.deepOrangeAccent,
-                selectedIcon: Tooltip(
-                  message: 'Help / Contact',
-                ),
-              ),
               IconButton(
                 onPressed: () {
                   showDialog(
@@ -244,7 +252,6 @@ class _MyHomePageState extends State<MyHomePage> {
                               TextButton(
                                 onPressed: () {
                                   signOut();
-                                  Navigator.pop(context);
                                 },
                                 child: Text(' YES'),
                               ),
@@ -264,7 +271,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ],
           ),
-          preferredSize: Size.fromHeight(78)),
+          preferredSize: Size.fromHeight(80)),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(25.0),
         scrollDirection: Axis.vertical,
@@ -284,8 +291,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Container(
-                      width: 95,
+                      width: currentWidth * 0.2,
                       padding: const EdgeInsets.all(8.0),
+                      margin: const EdgeInsets.only(right: 10),
                       child: ButtonTheme(
                           alignedDropdown: true,
                           child: DropdownButton(
@@ -304,7 +312,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             },
                           ))),
                   Container(
-                      width: 95,
+                      width: currentWidth * 0.21,
                       padding: const EdgeInsets.all(8.0),
                       margin: const EdgeInsets.only(right: 10),
                       child: ButtonTheme(
@@ -326,7 +334,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       )),
                   Container(
-                      width: 95,
+                      width: currentWidth * 0.2,
                       padding: const EdgeInsets.all(8.0),
                       margin: const EdgeInsets.only(right: 10),
                       child: ButtonTheme(
@@ -348,7 +356,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ),
                       )),
                   Container(
-                    width: 30,
+                    width: currentWidth * 0.2,
                     child: IconButton(
                         onPressed: () {
                           if (hhInput != 0 || mmInput != 0 || ssInput != 0) {
@@ -366,7 +374,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
               SizedBox(
-                height: 40,
+                height: 70,
               ),
               Row(children: [
                 SingleChildScrollView(
@@ -379,8 +387,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     decoration: BoxDecoration(
                         //color: Color.fromARGB(255, 147, 13, 145),
                         border: Border.all(color: Colors.blue),
-                        borderRadius: BorderRadius.all(Radius.circular(20.0))),
-                    // margin: const EdgeInsets.symmetric(),
+                        borderRadius: BorderRadius.all(Radius.circular(20))),
                     child: Text(
                       genericCollection[_index],
                       textScaleFactor: 5.0,
@@ -425,13 +432,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
               SizedBox(
-                height: 40,
+                height: 70,
               ),
               Row(children: [
                 Container(
                   width: 340,
                   alignment: Alignment.center,
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: TextField(
                     toolbarOptions: const ToolbarOptions(
                         copy: true, cut: true, paste: true, selectAll: true),
@@ -505,6 +512,16 @@ class _MyHomePageState extends State<MyHomePage> {
             splashColor: Colors.orangeAccent,
             onPressed: () {
               OnClickedUserDatabase();
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.face_sharp),
+            color: Colors.deepOrangeAccent,
+            tooltip: "User Page",
+            splashRadius: 25.0,
+            splashColor: Colors.orangeAccent,
+            onPressed: () {
+              OnClickedProfilePage();
             },
           )
         ],

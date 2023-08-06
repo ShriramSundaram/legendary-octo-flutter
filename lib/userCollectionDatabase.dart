@@ -30,7 +30,7 @@ class _UserCollectionDatabaseState extends State<UserCollectionDatabase> {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: Text(" User Library "),
+          title: Text(" User Collection "),
           centerTitle: true,
         ),
         body: Container(

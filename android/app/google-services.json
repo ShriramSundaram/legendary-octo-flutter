@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1071132829119:android:58573d51cb84c9cb6e2d0a",
+        "mobilesdk_app_id": "1:1071132829119:android:8bf054504363f9fc6e2d0a",
         "android_client_info": {
-          "package_name": "com.example.germanreminder"
+          "package_name": "com.sundaram.germanreminder.app"
         }
       },
       "oauth_client": [

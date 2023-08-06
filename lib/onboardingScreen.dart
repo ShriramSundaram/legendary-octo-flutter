@@ -136,22 +136,18 @@ class _OnBoardingScreen extends State<OnBoardingScreen> {
                       padding: const EdgeInsets.all(16.0),
                       margin: EdgeInsets.only(left: 0.0),
                       decoration: BoxDecoration(
-                          //color: Color.fromARGB(255, 147, 13, 145),
                           border: Border.all(
                               color: Colors.blue, style: BorderStyle.solid),
                           borderRadius:
                               BorderRadius.all(Radius.circular(20.0))),
                       child: TextField(
-                        toolbarOptions: const ToolbarOptions(
-                            copy: true,
-                            cut: true,
-                            paste: true,
-                            selectAll: true),
-                        decoration: const InputDecoration.collapsed(
-                            hintText: "Email", fillColor: Colors.deepOrange),
+                        decoration: InputDecoration(
+                            hintText: "Email",
+                            hintMaxLines: 1,
+                            isCollapsed: true),
                         controller: EmailController,
                         cursorRadius: const Radius.circular(2.0),
-                        style: const TextStyle(
+                        style: TextStyle(
                             fontFamily: "OpenSans",
                             fontSize: 18.0,
                             color: Colors.black,

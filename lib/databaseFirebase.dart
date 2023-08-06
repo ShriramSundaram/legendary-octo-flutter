@@ -37,7 +37,7 @@ class _ViewGenericDatabaseState extends State<ViewGenericDatabase> {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: Text(" Generic Database "),
+          title: Text(" Generic Collection "),
           centerTitle: true,
         ),
         body: Container(

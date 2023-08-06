@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:germanreminder/frontPage.dart';
 import 'package:germanreminder/main.dart';
 import 'package:germanreminder/onboardingScreen.dart';
+import 'package:germanreminder/verifyEmailPage.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -36,7 +37,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   actions: [
                     TextButton(
                       onPressed: () {
-                        goToFrontPage(context);
+                        goToFrontScreen(context);
                         SettingUpUserDatabase();
                         SendVerificationEmail();
                       },
@@ -57,7 +58,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   actions: [
                     TextButton(
                       onPressed: () {
-                        goToFrontPage(context);
+                        goToFrontScreen(context);
                         // SettingUpUserDatabase();
                       },
                       child: Text('Close'),
@@ -74,7 +75,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   actions: [
                     TextButton(
                       onPressed: () {
-                        goToFrontPage(context);
+                        goToFrontScreen(context);
                         // SettingUpUserDatabase();
                       },
                       child: Text('Close'),
@@ -91,7 +92,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   actions: [
                     TextButton(
                       onPressed: () {
-                        goToFrontPage(context);
+                        goToFrontScreen(context);
                         // SettingUpUserDatabase();
                       },
                       child: Text('Close'),
@@ -108,7 +109,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   actions: [
                     TextButton(
                       onPressed: () {
-                        goToFrontPage(context);
+                        goToFrontScreen(context);
                         // SettingUpUserDatabase();
                       },
                       child: Text('Close'),
@@ -127,7 +128,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 actions: [
                   TextButton(
                     onPressed: () {
-                      goToFrontPage(context);
+                      goToFrontScreen(context);
                       // SettingUpUserDatabase();
                     },
                     child: Text('Close'),
@@ -137,32 +138,10 @@ class _SignUpPageState extends State<SignUpPage> {
     };
   }
 
-  Future SendVerificationEmail() async {
-    try {
-      FirebaseAuth.instance.currentUser!.sendEmailVerification();
-    } on FirebaseAuthException catch (e) {
-      showDialog(
-          context: context,
-          builder: (context) => CupertinoAlertDialog(
-                title: Text('Alert !!!!'),
-                content: Text(e.message.toString()),
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      goToFrontPage(context);
-                      // SettingUpUserDatabase();
-                    },
-                    child: Text('Close'),
-                  )
-                ],
-              ));
-    }
-  }
-
   Future SettingUpUserDatabase() async {
     Map<String, dynamic> initData = {'wordStorage': []};
 
-    var collection = await FirebaseFirestore.instance
+    await FirebaseFirestore.instance
         .collection('User')
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .set(initData)
@@ -178,10 +157,28 @@ class _SignUpPageState extends State<SignUpPage> {
     }
   }
 
-  void goToHomePage(context) => Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (context) => MyHomePage(title: 'DE')));
+  Future SendVerificationEmail() async {
+    try {
+      currentUser!.sendEmailVerification();
+    } on FirebaseAuthException catch (e) {
+      showDialog(
+          context: context,
+          builder: (context) => CupertinoAlertDialog(
+                title: Text('Alert !!!!'),
+                content: Text(e.message.toString()),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text('Close'),
+                  )
+                ],
+              ));
+    }
+  }
 
-  void goToFrontPage(context) => Navigator.of(context)
+  void goToFrontScreen(context) => Navigator.of(context)
       .push(MaterialPageRoute(builder: (_) => FrontPage()));
 
   @override
@@ -202,7 +199,7 @@ class _SignUpPageState extends State<SignUpPage> {
           actions: [
             IconButton(
                 icon: Icon(Icons.arrow_back),
-                onPressed: () => {goToFrontPage(context)})
+                onPressed: () => {goToFrontScreen(context)})
           ],
         ),
         backgroundColor: Colors.deepPurpleAccent[300],
@@ -348,7 +345,7 @@ class _SignUpPageState extends State<SignUpPage> {
             width: 250,
             child: GestureDetector(
               onTap: () {
-                goToFrontPage(context);
+                goToFrontScreen(context);
               },
               child: Text(
                 "\tI already have an account !! ",
