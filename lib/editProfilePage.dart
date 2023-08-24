@@ -25,6 +25,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
   File? _image;
   String? localPath;
 
+  bool onSelectedLevelA = true;
+  bool onSelectedLevelA2 = true;
+  bool onSelectedLevelB1 = true;
+  bool onSelectedLevelB2 = true;
+  bool onSelectedLevelC1 = true;
+
+  String? onSelectedLevel;
+
   TextEditingController userNameEditor = TextEditingController();
   // Initialize the object for Hive
   final hiveDatabase = Hive.box('LocalDatabase');
@@ -90,6 +98,24 @@ class _EditProfilePageState extends State<EditProfilePage> {
       });
     } else {
       localPath = '';
+    }
+  }
+
+  void writeGermanLevel() {
+    if (onSelectedLevel == 'A') {
+      hiveDatabase.put('CurrentLevel', 'A1');
+    }
+    if (onSelectedLevel == 'A2') {
+      hiveDatabase.put('CurrentLevel', 'A2');
+    }
+    if (onSelectedLevel == 'B1') {
+      hiveDatabase.put('CurrentLevel', 'B1');
+    }
+    if (onSelectedLevel == 'B2') {
+      hiveDatabase.put('CurrentLevel', 'B2');
+    }
+    if (onSelectedLevel == 'C1') {
+      hiveDatabase.put('CurrentLevel', 'C1');
     }
   }
 
@@ -169,6 +195,181 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 SizedBox(
                   height: 45,
                 ),
+                SizedBox(
+                  height: 25,
+                  child: Text(
+                    'Choose your German Level',
+                    style: const TextStyle(
+                        fontFamily: "OpenSans",
+                        fontSize: 16.0,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Row(children: [
+                  Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                            width: 6,
+                            color: onSelectedLevelA
+                                ? Color.fromARGB(255, 130, 103, 204)
+                                : Colors.white),
+                        borderRadius: BorderRadius.circular(80),
+                      ),
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(80),
+                          child: InkWell(
+                            onTap: onSelectedLevelA
+                                ? () {
+                                    setState(() {
+                                      onSelectedLevelA = false;
+                                      onSelectedLevelA2 = true;
+                                      onSelectedLevelB1 = true;
+                                      onSelectedLevelB2 = true;
+                                      onSelectedLevelC1 = true;
+                                      onSelectedLevel = "A";
+                                    });
+                                  }
+                                : null,
+                            splashColor: Colors.deepPurpleAccent,
+                            child: CircleAvatar(
+                              backgroundImage: AssetImage('assets/A1.png'),
+                              radius: 25,
+                            ),
+                          ))),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                            width: 6,
+                            color: onSelectedLevelA2
+                                ? Color.fromARGB(255, 130, 103, 204)
+                                : Colors.white),
+                        borderRadius: BorderRadius.circular(80),
+                      ),
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(80),
+                          child: InkWell(
+                            onTap: onSelectedLevelA2
+                                ? () {
+                                    setState(() {
+                                      onSelectedLevelA = true;
+                                      onSelectedLevelA2 = false;
+                                      onSelectedLevelB1 = true;
+                                      onSelectedLevelB2 = true;
+                                      onSelectedLevelC1 = true;
+                                      onSelectedLevel = "A2";
+                                    });
+                                  }
+                                : null,
+                            splashColor: Colors.deepPurpleAccent,
+                            child: CircleAvatar(
+                              backgroundImage: AssetImage('assets/A2.png'),
+                              radius: 25,
+                            ),
+                          ))),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                            width: 6,
+                            color: onSelectedLevelB1
+                                ? Color.fromARGB(255, 130, 103, 204)
+                                : Colors.white),
+                        borderRadius: BorderRadius.circular(80),
+                      ),
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(80),
+                          child: InkWell(
+                            onTap: onSelectedLevelB1
+                                ? () {
+                                    setState(() {
+                                      onSelectedLevelA2 = true;
+                                      onSelectedLevelA = true;
+                                      onSelectedLevelB1 = false;
+                                      onSelectedLevelB2 = true;
+                                      onSelectedLevelC1 = true;
+                                      onSelectedLevel = "B1";
+                                    });
+                                  }
+                                : null,
+                            splashColor: Colors.deepPurpleAccent,
+                            child: CircleAvatar(
+                              backgroundImage: AssetImage('assets/B1.png'),
+                              radius: 25,
+                            ),
+                          ))),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                            width: 6,
+                            color: onSelectedLevelB2
+                                ? Color.fromARGB(255, 130, 103, 204)
+                                : Colors.white),
+                        borderRadius: BorderRadius.circular(80),
+                      ),
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(80),
+                          child: InkWell(
+                            onTap: onSelectedLevelB2
+                                ? () {
+                                    setState(() {
+                                      onSelectedLevelA2 = true;
+                                      onSelectedLevelA = true;
+                                      onSelectedLevelB1 = true;
+                                      onSelectedLevelB2 = false;
+                                      onSelectedLevelC1 = true;
+                                      onSelectedLevel = "B2";
+                                    });
+                                  }
+                                : null,
+                            splashColor: Colors.deepPurpleAccent,
+                            child: CircleAvatar(
+                              backgroundImage: AssetImage('assets/B2.png'),
+                              radius: 25,
+                            ),
+                          ))),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                            width: 6,
+                            color: onSelectedLevelC1
+                                ? Color.fromARGB(255, 130, 103, 204)
+                                : Colors.white),
+                        borderRadius: BorderRadius.circular(80),
+                      ),
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(80),
+                          child: InkWell(
+                            onTap: onSelectedLevelC1
+                                ? () {
+                                    setState(() {
+                                      onSelectedLevelA2 = true;
+                                      onSelectedLevelA = true;
+                                      onSelectedLevelB1 = true;
+                                      onSelectedLevelB2 = true;
+                                      onSelectedLevelC1 = false;
+                                      onSelectedLevel = "C1";
+                                    });
+                                  }
+                                : null,
+                            splashColor: Colors.deepPurpleAccent,
+                            child: CircleAvatar(
+                              backgroundImage: AssetImage('assets/C1.png'),
+                              radius: 25,
+                            ),
+                          )))
+                ])
               ]))),
       bottomSheet: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -200,7 +401,10 @@ class _EditProfilePageState extends State<EditProfilePage> {
               onPressed: () {
                 writeUserName();
                 goToProfilePage(context);
-                saveImage(_image!);
+                writeGermanLevel();
+                if (_image != null) {
+                  saveImage(_image!);
+                }
               },
               child: Text('Save',
                   style: TextStyle(

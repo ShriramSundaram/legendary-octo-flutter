@@ -100,11 +100,14 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                   ),
                 ],
               ),
+              SizedBox(
+                height: 20,
+              ),
               Container(
                 width: 320,
                 alignment: Alignment.center,
                 padding: const EdgeInsets.all(16.0),
-                margin: EdgeInsets.only(top: 20.0),
+                margin: EdgeInsets.only(right: 55.0),
                 child: Text(
                   "Enter your registered Email Id to reset password ",
                   style: const TextStyle(
@@ -118,20 +121,24 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
               Container(
                 width: 320,
                 alignment: Alignment.center,
-                decoration: const BoxDecoration(shape: BoxShape.rectangle),
+                margin: EdgeInsets.only(right: 35.0),
+                decoration: const BoxDecoration(shape: BoxShape.circle),
                 child: TextField(
                   toolbarOptions: const ToolbarOptions(
                       copy: true, cut: true, paste: true, selectAll: true),
                   decoration: const InputDecoration(
                       hintText: " Email ",
                       fillColor: Colors.deepOrange,
-                      border: OutlineInputBorder(),
+                      border: const OutlineInputBorder(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(30)),
+                      ),
                       focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                               color: Color.fromARGB(255, 159, 125, 251))),
                       prefixIcon: Icon(Icons.email_rounded)),
                   controller: emailAddress,
-                  cursorRadius: const Radius.circular(2.0),
+                  cursorRadius: const Radius.circular(20.0),
                   style: const TextStyle(
                       fontFamily: "OpenSans",
                       fontSize: 20.0,
@@ -146,6 +153,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
               Container(
                 width: 320,
                 alignment: Alignment.center,
+                margin: EdgeInsets.only(right: 25.0),
                 decoration: const BoxDecoration(
                     color: Color.fromARGB(255, 159, 125, 251)),
                 child: MaterialButton(

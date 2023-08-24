@@ -84,6 +84,10 @@ class _MyHomePageState extends State<MyHomePage> {
   int? _dropDownValueSS;
   List<String> germanUserWordsList = [];
 
+  String? databaseSelection;
+
+  final hiveDB = Hive.box('LocalDatabase');
+
   final currentUser = FirebaseAuth.instance.currentUser;
 
   final myTextController = TextEditingController();
@@ -97,6 +101,54 @@ class _MyHomePageState extends State<MyHomePage> {
         .instance
         .collection('Generic')
         .doc('GenericCollections')
+        .get();
+    print(data['wordStorage'][1]);
+    for (var i = 0; i < data['wordStorage'].length; i++) {
+      genericCollection.add(data['wordStorage'][i]);
+    }
+  }
+
+  Future getFireBaseGenericCollectionA2() async {
+    DocumentSnapshot<Map<String, dynamic>> data = await FirebaseFirestore
+        .instance
+        .collection('Generic')
+        .doc('GenericCollectionsA2')
+        .get();
+    print(data['wordStorage'][1]);
+    for (var i = 0; i < data['wordStorage'].length; i++) {
+      genericCollection.add(data['wordStorage'][i]);
+    }
+  }
+
+  Future getFireBaseGenericCollectionB1() async {
+    DocumentSnapshot<Map<String, dynamic>> data = await FirebaseFirestore
+        .instance
+        .collection('Generic')
+        .doc('GenericCollectionsB1')
+        .get();
+    print(data['wordStorage'][1]);
+    for (var i = 0; i < data['wordStorage'].length; i++) {
+      genericCollection.add(data['wordStorage'][i]);
+    }
+  }
+
+  Future getFireBaseGenericCollectionB2() async {
+    DocumentSnapshot<Map<String, dynamic>> data = await FirebaseFirestore
+        .instance
+        .collection('Generic')
+        .doc('GenericCollectionsB2')
+        .get();
+    print(data['wordStorage'][1]);
+    for (var i = 0; i < data['wordStorage'].length; i++) {
+      genericCollection.add(data['wordStorage'][i]);
+    }
+  }
+
+  Future getFireBaseGenericCollectionC1() async {
+    DocumentSnapshot<Map<String, dynamic>> data = await FirebaseFirestore
+        .instance
+        .collection('Generic')
+        .doc('GenericCollectionsC1')
         .get();
     print(data['wordStorage'][1]);
     for (var i = 0; i < data['wordStorage'].length; i++) {
@@ -120,8 +172,43 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
-    getFireBaseGenericCollection();
     getFireBaseUserCollection();
+
+    if (hiveDB.containsKey('CurrentLevel')) {
+      print('Yeah it contains');
+      if ((hiveDB.get('CurrentLevel')) == 'A1') {
+        print('Yeah it contains A1');
+        getFireBaseGenericCollection();
+        setState(() {
+          databaseSelection = 'GenericCollections';
+        });
+      }
+      if ((hiveDB.get('CurrentLevel')) == 'A2') {
+        print('Yeah it contains A2');
+        getFireBaseGenericCollectionA2();
+        setState(() {
+          databaseSelection = 'GenericCollectionsA2';
+        });
+      }
+      if ((hiveDB.get('CurrentLevel')) == 'B1') {
+        print('Yeah it contains B1');
+        getFireBaseGenericCollectionB1();
+        databaseSelection = 'GenericCollectionsB1';
+      }
+      if ((hiveDB.get('CurrentLevel')) == 'B2') {
+        print('Yeah it contains B1');
+        getFireBaseGenericCollectionB2();
+        databaseSelection = 'GenericCollectionsB2';
+      }
+      if ((hiveDB.get('CurrentLevel')) == 'C1') {
+        print('Yeah it contains B1');
+        getFireBaseGenericCollectionC1();
+        databaseSelection = 'GenericCollectionsC1';
+      }
+    } else {
+      getFireBaseGenericCollection();
+      databaseSelection = 'GenericCollections';
+    }
   }
 
   void notificationEnable() {
@@ -164,8 +251,10 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void OnClickedLoadDatabase() {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => ViewGenericDatabase()));
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => ViewGenericDatabase(
+              GermanLevel: databaseSelection!,
+            )));
   }
 
   void OnClickedUserDatabase() {
@@ -229,9 +318,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         width: 80,
                         child: Text(
                           "Welcome ",
-                          style: GoogleFonts.tinos(
-                              fontSize: 16,
-                              color: Color.fromARGB(255, 25, 6, 0)),
+                          style: GoogleFonts.roboto(
+                              fontSize: 18, color: Colors.white),
                         ),
                       )
                     ],

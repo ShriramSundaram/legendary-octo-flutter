@@ -105,14 +105,14 @@ class _OnBoardingScreen extends State<OnBoardingScreen> {
                                   fontWeight: FontWeight.bold, fontSize: 20)),
                           TextSpan(
                               text:
-                                  ' User can press PLAY Button to display random words from Generic Database. '),
+                                  ' User can press PLAY Button to display random words from Generic Database or Add Newly learnt words to User Database '),
                           TextSpan(
                               text: '\n\nStep 3 :',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 20)),
                           TextSpan(
-                              text: ' If displayed word needs to be reminded, User can select the Time(HH::MM::SS) Above and Press TimerIcon. The selected word will be reminded after specified time.' +
-                                  ' Alternatively user can click on PLAY button repeatedly until user finds unfamilier word. ')
+                              text: ' If displayed word needs to be reminded, User can select the Time(HH::MM::SS) Above and Press TimerIcon.\nThe selected word will be reminded after specified time.' +
+                                  ' Alternatively user can click on PLAY button repeatedly until user finds unfamilier word.\nEnable/Allow Notification for this App.')
                         ]),
                   )
                 ],
@@ -137,7 +137,8 @@ class _OnBoardingScreen extends State<OnBoardingScreen> {
                       margin: EdgeInsets.only(left: 0.0),
                       decoration: BoxDecoration(
                           border: Border.all(
-                              color: Colors.blue, style: BorderStyle.solid),
+                              color: Color.fromARGB(255, 148, 91, 247),
+                              style: BorderStyle.solid),
                           borderRadius:
                               BorderRadius.all(Radius.circular(20.0))),
                       child: TextField(
@@ -163,7 +164,8 @@ class _OnBoardingScreen extends State<OnBoardingScreen> {
                       padding: const EdgeInsets.all(16.0),
                       margin: EdgeInsets.only(left: 0.0),
                       decoration: BoxDecoration(
-                          border: Border.all(color: Colors.blue),
+                          border: Border.all(
+                              color: Color.fromARGB(255, 148, 91, 247)),
                           borderRadius:
                               BorderRadius.all(Radius.circular(20.0))),
                       child: TextField(
@@ -183,9 +185,11 @@ class _OnBoardingScreen extends State<OnBoardingScreen> {
                                   _obscureText = !_obscureText;
                                 });
                               },
-                              child: Icon(_obscureText
-                                  ? Icons.visibility
-                                  : Icons.visibility_off),
+                              child: Icon(
+                                  _obscureText
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                  color: Color.fromARGB(255, 148, 91, 247)),
                             )),
                         controller: PasswordController,
                         cursorRadius: const Radius.circular(2.0),
@@ -227,6 +231,15 @@ class _OnBoardingScreen extends State<OnBoardingScreen> {
                             onPressed: () {
                               SignIn();
                             },
+                            style: ButtonStyle(backgroundColor:
+                                MaterialStateProperty.resolveWith<Color?>(
+                                    (states) {
+                              if (states.contains(MaterialState.pressed)) {
+                                return Colors.deepPurple; // Color when pressed
+                              }
+                              return Color.fromARGB(
+                                  255, 175, 134, 246); // Default color
+                            })),
                             child: const Text(
                               "LogIn",
                               style: TextStyle(
@@ -240,6 +253,15 @@ class _OnBoardingScreen extends State<OnBoardingScreen> {
                             onPressed: () {
                               goToSignUpPage(context);
                             },
+                            style: ButtonStyle(backgroundColor:
+                                MaterialStateProperty.resolveWith<Color?>(
+                                    (states) {
+                              if (states.contains(MaterialState.pressed)) {
+                                return Colors.deepPurple; // Color when pressed
+                              }
+                              return Color.fromARGB(
+                                  255, 175, 134, 246); // Default color
+                            })),
                             child: const Text(
                               "Sign Up",
                               style: TextStyle(

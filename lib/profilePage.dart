@@ -26,6 +26,7 @@ String? localPath;
 class _ProfilePageState extends State<ProfilePage> {
   TextEditingController userNameEditor = TextEditingController();
   String? userName;
+  String? germanLevel;
 
   // Initialize the object for Hive
   final hiveDatabase = Hive.box('LocalDatabase');
@@ -44,6 +45,12 @@ class _ProfilePageState extends State<ProfilePage> {
       userName = hiveDatabase.get('UserName');
     } else {
       userName = '';
+    }
+
+    if (hiveDatabase.containsKey('CurrentLevel')) {
+      germanLevel = hiveDatabase.get('CurrentLevel');
+    } else {
+      germanLevel = '';
     }
 
     loadImage();
@@ -111,12 +118,13 @@ class _ProfilePageState extends State<ProfilePage> {
         title: Text('Profile', style: Theme.of(context).textTheme.headline4),
         automaticallyImplyLeading: false,
         actions: [
-          IconButton(
-            onPressed: () {
-              setState(() {});
-            },
-            icon: Icon(isDark ? LineAwesomeIcons.moon : LineAwesomeIcons.sun),
-          )
+          // TODO
+          //IconButton(
+          //  onPressed: () {
+          //    setState(() {});
+          //  },
+          //  icon: Icon(isDark ? LineAwesomeIcons.moon : LineAwesomeIcons.sun),
+          // )
         ],
       ),
       body: Container(
@@ -153,46 +161,63 @@ class _ProfilePageState extends State<ProfilePage> {
                 ]),
               ),
               SizedBox(
-                height: 30,
+                height: 10,
               ),
               SizedBox(
                 height: 20,
                 child: Text('Full Name',
                     style: TextStyle(
                         color: Colors.black,
-                        fontSize: 12.0,
-                        fontWeight: FontWeight.normal,
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.bold,
                         fontFamily: "OpenSans")),
               ),
               buildTextField(
                   'Full Name', userName != null ? userName! : '', false, false),
               SizedBox(
-                height: 30,
+                height: 10,
               ),
               SizedBox(
                 height: 20,
                 child: Text('Verified Email Status',
                     style: TextStyle(
                         color: Colors.black,
-                        fontSize: 12.0,
-                        fontWeight: FontWeight.normal,
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.bold,
                         fontFamily: "OpenSans")),
               ),
-              buildTextField('user verified', user!.emailVerified.toString(),
-                  false, false),
+              buildTextField('user verified',
+                  user!.emailVerified ? 'Yes' : 'No', false, false),
               SizedBox(
-                height: 30,
+                height: 10,
               ),
               SizedBox(
                 height: 20,
                 child: Text('Email',
                     style: TextStyle(
                         color: Colors.black,
-                        fontSize: 12.0,
-                        fontWeight: FontWeight.normal,
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.bold,
                         fontFamily: "OpenSans")),
               ),
               buildTextField('Mail Id', user!.email.toString(), false, false),
+              SizedBox(
+                height: 10,
+              ),
+              SizedBox(
+                height: 20,
+                child: Text('Your German Level',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "OpenSans")),
+              ),
+              buildTextField('German Level',
+                  germanLevel != '' ? germanLevel! : '', false, false),
+              SizedBox(
+                height: 40,
+              ),
               Container(
                   width: 320,
                   height: 50,
@@ -206,12 +231,32 @@ class _ProfilePageState extends State<ProfilePage> {
                       highlightElevation: 2.0,
                       splashColor: Colors.blue,
                       onPressed: () {
-                        deleteUserAccount();
-                        goToFrontScreen(context);
+                        showDialog(
+                            context: context,
+                            builder: (context) => CupertinoAlertDialog(
+                                  title: Text(' Delete Account !!'),
+                                  content: Text(
+                                      ' Are you sure You want to Delete Account?'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        deleteUserAccount();
+                                        goToFrontScreen(context);
+                                      },
+                                      child: Text(' YES'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text(' NO '),
+                                    )
+                                  ],
+                                ));
                       },
                       child: const Text(
                         "Delete Account",
-                        style: TextStyle(fontSize: 16.0, color: Colors.black),
+                        style: TextStyle(fontSize: 14.0, color: Colors.black),
                       )))
             ],
           ),
@@ -289,7 +334,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   style: TextStyle(
                       color: Colors.black,
                       fontSize: 16.0,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.normal,
                       fontFamily: "OpenSans"),
                 )));
   }
