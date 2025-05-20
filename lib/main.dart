@@ -19,6 +19,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:rxdart/rxdart.dart';
+import 'germanBasicTest.dart';
 import 'writeFile.dart';
 import 'notification_api.dart';
 import 'secondPage.dart';
@@ -26,6 +27,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'databaseFirebase.dart';
 import 'userCollectionDatabase.dart';
 import 'onboardingScreen.dart';
+import 'package:flip_card/flip_card.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -283,6 +285,8 @@ class _MyHomePageState extends State<MyHomePage> {
     await flutterTts.speak(text);
   }
 
+  GlobalKey<FlipCardState> cardKey = GlobalKey<FlipCardState>();
+
   @override
   Widget build(BuildContext context) {
     var currentWidth = MediaQuery.of(context).size.width;
@@ -319,7 +323,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: Text(
                           "Welcome ",
                           style: GoogleFonts.roboto(
-                              fontSize: 18, color: Colors.white),
+                              fontSize: 16, color: Colors.white),
                         ),
                       )
                     ],
@@ -368,125 +372,184 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              const SizedBox(
-                width: 200.0,
+              SizedBox(
+                height: 5,
+              ),
+              SizedBox(
+                width: 300.0,
                 child: Text(
-                  " Set timer to remind",
-                  style: TextStyle(fontSize: 20.0, color: Colors.blue),
+                  " Set time to remind",
+                  style: TextStyle(
+                      fontSize: 20.0, color: Color.fromRGBO(33, 150, 243, 1)),
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                      width: currentWidth * 0.2,
-                      padding: const EdgeInsets.all(8.0),
-                      margin: const EdgeInsets.only(right: 10),
-                      child: ButtonTheme(
-                          alignedDropdown: true,
-                          child: DropdownButton(
-                            value: _dropDownValueHH,
-                            borderRadius: BorderRadius.circular(20),
-                            dropdownColor: Colors.blueAccent,
-                            hint: Text("HH",
-                                style: TextStyle(
-                                    fontSize: 18.0, color: Colors.black)),
-                            items: items_hh.map(buildMenuItem).toList(),
-                            onChanged: (value) => {
-                              hhInput = value as int,
-                              setState(
-                                () => this._dropDownValueHH = value,
-                              )
+              SingleChildScrollView(
+                child: Container(
+                  width: currentWidth,
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                          color: Color.fromARGB(255, 175, 134, 246),
+                          style: BorderStyle.solid),
+                      borderRadius: BorderRadius.all(Radius.circular(20.0))),
+                  child: Row(
+                    //mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Container(
+                          width: currentWidth * 0.2,
+                          padding: const EdgeInsets.all(8.0),
+                          margin: const EdgeInsets.only(right: 10),
+                          child: ButtonTheme(
+                              alignedDropdown: true,
+                              child: DropdownButton(
+                                value: _dropDownValueHH,
+                                borderRadius: BorderRadius.circular(20),
+                                dropdownColor: Colors.blueAccent,
+                                hint: Text("HH",
+                                    style: TextStyle(
+                                        fontSize: 18.0, color: Colors.black)),
+                                items: items_hh.map(buildMenuItem).toList(),
+                                onChanged: (value) => {
+                                  hhInput = value as int,
+                                  setState(
+                                    () => this._dropDownValueHH = value,
+                                  )
+                                },
+                              ))),
+                      Container(
+                          width: currentWidth * 0.21,
+                          padding: const EdgeInsets.all(8.0),
+                          margin: const EdgeInsets.only(right: 10),
+                          child: ButtonTheme(
+                            alignedDropdown: true,
+                            child: DropdownButton(
+                              value: _dropDownValueMM,
+                              borderRadius: BorderRadius.circular(20),
+                              dropdownColor: Colors.blueAccent,
+                              hint: Text("MM",
+                                  style: TextStyle(
+                                      fontSize: 18.0, color: Colors.black)),
+                              items: items_mm.map(buildMenuItem).toList(),
+                              onChanged: (value) => {
+                                mmInput = value as int,
+                                setState(
+                                  () => this._dropDownValueMM = value,
+                                )
+                              },
+                            ),
+                          )),
+                      Container(
+                          width: currentWidth * 0.2,
+                          padding: const EdgeInsets.all(8.0),
+                          margin: const EdgeInsets.only(right: 10),
+                          child: ButtonTheme(
+                            alignedDropdown: true,
+                            child: DropdownButton(
+                              value: _dropDownValueSS,
+                              borderRadius: BorderRadius.circular(20),
+                              items: items_ss.map(buildMenuItem).toList(),
+                              dropdownColor: Colors.blueAccent,
+                              hint: Text("SS",
+                                  style: TextStyle(
+                                      fontSize: 18.0, color: Colors.black)),
+                              onChanged: (value) => {
+                                ssInput = value as int,
+                                setState(
+                                  () => this._dropDownValueSS = value,
+                                )
+                              },
+                            ),
+                          )),
+                      Container(
+                        width: currentWidth * 0.2,
+                        child: IconButton(
+                            onPressed: () {
+                              if (hhInput != 0 ||
+                                  mmInput != 0 ||
+                                  ssInput != 0) {
+                                timerStart();
+                              }
                             },
-                          ))),
-                  Container(
-                      width: currentWidth * 0.21,
-                      padding: const EdgeInsets.all(8.0),
-                      margin: const EdgeInsets.only(right: 10),
-                      child: ButtonTheme(
-                        alignedDropdown: true,
-                        child: DropdownButton(
-                          value: _dropDownValueMM,
-                          borderRadius: BorderRadius.circular(20),
-                          dropdownColor: Colors.blueAccent,
-                          hint: Text("MM",
-                              style: TextStyle(
-                                  fontSize: 18.0, color: Colors.black)),
-                          items: items_mm.map(buildMenuItem).toList(),
-                          onChanged: (value) => {
-                            mmInput = value as int,
-                            setState(
-                              () => this._dropDownValueMM = value,
-                            )
-                          },
-                        ),
-                      )),
-                  Container(
-                      width: currentWidth * 0.2,
-                      padding: const EdgeInsets.all(8.0),
-                      margin: const EdgeInsets.only(right: 10),
-                      child: ButtonTheme(
-                        alignedDropdown: true,
-                        child: DropdownButton(
-                          value: _dropDownValueSS,
-                          borderRadius: BorderRadius.circular(20),
-                          items: items_ss.map(buildMenuItem).toList(),
-                          dropdownColor: Colors.blueAccent,
-                          hint: Text("SS",
-                              style: TextStyle(
-                                  fontSize: 18.0, color: Colors.black)),
-                          onChanged: (value) => {
-                            ssInput = value as int,
-                            setState(
-                              () => this._dropDownValueSS = value,
-                            )
-                          },
-                        ),
-                      )),
-                  Container(
-                    width: currentWidth * 0.2,
-                    child: IconButton(
-                        onPressed: () {
-                          if (hhInput != 0 || mmInput != 0 || ssInput != 0) {
-                            timerStart();
-                          }
-                        },
-                        splashRadius: 25.0,
-                        splashColor: Colors.orangeAccent,
-                        icon: const Icon(
-                          Icons.access_alarm,
-                          size: 30,
-                          color: Colors.blueAccent,
-                        )),
+                            splashRadius: 25.0,
+                            splashColor: Colors.orangeAccent,
+                            icon: const Icon(
+                              Icons.access_alarm,
+                              size: 30,
+                              color: Colors.blueAccent,
+                            )),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
               SizedBox(
                 height: 70,
               ),
               Row(children: [
                 SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Container(
-                    width: 320,
-                    alignment: Alignment.center,
-                    padding: const EdgeInsets.all(16.0),
-                    decoration: BoxDecoration(
-                        //color: Color.fromARGB(255, 147, 13, 145),
-                        border: Border.all(color: Colors.blue),
-                        borderRadius: BorderRadius.all(Radius.circular(20))),
-                    child: Text(
-                      genericCollection[_index],
-                      textScaleFactor: 5.0,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 5.0,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
+                    scrollDirection: Axis.horizontal,
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: FlipCard(
+                      key: cardKey,
+                      flipOnTouch: false,
+                      front: Container(
+                        width: 360,
+                        height: 150,
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.all(8.0),
+                        decoration: BoxDecoration(
+                            color: Color.fromARGB(255, 175, 134, 246),
+                            border: Border.all(color: Colors.blue),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.4),
+                                spreadRadius: 5,
+                                blurRadius: 20,
+                                offset: Offset(0, 3),
+                              ),
+                            ],
+                            backgroundBlendMode: BlendMode.overlay,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20))),
+                        child: Text(
+                          genericCollection[_index],
+                          textScaleFactor: 5.0,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 6.0,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      back: Container(
+                        width: 360,
+                        height: 150,
+                        alignment: Alignment.center,
+                        padding: const EdgeInsets.all(8.0),
+                        decoration: BoxDecoration(
+                            color: Color.fromARGB(255, 175, 134, 246),
+                            border: Border.all(color: Colors.blue),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.4),
+                                spreadRadius: 5,
+                                blurRadius: 20,
+                                offset: Offset(0, 3),
+                              ),
+                            ],
+                            backgroundBlendMode: BlendMode.overlay,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20))),
+                        child: Text(
+                          genericCollection[_index],
+                          textScaleFactor: 5.0,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 6.0,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    )),
               ]),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -512,6 +575,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     onPressed: () {
                       setState(() {
                         //_index++;
+                        cardKey.currentState!.toggleCard();
                         var ran = Random();
                         _index = ran.nextInt(genericCollection.length);
                       });
@@ -524,7 +588,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Row(children: [
                 Container(
-                  width: 340,
+                  width: 370,
                   alignment: Alignment.center,
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: TextField(
@@ -568,6 +632,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     myTextController.text = "";
                   });
                 },
+              ),
+              SizedBox(
+                height: 40,
               ),
             ],
           ),

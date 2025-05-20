@@ -6,12 +6,15 @@ import 'package:flutter/services.dart';
 import 'package:germanreminder/editProfilePage.dart';
 import 'package:germanreminder/frontPage.dart';
 import 'package:germanreminder/main.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'germanBasicTest.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -110,6 +113,9 @@ class _ProfilePageState extends State<ProfilePage> {
     }
   }
 
+  void goToGermanBasicTest(context) => Navigator.of(context)
+      .push(MaterialPageRoute(builder: (_) => germanBasicTest()));
+
   @override
   Widget build(BuildContext context) {
     var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
@@ -117,15 +123,7 @@ class _ProfilePageState extends State<ProfilePage> {
       appBar: AppBar(
         title: Text('Profile', style: Theme.of(context).textTheme.headline4),
         automaticallyImplyLeading: false,
-        actions: [
-          // TODO
-          //IconButton(
-          //  onPressed: () {
-          //    setState(() {});
-          //  },
-          //  icon: Icon(isDark ? LineAwesomeIcons.moon : LineAwesomeIcons.sun),
-          // )
-        ],
+        actions: [],
       ),
       body: Container(
         padding: EdgeInsets.only(left: 15, top: 20, right: 20),
@@ -216,20 +214,52 @@ class _ProfilePageState extends State<ProfilePage> {
               buildTextField('German Level',
                   germanLevel != '' ? germanLevel! : '', false, false),
               SizedBox(
-                height: 40,
+                height: 20,
               ),
               Container(
-                  width: 320,
-                  height: 50,
+                width: 250,
+                margin: EdgeInsets.symmetric(horizontal: 20.0),
+                decoration: BoxDecoration(
+                    border: Border.all(
+                        color: Color.fromARGB(255, 106, 27, 243),
+                        style: BorderStyle.solid),
+                    borderRadius: BorderRadius.all(Radius.circular(20.0))),
+                child: Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Text("Let" "'" "s Test your German Level!",
+                          style: GoogleFonts.openSans(
+                              fontSize: 18, fontWeight: FontWeight.bold)),
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.note_alt_outlined),
+                      color: Colors.deepOrangeAccent,
+                      splashRadius: 25.0,
+                      splashColor: Colors.yellowAccent,
+                      iconSize: 35.0,
+                      onPressed: () {
+                        goToGermanBasicTest(context);
+                      },
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              Container(
+                  width: 280,
                   alignment: Alignment.center,
-                  padding: const EdgeInsets.all(16.0),
+                  //padding: EdgeInsets.all(8.0),
                   margin: EdgeInsets.symmetric(horizontal: 20.0),
                   decoration: BoxDecoration(
-                      color: Colors.blue,
+                      color: Color.fromARGB(255, 175, 134, 246),
                       borderRadius: BorderRadius.circular(20)),
                   child: MaterialButton(
-                      highlightElevation: 2.0,
-                      splashColor: Colors.blue,
+                      minWidth: 320,
+                      height: 15,
+                      splashColor: Colors.deepPurple,
                       onPressed: () {
                         showDialog(
                             context: context,
@@ -256,7 +286,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       },
                       child: const Text(
                         "Delete Account",
-                        style: TextStyle(fontSize: 14.0, color: Colors.black),
+                        style: TextStyle(fontSize: 20.0, color: Colors.black),
                       )))
             ],
           ),

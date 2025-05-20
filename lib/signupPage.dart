@@ -45,6 +45,22 @@ class _SignUpPageState extends State<SignUpPage> {
                     )
                   ],
                 ));
+      } else {
+        showDialog(
+            context: context,
+            builder: (context) => CupertinoAlertDialog(
+                  title: Text('Alert !!!!'),
+                  content: Text('Not Matching Password \n'),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        goToFrontScreen(context);
+                        // SettingUpUserDatabase();
+                      },
+                      child: Text('Close'),
+                    )
+                  ],
+                ));
       } // Create Alert, saying SignUp Successful
 
     } on FirebaseAuthException catch (e) {
@@ -83,12 +99,12 @@ class _SignUpPageState extends State<SignUpPage> {
                   ],
                 ));
         print('email-already-in-use');
-      } else if (e.code == 'user-not-found') {
+      } else if (e.code == 'operation-not-allowed') {
         showDialog(
             context: context,
             builder: (context) => CupertinoAlertDialog(
                   title: Text('Alert !!!!'),
-                  content: Text('User Not Found'),
+                  content: Text('Operation Not Allowed'),
                   actions: [
                     TextButton(
                       onPressed: () {
@@ -116,26 +132,41 @@ class _SignUpPageState extends State<SignUpPage> {
                     )
                   ],
                 ));
-        print('wrong password!!');
-      }
+      } else if (e.code == 'invalid-email') {
+        showDialog(
+            context: context,
+            builder: (context) => CupertinoAlertDialog(
+                  title: Text('Alert !!!!'),
+                  content: Text('invalid-email'),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        goToFrontScreen(context);
+                        // SettingUpUserDatabase();
+                      },
+                      child: Text('Close'),
+                    )
+                  ],
+                ));
+      } else
+        (e) {
+          showDialog(
+              context: context,
+              builder: (context) => CupertinoAlertDialog(
+                    title: Text('Alert !!!!'),
+                    content: Text(e.code.toString()),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          goToFrontScreen(context);
+                          // SettingUpUserDatabase();
+                        },
+                        child: Text('Close'),
+                      )
+                    ],
+                  ));
+        };
     }
-    (e) {
-      showDialog(
-          context: context,
-          builder: (context) => CupertinoAlertDialog(
-                title: Text('Alert !!!!'),
-                content: Text(e.code.toString()),
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      goToFrontScreen(context);
-                      // SettingUpUserDatabase();
-                    },
-                    child: Text('Close'),
-                  )
-                ],
-              ));
-    };
   }
 
   Future SettingUpUserDatabase() async {
@@ -222,8 +253,9 @@ class _SignUpPageState extends State<SignUpPage> {
             padding: const EdgeInsets.all(16.0),
             margin: EdgeInsets.only(top: 20.0),
             decoration: BoxDecoration(
-                border:
-                    Border.all(color: Colors.blue, style: BorderStyle.solid),
+                border: Border.all(
+                    color: Color.fromARGB(255, 175, 134, 246),
+                    style: BorderStyle.solid),
                 borderRadius: BorderRadius.all(Radius.circular(20.0))),
             child: TextField(
               toolbarOptions: const ToolbarOptions(
@@ -247,8 +279,9 @@ class _SignUpPageState extends State<SignUpPage> {
             padding: const EdgeInsets.all(16.0),
             margin: EdgeInsets.only(top: 20.0),
             decoration: BoxDecoration(
-                border:
-                    Border.all(color: Colors.blue, style: BorderStyle.solid),
+                border: Border.all(
+                    color: Color.fromARGB(255, 175, 134, 246),
+                    style: BorderStyle.solid),
                 borderRadius: BorderRadius.all(Radius.circular(20.0))),
             child: TextField(
               obscureText: _obscureTextPassword,
@@ -284,8 +317,9 @@ class _SignUpPageState extends State<SignUpPage> {
             padding: const EdgeInsets.all(16.0),
             margin: EdgeInsets.only(top: 20.0),
             decoration: BoxDecoration(
-                border:
-                    Border.all(color: Colors.blue, style: BorderStyle.solid),
+                border: Border.all(
+                    color: Color.fromARGB(255, 175, 134, 246),
+                    style: BorderStyle.solid),
                 borderRadius: BorderRadius.all(Radius.circular(20.0))),
             child: TextField(
               obscureText: _obscureTextConfirmPassword,
@@ -321,21 +355,23 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
           Container(
               width: 320,
-              height: 50,
               alignment: Alignment.center,
-              padding: const EdgeInsets.all(16.0),
+              padding: EdgeInsets.all(8.0),
               margin: EdgeInsets.symmetric(horizontal: 20.0),
               decoration: BoxDecoration(
-                  color: Colors.blue, borderRadius: BorderRadius.circular(20)),
+                  color: Color.fromARGB(255, 175, 134, 246),
+                  borderRadius: BorderRadius.circular(20)),
               child: MaterialButton(
-                  highlightElevation: 2.0,
-                  splashColor: Colors.blue,
+                  //highlightElevation: 20.0,
+                  minWidth: 300,
+                  height: 50,
+                  splashColor: Colors.deepPurple,
                   onPressed: () {
                     SignUp();
                   },
                   child: const Text(
                     "SignUp",
-                    style: TextStyle(fontSize: 16.0, color: Colors.black),
+                    style: TextStyle(fontSize: 20.0, color: Colors.black),
                   ))),
           SizedBox(
             width: 10,

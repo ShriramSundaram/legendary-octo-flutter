@@ -22,7 +22,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
 
   Future Resetpassword() async {
     try {
-      FirebaseAuth.instance
+      await FirebaseAuth.instance
           .sendPasswordResetEmail(email: emailAddress.text.trim());
       showDialog(
           context: context,
@@ -42,15 +42,98 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                 ],
               ));
     } on FirebaseAuthException catch (e) {
+      if (e.code == 'invalid-email') {
+        showDialog(
+            context: context,
+            builder: (context) => CupertinoAlertDialog(
+                  title: Text('Alert !!!!'),
+                  content: Text('invalid-email'),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        // SettingUpUserDatabase();
+                      },
+                      child: Text('Close'),
+                    )
+                  ],
+                ));
+      } else if (e.code == 'missing-email') {
+        showDialog(
+            context: context,
+            builder: (context) => CupertinoAlertDialog(
+                  title: Text('Alert !!!!'),
+                  content: Text('missing-email'),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        // SettingUpUserDatabase();
+                      },
+                      child: Text('Close'),
+                    )
+                  ],
+                ));
+      } else if (e.code == 'user-not-found') {
+        showDialog(
+            context: context,
+            builder: (context) => CupertinoAlertDialog(
+                  title: Text('Alert !!!!'),
+                  content: Text('user-not-found'),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        // SettingUpUserDatabase();
+                      },
+                      child: Text('Close'),
+                    )
+                  ],
+                ));
+        print('email-already-in-use');
+      } else if (e.code == 'invalid-continue-uri') {
+        showDialog(
+            context: context,
+            builder: (context) => CupertinoAlertDialog(
+                  title: Text('Alert !!!!'),
+                  content: Text('invalid-continue-uri'),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        // SettingUpUserDatabase();
+                      },
+                      child: Text('Close'),
+                    )
+                  ],
+                ));
+      } else if (e.code == 'unauthorized-continue-uri') {
+        showDialog(
+            context: context,
+            builder: (context) => CupertinoAlertDialog(
+                  title: Text('Alert !!!!'),
+                  content: Text('unauthorized-continue-uri'),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        // SettingUpUserDatabase();
+                      },
+                      child: Text('Close'),
+                    )
+                  ],
+                ));
+      }
+    } catch (e) {
       showDialog(
           context: context,
           builder: (context) => CupertinoAlertDialog(
                 title: Text('Alert !!!!'),
-                content: Text(e.message.toString()),
+                content: Text(e.toString()),
                 actions: [
                   TextButton(
                     onPressed: () {
-                      goToFrontPage(context);
+                      Navigator.pop(context);
                       // SettingUpUserDatabase();
                     },
                     child: Text('Close'),
@@ -158,8 +241,28 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                     color: Color.fromARGB(255, 159, 125, 251)),
                 child: MaterialButton(
                   onPressed: () {
-                    Resetpassword();
+                    if (emailAddress != '' || emailAddress != null) {
+                      Resetpassword();
+                    } else {
+                      showDialog(
+                          context: context,
+                          builder: (context) => CupertinoAlertDialog(
+                                title: Text('Alert !!!!'),
+                                content: Text(' Email Field is Empty!!'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                      // SettingUpUserDatabase();
+                                    },
+                                    child: Text('Close'),
+                                  )
+                                ],
+                              ));
+                    }
                   },
+                  minWidth: 320,
+                  height: 50,
                   child: Text(
                     " Send Email ",
                     style: const TextStyle(

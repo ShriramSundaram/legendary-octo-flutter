@@ -86,6 +86,7 @@ class _ViewGenericDatabaseState extends State<ViewGenericDatabase> {
                     fontWeight: FontWeight.normal, // Customize the font weight
                     fontSize: 20.0, // Customize the font size
                   ),
+                  prefixIcon: Icon(Icons.wordpress),
                   suffixIcon: Icon(Icons.search),
                   floatingLabelBehavior: FloatingLabelBehavior.always,
                   hintStyle: TextStyle(

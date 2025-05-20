@@ -2,6 +2,10 @@ import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 
 class FileUtils {
+  List<String> A2 = [
+    // TODO ADD words Automatically
+  ];
+
   Future<String> get getFilePath async {
     final directory = await getApplicationDocumentsDirectory();
     return directory.path;
