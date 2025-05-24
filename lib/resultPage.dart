@@ -6,9 +6,13 @@ class ResultScreen extends StatelessWidget {
   final int totalQuestions;
   final String recommendedGermanLevel;
   final String motivation;
+  final int correct;
+  final int wrong;
+  final int unanswered;
 
   ResultScreen(this.score, this.totalQuestions, this.recommendedGermanLevel,
-      this.motivation);
+      this.motivation,
+      {this.correct = 0, this.wrong = 0, this.unanswered = 0});
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +25,26 @@ class ResultScreen extends StatelessWidget {
             Text(
               "Your Score: $score / $totalQuestions",
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 20),
+            Text(
+              "Correct: $correct",
+              style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.green,
+                  fontWeight: FontWeight.bold),
+            ),
+            Text(
+              "Wrong: $wrong",
+              style: TextStyle(
+                  fontSize: 18, color: Colors.red, fontWeight: FontWeight.bold),
+            ),
+            Text(
+              "Unanswered: $unanswered",
+              style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.blue,
+                  fontWeight: FontWeight.bold),
             ),
             SizedBox(
               height: 40,

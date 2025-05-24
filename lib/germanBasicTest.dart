@@ -21,104 +21,133 @@ class _germanBasicTestState extends State<germanBasicTest> {
   int currentQuestionIndex = 0;
   int score = 0;
   int? selectedOption;
-  int remainingTime = 200; // in Seconds
+  int remainingTime = 400; // in Seconds
   late Timer _timer;
   String recommendedGermanLevel = 'A1';
-  String? motive;
   bool timeStarted = false;
   List<int> alreadyPresent = [];
   var ran = Random();
+  String? motive = "Time's up!"; // Add a default value
 
-  void checkAnswer() {
-    if (selectedOption == QuizData[currentQuestionIndex].CorrectOption) {
+  // Add loading state and quiz data list
+  bool isLoading = true;
+  List<GermanQuiz> quizData = [];
+
+  @override
+  void initState() {
+    super.initState();
+    // Load quiz data when widget initializes
+    _loadQuizData();
+  }
+
+  Future<void> _loadQuizData() async {
+    try {
+      quizData = await loadQuizData();
+      quizData.shuffle(); // Shuffle questions every time
+      setState(() {
+        isLoading = false;
+      });
+    } catch (e) {
+      print('Error loading quiz data: $e');
+      // Show error message to user
+    }
+  }
+
+  void CheckGermanLevel() {
+    // Set recommendedGermanLevel based on score for levels A1, A2, B1, B2, C1, C2
+    double percent = score / quizData.length;
+    if (percent < 0.2) {
+      recommendedGermanLevel = 'A1';
+    } else if (percent < 0.4) {
+      recommendedGermanLevel = 'A2';
+    } else if (percent < 0.6) {
+      recommendedGermanLevel = 'B1';
+    } else if (percent < 0.75) {
+      recommendedGermanLevel = 'B2';
+    } else if (percent < 0.9) {
+      recommendedGermanLevel = 'C1';
+    } else {
+      recommendedGermanLevel = 'C2';
+    }
+    // You can add more logic or use motive if needed
+  }
+
+  Future<void> checkAnswer() async {
+    if (selectedOption == quizData[currentQuestionIndex].CorrectOption) {
       setState(() {
         score++;
       });
     }
 
-    if (currentQuestionIndex < QuizData.length - 1) {
+    if (currentQuestionIndex < quizData.length - 1) {
       setState(() {
         currentQuestionIndex++;
         selectedOption = null;
       });
     } else {
       _timer.cancel();
-      showResult();
+      await showResult();
       CheckGermanLevel();
     }
   }
 
-  void showResult() {
+  Future<void> showResult() async {
+    int attempted = currentQuestionIndex + (selectedOption != null ? 1 : 0);
+    int correct = score;
+    int wrong = attempted - correct;
+    int unanswered = quizData.length - attempted;
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
         builder: (context) => ResultScreen(
-            score, QuizData.length, recommendedGermanLevel, motive!),
+            score, // correct
+            quizData.length, // total
+            recommendedGermanLevel,
+            motive ?? "Time's up!",
+            correct: correct,
+            wrong: wrong < 0 ? 0 : wrong,
+            unanswered: unanswered < 0 ? 0 : unanswered),
       ),
     );
   }
 
-  @override
-  void initState() {
-    super.initState();
-  }
+  // Rest of your methods remain unchanged...
 
   void StartTimer() {
     _timer = Timer.periodic(Duration(seconds: 1), (timer) {
-      setState(() {
-        if (remainingTime > 0) {
+      if (remainingTime > 0) {
+        setState(() {
           remainingTime--;
-        } else {
-          _timer.cancel();
-          showResult();
-          CheckGermanLevel();
-        }
-      });
-    });
-  }
-
-  void CheckGermanLevel() {
-    setState(() {
-      if (score <= 10) {
-        recommendedGermanLevel = 'A1';
-        motive = "You definitely tried your best! Let"
-            "'"
-            "s start with your beginner journey.. ";
-      }
-      if (score > 10 && score <= 25) {
-        recommendedGermanLevel = 'A2';
-        motive = "That shows your enthusiasm to learn!! Let"
-            "'"
-            "s build your foundation stronger..";
-      }
-      if (score > 25 && score <= 30) {
-        recommendedGermanLevel = 'B1';
-        motive = "This is quite an accomplishment! Let"
-            "'"
-            "s continue your journey into the intermediate level..";
-      }
-      if (score > 30 && score <= 35) {
-        recommendedGermanLevel = 'B2';
-        motive = "That"
-            "'"
-            "s a noteworthy & promising effort; Just a few more steps to reach..";
-      }
-      if (score > 35 && score <= 40) {
-        recommendedGermanLevel = 'C1';
-        motive = "You"
-            "'"
-            "re right on target! a few hours of effort will make you an expert";
+        });
+      } else {
+        _timer.cancel();
+        showResult();
       }
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    // Show loading indicator while quiz data is loading
+    if (isLoading) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text('German BasicTest'),
+        ),
+        body: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    }
+
+    // Format timer as minutes:seconds
+    String timerText =
+        '${remainingTime ~/ 60}:${(remainingTime % 60).toString().padLeft(2, '0')}';
+
+    // Show quiz UI after data is loaded
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'German BasicTest',
-        ),
+        title: Text('German BasicTest'),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(25.0),
@@ -128,43 +157,46 @@ class _germanBasicTestState extends State<germanBasicTest> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
-                height: 20,
-              ),
-              Text('Time Left',
-                  style: GoogleFonts.roboto(
-                      fontSize: 18, fontWeight: FontWeight.bold)),
-              SizedBox(
-                height: 10,
-              ),
+              // Timer UI remains unchanged...
               Container(
-                width: 80,
-                alignment: Alignment.center,
-                padding: const EdgeInsets.all(16.0),
+                padding: EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                    //color: Color.fromARGB(255, 147, 13, 145),
-                    border: Border.all(color: Colors.blue),
-                    borderRadius: BorderRadius.all(Radius.circular(30))),
-                child: Text(
-                  remainingTime.toString(),
-                  textScaleFactor: 5.0,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 5.0,
-                      fontWeight: FontWeight.bold,
-                      backgroundColor: remainingTime < 10 ? Colors.red : null),
+                  color: remainingTime < 30
+                      ? Colors.red.shade100
+                      : Colors.blue.shade100,
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(
+                    color: remainingTime < 30 ? Colors.red : Colors.blue,
+                    width: 2,
+                  ),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      Icons.timer,
+                      color: remainingTime < 30 ? Colors.red : Colors.blue,
+                    ),
+                    SizedBox(width: 8),
+                    Text(
+                      'Time: $timerText',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: remainingTime < 30 ? Colors.red : Colors.blue,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              SizedBox(
-                height: 75,
-              ),
+              // --- Statistics Row ---
+              SizedBox(height: 15),
+              _buildStatRow(),
+              SizedBox(height: 20),
               Text('Pick the Exact meaning for the German Word',
                   style: GoogleFonts.openSans(
                       fontSize: 18, fontWeight: FontWeight.bold)),
-              SizedBox(
-                height: 20,
-              ),
+              SizedBox(height: 20),
               Container(
                 width: 250,
                 alignment: Alignment.center,
@@ -173,7 +205,8 @@ class _germanBasicTestState extends State<germanBasicTest> {
                   border: Border.all(color: Colors.blue),
                 ),
                 child: Text(
-                  QuizData[currentQuestionIndex].Questions,
+                  // Use quizData instead of QuizData
+                  quizData[currentQuestionIndex].Questions,
                   textScaleFactor: 5.0,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
@@ -184,7 +217,8 @@ class _germanBasicTestState extends State<germanBasicTest> {
               ),
               SizedBox(height: 20),
               Column(
-                children: QuizData[currentQuestionIndex]
+                children: quizData[
+                        currentQuestionIndex] // Changed from QuizData to quizData
                     .Options
                     .asMap()
                     .entries
@@ -192,16 +226,20 @@ class _germanBasicTestState extends State<germanBasicTest> {
                           title: Text(entry.value),
                           value: entry.key,
                           groupValue: selectedOption,
-                          onChanged: (value) {
-                            setState(() {
-                              selectedOption = value!;
-                            });
-                          },
+                          onChanged: timeStarted
+                              ? (value) {
+                                  setState(() {
+                                    selectedOption = value!;
+                                  });
+                                }
+                              : null, // This makes it disabled
                         ))
                     .toList(),
               ),
               ElevatedButton(
-                onPressed: selectedOption != null ? checkAnswer : null,
+                onPressed: (timeStarted && selectedOption != null)
+                    ? checkAnswer
+                    : null,
                 child: Text("Next"),
               ),
               SizedBox(
@@ -241,6 +279,61 @@ class _germanBasicTestState extends State<germanBasicTest> {
           ),
         ),
       ),
+    );
+  }
+
+  // Add this helper widget to your class (outside build method)
+  Widget _buildStatRow() {
+    int attempted = currentQuestionIndex;
+    int unanswered = quizData.length - attempted;
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 5),
+      padding: EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.1),
+            spreadRadius: 1,
+            blurRadius: 2,
+            offset: Offset(0, 1),
+          ),
+        ],
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          _buildStatItem(Icons.help_outline, Colors.blue, 'Unanswered',
+              '${unanswered < 0 ? 0 : unanswered}'),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildStatItem(
+      IconData icon, Color color, String label, String value) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Icon(icon, color: color, size: 20),
+        SizedBox(height: 4),
+        Text(
+          value,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+            color: color,
+          ),
+        ),
+        Text(
+          label,
+          style: TextStyle(
+            fontSize: 12,
+            color: Colors.grey[600],
+          ),
+        ),
+      ],
     );
   }
 }

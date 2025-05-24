@@ -1,0 +1,278 @@
+[
+  {
+    "question": "To Lie down",
+    "options": ["fliegen", "lächeln", "liegen", "laden"],
+    "correctOption": 2
+  },
+  {
+    "question": "Accommodation",
+    "options": ["übernehmen", "überlaut", "unfall", "unterkunft"],
+    "correctOption": 3
+  },
+  {
+    "question": "Vacation",
+    "options": ["urlaub", "unklar", "umkreis", "übung"],
+    "correctOption": 0
+  },
+  {
+    "question": "Little",
+    "options": ["wasser", "wagen", "weg", "wenig"],
+    "correctOption": 3
+  },
+  {
+    "question": "inexpensive",
+    "options": ["preisgunstig", "ungeliebt", "vernünftig", "erwischen"],
+    "correctOption": 0
+  },
+  {
+    "question": "epic",
+    "options": ["erarbeiten", "eingriff", "episch", "zaghaft"],
+    "correctOption": 2
+  },
+  {
+    "question": "prestigious/renowned",
+    "options": ["renommiert", "erfinderisch", "bedauern", "vermögen"],
+    "correctOption": 0
+  },
+  {
+    "question": "memorize",
+    "options": ["suggerieren", "niesen", "einprägen", "revidieren"],
+    "correctOption": 2
+  },
+  {
+    "question": "difficult",
+    "options": ["Schloß", "schwierig", "salzig", "schalten"],
+    "correctOption": 1
+  },
+  {
+    "question": "crawl",
+    "options": ["darlegen", "belegen", "meistern", "kraulen"],
+    "correctOption": 3
+  },
+  {
+    "question": "forbidden",
+    "options": ["vaterlos", "verantwortlich", "verlassen", "verboten"],
+    "correctOption": 3
+  },
+  {
+    "question": "encounter",
+    "options": ["begegnen", "backpulver", "bandeln", "bauch"],
+    "correctOption": 0
+  },
+  {
+    "question": "boring",
+    "options": ["lacheln", "lagerung", "lạngweilen", "lebensweg"],
+    "correctOption": 2
+  },
+  {
+    "question": "to suspect",
+    "options": ["verstehen", "vergessen", "verkaufen", "vermuten"],
+    "correctOption": 3
+  },
+  {
+    "question": "opinion",
+    "options": ["die Meinung", "die meldung", "mieten", "renennen"],
+    "correctOption": 0
+  },
+  {
+    "question": "the advertisement",
+    "options": ["nachbarn", "die Wẹrbung", "nachruf", "wappen"],
+    "correctOption": 1
+  },
+  {
+    "question": "the wedding",
+    "options": ["hagel", "haken", "handhabung", "Họchzeit"],
+    "correctOption": 3
+  },
+  {
+    "question": "feeling",
+    "options": ["das Gefühl", "farbe", "fällen", "gabel"],
+    "correctOption": 0
+  },
+  {
+    "question": "the remedy",
+    "options": ["zahne", "zeichen", "zeitlos", "das hilfsmittel"],
+    "correctOption": 3
+  },
+  {
+    "question": "to assign",
+    "options": ["zuordnen", "zeichnen", "trennen", "Zudienen"],
+    "correctOption": 0
+  },
+  {
+    "question": "poor",
+    "options": ["madig", "mangelhaft", "magen", "mannloch"],
+    "correctOption": 1
+  },
+  {
+    "question": "depend",
+    "options": ["abbau", "abdrucken", "abhängen", "abbringen"],
+    "correctOption": 2
+  },
+  {
+    "question": "worried",
+    "options": ["nachtbauen", "besorgen", "nachbeten", "beten"],
+    "correctOption": 1
+  },
+  {
+    "question": "evil",
+    "options": ["beeilt", "begraben", "böse", "bedarf"],
+    "correctOption": 2
+  },
+  {
+    "question": "invention",
+    "options": ["Ehescheidung", "die erfindung", "ehrung", "einbindung"],
+    "correctOption": 1
+  },
+  {
+    "question": "foreign",
+    "options": ["fremd", "fällen", "färbender", "fackel"],
+    "correctOption": 0
+  },
+  {
+    "question": "against",
+    "options": ["abbestellt", "dagegen", "abgebogen", "abschnitt"],
+    "correctOption": 1
+  },
+  {
+    "question": "feel",
+    "options": ["säufer", "schrumpfend", "betrachten", "spüren"],
+    "correctOption": 3
+  },
+  {
+    "question": "sacrifice",
+    "options": ["zerstreutheit", "opfern", "die Auffassung", "einheitlich"],
+    "correctOption": 1
+  },
+  {
+    "question": "scare",
+    "options": ["einblick", "einbildung", "erschrecken", "schlimm"],
+    "correctOption": 2
+  },
+  {
+    "question": "burden/load",
+    "options": ["belasten", "ausstrecken", "eindeutig", "ratsam"],
+    "correctOption": 0
+  },
+  {
+    "question": "persistent",
+    "options": ["Schwäche", "blamieren sich", "anhaltend", "kreieren"],
+    "correctOption": 2
+  },
+  {
+    "question": "undetected",
+    "options": ["unerkannt", "unbedingt", "ausgehen", "bewältigen"],
+    "correctOption": 0
+  },
+  {
+    "question": "subject",
+    "options": ["fabel", "das Fạch", "fahrer", "feier"],
+    "correctOption": 1
+  },
+  {
+    "question": "gift",
+    "options": ["das Defizit", "donnern", "die Schwäche", "die gabe"],
+    "correctOption": 3
+  },
+  {
+    "question": "payment",
+    "options": ["die entrichtung", "die Verteilung", "hageln", "der Bestandteil"],
+    "correctOption": 0
+  },
+  {
+    "question": "doubt",
+    "options": ["blitzen", "bezweifeln", "bewältigen", "überlastet"],
+    "correctOption": 1
+  },
+  {
+    "question": "burst",
+    "options": ["zerplatzen", "hiesig", "abseits", "ertappen"],
+    "correctOption": 0
+  },
+  {
+    "question": "hectic",
+    "options": ["vermögen", "erwidern", "hektisch", "stimmig"],
+    "correctOption": 2
+  },
+  {
+    "question": "nutritional intake",
+    "options": ["nahrungsaufnahme", "verunsichert", "genussorientiert", "hemmungslos"],
+    "correctOption": 0
+  },
+  {
+    "question": "chop",
+    "options": ["schildern", "zerhacken", "wiederkehren", "widerspiegeln"],
+    "correctOption": 1
+  },
+  {
+    "question": "happy",
+    "options": ["finster", "ruppig", "vergnügt", "verkrampft"],
+    "correctOption": 2
+  },
+  {
+    "question": "sustainable",
+    "options": ["einfühlsam", "vordergründig", "berträchtlich", "tragfähig"],
+    "correctOption": 3
+  },
+  {
+    "question": "Return",
+    "options": ["zahlen", "zwei", "zurück", "zeug"],
+    "correctOption": 2
+  },
+  {
+    "question": "Bright",
+    "options": ["hell", "dunkel", "hacke", "halb"],
+    "correctOption": 0
+  },
+  
+  {
+    "question": "to travel",
+    "options": ["reisen", "rechnen", "rufen", "rennen"],
+    "correctOption": 0
+  },
+  {
+    "question": "the weather",
+    "options": ["der Wind", "das Wetter", "die Wolke", "der Wald"],
+    "correctOption": 1
+  },
+  {
+    "question": "breakfast",
+    "options": ["das Abendessen", "das Mittagessen", "das Frühstück", "das Essen"],
+    "correctOption": 2
+  },
+  {
+    "question": "money",
+    "options": ["das Geld", "das Gold", "die Münze", "die Mark"],
+    "correctOption": 0
+  },
+  {
+    "question": "apartment",
+    "options": ["das Haus", "die Wohnung", "das Zimmer", "das Gebäude"],
+    "correctOption": 1
+  },
+  {
+    "question": "to understand",
+    "options": ["verlieren", "versuchen", "verstehen", "vergessen"],
+    "correctOption": 2
+  },
+  {
+    "question": "teacher",
+    "options": ["der Arzt", "der Student", "der Professor", "der Lehrer"],
+    "correctOption": 3
+  },
+  {
+    "question": "friend",
+    "options": ["der Freund", "der Feind", "der Fremde", "der Fahrer"],
+    "correctOption": 0
+  },
+  {
+    "question": "language",
+    "options": ["das Buch", "die Sprache", "das Wort", "der Satz"],
+    "correctOption": 1
+  },
+  {
+    "question": "computer",
+    "options": ["das Telefon", "das Tablet", "der Computer", "die Kamera"],
+    "correctOption": 2
+  }
+]
