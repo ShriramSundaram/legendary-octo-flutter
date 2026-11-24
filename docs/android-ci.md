@@ -7,7 +7,7 @@ configuration. Android SDK 36 and NDK 27.0.12077973 are installed explicitly.
 
 The workflow resolves `pubspec.lock` without allowing dependency changes, runs
 Dart analysis and all tests in `test/`, then builds debug APKs for arm64-v8a,
-armeabi-v7a and x86_64. Analyzer errors fail CI; existing warnings and information
+armeabi-v7a, x86 and x86_64. Analyzer errors fail CI; existing warnings and information
 remain visible without blocking builds. Formatting is not currently a gate.
 
 ## Download and install
