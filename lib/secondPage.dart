@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:germanreminder/main.dart';
-import 'package:germanreminder/notification_api.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:rxdart/utils.dart';
 
 class SecondPage extends StatelessWidget {
   final String? payload;

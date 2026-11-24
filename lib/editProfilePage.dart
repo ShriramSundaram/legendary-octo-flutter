@@ -3,13 +3,8 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:germanreminder/profilePage.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class EditProfilePage extends StatefulWidget {
@@ -24,6 +19,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   File? _image;
   String? localPath;
+  bool _saving = false;
 
   bool onSelectedLevelA = true;
   bool onSelectedLevelA2 = true;
@@ -37,13 +33,14 @@ class _EditProfilePageState extends State<EditProfilePage> {
   // Initialize the object for Hive
   final hiveDatabase = Hive.box('LocalDatabase');
   // Write
-  void writeUserName() {
-    if (userNameEditor.text == null || userNameEditor.text == '') {
+  Future<void> writeUserName() async {
+    if (userNameEditor.text == userName) return;
+    if (userNameEditor.text.isEmpty) {
       if (!hiveDatabase.containsKey('UserName')) {
-        hiveDatabase.put('UserName', '');
+        await hiveDatabase.put('UserName', '');
       }
     } else {
-      hiveDatabase.put('UserName', userNameEditor.text);
+      await hiveDatabase.put('UserName', userNameEditor.text);
     }
   }
 
@@ -53,77 +50,109 @@ class _EditProfilePageState extends State<EditProfilePage> {
     }
   }
 
-  void goToProfilePage(context) => Navigator.of(context)
-      .push(MaterialPageRoute(builder: (_) => ProfilePage()));
-
-  Future imageUpload() async {
+  void imageUpload() async {
     try {
       final image = await ImagePicker().pickImage(source: ImageSource.gallery);
 
       if (image == null) return;
 
-      setState(() => _image = File(image.path));
-      saveImage(File(image.path));
+      if (mounted) {
+        setState(() => _image = File(image.path));
+      }
     } on PlatformException catch (e) {
       print(" Failed to upload image : $e");
-      showDialog(
-          context: context,
-          builder: (context) => CupertinoAlertDialog(
-                title: Text('Alert !!!!'),
-                content: Text(e.message.toString()),
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Text('Close'),
-                  )
-                ],
-              ));
+      if (mounted) {
+        showDialog(
+            context: context,
+            builder: (context) => CupertinoAlertDialog(
+                  title: Text('Alert !!!!'),
+                  content: Text(e.message ?? 'Error uploading image'),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text('Close'),
+                    )
+                  ],
+                ));
+      }
     }
   }
 
-  void saveImage(File img) async {
-    SharedPreferences saveImage = await SharedPreferences.getInstance();
-    saveImage.setString('ImagePath', img.path);
+  Future<void> saveImage(File img) async {
+    final preferences = await SharedPreferences.getInstance();
+    if (!await preferences.setString('ImagePath', img.path)) {
+      throw StateError('Could not save the profile photo');
+    }
+  }
+
+  Future<void> saveProfile() async {
+    if (_saving) return;
+    setState(() => _saving = true);
+    try {
+      await writeUserName();
+      await writeGermanLevel();
+      if (_image != null) await saveImage(_image!);
+      if (!mounted) return;
+      Navigator.of(context).pop(true);
+    } catch (e) {
+      if (!mounted) return;
+      setState(() => _saving = false);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+            content: Text('Could not save your profile. Please try again.')),
+      );
+    }
   }
 
   void loadImage() async {
     SharedPreferences imagePath = await SharedPreferences.getInstance();
 
+    if (!mounted) return;
+
     if (imagePath.containsKey('ImagePath')) {
       setState(() {
         localPath = imagePath.getString('ImagePath');
-        print("Entered!!!!" + localPath.toString());
+        print("Entered!!!!" + (localPath ?? ""));
       });
     } else {
-      localPath = '';
+      setState(() {
+        localPath = '';
+      });
     }
   }
 
-  void writeGermanLevel() {
+  Future<void> writeGermanLevel() async {
     if (onSelectedLevel == 'A') {
-      hiveDatabase.put('CurrentLevel', 'A1');
+      await hiveDatabase.put('CurrentLevel', 'A1');
     }
     if (onSelectedLevel == 'A2') {
-      hiveDatabase.put('CurrentLevel', 'A2');
+      await hiveDatabase.put('CurrentLevel', 'A2');
     }
     if (onSelectedLevel == 'B1') {
-      hiveDatabase.put('CurrentLevel', 'B1');
+      await hiveDatabase.put('CurrentLevel', 'B1');
     }
     if (onSelectedLevel == 'B2') {
-      hiveDatabase.put('CurrentLevel', 'B2');
+      await hiveDatabase.put('CurrentLevel', 'B2');
     }
     if (onSelectedLevel == 'C1') {
-      hiveDatabase.put('CurrentLevel', 'C1');
+      await hiveDatabase.put('CurrentLevel', 'C1');
     }
   }
 
   @override
   void initState() {
+    super.initState();
     loadImage();
-    writeUserName();
     getUserName();
+    userNameEditor.text = userName;
+  }
+
+  @override
+  void dispose() {
+    userNameEditor.dispose();
+    super.dispose();
   }
 
   @override
@@ -153,7 +182,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                   backgroundImage: FileImage(_image!),
                                   radius: 65,
                                 )
-                              : (localPath != '' && localPath != null)
+                              : (localPath != null && localPath!.isNotEmpty)
                                   ? CircleAvatar(
                                       backgroundImage:
                                           FileImage(File(localPath!)),
@@ -174,9 +203,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         decoration: BoxDecoration(
                             shape: BoxShape.circle, color: Colors.blue),
                         child: IconButton(
-                          onPressed: () {
-                            imageUpload();
-                          },
+                          onPressed: _saving
+                              ? null
+                              : () {
+                                  imageUpload();
+                                },
                           icon: Icon(Icons.edit),
                           color: Colors.black,
                         ),
@@ -187,11 +218,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                 SizedBox(
                   height: 60,
                 ),
-                buildTextField(
-                    'Full Name',
-                    userName != '' ? userName : hiveDatabase.get('UserName'),
-                    false,
-                    true),
+                buildTextField('Full Name', userName, false, true),
                 SizedBox(
                   height: 45,
                 ),
@@ -382,9 +409,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     width: 6, color: Color.fromARGB(255, 177, 151, 250)),
                 borderRadius: BorderRadius.circular(20)),
             child: OutlinedButton(
-              onPressed: () {
-                goToProfilePage(context);
-              },
+              onPressed:
+                  _saving ? null : () => Navigator.of(context).pop(false),
               child: Text('Cancel',
                   style: TextStyle(
                       fontSize: 14, letterSpacing: 2.2, color: Colors.black)),
@@ -398,14 +424,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     width: 6, color: Color.fromARGB(255, 177, 151, 250)),
                 borderRadius: BorderRadius.circular(20)),
             child: OutlinedButton(
-              onPressed: () {
-                writeUserName();
-                goToProfilePage(context);
-                writeGermanLevel();
-                if (_image != null) {
-                  saveImage(_image!);
-                }
-              },
+              onPressed: _saving ? null : saveProfile,
               child: Text('Save',
                   style: TextStyle(
                       fontSize: 14, letterSpacing: 2.2, color: Colors.black)),
@@ -421,7 +440,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
     return Padding(
         padding: EdgeInsets.only(bottom: 30),
         child: TextField(
-          obscureText: isPasswordTextField ? true : false,
+          obscureText: isPasswordTextField,
           controller: userNameEditor,
           decoration: InputDecoration(
               contentPadding: EdgeInsets.only(bottom: 5),

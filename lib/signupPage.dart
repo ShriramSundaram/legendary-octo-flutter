@@ -3,9 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:germanreminder/frontPage.dart';
-import 'package:germanreminder/main.dart';
-import 'package:germanreminder/onboardingScreen.dart';
-import 'package:germanreminder/verifyEmailPage.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -23,7 +20,7 @@ class _SignUpPageState extends State<SignUpPage> {
   bool _obscureTextConfirmPassword = true;
   bool _obscureTextPassword = true;
 
-  Future SignUp() async {
+  void SignUp() async {
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailAddress.text.trim(), password: password.text.trim());
@@ -62,7 +59,6 @@ class _SignUpPageState extends State<SignUpPage> {
                   ],
                 ));
       } // Create Alert, saying SignUp Successful
-
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         showDialog(
@@ -148,28 +144,27 @@ class _SignUpPageState extends State<SignUpPage> {
                     )
                   ],
                 ));
-      } else
-        (e) {
-          showDialog(
-              context: context,
-              builder: (context) => CupertinoAlertDialog(
-                    title: Text('Alert !!!!'),
-                    content: Text(e.code.toString()),
-                    actions: [
-                      TextButton(
-                        onPressed: () {
-                          goToFrontScreen(context);
-                          // SettingUpUserDatabase();
-                        },
-                        child: Text('Close'),
-                      )
-                    ],
-                  ));
-        };
+      } else {
+        showDialog(
+            context: context,
+            builder: (context) => CupertinoAlertDialog(
+                  title: Text('Alert !!!!'),
+                  content: Text(e.code.toString()),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        goToFrontScreen(context);
+                        // SettingUpUserDatabase();
+                      },
+                      child: Text('Close'),
+                    )
+                  ],
+                ));
+      }
     }
   }
 
-  Future SettingUpUserDatabase() async {
+  void SettingUpUserDatabase() async {
     Map<String, dynamic> initData = {'wordStorage': []};
 
     await FirebaseFirestore.instance
@@ -188,7 +183,7 @@ class _SignUpPageState extends State<SignUpPage> {
     }
   }
 
-  Future SendVerificationEmail() async {
+  void SendVerificationEmail() async {
     try {
       currentUser!.sendEmailVerification();
     } on FirebaseAuthException catch (e) {
@@ -209,13 +204,17 @@ class _SignUpPageState extends State<SignUpPage> {
     }
   }
 
-  void goToFrontScreen(context) => Navigator.of(context)
-      .push(MaterialPageRoute(builder: (_) => FrontPage()));
+  void goToFrontScreen(BuildContext context) {
+    Navigator.of(context)
+        .pushReplacement(MaterialPageRoute(builder: (_) => FrontPage()));
+  }
 
   @override
   void dispose() {
+    userName.dispose();
     emailAddress.dispose();
     password.dispose();
+    confirmPassword.dispose();
 
     super.dispose();
   }
@@ -224,14 +223,13 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('SignUp', textDirection: TextDirection.ltr),
+          title: const Text('SignUp', textDirection: TextDirection.ltr),
           automaticallyImplyLeading: false,
           centerTitle: true,
-          actions: [
-            IconButton(
-                icon: Icon(Icons.arrow_back),
-                onPressed: () => {goToFrontScreen(context)})
-          ],
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () => goToFrontScreen(context),
+          ),
         ),
         backgroundColor: Colors.deepPurpleAccent[300],
         body: SingleChildScrollView(
@@ -258,10 +256,15 @@ class _SignUpPageState extends State<SignUpPage> {
                     style: BorderStyle.solid),
                 borderRadius: BorderRadius.all(Radius.circular(20.0))),
             child: TextField(
-              toolbarOptions: const ToolbarOptions(
-                  copy: true, cut: true, paste: true, selectAll: true),
-              decoration: const InputDecoration.collapsed(
-                  hintText: " Email ", fillColor: Colors.deepOrange),
+              contextMenuBuilder: (context, editableTextState) {
+                return AdaptiveTextSelectionToolbar.editableText(
+                  editableTextState: editableTextState,
+                );
+              },
+              decoration: const InputDecoration(
+                  hintText: " Email ",
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.zero),
               controller: emailAddress,
               cursorRadius: const Radius.circular(2.0),
               style: const TextStyle(
@@ -285,20 +288,25 @@ class _SignUpPageState extends State<SignUpPage> {
                 borderRadius: BorderRadius.all(Radius.circular(20.0))),
             child: TextField(
               obscureText: _obscureTextPassword,
-              toolbarOptions: const ToolbarOptions(
-                  copy: true, cut: true, paste: true, selectAll: true),
+              contextMenuBuilder: (context, editableTextState) {
+                return AdaptiveTextSelectionToolbar.editableText(
+                  editableTextState: editableTextState,
+                );
+              },
               decoration: InputDecoration(
                   isCollapsed: true,
                   hintText: "Password",
-                  suffixIcon: GestureDetector(
-                    onTap: () {
+                  suffixIcon: IconButton(
+                    onPressed: () {
                       setState(() {
                         _obscureTextPassword = !_obscureTextPassword;
                       });
                     },
-                    child: Icon(_obscureTextPassword
-                        ? Icons.visibility
-                        : Icons.visibility_off),
+                    icon: Icon(
+                        _obscureTextPassword
+                            ? Icons.visibility
+                            : Icons.visibility_off,
+                        color: Color.fromARGB(255, 175, 134, 246)),
                   )),
               controller: password,
               cursorRadius: const Radius.circular(2.0),
@@ -323,21 +331,26 @@ class _SignUpPageState extends State<SignUpPage> {
                 borderRadius: BorderRadius.all(Radius.circular(20.0))),
             child: TextField(
               obscureText: _obscureTextConfirmPassword,
-              toolbarOptions: const ToolbarOptions(
-                  copy: true, cut: true, paste: true, selectAll: true),
+              contextMenuBuilder: (context, editableTextState) {
+                return AdaptiveTextSelectionToolbar.editableText(
+                  editableTextState: editableTextState,
+                );
+              },
               decoration: InputDecoration(
                   isCollapsed: true,
                   hintText: "Confirm Password",
-                  suffixIcon: GestureDetector(
-                    onTap: () {
+                  suffixIcon: IconButton(
+                    onPressed: () {
                       setState(() {
                         _obscureTextConfirmPassword =
                             !_obscureTextConfirmPassword;
                       });
                     },
-                    child: Icon(_obscureTextConfirmPassword
-                        ? Icons.visibility
-                        : Icons.visibility_off),
+                    icon: Icon(
+                        _obscureTextConfirmPassword
+                            ? Icons.visibility
+                            : Icons.visibility_off,
+                        color: Color.fromARGB(255, 175, 134, 246)),
                   )),
               controller: confirmPassword,
               cursorRadius: const Radius.circular(2.0),
@@ -356,16 +369,29 @@ class _SignUpPageState extends State<SignUpPage> {
           Container(
               width: 320,
               alignment: Alignment.center,
-              padding: EdgeInsets.all(8.0),
-              margin: EdgeInsets.symmetric(horizontal: 20.0),
+              padding: const EdgeInsets.all(8.0),
+              margin: const EdgeInsets.symmetric(horizontal: 20.0),
               decoration: BoxDecoration(
                   color: Color.fromARGB(255, 175, 134, 246),
                   borderRadius: BorderRadius.circular(20)),
-              child: MaterialButton(
-                  //highlightElevation: 20.0,
-                  minWidth: 300,
-                  height: 50,
-                  splashColor: Colors.deepPurple,
+              child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromARGB(255, 175, 134, 246),
+                    foregroundColor: Colors.black,
+                    minimumSize: Size(300, 50),
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(18),
+                    ),
+                  ).copyWith(
+                    overlayColor: WidgetStateProperty.resolveWith<Color?>(
+                      (Set<WidgetState> states) {
+                        if (states.contains(WidgetState.pressed))
+                          return Colors.deepPurple;
+                        return null;
+                      },
+                    ),
+                  ),
                   onPressed: () {
                     SignUp();
                   },
@@ -379,12 +405,12 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
           SizedBox(
             width: 250,
-            child: GestureDetector(
-              onTap: () {
+            child: TextButton(
+              onPressed: () {
                 goToFrontScreen(context);
               },
-              child: Text(
-                "\tI already have an account !! ",
+              child: const Text(
+                "I already have an account !!",
                 style: TextStyle(
                     fontSize: 18.0,
                     decoration: TextDecoration.underline,

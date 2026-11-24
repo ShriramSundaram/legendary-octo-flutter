@@ -1,11 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:germanreminder/resultPage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'germanQuizData.dart';
@@ -40,7 +36,7 @@ class _germanBasicTestState extends State<germanBasicTest> {
     _loadQuizData();
   }
 
-  Future<void> _loadQuizData() async {
+  void _loadQuizData() async {
     try {
       quizData = await loadQuizData();
       quizData.shuffle(); // Shuffle questions every time
@@ -72,7 +68,7 @@ class _germanBasicTestState extends State<germanBasicTest> {
     // You can add more logic or use motive if needed
   }
 
-  Future<void> checkAnswer() async {
+  void checkAnswer() async {
     if (selectedOption == quizData[currentQuestionIndex].CorrectOption) {
       setState(() {
         score++;
@@ -86,16 +82,20 @@ class _germanBasicTestState extends State<germanBasicTest> {
       });
     } else {
       _timer.cancel();
-      await showResult();
+      showResult();
       CheckGermanLevel();
     }
   }
 
-  Future<void> showResult() async {
+  void showResult() {
+    // Make sure we don't navigate twice
+    if (!mounted) return;
+
     int attempted = currentQuestionIndex + (selectedOption != null ? 1 : 0);
     int correct = score;
     int wrong = attempted - correct;
     int unanswered = quizData.length - attempted;
+
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
@@ -116,12 +116,16 @@ class _germanBasicTestState extends State<germanBasicTest> {
   void StartTimer() {
     _timer = Timer.periodic(Duration(seconds: 1), (timer) {
       if (remainingTime > 0) {
-        setState(() {
-          remainingTime--;
-        });
+        if (mounted) {
+          setState(() {
+            remainingTime--;
+          });
+        }
       } else {
         _timer.cancel();
-        showResult();
+        if (mounted) {
+          showResult();
+        }
       }
     });
   }
@@ -207,7 +211,7 @@ class _germanBasicTestState extends State<germanBasicTest> {
                 child: Text(
                   // Use quizData instead of QuizData
                   quizData[currentQuestionIndex].Questions,
-                  textScaleFactor: 5.0,
+                  textScaler: TextScaler.linear(5.0),
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                       color: Colors.black,
@@ -257,15 +261,15 @@ class _germanBasicTestState extends State<germanBasicTest> {
                   },
                   style: ButtonStyle(
                       backgroundColor: timeStarted
-                          ? MaterialStateProperty.resolveWith<Color?>((states) {
-                              if (states.contains(MaterialState.pressed)) {
+                          ? WidgetStateProperty.resolveWith<Color?>((states) {
+                              if (states.contains(WidgetState.pressed)) {
                                 return Color.fromARGB(
                                     255, 91, 6, 238); // Color when pressed
                               }
                               return Color.fromARGB(
                                   255, 180, 143, 245); // Default color
                             })
-                          : MaterialStateProperty.resolveWith<Color?>((states) {
+                          : WidgetStateProperty.resolveWith<Color?>((states) {
                               return Color.fromARGB(255, 91, 6, 238);
                             })),
                   child: Text('Start',
@@ -294,7 +298,7 @@ class _germanBasicTestState extends State<germanBasicTest> {
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.1),
+            color: Colors.grey.withAlpha((0.4 * 255).toInt()),
             spreadRadius: 1,
             blurRadius: 2,
             offset: Offset(0, 1),
@@ -335,5 +339,13 @@ class _germanBasicTestState extends State<germanBasicTest> {
         ),
       ],
     );
+  }
+
+  @override
+  void dispose() {
+    if (timeStarted) {
+      _timer.cancel();
+    }
+    super.dispose();
   }
 }

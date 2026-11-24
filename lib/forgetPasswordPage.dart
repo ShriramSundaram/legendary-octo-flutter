@@ -20,7 +20,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
     super.dispose();
   }
 
-  Future Resetpassword() async {
+  void Resetpassword() async {
     try {
       await FirebaseAuth.instance
           .sendPasswordResetEmail(email: emailAddress.text.trim());
@@ -42,77 +42,50 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                 ],
               ));
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'invalid-email') {
+      if (!mounted) return;
+
+      String errorMessage;
+      switch (e.code) {
+        case 'invalid-email':
+          errorMessage = 'The email address is not valid.';
+          break;
+        case 'missing-email':
+          errorMessage = 'Please provide an email address.';
+          break;
+        case 'user-not-found':
+          errorMessage = 'No user found with this email address.';
+          break;
+        case 'invalid-continue-uri':
+          errorMessage = 'The continue URL provided is invalid.';
+          break;
+        case 'unauthorized-continue-uri':
+          errorMessage = 'The continue URL domain is not authorized.';
+          break;
+        default:
+          errorMessage = e.message ?? 'An unknown error occurred.';
+      }
+
+      showDialog(
+          context: context,
+          builder: (context) => CupertinoAlertDialog(
+                title: Text('Alert !!!!'),
+                content: Text(errorMessage),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text('Close'),
+                  )
+                ],
+              ));
+    } catch (e) {
+      if (mounted) {
         showDialog(
             context: context,
             builder: (context) => CupertinoAlertDialog(
                   title: Text('Alert !!!!'),
-                  content: Text('invalid-email'),
-                  actions: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                        // SettingUpUserDatabase();
-                      },
-                      child: Text('Close'),
-                    )
-                  ],
-                ));
-      } else if (e.code == 'missing-email') {
-        showDialog(
-            context: context,
-            builder: (context) => CupertinoAlertDialog(
-                  title: Text('Alert !!!!'),
-                  content: Text('missing-email'),
-                  actions: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                        // SettingUpUserDatabase();
-                      },
-                      child: Text('Close'),
-                    )
-                  ],
-                ));
-      } else if (e.code == 'user-not-found') {
-        showDialog(
-            context: context,
-            builder: (context) => CupertinoAlertDialog(
-                  title: Text('Alert !!!!'),
-                  content: Text('user-not-found'),
-                  actions: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                        // SettingUpUserDatabase();
-                      },
-                      child: Text('Close'),
-                    )
-                  ],
-                ));
-        print('email-already-in-use');
-      } else if (e.code == 'invalid-continue-uri') {
-        showDialog(
-            context: context,
-            builder: (context) => CupertinoAlertDialog(
-                  title: Text('Alert !!!!'),
-                  content: Text('invalid-continue-uri'),
-                  actions: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                        // SettingUpUserDatabase();
-                      },
-                      child: Text('Close'),
-                    )
-                  ],
-                ));
-      } else if (e.code == 'unauthorized-continue-uri') {
-        showDialog(
-            context: context,
-            builder: (context) => CupertinoAlertDialog(
-                  title: Text('Alert !!!!'),
-                  content: Text('unauthorized-continue-uri'),
+                  content: Text(e.toString()),
                   actions: [
                     TextButton(
                       onPressed: () {
@@ -124,22 +97,6 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                   ],
                 ));
       }
-    } catch (e) {
-      showDialog(
-          context: context,
-          builder: (context) => CupertinoAlertDialog(
-                title: Text('Alert !!!!'),
-                content: Text(e.toString()),
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                      // SettingUpUserDatabase();
-                    },
-                    child: Text('Close'),
-                  )
-                ],
-              ));
     }
   }
 
@@ -207,8 +164,11 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                 margin: EdgeInsets.only(right: 35.0),
                 decoration: const BoxDecoration(shape: BoxShape.circle),
                 child: TextField(
-                  toolbarOptions: const ToolbarOptions(
-                      copy: true, cut: true, paste: true, selectAll: true),
+                  contextMenuBuilder: (context, editableTextState) {
+                    return AdaptiveTextSelectionToolbar.editableText(
+                      editableTextState: editableTextState,
+                    );
+                  },
                   decoration: const InputDecoration(
                       hintText: " Email ",
                       fillColor: Colors.deepOrange,
@@ -241,7 +201,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                     color: Color.fromARGB(255, 159, 125, 251)),
                 child: MaterialButton(
                   onPressed: () {
-                    if (emailAddress != '' || emailAddress != null) {
+                    if (emailAddress.text.trim().isNotEmpty) {
                       Resetpassword();
                     } else {
                       showDialog(
@@ -282,5 +242,5 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
   }
 
   void goToFrontPage(context) => Navigator.of(context)
-      .push(MaterialPageRoute(builder: (_) => FrontPage()));
+      .pushReplacement(MaterialPageRoute(builder: (_) => FrontPage()));
 }

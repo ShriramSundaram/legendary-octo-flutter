@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
 import 'package:germanreminder/signupPage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'main.dart';
@@ -23,13 +22,22 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
   @override
   void initState() {
     super.initState();
-    isEmailVerified = user!.emailVerified;
+    // Add null check for user
+    if (user != null) {
+      isEmailVerified = user!.emailVerified;
 
-    if (!isEmailVerified) {
-      SendVerificationEmail();
+      if (!isEmailVerified) {
+        SendVerificationEmail();
 
-      timer = Timer.periodic(Duration(seconds: 3), (_) {
-        CheckEmailVerified();
+        timer = Timer.periodic(Duration(seconds: 3), (_) {
+          CheckEmailVerified();
+        });
+      }
+    } else {
+      // Navigate back if user is null
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Navigator.of(context)
+            .pushReplacement(MaterialPageRoute(builder: (_) => SignUpPage()));
       });
     }
   }
@@ -41,7 +49,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
     super.dispose();
   }
 
-  Future CheckEmailVerified() async {
+  void CheckEmailVerified() async {
     // Need to reload after new user sign up
     await FirebaseAuth.instance.currentUser!.reload();
     setState(() {
@@ -52,9 +60,9 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
     if (isEmailVerified) timer?.cancel();
   }
 
-  Future SendVerificationEmail() async {
+  void SendVerificationEmail() async {
     try {
-      user!.sendEmailVerification();
+      await user!.sendEmailVerification();
     } on FirebaseAuthException catch (e) {
       showDialog(
           context: context,

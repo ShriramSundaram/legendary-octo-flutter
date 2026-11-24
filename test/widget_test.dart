@@ -1,30 +1,82 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility that Flutter provides. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
+import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:flutter_application_1/main.dart';
+import 'package:germanreminder/home_widgets.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
-
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
-  });
+  for (final size in [
+    const Size(240, 640),
+    const Size(320, 640),
+    const Size(393, 873),
+    const Size(800, 600),
+    const Size(873, 393),
+  ]) {
+    for (final scale in [1.0, 2.0]) {
+      testWidgets('Home controls fit $size with text scale $scale',
+          (tester) async {
+        tester.view.devicePixelRatio = 1;
+        tester.view.physicalSize = size;
+        addTearDown(tester.view.resetDevicePixelRatio);
+        addTearDown(tester.view.resetPhysicalSize);
+        final controller = TextEditingController();
+        addTearDown(controller.dispose);
+        await tester.pumpWidget(MaterialApp(
+          builder: (context, child) => MediaQuery(
+            data: MediaQuery.of(context)
+                .copyWith(textScaler: TextScaler.linear(scale)),
+            child: child!,
+          ),
+          home: Scaffold(
+            body: SingleChildScrollView(
+              padding: const EdgeInsets.all(16),
+              child: Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 640),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      ReminderTimeSelector(
+                        values: const [5, 30, 30],
+                        items: const [
+                          [0, 5],
+                          [0, 30],
+                          [0, 30]
+                        ],
+                        onChanged: [(_) {}, (_) {}, (_) {}],
+                        onStart: () {},
+                      ),
+                      FlipCard(
+                        front: const HomeWordCard(
+                            word: 'Donaudampfschifffahrtsgesellschaft'),
+                        back: const HomeWordCard(word: 'Guten Morgen'),
+                      ),
+                      HomeWordInput(controller: controller),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ));
+        await tester.pumpAndSettle();
+        expect(tester.takeException(), isNull);
+        for (final type in [
+          ReminderTimeSelector,
+          HomeWordCard,
+          HomeWordInput
+        ]) {
+          for (final element in find.byType(type).first.evaluate()) {
+            final box = element.renderObject! as RenderBox;
+            final left = box.localToGlobal(Offset.zero).dx;
+            expect(left, greaterThanOrEqualTo(0));
+            expect(left + box.size.width, lessThanOrEqualTo(size.width));
+          }
+        }
+        await tester.ensureVisible(find.byType(HomeWordInput));
+        await tester.enterText(find.byType(TextField), 'Neues Wort');
+        expect(controller.text, 'Neues Wort');
+        expect(tester.takeException(), isNull);
+      });
+    }
+  }
 }

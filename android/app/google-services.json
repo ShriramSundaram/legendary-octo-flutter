@@ -2,7 +2,7 @@
   "project_info": {
     "project_number": "1071132829119",
     "project_id": "germanreminderapp",
-    "storage_bucket": "germanreminderapp.appspot.com"
+    "storage_bucket": "germanreminderapp.firebasestorage.app"
   },
   "client": [
     {
@@ -13,6 +13,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "1071132829119-d5m9tv4pbqa6a03f689g2c5agvn3lhk8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sundaram.germanreminder.app",
+            "certificate_hash": "3f14b18fd6ad7b4161c48b252b259d348130f675"
+          }
+        },
         {
           "client_id": "1071132829119-jcq21cm6ruvq5i3lqc1janlg9fcneojd.apps.googleusercontent.com",
           "client_type": 3

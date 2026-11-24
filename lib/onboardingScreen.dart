@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:germanreminder/forgetPasswordPage.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+import 'package:germanreminder/verifyEmailPage.dart';
 import 'signupPage.dart';
 import 'main.dart';
 
@@ -17,48 +18,87 @@ class _OnBoardingScreen extends State<OnBoardingScreen> {
 
   bool _obscureText = true;
 
-  Future SignIn() async {
+  void SignIn() async {
+    if (EmailController.text.trim().isEmpty ||
+        PasswordController.text.trim().isEmpty) {
+      showDialog(
+          context: context,
+          builder: (context) => CupertinoAlertDialog(
+                title: Text('Error'),
+                content: Text('Please enter both email and password'),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text('OK'),
+                  )
+                ],
+              ));
+      return;
+    }
+
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: EmailController.text.trim(),
-          password: PasswordController.text.trim());
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        // ignore: todo
-        showDialog(
-            context: context,
-            builder: (context) => CupertinoAlertDialog(
-                  title: Text('ALERT!!!!'),
-                  content: Text('user-not-found'),
-                  actions: [
-                    TextButton(
-                      onPressed: () {
-                        // SettingUpUserDatabase();
-                        Navigator.pop(context);
-                      },
-                      child: Text('Close'),
-                    )
-                  ],
-                ));
-        //TODO: Pop Should Appear,
-      } else if (e.code == 'wrong-password') {
-        showDialog(
-            context: context,
-            builder: (context) => CupertinoAlertDialog(
-                  title: Text('ALERT!!!!'),
-                  content: Text('wrong-password'),
-                  actions: [
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                        // SettingUpUserDatabase();
-                      },
-                      child: Text('Close'),
-                    )
-                  ],
-                ));
-        print('Wrong password provided for that user.');
+      UserCredential userCredential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(
+              email: EmailController.text.trim(),
+              password: PasswordController.text.trim());
+
+      // Reload user to get the latest emailVerified status
+      await userCredential.user?.reload();
+      final user = FirebaseAuth.instance.currentUser;
+
+      if (user != null && user.emailVerified) {
+        // Navigate to main page on successful login
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (_) => MyHomePage(title: 'GermanReminder')));
+      } else {
+        // Navigate to verify email page
+        Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (_) => VerifyEmailPage()));
       }
+    } on FirebaseAuthException catch (e) {
+      String errorMessage = 'An error occurred. Please try again.';
+
+      if (e.code == 'user-not-found') {
+        errorMessage = 'No user found with this email';
+      } else if (e.code == 'wrong-password') {
+        errorMessage = 'Incorrect password';
+      } else if (e.code == 'invalid-email') {
+        errorMessage = 'Invalid email format';
+      } else if (e.code == 'user-disabled') {
+        errorMessage = 'This account has been disabled';
+      }
+
+      showDialog(
+          context: context,
+          builder: (context) => CupertinoAlertDialog(
+                title: Text('Login Failed'),
+                content: Text(errorMessage),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text('Close'),
+                  )
+                ],
+              ));
+    } catch (e) {
+      showDialog(
+          context: context,
+          builder: (context) => CupertinoAlertDialog(
+                title: Text('Error'),
+                content: Text('An unexpected error occurred'),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text('Close'),
+                  )
+                ],
+              ));
     }
   }
 
@@ -170,22 +210,23 @@ class _OnBoardingScreen extends State<OnBoardingScreen> {
                               BorderRadius.all(Radius.circular(20.0))),
                       child: TextField(
                         obscureText: _obscureText,
-                        toolbarOptions: const ToolbarOptions(
-                            copy: true,
-                            cut: true,
-                            paste: true,
-                            selectAll: true),
+                        contextMenuBuilder: (BuildContext context,
+                            EditableTextState editableTextState) {
+                          return AdaptiveTextSelectionToolbar.editableText(
+                            editableTextState: editableTextState,
+                          );
+                        },
                         decoration: InputDecoration(
                             isCollapsed: true,
                             hintText: "Password",
                             hintMaxLines: 1,
-                            suffixIcon: GestureDetector(
-                              onTap: () {
+                            suffixIcon: IconButton(
+                              onPressed: () {
                                 setState(() {
                                   _obscureText = !_obscureText;
                                 });
                               },
-                              child: Icon(
+                              icon: Icon(
                                   _obscureText
                                       ? Icons.visibility
                                       : Icons.visibility_off,
@@ -231,15 +272,24 @@ class _OnBoardingScreen extends State<OnBoardingScreen> {
                             onPressed: () {
                               SignIn();
                             },
-                            style: ButtonStyle(backgroundColor:
-                                MaterialStateProperty.resolveWith<Color?>(
-                                    (states) {
-                              if (states.contains(MaterialState.pressed)) {
-                                return Colors.deepPurple; // Color when pressed
-                              }
-                              return Color.fromARGB(
-                                  255, 175, 134, 246); // Default color
-                            })),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  Color.fromARGB(255, 175, 134, 246),
+                              foregroundColor: Colors.black,
+                              elevation: 3,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ).copyWith(
+                              overlayColor:
+                                  WidgetStateProperty.resolveWith<Color?>(
+                                (Set<WidgetState> states) {
+                                  if (states.contains(WidgetState.pressed))
+                                    return Colors.deepPurple;
+                                  return null; // Defer to the default color
+                                },
+                              ),
+                            ),
                             child: const Text(
                               "LogIn",
                               style: TextStyle(
@@ -253,15 +303,24 @@ class _OnBoardingScreen extends State<OnBoardingScreen> {
                             onPressed: () {
                               goToSignUpPage(context);
                             },
-                            style: ButtonStyle(backgroundColor:
-                                MaterialStateProperty.resolveWith<Color?>(
-                                    (states) {
-                              if (states.contains(MaterialState.pressed)) {
-                                return Colors.deepPurple; // Color when pressed
-                              }
-                              return Color.fromARGB(
-                                  255, 175, 134, 246); // Default color
-                            })),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  Color.fromARGB(255, 175, 134, 246),
+                              foregroundColor: Colors.black,
+                              elevation: 3,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ).copyWith(
+                              overlayColor:
+                                  WidgetStateProperty.resolveWith<Color?>(
+                                (Set<WidgetState> states) {
+                                  if (states.contains(WidgetState.pressed))
+                                    return Colors.deepPurple;
+                                  return null; // Defer to the default color
+                                },
+                              ),
+                            ),
                             child: const Text(
                               "Sign Up",
                               style: TextStyle(
@@ -286,28 +345,35 @@ class _OnBoardingScreen extends State<OnBoardingScreen> {
     );
   }
 
-  void goToSignUpPage(context) => Navigator.of(context)
-      .pushReplacement(MaterialPageRoute(builder: (_) => SignUpPage()));
+  void goToSignUpPage(BuildContext context) {
+    Navigator.of(context)
+        .pushReplacement(MaterialPageRoute(builder: (_) => SignUpPage()));
+  }
 
-  void goToOnBoardingScreen(context) => Navigator.of(context)
-      .pushReplacement(MaterialPageRoute(builder: (_) => OnBoardingScreen()));
+  void goToOnBoardingScreen(BuildContext context) {
+    Navigator.of(context)
+        .pushReplacement(MaterialPageRoute(builder: (_) => OnBoardingScreen()));
+  }
 
-  void goToForgotPasswordPage(context) => Navigator.of(context)
-      .push(MaterialPageRoute(builder: (_) => ForgetPasswordPage()));
+  void goToForgotPasswordPage(BuildContext context) {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (_) => ForgetPasswordPage()));
+  }
 
   PageDecoration getPageDecoration() => PageDecoration(
-      titleTextStyle: TextStyle(
+      titleTextStyle: const TextStyle(
         fontSize: 28,
         fontWeight: FontWeight.bold,
       ),
-      bodyTextStyle:
-          TextStyle(fontSize: 16, letterSpacing: 1.5, fontFamily: "OpenSans"),
-      titlePadding: EdgeInsets.all(16).copyWith(bottom: 0),
+      bodyTextStyle: const TextStyle(
+          fontSize: 16, letterSpacing: 1.5, fontFamily: "OpenSans"),
+      titlePadding: const EdgeInsets.all(16).copyWith(bottom: 0),
       pageColor: Colors.white);
 
   PageDecoration getLoginPageDecoration() => PageDecoration(
-      titleTextStyle: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-      bodyTextStyle: TextStyle(fontSize: 16),
-      titlePadding: EdgeInsets.all(8).copyWith(bottom: 0),
+      titleTextStyle:
+          const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+      bodyTextStyle: const TextStyle(fontSize: 16),
+      titlePadding: const EdgeInsets.all(8).copyWith(bottom: 0),
       pageColor: Colors.white);
 }

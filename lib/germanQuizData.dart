@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter/material.dart';
 
 class GermanQuiz {
   final String Questions;
@@ -18,13 +20,28 @@ class GermanQuiz {
   }
 }
 
-// This function loads quiz data from the JSON file
-Future<List<GermanQuiz>> loadQuizData() async {
-  final jsonString = await rootBundle.loadString('assets/quiz_data.json');
-  final jsonData = json.decode(jsonString) as List;
-  return jsonData.map((item) => GermanQuiz.fromJson(item)).toList();
-}
-
-// Keep this for backward compatibility, but mark as deprecated
-@Deprecated('Use loadQuizData() instead')
+// This list will store quiz data
 List<GermanQuiz> QuizData = [];
+
+// Load quiz data from JSON file
+dynamic loadQuizData() async {
+  try {
+    // Load JSON string from asset
+    final jsonString = await rootBundle.loadString('assets/quiz_data.json');
+
+    // Decode JSON
+    final jsonData = json.decode(jsonString) as List;
+
+    // Convert to GermanQuiz objects
+    final quizList = jsonData.map((item) => GermanQuiz.fromJson(item)).toList();
+
+    // Update global list for backward compatibility
+    QuizData = quizList;
+
+    // Return the list
+    return quizList;
+  } catch (e) {
+    debugPrint('Error loading quiz data: $e');
+    return [];
+  }
+}
