@@ -9,7 +9,7 @@ Planning tickets published 24 November 2026. Current delivery status is recorded
 | M01 | Foundation delivered; user deferred manual account-isolation/pagination/migration checks. Keep open. |
 | M02 | Completed; GitHub #4 closed 26 November. Phone accepted; user reports Play upload of 1.0.3+16. Google publication not independently verified. |
 | M03 | Completed; GitHub #5 closed 26 November. All feature criteria/core phone acceptance passed; 63 tests passed, analysis clean. Signed 1.0.4+17 bundle and release notes verified and ready for owner production upload. |
-| M04 | Lessons/quiz feedback work has not started. |
+| M04 | Feature complete; owner accepted functions and results styling. Final review: 81 tests passed, 17-file analysis clean. Signed 1.0.5 (20) AAB verified against the previous signing certificate, approved assets and absence of the private debug credential; ready for owner upload. M04 changes remain local/uncommitted; GitHub #6 remains open administratively. See m04-completion-review.md. |
 | M07 | Daily progress totals/history/dashboard have not been implemented. M03 currently shows session progress only. |
 
 Details: [M03 completion review and progress visibility](m03-review-progress.md).

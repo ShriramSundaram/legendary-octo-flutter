@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'data/content_catalog.dart';
 import 'databaseFirebase.dart';
 import 'review_session_page.dart';
+import 'topic_test_page.dart';
 
 class ContentLibraryPage extends StatefulWidget {
   const ContentLibraryPage(
@@ -74,7 +75,24 @@ class _ContentLibraryPageState extends State<ContentLibraryPage> {
                               const SizedBox(height: 8),
                               const Text(
                                   'Choose your level, then explore a topic. Available offline.'),
+                              const SizedBox(height: 8),
+                              const Text(
+                                  'Start practice: recall words and hear pronunciation. Start Test: check meaning recognition and listening.'),
                               const SizedBox(height: 12),
+                              OutlinedButton.icon(
+                                  onPressed: catalog
+                                          .published(_level, topic: _topic)
+                                          .isEmpty
+                                      ? null
+                                      : () => Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (_) => TopicTestPage(
+                                                  level: _level,
+                                                  topic: _topic,
+                                                  loadCatalog:
+                                                      widget.loadCatalog))),
+                                  icon: const Icon(Icons.auto_stories),
+                                  label: const Text('Start Test')),
                               FilledButton.icon(
                                   onPressed: catalog
                                           .published(_level, topic: _topic)

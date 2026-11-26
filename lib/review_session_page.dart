@@ -4,6 +4,8 @@ import 'data/content_catalog.dart';
 import 'data/review_controller.dart';
 import 'data/review_scheduler.dart';
 import 'data/review_store.dart';
+import 'data/practice_speech.dart';
+import 'pronunciation_button.dart';
 
 class ReviewSessionPage extends StatefulWidget {
   final String level;
@@ -11,12 +13,14 @@ class ReviewSessionPage extends StatefulWidget {
   final ReviewStorage? storage;
   final DateTime Function()? clock;
   final Future<ContentCatalog> Function()? loadCatalog;
+  final PracticeSpeech? speech;
   const ReviewSessionPage(
       {super.key,
       this.level = 'A1',
       this.topic,
       this.storage,
       this.clock,
+      this.speech,
       this.loadCatalog});
   @override
   State<ReviewSessionPage> createState() => _ReviewSessionPageState();
@@ -249,6 +253,13 @@ class _ReviewSessionPageState extends State<ReviewSessionPage> {
                                                       textAlign:
                                                           TextAlign.center),
                                                   const SizedBox(height: 20),
+                                                  PronunciationButton(
+                                                      key: ValueKey(controller
+                                                          .current!.item.id),
+                                                      text:
+                                                          '${controller.current!.item.article} ${controller.current!.item.lemma}'
+                                                              .trim(),
+                                                      speech: widget.speech),
                                                   if (!_revealed)
                                                     const Text(
                                                         'Try to recall the meaning before revealing it.',

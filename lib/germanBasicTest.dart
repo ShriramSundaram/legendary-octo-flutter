@@ -1,381 +1,78 @@
-import 'dart:async';
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:germanreminder/resultPage.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'germanQuizData.dart';
+import 'practice_page.dart';
 
 class germanBasicTest extends StatefulWidget {
-  const germanBasicTest({Key? key, this.loadQuestions}) : super(key: key);
+  const germanBasicTest({super.key, this.loadQuestions});
   final Future<List<GermanQuiz>> Function()? loadQuestions;
-
   @override
   State<germanBasicTest> createState() => _germanBasicTestState();
 }
 
 class _germanBasicTestState extends State<germanBasicTest> {
-  int currentQuestionIndex = 0;
-  int score = 0;
-  int? selectedOption;
-  int remainingTime = 400; // in Seconds
-  late Timer _timer;
-  String recommendedGermanLevel = 'A1';
-  bool timeStarted = false;
-  List<int> alreadyPresent = [];
-  var ran = Random();
-  String? motive = "Time's up!"; // Add a default value
-
-  // Add loading state and quiz data list
-  bool isLoading = true;
-  List<GermanQuiz> quizData = [];
-  bool loadFailed = false;
-
+  late Future<List<GermanQuiz>> questions;
   @override
   void initState() {
     super.initState();
-    // Load quiz data when widget initializes
-    _loadQuizData();
+    _load();
   }
 
-  void _loadQuizData() async {
-    try {
-      final questions = await (widget.loadQuestions?.call() ?? loadQuizData());
-      if (!mounted) return;
-      quizData = List<GermanQuiz>.of(questions);
-      quizData.shuffle(); // Shuffle questions every time
-      setState(() {
-        isLoading = false;
-      });
-    } catch (e) {
-      if (!mounted) return;
-      setState(() {
-        isLoading = false;
-        loadFailed = true;
-      });
-    }
-  }
-
-  void CheckGermanLevel() {
-    // Set recommendedGermanLevel based on score for levels A1, A2, B1, B2, C1, C2
-    double percent = score / quizData.length;
-    if (percent < 0.2) {
-      recommendedGermanLevel = 'A1';
-    } else if (percent < 0.4) {
-      recommendedGermanLevel = 'A2';
-    } else if (percent < 0.6) {
-      recommendedGermanLevel = 'B1';
-    } else if (percent < 0.75) {
-      recommendedGermanLevel = 'B2';
-    } else if (percent < 0.9) {
-      recommendedGermanLevel = 'C1';
-    } else {
-      recommendedGermanLevel = 'C2';
-    }
-    // You can add more logic or use motive if needed
-  }
-
-  void checkAnswer() async {
-    if (selectedOption == quizData[currentQuestionIndex].CorrectOption) {
-      setState(() {
-        score++;
-      });
-    }
-
-    if (currentQuestionIndex < quizData.length - 1) {
-      setState(() {
-        currentQuestionIndex++;
-        selectedOption = null;
-      });
-    } else {
-      _timer.cancel();
-      showResult();
-      CheckGermanLevel();
-    }
-  }
-
-  void showResult() {
-    // Make sure we don't navigate twice
-    if (!mounted) return;
-
-    int attempted = currentQuestionIndex + (selectedOption != null ? 1 : 0);
-    int correct = score;
-    int wrong = attempted - correct;
-    int unanswered = quizData.length - attempted;
-
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => ResultScreen(
-            score, // correct
-            quizData.length, // total
-            recommendedGermanLevel,
-            motive ?? "Time's up!",
-            correct: correct,
-            wrong: wrong < 0 ? 0 : wrong,
-            unanswered: unanswered < 0 ? 0 : unanswered),
-      ),
-    );
-  }
-
-  // Rest of your methods remain unchanged...
-
-  void StartTimer() {
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
-      if (remainingTime > 0) {
-        if (mounted) {
-          setState(() {
-            remainingTime--;
-          });
-        }
-      } else {
-        _timer.cancel();
-        if (mounted) {
-          showResult();
-        }
-      }
-    });
+  void _load() {
+    questions =
+        Future.sync(() => widget.loadQuestions?.call() ?? loadQuizData());
   }
 
   @override
-  Widget build(BuildContext context) {
-    // Show loading indicator while quiz data is loading
-    if (isLoading) {
-      return Scaffold(
-        appBar: AppBar(
-          title: Text('German BasicTest'),
-        ),
-        body: Center(
-          child: CircularProgressIndicator(),
-        ),
-      );
-    }
-
-    if (quizData.isEmpty) {
-      return Scaffold(
-        appBar: AppBar(title: const Text('Vocabulary quiz')),
-        body: Center(
-            child: Padding(
+  Widget build(BuildContext context) => Scaffold(
+      appBar: AppBar(title: const Text('Quick vocabulary check')),
+      body: FutureBuilder<List<GermanQuiz>>(
+          future: questions,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState != ConnectionState.done)
+              return const Center(child: CircularProgressIndicator());
+            if (snapshot.hasError || snapshot.requireData.isEmpty) {
+              return Center(
+                  child: Column(mainAxisSize: MainAxisSize.min, children: [
+                Text(snapshot.hasError
+                    ? 'Quiz content could not be loaded.'
+                    : 'Reviewed quiz content is being prepared.'),
+                if (snapshot.hasError)
+                  TextButton(
+                      onPressed: () => setState(_load),
+                      child: const Text('Retry')),
+              ]));
+            }
+            final cards = buildQuickVocabularyCheck(snapshot.requireData);
+            return SingleChildScrollView(
                 padding: const EdgeInsets.all(24),
-                child: Column(mainAxisSize: MainAxisSize.min, children: [
-                  Text(loadFailed
-                      ? 'Quiz content could not be loaded.'
-                      : 'Reviewed quiz content is being prepared.'),
-                  if (loadFailed)
-                    TextButton(
-                        onPressed: () {
-                          setState(() {
-                            isLoading = true;
-                            loadFailed = false;
-                          });
-                          _loadQuizData();
-                        },
-                        child: const Text('Retry')),
-                ]))),
-      );
-    }
-    // Format timer as minutes:seconds
-    String timerText =
-        '${remainingTime ~/ 60}:${(remainingTime % 60).toString().padLeft(2, '0')}';
-
-    // Show quiz UI after data is loaded
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('German BasicTest'),
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(25.0),
-        scrollDirection: Axis.vertical,
-        physics: const BouncingScrollPhysics(),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // Timer UI remains unchanged...
-              Container(
-                padding: EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: remainingTime < 30
-                      ? Colors.red.shade100
-                      : Colors.blue.shade100,
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(
-                    color: remainingTime < 30 ? Colors.red : Colors.blue,
-                    width: 2,
-                  ),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(
-                      Icons.timer,
-                      color: remainingTime < 30 ? Colors.red : Colors.blue,
-                    ),
-                    SizedBox(width: 8),
-                    Text(
-                      'Time: $timerText',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: remainingTime < 30 ? Colors.red : Colors.blue,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              // --- Statistics Row ---
-              SizedBox(height: 15),
-              _buildStatRow(),
-              SizedBox(height: 20),
-              Text('Choose the German translation',
-                  style: GoogleFonts.openSans(
-                      fontSize: 18, fontWeight: FontWeight.bold)),
-              SizedBox(height: 20),
-              Container(
-                width: 250,
-                alignment: Alignment.center,
-                padding: const EdgeInsets.all(8.0),
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.blue),
-                ),
-                child: Text(
-                  // Use quizData instead of QuizData
-                  quizData[currentQuestionIndex].Questions,
-                  textScaler: TextScaler.linear(5.0),
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 5.0,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-              SizedBox(height: 20),
-              Column(
-                children: quizData[
-                        currentQuestionIndex] // Changed from QuizData to quizData
-                    .Options
-                    .asMap()
-                    .entries
-                    .map((entry) => RadioListTile<int>(
-                          title: Text(entry.value),
-                          value: entry.key,
-                          groupValue: selectedOption,
-                          onChanged: timeStarted
-                              ? (value) {
-                                  setState(() {
-                                    selectedOption = value!;
-                                  });
-                                }
-                              : null, // This makes it disabled
-                        ))
-                    .toList(),
-              ),
-              ElevatedButton(
-                onPressed: (timeStarted && selectedOption != null)
-                    ? checkAnswer
-                    : null,
-                child: Text("Next"),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                width: 140,
-                height: 40,
-                child: ElevatedButton(
-                  onPressed: () {
-                    if (timeStarted == false) {
-                      StartTimer();
-                      timeStarted = true;
-                    }
-                  },
-                  style: ButtonStyle(
-                      backgroundColor: timeStarted
-                          ? WidgetStateProperty.resolveWith<Color?>((states) {
-                              if (states.contains(WidgetState.pressed)) {
-                                return Color.fromARGB(
-                                    255, 91, 6, 238); // Color when pressed
-                              }
-                              return Color.fromARGB(
-                                  255, 180, 143, 245); // Default color
-                            })
-                          : WidgetStateProperty.resolveWith<Color?>((states) {
-                              return Color.fromARGB(255, 91, 6, 238);
-                            })),
-                  child: Text('Start',
-                      style: TextStyle(
-                          fontSize: 14,
-                          letterSpacing: 2.2,
-                          color: Colors.black)),
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  // Add this helper widget to your class (outside build method)
-  Widget _buildStatRow() {
-    int attempted = currentQuestionIndex;
-    int unanswered = quizData.length - attempted;
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 5),
-      padding: EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withAlpha((0.4 * 255).toInt()),
-            spreadRadius: 1,
-            blurRadius: 2,
-            offset: Offset(0, 1),
-          ),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          _buildStatItem(Icons.help_outline, Colors.blue, 'Unanswered',
-              '${unanswered < 0 ? 0 : unanswered}'),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildStatItem(
-      IconData icon, Color color, String label, String value) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Icon(icon, color: color, size: 20),
-        SizedBox(height: 4),
-        Text(
-          value,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
-            color: color,
-          ),
-        ),
-        Text(
-          label,
-          style: TextStyle(
-            fontSize: 12,
-            color: Colors.grey[600],
-          ),
-        ),
-      ],
-    );
-  }
-
-  @override
-  void dispose() {
-    if (timeStarted) {
-      _timer.cancel();
-    }
-    super.dispose();
-  }
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Find a place to start',
+                          style: Theme.of(context).textTheme.headlineSmall),
+                      const Text(
+                          '12 meaning-choice questions: 3 each from A1, A2, B1 and B2. See which sampled vocabulary needs practice.'),
+                      const SizedBox(height: 16),
+                      const Text(
+                          'This is a small vocabulary snapshot. It does not assess grammar, speaking or your overall German level. C1/C2 are not assessed.'),
+                      if (cards.isEmpty)
+                        const Text(
+                            'More reviewed questions are needed before this check is available.'),
+                      FilledButton(
+                          onPressed: cards.isEmpty
+                              ? null
+                              : () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (_) => PracticePage(
+                                              cards: cards,
+                                              level: 'A1–B2',
+                                              quickCheck: true,
+                                              limit:
+                                                  const Duration(minutes: 4))));
+                                },
+                          child: const Text('Open quick check')),
+                    ]));
+          }));
 }
