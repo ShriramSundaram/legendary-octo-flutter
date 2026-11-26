@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "verifiedOn": "2026-11-25",
+  "sourceRows": 1060,
+  "offlineLegacyEntries": 1059,
+  "duplicateRowsCollapsed": 1,
+  "sourcePositionsReconciled": true,
+  "originalStringsUnchanged": true,
+  "snapshotSha256": "6a54adf16aaa7541fbcb5e501757f3ca052553a4a1c8a6ef7de2f1fbe60e428b",
+  "legacyAssetSha256": "9b562ff43ca13210a599212df510a4f1b33ef5b8a64c592aae898109b396f942",
+  "firestoreWritesPerformed": 0
+}

@@ -49,23 +49,13 @@ class ResultScreen extends StatelessWidget {
               height: 40,
             ),
             Text(
-              "Your recommended level of German",
+              "Vocabulary practice result",
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             SizedBox(
               height: 20,
             ),
-            CircleAvatar(
-              backgroundColor: Color.fromARGB(255, 162, 124, 227),
-              radius: 45,
-              child: Text(
-                recommendedGermanLevel,
-                style: TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromARGB(255, 75, 14, 179)),
-              ),
-            ),
+            const Text('This quiz does not establish a CEFR level.'),
             SizedBox(
               height: 20,
             ),

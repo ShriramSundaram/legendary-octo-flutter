@@ -1,7 +1,11 @@
 import 'dart:async';
 import 'dart:math';
+import 'data/learning_repository.dart';
+import 'data/learning_models.dart';
+import 'data/account_store.dart';
+import 'data/offline_vocabulary.dart';
+import 'data/offline_vocabulary_loader.dart';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -20,6 +24,8 @@ import 'secondPage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'databaseFirebase.dart';
 import 'userCollectionDatabase.dart';
+import 'content_library_page.dart';
+import 'review_session_page.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
 
@@ -36,6 +42,16 @@ void main() async {
           )
         : const AndroidPlayIntegrityProvider(),
   );
+  if (kDebugMode) {
+    // Validate wireless setup without logging the token or blocking offline UI.
+    unawaited(FirebaseAppCheck.instance.getToken(true).then<void>((token) {
+      debugPrint(token?.isNotEmpty == true
+          ? 'Wireless App Check validation: accepted'
+          : 'Wireless App Check validation: failed');
+    }, onError: (Object _) {
+      debugPrint('Wireless App Check validation: failed');
+    }));
+  }
   await Hive.initFlutter();
 
   // Initialize notifications
@@ -45,6 +61,9 @@ void main() async {
   //SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
   // Initialize local database
   await Hive.openBox('LocalDatabase');
+  FirebaseAuth.instance.authStateChanges().listen((user) {
+    AccountStore.activeUid = user?.uid;
+  });
   runApp(const MyApp());
 }
 
@@ -91,13 +110,13 @@ class _MyHomePageState extends State<MyHomePage> {
   int? _dropDownValueHH;
   int? _dropDownValueMM;
   int? _dropDownValueSS;
-  List<String> germanUserWordsList = [];
 
   String? databaseSelection;
 
-  final hiveDB = Hive.box('LocalDatabase');
+  final hiveDB = AccountStore.current();
 
   final currentUser = FirebaseAuth.instance.currentUser;
+  final learningRepository = LearningRepository.current();
 
   final myTextController = TextEditingController();
 
@@ -105,112 +124,38 @@ class _MyHomePageState extends State<MyHomePage> {
 
   FlutterTts flutterTts = FlutterTts();
 
-  void getFireBaseGenericCollection() async {
-    DocumentSnapshot<Map<String, dynamic>> data = await FirebaseFirestore
-        .instance
-        .collection('Generic')
-        .doc('GenericCollections')
-        .get();
-    if (data.exists && data.data() != null) {
-      var wordStorage = data.data()!['wordStorage'];
-      if (wordStorage != null && wordStorage.length > 0) {
-        print(wordStorage[1]);
-        for (var i = 0; i < wordStorage.length; i++) {
-          genericCollection.add(wordStorage[i]);
-        }
-      }
-    }
-  }
+  void getFireBaseGenericCollection() => loadGeneric('GenericCollections');
+  void getFireBaseGenericCollectionA2() => loadGeneric('GenericCollectionsA2');
+  void getFireBaseGenericCollectionB1() => loadGeneric('GenericCollectionsB1');
+  void getFireBaseGenericCollectionB2() => loadGeneric('GenericCollectionsB2');
+  void getFireBaseGenericCollectionC1() => loadGeneric('GenericCollectionsC1');
+  void getFireBaseGenericCollectionC2() => loadGeneric('GenericCollectionsC2');
 
-  void getFireBaseGenericCollectionA2() async {
-    DocumentSnapshot<Map<String, dynamic>> data = await FirebaseFirestore
-        .instance
-        .collection('Generic')
-        .doc('GenericCollectionsA2')
-        .get();
-    if (data.exists && data.data() != null) {
-      var wordStorage = data.data()!['wordStorage'];
-      if (wordStorage != null && wordStorage.length > 0) {
-        print(wordStorage[1]);
-        for (var i = 0; i < wordStorage.length; i++) {
-          genericCollection.add(wordStorage[i]);
-        }
-      }
-    }
-  }
-
-  void getFireBaseGenericCollectionB1() async {
-    DocumentSnapshot<Map<String, dynamic>> data = await FirebaseFirestore
-        .instance
-        .collection('Generic')
-        .doc('GenericCollectionsB1')
-        .get();
-    if (data.exists && data.data() != null) {
-      var wordStorage = data.data()!['wordStorage'];
-      if (wordStorage != null && wordStorage.length > 0) {
-        print(wordStorage[1]);
-        for (var i = 0; i < wordStorage.length; i++) {
-          genericCollection.add(wordStorage[i]);
-        }
-      }
-    }
-  }
-
-  void getFireBaseGenericCollectionB2() async {
-    DocumentSnapshot<Map<String, dynamic>> data = await FirebaseFirestore
-        .instance
-        .collection('Generic')
-        .doc('GenericCollectionsB2')
-        .get();
-    if (data.exists && data.data() != null) {
-      var wordStorage = data.data()!['wordStorage'];
-      if (wordStorage != null && wordStorage.length > 0) {
-        print(wordStorage[1]);
-        for (var i = 0; i < wordStorage.length; i++) {
-          genericCollection.add(wordStorage[i]);
-        }
-      }
-    }
-  }
-
-  void getFireBaseGenericCollectionC1() async {
-    DocumentSnapshot<Map<String, dynamic>> data = await FirebaseFirestore
-        .instance
-        .collection('Generic')
-        .doc('GenericCollectionsC1')
-        .get();
-    if (data.exists && data.data() != null) {
-      var wordStorage = data.data()!['wordStorage'];
-      if (wordStorage != null && wordStorage.length > 0) {
-        print(wordStorage[1]);
-        for (var i = 0; i < wordStorage.length; i++) {
-          genericCollection.add(wordStorage[i]);
-        }
-      }
-    }
-  }
-
-  void getFireBaseUserCollection() async {
-    DocumentSnapshot<Map<String, dynamic>> data = await FirebaseFirestore
-        .instance
-        .collection('User')
-        .doc(currentUser!.uid)
-        .get();
-    //print(data['wordStorage'][0]);
-    if (data.exists && data.data() != null) {
-      var wordStorage = data.data()!['wordStorage'];
-      if (wordStorage != null) {
-        for (var i = 0; i < wordStorage.length; i++) {
-          germanUserWordsList.add(wordStorage[i]);
-        }
-      }
+  Future<void> loadGeneric(String id) async {
+    try {
+      final vocabulary = await loadOfflineVocabulary();
+      final words = vocabulary
+          .atLevel(OfflineVocabulary.levelForCollection(id))
+          .map((word) => word.display)
+          .toList();
+      if (words.isEmpty)
+        throw const FormatException('No vocabulary for this level');
+      if (!mounted) return;
+      setState(() {
+        genericCollection = words;
+        _index = 0;
+      });
+    } catch (_) {
+      if (mounted)
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content:
+                Text('Could not load offline vocabulary. Please try again.')));
     }
   }
 
   @override
   void initState() {
     super.initState();
-    getFireBaseUserCollection();
 
     if (hiveDB.containsKey('CurrentLevel')) {
       print('Yeah it contains');
@@ -242,6 +187,10 @@ class _MyHomePageState extends State<MyHomePage> {
         print('Yeah it contains B1');
         getFireBaseGenericCollectionC1();
         databaseSelection = 'GenericCollectionsC1';
+      }
+      if ((hiveDB.get('CurrentLevel')) == 'C2') {
+        getFireBaseGenericCollectionC2();
+        databaseSelection = 'GenericCollectionsC2';
       }
     } else {
       getFireBaseGenericCollection();
@@ -311,7 +260,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void signOut() async {
     await FirebaseAuth.instance.signOut();
-    goToFrontScreen(context);
+    if (!mounted) return;
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (_) => const FrontPage()), (_) => false);
   }
 
   void speak(String text) async {
@@ -370,6 +321,12 @@ class _MyHomePageState extends State<MyHomePage> {
             automaticallyImplyLeading: false,
             actions: [
               IconButton(
+                tooltip: 'Learning library',
+                icon: const Icon(Icons.library_books),
+                onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                    builder: (_) => const ContentLibraryPage())),
+              ),
+              IconButton(
                 onPressed: () {
                   showDialog(
                       context: context,
@@ -413,6 +370,17 @@ class _MyHomePageState extends State<MyHomePage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
+                  FilledButton.icon(
+                    onPressed: () => Navigator.of(context).push(
+                        MaterialPageRoute(
+                            builder: (_) => ReviewSessionPage(
+                                level: ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
+                                        .contains(hiveDB.get('CurrentLevel'))
+                                    ? hiveDB.get('CurrentLevel') as String
+                                    : 'A1'))),
+                    icon: const Icon(Icons.school),
+                    label: const Text('Review words'),
+                  ),
                   SizedBox(
                     height: 5,
                   ),
@@ -581,31 +549,17 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void WriteToCloud({required String word}) async {
-    final userData =
-        FirebaseFirestore.instance.collection('User').doc(currentUser!.uid);
-    if (!germanUserWordsList.contains(word) && word.isNotEmpty) {
-      germanUserWordsList.add(word);
-    } else if (word.isNotEmpty) {
-      showDialog(
-          context: context,
-          builder: (context) => CupertinoAlertDialog(
-                title: Text('Alert !!!!'),
-                content: Text('Word already present in UserDatabase'),
-                actions: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Text('Close'),
-                  )
-                ],
-              ));
+    if (word.isEmpty) return;
+    try {
+      await learningRepository.ensureWord(PersonalWord.fromText(word));
+      if (!mounted) return;
+      ScaffoldMessenger.of(context)
+          .showSnackBar(const SnackBar(content: Text('Word saved.')));
+    } catch (_) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('Could not save your word. Please try again.')));
     }
-
-    final json = {'wordStorage': germanUserWordsList};
-
-    // create document and write to Firebase
-    await userData.set(json);
   }
 
   DropdownMenuItem<int> buildMenuItem(int item) => DropdownMenuItem(

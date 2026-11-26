@@ -1,3 +1,4 @@
+import 'package:germanreminder/data/account_store.dart';
 import 'dart:async';
 import 'dart:io';
 
@@ -31,9 +32,11 @@ void main() {
     directory = await Directory.systemTemp.createTemp('profile-photo-test');
     Hive.init(directory.path);
     await Hive.openBox('LocalDatabase');
-    await Hive.box('LocalDatabase').put('UserName', 'Original name');
-    await Hive.box('LocalDatabase').put('CurrentLevel', 'A2');
-    SharedPreferences.setMockInitialValues({'ImagePath': originalPath});
+    AccountStore.activeUid = 'test-user';
+    await AccountStore.current().put('UserName', 'Original name');
+    await AccountStore.current().put('CurrentLevel', 'A2');
+    SharedPreferences.setMockInitialValues(
+        {AccountStore.current().key('ImagePath'): originalPath});
     editorClosed = Completer<void>();
     originalPicker = ImagePickerPlatform.instance;
     picker = TestImagePicker();
@@ -82,10 +85,11 @@ void main() {
   testWidgets('Cancel discards a selected photo and other profile edits',
       (tester) async {
     final preferences = await SharedPreferences.getInstance();
-    final box = Hive.box('LocalDatabase');
+    final box = AccountStore.current();
     await openEditor(tester);
     await selectPhoto(tester);
-    expect(preferences.getString('ImagePath'), originalPath);
+    expect(preferences.getString(AccountStore.current().key('ImagePath')),
+        originalPath);
     expect(
         tester
             .widget<CircleAvatar>(find.byType(CircleAvatar).first)
@@ -95,7 +99,8 @@ void main() {
     await tester.tap(find.text('Cancel'));
     await tester.pumpAndSettle();
     expect(find.byType(EditProfilePage), findsNothing);
-    expect(preferences.getString('ImagePath'), originalPath);
+    expect(preferences.getString(AccountStore.current().key('ImagePath')),
+        originalPath);
     expect(box.get('UserName'), 'Original name');
     expect(box.get('CurrentLevel'), 'A2');
   });
@@ -105,10 +110,12 @@ void main() {
     final preferences = await SharedPreferences.getInstance();
     await openEditor(tester);
     await selectPhoto(tester);
-    expect(preferences.getString('ImagePath'), originalPath);
+    expect(preferences.getString(AccountStore.current().key('ImagePath')),
+        originalPath);
     await saveEditor(tester);
     expect(find.byType(EditProfilePage), findsNothing);
-    expect(preferences.getString('ImagePath'), picker.selection!.path);
+    expect(preferences.getString(AccountStore.current().key('ImagePath')),
+        picker.selection!.path);
   });
 
   testWidgets('Cancelling the image picker keeps the saved photo',
@@ -118,6 +125,7 @@ void main() {
     await tester.tap(find.byIcon(Icons.edit));
     await tester.pumpAndSettle();
     await saveEditor(tester);
-    expect(preferences.getString('ImagePath'), originalPath);
+    expect(preferences.getString(AccountStore.current().key('ImagePath')),
+        originalPath);
   });
 }

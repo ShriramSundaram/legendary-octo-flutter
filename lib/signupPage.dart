@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -164,17 +163,10 @@ class _SignUpPageState extends State<SignUpPage> {
     }
   }
 
-  void SettingUpUserDatabase() async {
-    Map<String, dynamic> initData = {'wordStorage': []};
-
-    await FirebaseFirestore.instance
-        .collection('User')
-        .doc(FirebaseAuth.instance.currentUser!.uid)
-        .set(initData)
-        .then((_) => print("InitData Set"))
-        .catchError((onError) => print("Add Error $onError"));
+  void SettingUpUserDatabase() {
+    // Personal-word subcollections are created on first save. Never reset
+    // a legacy array during a retried signup flow.
   }
-
   bool ConfirmPassword() {
     if (password.text.trim() == confirmPassword.text.trim()) {
       return true;

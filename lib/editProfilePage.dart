@@ -1,9 +1,10 @@
+import 'data/account_store.dart';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:hive_flutter/adapters.dart';
+
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -31,7 +32,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   TextEditingController userNameEditor = TextEditingController();
   // Initialize the object for Hive
-  final hiveDatabase = Hive.box('LocalDatabase');
+  final hiveDatabase = AccountStore.current();
   // Write
   Future<void> writeUserName() async {
     if (userNameEditor.text == userName) return;
@@ -82,7 +83,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
   Future<void> saveImage(File img) async {
     final preferences = await SharedPreferences.getInstance();
-    if (!await preferences.setString('ImagePath', img.path)) {
+    if (!await preferences.setString(hiveDatabase.key('ImagePath'), img.path)) {
       throw StateError('Could not save the profile photo');
     }
   }
@@ -111,9 +112,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
 
     if (!mounted) return;
 
-    if (imagePath.containsKey('ImagePath')) {
+    if (imagePath.containsKey(hiveDatabase.key('ImagePath'))) {
       setState(() {
-        localPath = imagePath.getString('ImagePath');
+        localPath = imagePath.getString(hiveDatabase.key('ImagePath'));
         print("Entered!!!!" + (localPath ?? ""));
       });
     } else {

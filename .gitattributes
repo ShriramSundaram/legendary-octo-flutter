@@ -1,0 +1,3 @@
+# Catalog approval hashes depend on consistent bytes across checkouts.
+*.json text eol=lf
+*.psv text eol=lf

@@ -1,0 +1,216 @@
+level|topic|lemma|meaning|article|plural|partOfSpeech|example|exampleTranslation
+A1|Greetings|Guten Morgen|good morning|||phrase|Guten Morgen, Frau Weber!|Good morning, Ms Weber!
+A1|Greetings|Guten Tag|good afternoon / hello|||phrase|Guten Tag, Herr Klein!|Hello, Mr Klein!
+A1|Greetings|Guten Abend|good evening|||phrase|Guten Abend, wie geht es Ihnen?|Good evening, how are you?
+A1|Greetings|Gute Nacht|good night|||phrase|Gute Nacht, bis morgen!|Good night, see you tomorrow!
+A1|Greetings|tschüss|bye|||phrase|Tschüss, bis bald!|Bye, see you soon!
+A1|Greetings|Auf Wiedersehen|goodbye|||phrase|Auf Wiedersehen, Frau Müller!|Goodbye, Ms Müller!
+A1|Greetings|bitte|please / you are welcome|||adverb|Ein Wasser, bitte.|A water, please.
+A1|Greetings|danke|thank you|||phrase|Danke für deine Hilfe.|Thank you for your help.
+A1|Greetings|Entschuldigung|excuse me / sorry|||phrase|Entschuldigung, wo ist der Bahnhof?|Excuse me, where is the station?
+A1|Greetings|ja|yes|||other|Ja, ich komme mit.|Yes, I am coming along.
+A1|Greetings|nein|no|||other|Nein, ich habe keine Zeit.|No, I do not have time.
+A1|Greetings|Wie geht es dir?|How are you?|||phrase|Hallo Anna, wie geht es dir?|Hello Anna, how are you?
+A1|Greetings|Ich heiße|my name is|||phrase|Ich heiße Paul.|My name is Paul.
+A1|Greetings|Willkommen|welcome|||phrase|Willkommen in unserem Haus!|Welcome to our home!
+A1|Family|Vater|father|der|Väter|noun|Mein Vater kocht gern.|My father likes cooking.
+A1|Family|Eltern|parents|die|plural only|noun|Meine Eltern wohnen hier.|My parents live here.
+A1|Family|Bruder|brother|der|Brüder|noun|Mein Bruder ist zehn Jahre alt.|My brother is ten years old.
+A1|Family|Schwester|sister|die|Schwestern|noun|Meine Schwester spielt Tennis.|My sister plays tennis.
+A1|Family|Kind|child|das|Kinder|noun|Das Kind spielt im Garten.|The child is playing in the garden.
+A1|Family|Sohn|son|der|Söhne|noun|Unser Sohn geht zur Schule.|Our son goes to school.
+A1|Family|Tochter|daughter|die|Töchter|noun|Unsere Tochter heißt Mia.|Our daughter is called Mia.
+A1|Family|Großmutter|grandmother|die|Großmütter|noun|Meine Großmutter liest ein Buch.|My grandmother is reading a book.
+A1|Family|Großvater|grandfather|der|Großväter|noun|Mein Großvater wohnt in Hamburg.|My grandfather lives in Hamburg.
+A1|Family|Familie|family|die|Familien|noun|Meine Familie ist groß.|My family is large.
+A1|Family|Freund|friend (male)|der|Freunde|noun|Mein Freund kommt heute.|My friend is coming today.
+A1|Family|Freundin|friend (female)|die|Freundinnen|noun|Meine Freundin heißt Sara.|My friend is called Sara.
+A1|Family|Mann|man / husband|der|Männer|noun|Der Mann wartet draußen.|The man is waiting outside.
+A1|Family|Frau|woman / wife|die|Frauen|noun|Die Frau arbeitet hier.|The woman works here.
+A1|Food and drink|Milch|milk|die|usually uncountable|noun|Ich kaufe einen Liter Milch.|I am buying a litre of milk.
+A1|Food and drink|Kaffee|coffee|der|Kaffees|noun|Ich trinke morgens Kaffee.|I drink coffee in the morning.
+A1|Food and drink|Tee|tea|der|Tees|noun|Der Tee ist heiß.|The tea is hot.
+A1|Food and drink|Apfel|apple|der|Äpfel|noun|Ich esse einen Apfel.|I am eating an apple.
+A1|Food and drink|Banane|banana|die|Bananen|noun|Die Banane ist gelb.|The banana is yellow.
+A1|Food and drink|Ei|egg|das|Eier|noun|Zum Frühstück esse ich ein Ei.|I eat an egg for breakfast.
+A1|Food and drink|Käse|cheese|der|Käse|noun|Der Käse liegt im Kühlschrank.|The cheese is in the fridge.
+A1|Food and drink|Reis|rice|der|usually uncountable|noun|Wir essen Reis mit Gemüse.|We are eating rice with vegetables.
+A1|Food and drink|Kartoffel|potato|die|Kartoffeln|noun|Ich koche Kartoffeln.|I am cooking potatoes.
+A1|Food and drink|Tomate|tomato|die|Tomaten|noun|Die Tomate ist rot.|The tomato is red.
+A1|Food and drink|Suppe|soup|die|Suppen|noun|Die Suppe schmeckt gut.|The soup tastes good.
+A1|Food and drink|essen|to eat|||verb|Wir essen um zwölf Uhr.|We eat at twelve o'clock.
+A1|Food and drink|trinken|to drink|||verb|Was möchtest du trinken?|What would you like to drink?
+A1|Food and drink|Frühstück|breakfast|das|Frühstücke|noun|Das Frühstück ist fertig.|Breakfast is ready.
+A1|Shopping|kaufen|to buy|||verb|Ich kaufe eine Jacke.|I am buying a jacket.
+A1|Shopping|bezahlen|to pay|||verb|Ich möchte mit Karte bezahlen.|I would like to pay by card.
+A1|Shopping|kosten|to cost|||verb|Was kostet das Buch?|How much does the book cost?
+A1|Shopping|Geld|money|das|Gelder|noun|Ich habe kein Geld dabei.|I have no money with me.
+A1|Shopping|Preis|price|der|Preise|noun|Der Preis ist zu hoch.|The price is too high.
+A1|Shopping|Kasse|checkout / till|die|Kassen|noun|Bitte bezahlen Sie an der Kasse.|Please pay at the checkout.
+A1|Shopping|Supermarkt|supermarket|der|Supermärkte|noun|Der Supermarkt ist heute offen.|The supermarket is open today.
+A1|Shopping|Laden|shop|der|Läden|noun|Der Laden schließt um sechs Uhr.|The shop closes at six o'clock.
+A1|Shopping|Tasche|bag|die|Taschen|noun|Die Tasche ist schwer.|The bag is heavy.
+A1|Shopping|Jacke|jacket|die|Jacken|noun|Diese Jacke ist warm.|This jacket is warm.
+A1|Shopping|Schuh|shoe|der|Schuhe|noun|Der Schuh ist zu klein.|The shoe is too small.
+A1|Shopping|billig|cheap|||adjective|Die Äpfel sind heute billig.|The apples are cheap today.
+A1|Shopping|teuer|expensive|||adjective|Das Fahrrad ist teuer.|The bicycle is expensive.
+A1|Shopping|geöffnet|open|||adjective|Der Laden ist bis acht Uhr geöffnet.|The shop is open until eight o'clock.
+A1|Home|Haus|house|das|Häuser|noun|Das Haus hat einen Garten.|The house has a garden.
+A1|Home|Zimmer|room|das|Zimmer|noun|Mein Zimmer ist hell.|My room is bright.
+A1|Home|Küche|kitchen|die|Küchen|noun|Wir sitzen in der Küche.|We are sitting in the kitchen.
+A1|Home|Bad|bathroom|das|Bäder|noun|Das Bad ist neben der Küche.|The bathroom is next to the kitchen.
+A1|Home|Tür|door|die|Türen|noun|Bitte mach die Tür zu.|Please close the door.
+A1|Home|Fenster|window|das|Fenster|noun|Das Fenster ist offen.|The window is open.
+A1|Home|Tisch|table|der|Tische|noun|Das Buch liegt auf dem Tisch.|The book is on the table.
+A1|Home|Stuhl|chair|der|Stühle|noun|Der Stuhl steht am Tisch.|The chair is next to the table.
+A1|Home|Bett|bed|das|Betten|noun|Das Bett ist bequem.|The bed is comfortable.
+A1|Home|Lampe|lamp|die|Lampen|noun|Die Lampe ist an.|The lamp is on.
+A1|Home|Schrank|cupboard / wardrobe|der|Schränke|noun|Die Jacke hängt im Schrank.|The jacket is hanging in the wardrobe.
+A1|Home|Garten|garden|der|Gärten|noun|Im Garten stehen zwei Bäume.|There are two trees in the garden.
+A1|Home|wohnen|to live / reside|||verb|Ich wohne in München.|I live in Munich.
+A1|Home|Schlüssel|key|der|Schlüssel|noun|Wo ist mein Schlüssel?|Where is my key?
+A1|Transport|Bahnhof|railway station|der|Bahnhöfe|noun|Der Bahnhof ist im Zentrum.|The station is in the centre.
+A1|Transport|Zug|train|der|Züge|noun|Der Zug fährt um neun Uhr.|The train leaves at nine o'clock.
+A1|Transport|Auto|car|das|Autos|noun|Unser Auto ist blau.|Our car is blue.
+A1|Transport|Fahrrad|bicycle|das|Fahrräder|noun|Ich fahre mit dem Fahrrad.|I travel by bicycle.
+A1|Transport|Haltestelle|bus / tram stop|die|Haltestellen|noun|Die Haltestelle ist vor der Schule.|The stop is in front of the school.
+A1|Transport|Fahrkarte|ticket|die|Fahrkarten|noun|Ich brauche eine Fahrkarte nach Köln.|I need a ticket to Cologne.
+A1|Transport|Straße|street / road|die|Straßen|noun|Unsere Straße ist ruhig.|Our street is quiet.
+A1|Transport|Flughafen|airport|der|Flughäfen|noun|Wir fahren zum Flughafen.|We are going to the airport.
+A1|Transport|fahren|to travel by vehicle / drive|||verb|Ich fahre morgen nach Berlin.|I am travelling to Berlin tomorrow.
+A1|Transport|gehen|to go / walk|||verb|Wir gehen zu Fuß.|We are going on foot.
+A1|Transport|kommen|to come|||verb|Wann kommst du?|When are you coming?
+A1|Transport|links|left / on the left|||adverb|Gehen Sie hier links.|Turn left here.
+A1|Transport|rechts|right / on the right|||adverb|Die Bank ist rechts.|The bank is on the right.
+A1|Transport|geradeaus|straight ahead|||adverb|Gehen Sie bitte geradeaus.|Please go straight ahead.
+A1|Work|Arbeit|work / job|die|Arbeiten|noun|Meine Arbeit beginnt um acht Uhr.|My work starts at eight o'clock.
+A1|Work|Beruf|occupation|der|Berufe|noun|Was sind Sie von Beruf?|What is your occupation?
+A1|Work|Büro|office|das|Büros|noun|Ich bin heute im Büro.|I am in the office today.
+A1|Work|Kollege|colleague (male)|der|Kollegen|noun|Mein Kollege kommt aus Spanien.|My colleague comes from Spain.
+A1|Work|Kollegin|colleague (female)|die|Kolleginnen|noun|Meine Kollegin spricht Deutsch.|My colleague speaks German.
+A1|Work|Chef|boss (male)|der|Chefs|noun|Mein Chef ist heute nicht da.|My boss is not here today.
+A1|Work|Firma|company|die|Firmen|noun|Die Firma hat zwanzig Mitarbeiter.|The company has twenty employees.
+A1|Work|Pause|break|die|Pausen|noun|Wir machen eine Pause.|We are taking a break.
+A1|Work|Telefon|telephone|das|Telefone|noun|Das Telefon klingelt.|The telephone is ringing.
+A1|Work|Computer|computer|der|Computer|noun|Mein Computer ist neu.|My computer is new.
+A1|Work|E-Mail|email|die|E-Mails|noun|Ich schreibe eine E-Mail.|I am writing an email.
+A1|Work|Termin|appointment|der|Termine|noun|Ich habe morgen einen Termin.|I have an appointment tomorrow.
+A1|Work|machen|to do / make|||verb|Was machst du heute?|What are you doing today?
+A1|Work|suchen|to look for|||verb|Ich suche eine neue Arbeit.|I am looking for a new job.
+A1|Learning|Schule|school|die|Schulen|noun|Die Schule beginnt um acht Uhr.|School starts at eight o'clock.
+A1|Learning|Lehrer|teacher (male)|der|Lehrer|noun|Unser Lehrer erklärt das Wort.|Our teacher explains the word.
+A1|Learning|Lehrerin|teacher (female)|die|Lehrerinnen|noun|Die Lehrerin schreibt an die Tafel.|The teacher is writing on the board.
+A1|Learning|Buch|book|das|Bücher|noun|Ich lese ein Buch.|I am reading a book.
+A1|Learning|Heft|exercise book|das|Hefte|noun|Mein Heft liegt auf dem Tisch.|My exercise book is on the table.
+A1|Learning|Stift|pen / pencil|der|Stifte|noun|Hast du einen Stift?|Do you have a pen?
+A1|Learning|Wort|word|das|Wörter|noun|Was bedeutet dieses Wort?|What does this word mean?
+A1|Learning|Sprache|language|die|Sprachen|noun|Welche Sprachen sprichst du?|Which languages do you speak?
+A1|Learning|Frage|question|die|Fragen|noun|Ich habe eine Frage.|I have a question.
+A1|Learning|Antwort|answer|die|Antworten|noun|Die Antwort ist richtig.|The answer is correct.
+A1|Learning|lesen|to read|||verb|Wir lesen einen kurzen Text.|We are reading a short text.
+A1|Learning|schreiben|to write|||verb|Schreib bitte deinen Namen.|Please write your name.
+A1|Learning|sprechen|to speak|||verb|Ich spreche ein bisschen Deutsch.|I speak a little German.
+A1|Learning|verstehen|to understand|||verb|Ich verstehe die Frage nicht.|I do not understand the question.
+A1|Health|Ärztin|doctor (female)|die|Ärztinnen|noun|Die Ärztin ist sehr nett.|The doctor is very nice.
+A1|Health|Apotheke|pharmacy|die|Apotheken|noun|Die Apotheke ist neben dem Bahnhof.|The pharmacy is next to the station.
+A1|Health|Krankenhaus|hospital|das|Krankenhäuser|noun|Das Krankenhaus ist in der Nähe.|The hospital is nearby.
+A1|Health|Kopf|head|der|Köpfe|noun|Mein Kopf tut weh.|My head hurts.
+A1|Health|Hand|hand|die|Hände|noun|Meine Hände sind kalt.|My hands are cold.
+A1|Health|Auge|eye|das|Augen|noun|Ihre Augen sind blau.|Her eyes are blue.
+A1|Health|Zahn|tooth|der|Zähne|noun|Mein Zahn tut weh.|My tooth hurts.
+A1|Health|Bein|leg|das|Beine|noun|Mein linkes Bein tut weh.|My left leg hurts.
+A1|Health|Bauch|stomach / belly|der|Bäuche|noun|Das Kind hat Bauchschmerzen.|The child has a stomach ache.
+A1|Health|krank|ill / sick|||adjective|Ich bin heute krank.|I am ill today.
+A1|Health|gesund|healthy|||adjective|Obst ist gesund.|Fruit is healthy.
+A1|Health|müde|tired|||adjective|Nach der Arbeit bin ich müde.|I am tired after work.
+A1|Health|Schmerz|pain|der|Schmerzen|noun|Ich habe Schmerzen im Rücken.|I have pain in my back.
+A1|Health|helfen|to help|||verb|Können Sie mir helfen?|Can you help me?
+A1|Time and daily life|morgen|tomorrow|||adverb|Morgen habe ich frei.|I have tomorrow off.
+A1|Time and daily life|gestern|yesterday|||adverb|Gestern war ich zu Hause.|Yesterday I was at home.
+A1|Time and daily life|jetzt|now|||adverb|Ich muss jetzt gehen.|I have to go now.
+A1|Time and daily life|Uhr|clock / watch|die|Uhren|noun|Meine Uhr ist kaputt.|My watch is broken.
+A1|Time and daily life|Tag|day|der|Tage|noun|Der Tag beginnt früh.|The day starts early.
+A1|Time and daily life|Woche|week|die|Wochen|noun|Eine Woche hat sieben Tage.|A week has seven days.
+A1|Time and daily life|Monat|month|der|Monate|noun|Dieser Monat hat dreißig Tage.|This month has thirty days.
+A1|Time and daily life|Jahr|year|das|Jahre|noun|Ein Jahr hat zwölf Monate.|A year has twelve months.
+A1|Time and daily life|Stunde|hour|die|Stunden|noun|Die Fahrt dauert eine Stunde.|The journey takes an hour.
+A1|Time and daily life|Minute|minute|die|Minuten|noun|Ich komme in fünf Minuten.|I will be there in five minutes.
+A1|Time and daily life|früh|early|||adjective|Ich stehe früh auf.|I get up early.
+A1|Time and daily life|spät|late|||adjective|Es ist schon spät.|It is already late.
+A1|Time and daily life|schlafen|to sleep|||verb|Das Kind schläft schon.|The child is already asleep.
+A1|Time and daily life|aufstehen|to get up|||verb|Ich stehe um sieben Uhr auf.|I get up at seven o'clock.
+A2|Home|umziehen|to move home|||verb|Wir ziehen nächsten Monat um.|We are moving home next month.
+A2|Home|Miete|rent|die|Mieten|noun|Die Miete ist gestiegen.|The rent has increased.
+A2|Travel|Unterkunft|accommodation|die|Unterkünfte|noun|Wir suchen eine günstige Unterkunft.|We are looking for inexpensive accommodation.
+A2|Travel|buchen|to book|||verb|Ich habe ein Zimmer gebucht.|I have booked a room.
+A2|Travel|Verspätung|delay|die|Verspätungen|noun|Der Zug hat zehn Minuten Verspätung.|The train is ten minutes late.
+A2|Shopping|preisgünstig|inexpensive / good value|||adjective|Wir suchen ein preisgünstiges Fahrrad.|We are looking for an inexpensive bicycle.
+A2|Shopping|umtauschen|to exchange (a purchase)|||verb|Kann ich die Jacke umtauschen?|Can I exchange the jacket?
+A2|Work|Bewerbung|job application|die|Bewerbungen|noun|Ich schreibe eine Bewerbung.|I am writing a job application.
+A2|Work|Besprechung|meeting|die|Besprechungen|noun|Die Besprechung beginnt um zehn Uhr.|The meeting starts at ten o'clock.
+A2|Daily life|verabreden|to arrange to meet|||verb|Wir haben uns für Samstag verabredet.|We have arranged to meet on Saturday.
+A2|Daily life|erledigen|to take care of / complete|||verb|Ich muss noch die Einkäufe erledigen.|I still need to do the shopping.
+A2|Health|Erkältung|cold (illness)|die|Erkältungen|noun|Wegen einer Erkältung bleibe ich zu Hause.|I am staying at home because of a cold.
+A2|Health|Rezept|prescription / recipe|das|Rezepte|noun|Der Arzt gibt mir ein Rezept.|The doctor gives me a prescription.
+A2|Learning|wiederholen|to repeat / revise|||verb|Wir wiederholen die neuen Wörter.|We are revising the new words.
+A2|Learning|Prüfung|examination|die|Prüfungen|noun|Meine Prüfung ist am Montag.|My examination is on Monday.
+B1|Opinions|Meinung|opinion|die|Meinungen|noun|Meiner Meinung nach ist der Plan sinnvoll.|In my opinion, the plan makes sense.
+B1|Opinions|zustimmen|to agree|||verb|Ich stimme dir in diesem Punkt zu.|I agree with you on this point.
+B1|Opinions|begründen|to give reasons for|||verb|Kannst du deine Entscheidung begründen?|Can you give reasons for your decision?
+B1|Work|Erfahrung|experience|die|Erfahrungen|noun|Sie hat viel Erfahrung im Verkauf.|She has a lot of experience in sales.
+B1|Work|Verantwortung|responsibility|die|Verantwortungen|noun|Er übernimmt Verantwortung für das Projekt.|He takes responsibility for the project.
+B1|Work|sich bewerben|to apply (for a job)|||verb|Ich bewerbe mich um eine neue Stelle.|I am applying for a new position.
+B1|Environment|Umwelt|environment|die|usually uncountable|noun|Wir möchten die Umwelt schützen.|We would like to protect the environment.
+B1|Environment|vermeiden|to avoid|||verb|Wir versuchen, unnötigen Müll zu vermeiden.|We try to avoid unnecessary waste.
+B1|Environment|verbrauchen|to consume / use up|||verb|Das neue Gerät verbraucht weniger Strom.|The new appliance uses less electricity.
+B1|Planning|Entscheidung|decision|die|Entscheidungen|noun|Diese Entscheidung fällt mir schwer.|I find this decision difficult.
+B1|Planning|Vorschlag|suggestion|der|Vorschläge|noun|Dein Vorschlag gefällt mir.|I like your suggestion.
+B1|Planning|vereinbaren|to arrange / agree on|||verb|Wir haben einen Termin vereinbart.|We have arranged an appointment.
+B1|Relationships|sich verlassen auf|to rely on|||verb|Du kannst dich auf mich verlassen.|You can rely on me.
+B1|Relationships|enttäuscht|disappointed|||adjective|Ich bin vom Ergebnis enttäuscht.|I am disappointed with the result.
+B1|Learning|Fortschritt|progress / advance|der|Fortschritte|noun|Beim Lernen mache ich Fortschritte.|I am making progress in my learning.
+B2|Work|Voraussetzung|prerequisite|die|Voraussetzungen|noun|Gute Sprachkenntnisse sind eine wichtige Voraussetzung.|Good language skills are an important prerequisite.
+B2|Work|gewährleisten|to ensure / guarantee|||verb|Klare Regeln gewährleisten einen fairen Ablauf.|Clear rules ensure a fair process.
+B2|Work|nachvollziehbar|understandable / traceable|||adjective|Ihre Entscheidung ist für mich nachvollziehbar.|Her decision is understandable to me.
+B2|Society|Auswirkung|effect / impact|die|Auswirkungen|noun|Die Reform hat Auswirkungen auf den Alltag.|The reform has an impact on everyday life.
+B2|Society|berücksichtigen|to take into account|||verb|Wir müssen unterschiedliche Bedürfnisse berücksichtigen.|We must take different needs into account.
+B2|Society|beeinträchtigen|to impair / adversely affect|||verb|Der Lärm beeinträchtigt meine Konzentration.|The noise impairs my concentration.
+B2|Environment|nachhaltig|sustainable|||adjective|Wir brauchen eine nachhaltige Lösung.|We need a sustainable solution.
+B2|Environment|Ressource|resource|die|Ressourcen|noun|Natürliche Ressourcen sind begrenzt.|Natural resources are limited.
+B2|Environment|Maßnahme|measure / action|die|Maßnahmen|noun|Diese Maßnahme soll den Energieverbrauch senken.|This measure is intended to reduce energy consumption.
+B2|Discussion|abwägen|to weigh up|||verb|Wir müssen die Vor- und Nachteile abwägen.|We must weigh up the advantages and disadvantages.
+B2|Discussion|Einwand|objection|der|Einwände|noun|Gegen diesen Vorschlag gibt es einen wichtigen Einwand.|There is an important objection to this proposal.
+B2|Discussion|überzeugen|to convince|||verb|Ihre Argumente haben mich überzeugt.|Her arguments convinced me.
+B2|Learning|Zusammenhang|connection / context|der|Zusammenhänge|noun|Ich verstehe den Zusammenhang zwischen den Ereignissen.|I understand the connection between the events.
+B2|Learning|sich auseinandersetzen mit|to engage critically with|||verb|Wir setzen uns mit verschiedenen Positionen auseinander.|We engage critically with different positions.
+B2|Learning|zuverlässig|reliable|||adjective|Für die Recherche brauchen wir zuverlässige Quellen.|We need reliable sources for the research.
+C1|Academic language|Schlussfolgerung|conclusion / inference|die|Schlussfolgerungen|noun|Diese Schlussfolgerung lässt sich aus den Daten nicht ableiten.|This conclusion cannot be drawn from the data.
+C1|Academic language|differenzieren|to differentiate|||verb|Wir müssen zwischen Ursache und Wirkung differenzieren.|We must differentiate between cause and effect.
+C1|Academic language|plausibel|plausible|||adjective|Diese Erklärung erscheint zunächst plausibel.|This explanation initially seems plausible.
+C1|Academic language|fundiert|well-founded|||adjective|Die Studie liefert eine fundierte Analyse.|The study provides a well-founded analysis.
+C1|Discussion|Widerspruch|contradiction / objection|der|Widersprüche|noun|Zwischen den Aussagen besteht ein deutlicher Widerspruch.|There is a clear contradiction between the statements.
+C1|Discussion|relativieren|to put into perspective / qualify|||verb|Die neuen Zahlen relativieren die frühere Einschätzung.|The new figures put the earlier assessment into perspective.
+C1|Discussion|einräumen|to concede|||verb|Sie räumt ein, dass der Vorschlag Schwächen hat.|She concedes that the proposal has weaknesses.
+C1|Work|Handlungsspielraum|scope for action|der|Handlungsspielräume|noun|Das Budget begrenzt unseren Handlungsspielraum.|The budget limits our scope for action.
+C1|Work|zielgerichtet|targeted / purposeful|||adjective|Die Ergebnisse ermöglichen ein zielgerichtetes Vorgehen.|The results enable a targeted approach.
+C1|Work|umsetzen|to implement|||verb|Die Empfehlungen lassen sich schrittweise umsetzen.|The recommendations can be implemented step by step.
+C1|Society|Teilhabe|participation / inclusion|die|usually uncountable|noun|Sprachkenntnisse erleichtern die gesellschaftliche Teilhabe.|Language skills facilitate participation in society.
+C1|Society|unverhältnismäßig|disproportionate|||adjective|Der Aufwand wäre im Vergleich zum Nutzen unverhältnismäßig.|The effort would be disproportionate to the benefit.
+C1|Society|verankern|to embed / establish firmly|||verb|Das Recht auf Bildung ist gesetzlich verankert.|The right to education is enshrined in law.
+C1|Learning|Erkenntnis|insight / finding|die|Erkenntnisse|noun|Die Untersuchung liefert neue Erkenntnisse.|The investigation provides new insights.
+C1|Learning|hinterfragen|to question critically|||verb|Wir sollten diese Annahme kritisch hinterfragen.|We should critically question this assumption.
+C2|Nuance and style|stichhaltig|cogent / sound|||adjective|Für diese Behauptung fehlen stichhaltige Belege.|There is no sound evidence for this claim.
+C2|Nuance and style|hinfällig|no longer applicable / invalid|||adjective|Durch die Einigung wird der ursprüngliche Einwand hinfällig.|The agreement renders the original objection no longer applicable.
+C2|Nuance and style|ambivalent|ambivalent|||adjective|Ihr Verhältnis zu dieser Entwicklung bleibt ambivalent.|Her attitude towards this development remains ambivalent.
+C2|Nuance and style|unterschwellig|underlying / subliminal|||adjective|Im Gespräch war eine unterschwellige Spannung spürbar.|An underlying tension was perceptible in the conversation.
+C2|Nuance and style|lakonisch|laconic / terse|||adjective|Er antwortete mit einer lakonischen Bemerkung.|He replied with a laconic remark.
+C2|Argumentation|Trugschluss|fallacy|der|Trugschlüsse|noun|Aus dieser Beobachtung eine Regel abzuleiten, wäre ein Trugschluss.|It would be a fallacy to derive a rule from this observation.
+C2|Argumentation|Prämisse|premise|die|Prämissen|noun|Das Argument beruht auf einer fragwürdigen Prämisse.|The argument rests on a questionable premise.
+C2|Argumentation|konterkarieren|to counteract / undermine|||verb|Die neue Regelung könnte die bisherigen Bemühungen konterkarieren.|The new regulation could undermine the efforts made so far.
+C2|Argumentation|implizieren|to imply|||verb|Diese Formulierung impliziert eine Wertung.|This wording implies a value judgement.
+C2|Argumentation|stringent|logically consistent|||adjective|Die Autorin entwickelt eine stringente Argumentation.|The author develops a logically consistent argument.
+C2|Idioms|ins Gewicht fallen|to carry weight / matter|||phrase|Bei dieser Entscheidung fallen die Kosten besonders ins Gewicht.|Costs carry particular weight in this decision.
+C2|Idioms|auf der Hand liegen|to be obvious|||phrase|Die Vorteile dieses Ansatzes liegen auf der Hand.|The advantages of this approach are obvious.
+C2|Idioms|den Ausschlag geben|to be the deciding factor|||phrase|Letztlich gab ihre Erfahrung den Ausschlag.|Ultimately, her experience was the deciding factor.
+C2|Idioms|etwas in Kauf nehmen|to accept something as a downside|||phrase|Für den kürzeren Weg nehmen wir etwas Lärm in Kauf.|We accept some noise in exchange for the shorter route.
+C2|Idioms|auf den Punkt bringen|to get to the heart of something|||phrase|Mit diesem Satz bringt sie das Problem auf den Punkt.|With this sentence, she gets to the heart of the problem.

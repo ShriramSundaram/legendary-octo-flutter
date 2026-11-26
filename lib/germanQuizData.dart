@@ -1,47 +1,30 @@
-import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:flutter/material.dart';
+import 'data/content_catalog.dart';
+import 'data/quiz_catalog.dart';
 
 class GermanQuiz {
-  final String Questions;
+  final String Questions, explanation, itemId;
   final List<String> Options;
   final int CorrectOption;
-
-  GermanQuiz(this.Questions, this.Options, this.CorrectOption);
-
-  // Add a factory constructor to create from JSON
-  factory GermanQuiz.fromJson(Map<String, dynamic> json) {
-    return GermanQuiz(
-      json['question'],
-      List<String>.from(json['options']),
-      json['correctOption'],
-    );
-  }
+  GermanQuiz.fromItem(QuizItem item)
+      : Questions = item.question,
+        Options = item.options,
+        CorrectOption = item.correctOption,
+        explanation = item.explanation,
+        itemId = item.itemId;
 }
 
-// This list will store quiz data
 List<GermanQuiz> QuizData = [];
 
-// Load quiz data from JSON file
-dynamic loadQuizData() async {
-  try {
-    // Load JSON string from asset
-    final jsonString = await rootBundle.loadString('assets/quiz_data.json');
-
-    // Decode JSON
-    final jsonData = json.decode(jsonString) as List;
-
-    // Convert to GermanQuiz objects
-    final quizList = jsonData.map((item) => GermanQuiz.fromJson(item)).toList();
-
-    // Update global list for backward compatibility
-    QuizData = quizList;
-
-    // Return the list
-    return quizList;
-  } catch (e) {
-    debugPrint('Error loading quiz data: $e');
-    return [];
-  }
+Future<List<GermanQuiz>> loadQuizData() async {
+  final content = ContentCatalog.decode(
+      await rootBundle.loadString('assets/content_catalog_v1.json'));
+  final quizzes = QuizCatalog.decode(
+      await rootBundle.loadString('assets/quiz_catalog_v1.json'), content);
+  QuizData = quizzes
+      .visible(includeDrafts: kDebugMode)
+      .map(GermanQuiz.fromItem)
+      .toList(growable: false);
+  return QuizData;
 }

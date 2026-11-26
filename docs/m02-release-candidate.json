@@ -1,0 +1,20 @@
+{
+  "versionName": "1.0.3",
+  "versionCode": 16,
+  "builtOn": "2026-11-25",
+  "artifact": "build/releases/1.0.3+16/app-release.aab",
+  "bytes": 47837323,
+  "sha256": "ba4831b375a6dfda67d8bfa5936804db11f0d7c5a7ba0c499dbd55f597fab21c",
+  "packagedAssets": {
+    "content_catalog_v1.json": 269,
+    "quiz_catalog_v1.json": 55,
+    "legacy_vocabulary_v1.json": 1059
+  },
+  "wirelessDebugInstall": "Success",
+  "wirelessLaunch": "Status: ok",
+  "flutterTests": 44,
+  "phoneOfflineAcceptance": "PASS — user confirmed Works great on 2026-11-25",
+  "rolloutAuthorization": "User authorized Play rollout on 2026-11-25",
+  "rolloutAccessIssue": "Browser and Computer Use runtimes failed to initialize: failed to write kernel assets (os error 3)",
+  "playUpload": "not performed"
+}
