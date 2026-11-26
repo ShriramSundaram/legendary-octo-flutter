@@ -1,176 +1,135 @@
-import 'package:flutter/material.dart';
+import 'dart:io';
+import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:rxdart/rxdart.dart';
+import 'package:flutter_timezone/flutter_timezone.dart';
+import 'package:timezone/data/latest_all.dart' as tz_data;
 import 'package:timezone/timezone.dart' as tz;
-import 'package:timezone/data/latest.dart' as tz_data;
-// These imports are used in the app but not directly in this file
+import 'data/reminder_controller.dart';
+import 'data/reminder_models.dart';
 
-class NotificationApi {
-  static final _notifications = FlutterLocalNotificationsPlugin();
-  static final onNotifications = BehaviorSubject<String?>();
+class NotificationApi extends ReminderBackend {
+  static const _native = MethodChannel('german_reminder/reminders');
+  static final instance = NotificationApi();
+  final plugin = FlutterLocalNotificationsPlugin();
+  Future<void>? _initialized;
+  static String? pendingPayload;
+  static final List<void Function()> _handlers = [];
+  static void registerTapHandler(void Function() handler) {
+    _handlers.remove(handler);
+    _handlers.add(handler);
+  }
 
-  /// Initialize the notification service
-  /// [initScheduled] - Whether to initialize scheduled notifications
-  static void initialize({bool initScheduled = false}) async {
-    // Initialize timezone data (required for scheduled notifications)
-    if (initScheduled) {
-      tz_data.initializeTimeZones();
+  static void unregisterTapHandler(void Function() handler) {
+    _handlers.remove(handler);
+  }
+
+  Future<void> initialize() => _initialized ??= _initialize();
+  Future<void> _initialize() async {
+    tz_data.initializeTimeZones();
+    await plugin.initialize(
+        const InitializationSettings(
+            android: AndroidInitializationSettings('ic_stat_reminder'),
+            iOS: DarwinInitializationSettings(
+                requestAlertPermission: false,
+                requestBadgePermission: false,
+                requestSoundPermission: false)),
+        onDidReceiveNotificationResponse: (response) {
+      pendingPayload = response.payload;
+      if (_handlers.isNotEmpty) _handlers.last();
+    });
+    final launch = await plugin.getNotificationAppLaunchDetails();
+    if (launch?.didNotificationLaunchApp == true)
+      pendingPayload = launch?.notificationResponse?.payload;
+  }
+
+  @override
+  Future<String> timezone() async {
+    final name = await FlutterTimezone.getLocalTimezone();
+    tz.setLocalLocation(tz.getLocation(name));
+    return name;
+  }
+
+  @override
+  Future<bool> permission({bool request = false}) async {
+    final android = plugin.resolvePlatformSpecificImplementation<
+        AndroidFlutterLocalNotificationsPlugin>();
+    if (android != null)
+      return (request
+              ? await android.requestNotificationsPermission()
+              : await android.areNotificationsEnabled()) ??
+          false;
+    if (request)
+      return await plugin
+              .resolvePlatformSpecificImplementation<
+                  IOSFlutterLocalNotificationsPlugin>()
+              ?.requestPermissions(alert: true, badge: true, sound: true) ??
+          false;
+    return false;
+  }
+
+  @override
+  Future<void> schedule(int id, tz.TZDateTime date, ReminderPayload payload,
+      {bool weekly = false, int? wallHour, int? wallMinute}) async {
+    if (Platform.isAndroid) {
+      await _native.invokeMethod<void>('schedule', {
+        'id': id,
+        'payload': payload.encode(),
+        'at': date.millisecondsSinceEpoch,
+        'hour': wallHour ?? date.hour,
+        'minute': wallMinute ?? date.minute
+      });
+      return;
     }
-    const AndroidInitializationSettings androidInitializationSettings =
-        AndroidInitializationSettings('@mipmap/ic_launcher');
-
-    final DarwinInitializationSettings initializationSettingsDarwin =
-        DarwinInitializationSettings(
-      requestSoundPermission: false,
-      requestBadgePermission: false,
-      requestAlertPermission: false,
-      onDidReceiveLocalNotification: (id, title, body, payload) async {},
-    );
-
-    final InitializationSettings settings = InitializationSettings(
-      android: androidInitializationSettings,
-      iOS: initializationSettingsDarwin,
-    );
-
-    await _notifications.initialize(
-      settings,
-      onDidReceiveNotificationResponse:
-          (NotificationResponse notificationResponse) async {
-        final String? payload = notificationResponse.payload;
-        if (payload != null) {
-          onNotifications.add(payload);
-        }
-      },
-    );
-  }
-
-  /// Creates notification details with default settings for Android and iOS
-  ///
-  /// Returns a [NotificationDetails] object configured for both platforms
-  static NotificationDetails notificationDetails() {
-    return NotificationDetails(
-      android: AndroidNotificationDetails(
-        'channel_id',
-        'channel_name',
-        channelDescription: 'German Reminder Notifications',
-        importance: Importance.high,
-        priority: Priority.high,
-        icon: '@mipmap/ic_launcher',
-      ),
-      iOS: DarwinNotificationDetails(
-        presentAlert: true,
-        presentBadge: true,
-        presentSound: true,
-      ),
-    );
-  }
-
-  /// Shows a notification with the provided details
-  ///
-  /// [id] - The notification ID (default: 0)
-  /// [title] - The notification title
-  /// [body] - The notification body text
-  /// [description] - Additional description text (not used in basic notifications)
-  /// [payload] - Optional payload data to be delivered when notification is tapped
-
-  /// Request notification permissions for the application
-  ///
-  /// This is required for iOS and recommended for Android 13+
-  static Future<bool?> requestPermissions() async {
-    try {
-      final AndroidFlutterLocalNotificationsPlugin? androidImplementation =
-          _notifications.resolvePlatformSpecificImplementation<
-              AndroidFlutterLocalNotificationsPlugin>();
-
-      final IOSFlutterLocalNotificationsPlugin? iosImplementation =
-          _notifications.resolvePlatformSpecificImplementation<
-              IOSFlutterLocalNotificationsPlugin>();
-
-      if (androidImplementation != null) {
-        final bool? granted =
-            await androidImplementation.requestNotificationsPermission();
-        return granted;
-      }
-
-      if (iosImplementation != null) {
-        final bool? granted = await iosImplementation.requestPermissions(
-          alert: true,
-          badge: true,
-          sound: true,
-        );
-        return granted;
-      }
-
-      return null;
-    } catch (e) {
-      debugPrint('Error requesting permissions: $e');
-      return false;
-    }
-  }
-
-  /// Shows a notification with the provided details
-  ///
-  /// [id] - The notification ID (default: 0)
-  /// [title] - The notification title
-  /// [body] - The notification body text
-  /// [description] - Additional description text (not used in basic notifications)
-  /// [payload] - Optional payload data to be delivered when notification is tapped
-  static void showNotification(
-      {int id = 0,
-      String? title,
-      String? body,
-      String? description,
-      String? payload}) async {
-    try {
-      final details = notificationDetails();
-      await _notifications.show(id, title, body, details, payload: payload);
-    } catch (e) {
-      debugPrint('Error showing notification: $e');
-    }
-  }
-
-  /// Cancel a specific notification by ID
-  static void cancel(int id) async {
-    await _notifications.cancel(id);
-  }
-
-  /// Cancel all pending notifications
-  static void cancelAll() async {
-    await _notifications.cancelAll();
-  }
-
-  /// Schedule a notification to show at a specific date and time
-  ///
-  /// [id] - The notification ID (default: 0)
-  /// [title] - The notification title
-  /// [body] - The notification body text
-  /// [scheduledDate] - When to show the notification
-  /// [payload] - Optional payload data to be delivered when notification is tapped
-  static void scheduleNotification({
-    int id = 0,
-    String? title,
-    String? body,
-    required DateTime scheduledDate,
-    String? payload,
-  }) async {
-    try {
-      // Convert DateTime to TZDateTime
-      final scheduledDateTZ = tz.TZDateTime.from(scheduledDate, tz.local);
-
-      await _notifications.zonedSchedule(
+    await plugin.zonedSchedule(
         id,
-        title,
-        body,
-        scheduledDateTZ,
-        notificationDetails(),
-        androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+        'Time for German 🌱',
+        'A few words today. Tap to review.',
+        date,
+        const NotificationDetails(
+            android: AndroidNotificationDetails(
+                'study_reminders_v1', 'Study reminders',
+                channelDescription: 'Your optional German study reminders',
+                icon: 'ic_stat_reminder',
+                importance: Importance.defaultImportance,
+                priority: Priority.defaultPriority,
+                visibility: NotificationVisibility.private),
+            iOS: DarwinNotificationDetails()),
+        payload: payload.encode(),
+        androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
         uiLocalNotificationDateInterpretation:
             UILocalNotificationDateInterpretation.absoluteTime,
-        matchDateTimeComponents: DateTimeComponents.time,
-        payload: payload,
-      );
-    } catch (e) {
-      debugPrint('Error scheduling notification: $e');
+        matchDateTimeComponents:
+            weekly ? DateTimeComponents.dayOfWeekAndTime : null);
+  }
+
+  @override
+  Future<void> cancel(int id) async {
+    await plugin.cancel(id);
+    if (Platform.isAndroid)
+      await _native.invokeMethod<void>('cancel', {'id': id});
+  }
+
+  @override
+  Future<Map<int, String?>> pending() async {
+    if (Platform.isAndroid) {
+      final rows =
+          await _native.invokeMapMethod<String, String>('pending') ?? {};
+      return {for (final row in rows.entries) int.parse(row.key): row.value};
     }
+    return {
+      for (final n in await plugin.pendingNotificationRequests())
+        n.id: n.payload
+    };
+  }
+
+  @override
+  Future<void> rebaseClock() async {
+    if (Platform.isAndroid) await _native.invokeMethod<void>('reconcile');
+  }
+
+  @override
+  Future<void> bindOwner(String? owner) async {
+    if (Platform.isAndroid)
+      await _native.invokeMethod<void>('owner', {'owner': owner});
   }
 }

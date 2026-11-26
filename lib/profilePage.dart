@@ -12,6 +12,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'germanBasicTest.dart';
 import 'profile_widgets.dart';
+import 'reminder_runtime.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -69,6 +70,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   void deleteUserAccount() async {
     try {
+      await ReminderRuntime.disableBeforeSignOut();
       await FirebaseAuth.instance.currentUser!.delete();
       if (!mounted) return;
 
@@ -104,6 +106,11 @@ class _ProfilePageState extends State<ProfilePage> {
                   )
                 ],
               ));
+    } catch (_) {
+      if (mounted)
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text(
+                'Could not cancel reminders before account deletion. Please try again.')));
     }
   }
 

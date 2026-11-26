@@ -20,7 +20,10 @@ import 'package:responsive_framework/responsive_framework.dart';
 // import 'package:responsive_framework/responsive_wrapper.dart';
 import 'notification_api.dart';
 import 'home_widgets.dart';
-import 'secondPage.dart';
+import 'reminder_panel.dart';
+import 'reminder_runtime.dart';
+import 'reminder_destination.dart';
+import 'data/reminder_models.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'databaseFirebase.dart';
 import 'userCollectionDatabase.dart';
@@ -55,14 +58,18 @@ void main() async {
   await Hive.initFlutter();
 
   // Initialize notifications
-  NotificationApi.initialize();
-  await NotificationApi.requestPermissions();
+
   // Enable edge-to-edge
   //SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
   // Initialize local database
   await Hive.openBox('LocalDatabase');
+  await NotificationApi.instance.initialize();
+  AccountStore.activeUid = FirebaseAuth.instance.currentUser?.uid;
   FirebaseAuth.instance.authStateChanges().listen((user) {
     AccountStore.activeUid = user?.uid;
+    unawaited(ReminderRuntime.bindAccount(user?.uid).catchError((Object _) {
+      debugPrint('Study reminder settings could not be restored.');
+    }));
   });
   runApp(const MyApp());
 }
@@ -100,16 +107,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int hhInput = 0;
-  int mmInput = 0;
-  int ssInput = 0;
   int _index = 0;
-  final items_hh = [00, 01, 02, 03, 04, 05];
-  final items_mm = [00, 05, 10, 15, 20, 30];
-  final items_ss = [00, 05, 10, 15, 20, 30];
-  int? _dropDownValueHH;
-  int? _dropDownValueMM;
-  int? _dropDownValueSS;
+  List<OfflineWord> _offlineWords = [];
+  bool _routingReminder = false;
+  String? _activeReminderPayload;
+  late final VoidCallback _notificationHandler =
+      () => unawaited(_routeReminder());
 
   String? databaseSelection;
 
@@ -134,15 +137,15 @@ class _MyHomePageState extends State<MyHomePage> {
   Future<void> loadGeneric(String id) async {
     try {
       final vocabulary = await loadOfflineVocabulary();
-      final words = vocabulary
-          .atLevel(OfflineVocabulary.levelForCollection(id))
-          .map((word) => word.display)
-          .toList();
+      final entries =
+          vocabulary.atLevel(OfflineVocabulary.levelForCollection(id));
+      final words = entries.map((word) => word.display).toList();
       if (words.isEmpty)
         throw const FormatException('No vocabulary for this level');
       if (!mounted) return;
       setState(() {
         genericCollection = words;
+        _offlineWords = entries;
         _index = 0;
       });
     } catch (_) {
@@ -156,6 +159,8 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
+    NotificationApi.registerTapHandler(_notificationHandler);
+    WidgetsBinding.instance.addPostFrameCallback((_) => _notificationHandler());
 
     if (hiveDB.containsKey('CurrentLevel')) {
       print('Yeah it contains');
@@ -198,44 +203,45 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-  void notificationEnable() {
-    NotificationApi.initialize();
-    NotificationApi.requestPermissions();
-    listenNotification();
-  }
-
-  void timerStart() {
-    Timer(Duration(hours: (hhInput), minutes: (mmInput), seconds: (ssInput)),
-        () {
-      NotificationApi.showNotification(
-          title: Text(genericCollection[_index]).data,
-          body: "Reminder Word",
-          description: 'The word',
-          payload: Text(genericCollection[_index]).data);
-    });
-  }
-
-  void onDidReceiveNotificationResponse(payload) async {
-    if (payload != null) {
-      debugPrint('notification payload: $payload');
+  Future<void> _routeReminder() async {
+    if (_routingReminder) {
+      if (NotificationApi.pendingPayload == _activeReminderPayload)
+        NotificationApi.pendingPayload = null;
+      return;
     }
-    await Navigator.push(
-      context,
-      MaterialPageRoute<void>(
-          builder: (context) => SecondPage(payload: payload)),
-    );
+    if (!mounted ||
+        NotificationApi.pendingPayload == null ||
+        FirebaseAuth.instance.currentUser?.emailVerified != true) return;
+    _routingReminder = true;
+    var navigated = false;
+    try {
+      final controller = await ReminderRuntime.current();
+      if (!mounted) return;
+      final raw = NotificationApi.pendingPayload;
+      final payload = ReminderPayload.parse(raw);
+      NotificationApi.pendingPayload = null;
+      if (payload == null || !controller.accepts(payload)) return;
+      _activeReminderPayload = raw;
+      navigated = true;
+      await Navigator.of(context).push(MaterialPageRoute(
+          builder: (_) => ReminderDestination(payload: payload)));
+    } catch (_) {
+      /* Keep a pending notification until authenticated settings are ready. */
+    } finally {
+      _routingReminder = false;
+      _activeReminderPayload = null;
+      if (navigated && mounted && NotificationApi.pendingPayload != null)
+        WidgetsBinding.instance
+            .addPostFrameCallback((_) => _notificationHandler());
+    }
   }
 
-  void listenNotification() =>
-      NotificationApi.onNotifications.stream.listen((onClickedNotification));
-
-  void onClickedNotification(String? payload) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-          builder: (context) => SecondPage(
-                payload: payload,
-              )),
-    );
+  @override
+  void dispose() {
+    NotificationApi.unregisterTapHandler(_notificationHandler);
+    myTextController.dispose();
+    unawaited(flutterTts.stop());
+    super.dispose();
   }
 
   void OnClickedLoadDatabase() {
@@ -259,6 +265,15 @@ class _MyHomePageState extends State<MyHomePage> {
       .push(MaterialPageRoute(builder: (_) => FrontPage()));
 
   void signOut() async {
+    try {
+      await ReminderRuntime.disableBeforeSignOut();
+    } catch (_) {
+      if (mounted)
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content:
+                Text('Could not cancel reminders. Try signing out again.')));
+      return;
+    }
     await FirebaseAuth.instance.signOut();
     if (!mounted) return;
     Navigator.of(context).pushAndRemoveUntil(
@@ -381,47 +396,15 @@ class _MyHomePageState extends State<MyHomePage> {
                     icon: const Icon(Icons.school),
                     label: const Text('Review words'),
                   ),
-                  SizedBox(
-                    height: 5,
+                  const SizedBox(height: 20),
+                  ReminderPanel(
+                    level: OfflineVocabulary.levelForCollection(
+                        databaseSelection ?? 'GenericCollections'),
+                    itemId:
+                        _offlineWords.isEmpty ? null : _offlineWords[_index].id,
+                    word: genericCollection[_index],
                   ),
-                  SizedBox(
-                    width: 300.0,
-                    child: Text(
-                      " Set time to remind",
-                      style: TextStyle(
-                          fontSize: 20.0,
-                          color: Color.fromRGBO(33, 150, 243, 1)),
-                    ),
-                  ),
-                  ReminderTimeSelector(
-                    values: [
-                      _dropDownValueHH,
-                      _dropDownValueMM,
-                      _dropDownValueSS
-                    ],
-                    items: [items_hh, items_mm, items_ss],
-                    onChanged: [
-                      (value) => setState(() {
-                            hhInput = value ?? 0;
-                            _dropDownValueHH = value;
-                          }),
-                      (value) => setState(() {
-                            mmInput = value ?? 0;
-                            _dropDownValueMM = value;
-                          }),
-                      (value) => setState(() {
-                            ssInput = value ?? 0;
-                            _dropDownValueSS = value;
-                          }),
-                    ],
-                    onStart: () {
-                      if (hhInput != 0 || mmInput != 0 || ssInput != 0)
-                        timerStart();
-                    },
-                  ),
-                  SizedBox(
-                    height: 70,
-                  ),
+                  const SizedBox(height: 28),
                   FlipCard(
                     key: cardKey,
                     flipOnTouch: false,
