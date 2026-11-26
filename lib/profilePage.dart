@@ -1,3 +1,4 @@
+import 'data/account_store.dart';
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
@@ -5,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:germanreminder/editProfilePage.dart';
 import 'package:germanreminder/frontPage.dart';
 import 'package:germanreminder/main.dart';
-import 'package:hive/hive.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -19,16 +20,15 @@ class ProfilePage extends StatefulWidget {
   State<ProfilePage> createState() => _ProfilePageState();
 }
 
-final user = FirebaseAuth.instance.currentUser;
-
 class _ProfilePageState extends State<ProfilePage> {
+  final user = FirebaseAuth.instance.currentUser;
   String? localPath;
   TextEditingController userNameEditor = TextEditingController();
   String? userName;
   String? germanLevel;
 
   // Initialize the object for Hive
-  final hiveDatabase = Hive.box('LocalDatabase');
+  final hiveDatabase = AccountStore.current();
 
   Future<void> goToEditProfilePage(BuildContext context) async {
     final saved = await Navigator.of(context)
@@ -108,8 +108,8 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   void goToFrontScreen(BuildContext context) {
-    Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (_) => FrontPage()));
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (_) => const FrontPage()), (_) => false);
   }
 
   void loadImage() async {
@@ -117,9 +117,9 @@ class _ProfilePageState extends State<ProfilePage> {
       SharedPreferences imagePath = await SharedPreferences.getInstance();
       if (!mounted) return;
 
-      if (imagePath.containsKey('ImagePath')) {
+      if (imagePath.containsKey(hiveDatabase.key('ImagePath'))) {
         setState(() {
-          localPath = imagePath.getString('ImagePath');
+          localPath = imagePath.getString(hiveDatabase.key('ImagePath'));
         });
       } else {
         setState(() {

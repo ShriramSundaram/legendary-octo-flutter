@@ -1,0 +1,81 @@
+{
+  "capturedAt": "2026-11-25T14:34:01.892Z",
+  "database": {
+    "name": "projects/germanreminderapp/databases/(default)",
+    "edition": "STANDARD",
+    "location": "eur3"
+  },
+  "documentCount": 5,
+  "entries": [
+    {
+      "path": "Generic/GenericCollections",
+      "updateTime": "2023-09-17T13:42:21.112628Z",
+      "sha256": "d764f1dc25e867b6eca21eb0d0d8cae89d6f39d56dd5c1c49ea7a9277a441244",
+      "fields": {
+        "wordStorage": {
+          "type": "array",
+          "count": 338,
+          "stringCount": 338,
+          "uniqueStringCount": 338
+        }
+      },
+      "disposition": "retain-original; quarantine-from-reviewed-catalog-until-pairing-and-rights-review"
+    },
+    {
+      "path": "Generic/GenericCollectionsA2",
+      "updateTime": "2023-09-17T13:41:49.402584Z",
+      "sha256": "7ceaa0864afbc802e1608110562bceb06124278b67dbab22498d8ac60d108b64",
+      "fields": {
+        "wordStorage": {
+          "type": "array",
+          "count": 128,
+          "stringCount": 128,
+          "uniqueStringCount": 128
+        }
+      },
+      "disposition": "retain-original; quarantine-from-reviewed-catalog-until-pairing-and-rights-review"
+    },
+    {
+      "path": "Generic/GenericCollectionsB1",
+      "updateTime": "2023-09-17T13:40:52.115092Z",
+      "sha256": "8bf27038365fae38424fe15ccef4c111927641f23e2621c1064b8aa320372544",
+      "fields": {
+        "wordStorage": {
+          "type": "array",
+          "count": 301,
+          "stringCount": 301,
+          "uniqueStringCount": 300
+        }
+      },
+      "disposition": "retain-original; quarantine-from-reviewed-catalog-until-pairing-and-rights-review"
+    },
+    {
+      "path": "Generic/GenericCollectionsB2",
+      "updateTime": "2023-09-17T13:42:36.446604Z",
+      "sha256": "eea97161ece900d5edced3a802dedb38eee27cbaf0348e6d4c8257a42a7d4d4c",
+      "fields": {
+        "wordStorage": {
+          "type": "array",
+          "count": 217,
+          "stringCount": 217,
+          "uniqueStringCount": 217
+        }
+      },
+      "disposition": "retain-original; quarantine-from-reviewed-catalog-until-pairing-and-rights-review"
+    },
+    {
+      "path": "Generic/GenericCollectionsC1",
+      "updateTime": "2023-09-17T13:27:47.156191Z",
+      "sha256": "011c7e7a5c07022f927afbf987a2fd095648056b69c79c402602f1c8c68b08ea",
+      "fields": {
+        "wordStorage": {
+          "type": "array",
+          "count": 76,
+          "stringCount": 76,
+          "uniqueStringCount": 76
+        }
+      },
+      "disposition": "retain-original; quarantine-from-reviewed-catalog-until-pairing-and-rights-review"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "versionName": "1.0.4",
+  "versionCode": 17,
+  "builtOn": "2026-11-26",
+  "artifact": "build/releases/1.0.4+17/app-release.aab",
+  "bytes": 47963941,
+  "sha256": "2cf24f37d0cbb423c322b2d9f652886b8cf849dbbbe49398198003edefcab66c",
+  "signatureVerified": true,
+  "releaseMode": true,
+  "debugCredentialPresent": false,
+  "packagedAssets": {
+    "content_catalog_v1.json": 269,
+    "legacy_vocabulary_v1.json": 1059,
+    "quiz_catalog_v1.json": 55
+  },
+  "flutterTests": 63,
+  "targetedAnalysis": "No issues found",
+  "phoneAcceptance": "User accepted reveal, Again/Remembered and interrupted-session resume",
+  "releaseNotes": "docs/m03-play-release-notes.txt",
+  "productionUpload": "To be performed by project owner",
+  "googlePublication": "Not claimed"
+}

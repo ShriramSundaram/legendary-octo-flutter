@@ -1,0 +1,23 @@
+const assert=require('node:assert/strict');
+const {parseLegacyWord,prepare}=require('./prepare-legacy-candidates.cjs');
+assert.deepEqual(parseLegacyWord('lernen - to learn'),{german:'lernen',meaning:'to learn',warnings:[]});
+assert.equal(parseLegacyWord('gut - well-known').meaning,'well-known');
+assert.equal(parseLegacyWord('dein -your').meaning,'your');
+assert.ok(parseLegacyWord('dein -your').warnings.includes('nonstandard-separator-spacing'));
+assert.ok(parseLegacyWord('eins - one - another').warnings.includes('ambiguous-or-missing-pair'));
+assert.ok(parseLegacyWord('kein Trenner').warnings.includes('ambiguous-or-missing-pair'));
+assert.ok(parseLegacyWord('der Hụnger - hunger').warnings.includes('diacritic-needs-review'));
+assert.deepEqual(parseLegacyWord('die Wörter - words').warnings,[]);
+const doc=(id,words)=>({name:'projects/p/databases/(default)/documents/Generic/'+id,
+  fields:{wordStorage:{arrayValue:{values:words.map(stringValue=>({stringValue}))}}}});
+const snapshot={capturedAt:'2026-11-25T00:00:00Z',documents:[doc('GenericCollections',['lernen - to learn','lernen - to learn','lernen - study'])]};
+const before=JSON.stringify(snapshot);
+const catalog={items:[{id:'existing',lemma:'lernen',level:'A1'}]};
+const result=prepare(snapshot,catalog);
+assert.equal(result.sourceRows,3);assert.equal(result.candidateCount,2);assert.equal(result.duplicateRows,1);
+assert.deepEqual(result.candidates[0].sourceIndexes,[0,1]);
+assert.deepEqual(result.candidates[0].possibleExistingItemIds,['existing']);
+assert.equal(JSON.stringify(snapshot),before);
+assert.deepEqual(prepare(snapshot,catalog),result);
+assert.throws(()=>prepare({documents:[doc('Unknown',['x - y'])]},catalog),/Unmapped/);
+console.log('Legacy parser and traceability checks passed.');

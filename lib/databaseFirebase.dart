@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'data/offline_vocabulary.dart';
+import 'data/offline_vocabulary_loader.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
 class ViewGenericDatabase extends StatefulWidget {
@@ -20,19 +21,6 @@ class _ViewGenericDatabaseState extends State<ViewGenericDatabase> {
   bool isLoading = true;
   bool hasError = false;
   String errorMessage = '';
-
-  // Get the documents Id's from Firebase - NOT USED NOW, FUTURE USE
-  void getDocuIdFireBase() async {
-    try {
-      final snapshot =
-          await FirebaseFirestore.instance.collection('User').get();
-      for (var element in snapshot.docs) {
-        doumentsIdList.add(element.reference.id);
-      }
-    } catch (e) {
-      debugPrint('Error fetching document IDs: $e');
-    }
-  }
 
   void initTts() async {
     flutterTts = FlutterTts();
@@ -89,9 +77,6 @@ class _ViewGenericDatabaseState extends State<ViewGenericDatabase> {
     }
   }
 
-  final CollectionReference user =
-      FirebaseFirestore.instance.collection('Generic');
-
   Map<String, dynamic> dataCurr = {};
 
   bool firstTime = true;
@@ -109,44 +94,23 @@ class _ViewGenericDatabaseState extends State<ViewGenericDatabase> {
       hasError = false;
       errorMessage = '';
     });
-
     try {
-      final DocumentSnapshot snapshot =
-          await user.doc(widget.GermanLevel).get();
-      if (snapshot.exists) {
-        debugPrint('DataPresent');
-        Map<String, dynamic>? data = snapshot.data() as Map<String, dynamic>?;
-
-        if (data != null) {
-          setState(() {
-            dataCurr = data;
-            isLoading = false;
-          });
-          debugPrint('Data loaded: ${dataCurr.length} items');
-        } else {
-          setState(() {
-            hasError = true;
-            errorMessage = 'No data available for this level';
-            isLoading = false;
-          });
-        }
-      } else {
-        setState(() {
-          hasError = true;
-          errorMessage = 'Document does not exist';
-          isLoading = false;
-        });
-      }
-
-      if (firstTime) {
-        runFilter('');
-        firstTime = false;
-      }
-    } catch (e) {
-      debugPrint('Error getting data: $e');
+      final vocabulary = await loadOfflineVocabulary();
+      final words = vocabulary
+          .atLevel(OfflineVocabulary.levelForCollection(widget.GermanLevel))
+          .map((word) => word.display)
+          .toList();
+      if (!mounted) return;
+      setState(() {
+        dataCurr = {'wordStorage': words};
+        isLoading = false;
+      });
+      runFilter('');
+    } catch (_) {
+      if (!mounted) return;
       setState(() {
         hasError = true;
-        errorMessage = 'Failed to load data. Please try again.';
+        errorMessage = 'Could not load offline vocabulary.';
         isLoading = false;
       });
     }
@@ -156,14 +120,14 @@ class _ViewGenericDatabaseState extends State<ViewGenericDatabase> {
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
           title: Text(
-            "German Collection ${widget.GermanLevel.replaceAll('GenericCollections', '')}",
+            "Offline vocabulary ${OfflineVocabulary.levelForCollection(widget.GermanLevel)}",
             style: const TextStyle(fontSize: 18),
           ),
           centerTitle: true,
           actions: [
             IconButton(
               icon: const Icon(Icons.refresh),
-              tooltip: 'Refresh data',
+              tooltip: 'Reload offline vocabulary',
               onPressed: () {
                 getData();
               },

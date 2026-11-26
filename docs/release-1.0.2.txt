@@ -1,0 +1,5 @@
+<en-GB>
+Personal words are now saved more safely, with improved recovery for existing vocabulary.
+Profile preferences are kept separately for each signed-in account. You may need to set your profile preferences again after updating.
+Improved error messages when vocabulary cannot be loaded, and fixed word playback in your collection.
+</en-GB>

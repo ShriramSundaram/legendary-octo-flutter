@@ -1,0 +1,3 @@
+Offline vocabulary is now available in the Learning Library and home word cards.
+Browse by level and topic, or search the combined vocabulary collection.
+Updated vocabulary quizzes and improved content loading and error handling.

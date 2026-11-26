@@ -1,0 +1,942 @@
+{
+  "source": "assets/quiz_data.json",
+  "count": 55,
+  "status": "editorial-review-pending",
+  "items": [
+    {
+      "auditReference": "legacy-quiz-001",
+      "question": "To Lie down",
+      "options": [
+        "fliegen",
+        "lächeln",
+        "liegen",
+        "laden"
+      ],
+      "correctOption": 2,
+      "decision": "pending",
+      "itemId": "de_a2_dbe7cd97e04317c4",
+      "explanation": "Use the reflexive separable verb sich hinlegen for the action of lying down. Liegen describes already being in a lying position.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_001",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-002",
+      "question": "Accommodation",
+      "options": [
+        "übernehmen",
+        "überlaut",
+        "unfall",
+        "unterkunft"
+      ],
+      "correctOption": 3,
+      "decision": "pending",
+      "itemId": "de_a2_3f47756affdb5a4c",
+      "explanation": "Unterkunft is a feminine noun: die Unterkunft, plural Unterkünfte. German nouns start with a capital letter.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_002",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-003",
+      "question": "Vacation",
+      "options": [
+        "urlaub",
+        "unklar",
+        "umkreis",
+        "übung"
+      ],
+      "correctOption": 0,
+      "decision": "pending",
+      "itemId": "de_a2_c30663698730f090",
+      "explanation": "Urlaub means a holiday or vacation; the article is der.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_003",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-004",
+      "question": "Little",
+      "options": [
+        "wasser",
+        "wagen",
+        "weg",
+        "wenig"
+      ],
+      "correctOption": 3,
+      "decision": "pending",
+      "itemId": "de_a1_c68948d56f58436e",
+      "explanation": "Wenig describes a small quantity, as in wenig Zeit. Klein describes small size.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_004",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-005",
+      "question": "inexpensive",
+      "options": [
+        "preisgunstig",
+        "ungeliebt",
+        "vernünftig",
+        "erwischen"
+      ],
+      "correctOption": 0,
+      "decision": "pending",
+      "itemId": "de_a2_310e9bcaad6973a3",
+      "explanation": "Preisgünstig contains ü and means inexpensive or good value, rather than expensive.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_005",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-006",
+      "question": "epic",
+      "options": [
+        "erarbeiten",
+        "eingriff",
+        "episch",
+        "zaghaft"
+      ],
+      "correctOption": 2,
+      "decision": "pending",
+      "itemId": "de_b2_cd309c8226c6015f",
+      "explanation": "Episch means epic, for example when describing a story. It is an adjective.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_006",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-007",
+      "question": "prestigious/renowned",
+      "options": [
+        "renommiert",
+        "erfinderisch",
+        "bedauern",
+        "vermögen"
+      ],
+      "correctOption": 0,
+      "decision": "pending",
+      "itemId": "de_b2_0e0c82756e4d64b1",
+      "explanation": "Renommiert describes someone or something with an established good reputation.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_007",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-008",
+      "question": "memorize",
+      "options": [
+        "suggerieren",
+        "niesen",
+        "einprägen",
+        "revidieren"
+      ],
+      "correctOption": 2,
+      "decision": "pending",
+      "itemId": "de_b2_2868139a1b7722ee",
+      "explanation": "Sich etwas einprägen means to commit something to memory. The reflexive pronoun is part of this construction.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_008",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-009",
+      "question": "difficult",
+      "options": [
+        "Schloß",
+        "schwierig",
+        "salzig",
+        "schalten"
+      ],
+      "correctOption": 1,
+      "decision": "pending",
+      "itemId": "de_a1_24b3995ffe01fcc4",
+      "explanation": "Schwierig means difficult, as in eine schwierige Frage.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_009",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-010",
+      "question": "crawl",
+      "options": [
+        "darlegen",
+        "belegen",
+        "meistern",
+        "kraulen"
+      ],
+      "correctOption": 3,
+      "decision": "pending",
+      "itemId": "de_a2_2de1bf83630b3b88",
+      "explanation": "Krabbeln describes crawling like a baby. Kraulen normally means swimming the crawl or gently scratching/petting.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_010",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-011",
+      "question": "forbidden",
+      "options": [
+        "vaterlos",
+        "verantwortlich",
+        "verlassen",
+        "verboten"
+      ],
+      "correctOption": 3,
+      "decision": "pending",
+      "itemId": "de_a2_ddf9872ea883ae3f",
+      "explanation": "Verboten means forbidden or prohibited, as in Rauchen ist verboten.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_011",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-012",
+      "question": "encounter",
+      "options": [
+        "begegnen",
+        "backpulver",
+        "bandeln",
+        "bauch"
+      ],
+      "correctOption": 0,
+      "decision": "pending",
+      "itemId": "de_b1_e71fc9635dd06314",
+      "explanation": "Begegnen means to encounter someone and takes the dative: einer Freundin begegnen.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_012",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-013",
+      "question": "boring",
+      "options": [
+        "lacheln",
+        "lagerung",
+        "lạngweilen",
+        "lebensweg"
+      ],
+      "correctOption": 2,
+      "decision": "pending",
+      "itemId": "de_a1_2e40b934947ab4f0",
+      "explanation": "Langweilig is the adjective boring. Langweilen is a verb and is not the required adjective here.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_013",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-014",
+      "question": "to suspect",
+      "options": [
+        "verstehen",
+        "vergessen",
+        "verkaufen",
+        "vermuten"
+      ],
+      "correctOption": 3,
+      "decision": "pending",
+      "itemId": "de_b1_70a8a04168ea98b8",
+      "explanation": "Vermuten expresses an assumption or suspicion, rather than certainty.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_014",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-015",
+      "question": "opinion",
+      "options": [
+        "die Meinung",
+        "die meldung",
+        "mieten",
+        "renennen"
+      ],
+      "correctOption": 0,
+      "decision": "pending",
+      "itemId": "de_b1_e152ebea2e5853f5",
+      "explanation": "Meinung is a feminine noun: die Meinung, plural Meinungen.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_015",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-016",
+      "question": "the advertisement",
+      "options": [
+        "nachbarn",
+        "die Wẹrbung",
+        "nachruf",
+        "wappen"
+      ],
+      "correctOption": 1,
+      "decision": "pending",
+      "itemId": "de_a2_45f5e9ecdea72f33",
+      "explanation": "Werbung is a feminine noun and is spelled with ordinary e: die Werbung.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_016",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-017",
+      "question": "the wedding",
+      "options": [
+        "hagel",
+        "haken",
+        "handhabung",
+        "Họchzeit"
+      ],
+      "correctOption": 3,
+      "decision": "pending",
+      "itemId": "de_a2_08b8581effd32342",
+      "explanation": "Hochzeit means wedding. It is capitalized and takes die; the plural is Hochzeiten.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_017",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-018",
+      "question": "feeling",
+      "options": [
+        "das Gefühl",
+        "farbe",
+        "fällen",
+        "gabel"
+      ],
+      "correctOption": 0,
+      "decision": "pending",
+      "itemId": "de_a2_bf620e5ad26f5be6",
+      "explanation": "Gefühl is a neuter noun: das Gefühl, plural Gefühle.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_018",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-019",
+      "question": "the remedy",
+      "options": [
+        "zahne",
+        "zeichen",
+        "zeitlos",
+        "das hilfsmittel"
+      ],
+      "correctOption": 3,
+      "decision": "pending",
+      "itemId": "de_b1_4977c11b9aa3242f",
+      "explanation": "Hilfsmittel is an aid or assistive tool. It is not a general equivalent of a medical cure or remedy.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_019",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-020",
+      "question": "to assign",
+      "options": [
+        "zuordnen",
+        "zeichnen",
+        "trennen",
+        "Zudienen"
+      ],
+      "correctOption": 0,
+      "decision": "pending",
+      "itemId": "de_b1_ee13d4f2690960df",
+      "explanation": "Zuordnen means to assign or match something to something else, for example words to pictures.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_020",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-021",
+      "question": "poor",
+      "options": [
+        "madig",
+        "mangelhaft",
+        "magen",
+        "mannloch"
+      ],
+      "correctOption": 1,
+      "decision": "pending",
+      "itemId": "de_b1_bb882c36a33372b3",
+      "explanation": "Mangelhaft describes deficient quality or performance. It does not generally mean financially poor.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_021",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-022",
+      "question": "depend",
+      "options": [
+        "abbau",
+        "abdrucken",
+        "abhängen",
+        "abbringen"
+      ],
+      "correctOption": 2,
+      "decision": "pending",
+      "itemId": "de_b1_5d1fac303b9539f8",
+      "explanation": "Abhängen von means to depend on, with a dative object after von.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_022",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-023",
+      "question": "worried",
+      "options": [
+        "nachtbauen",
+        "besorgen",
+        "nachbeten",
+        "beten"
+      ],
+      "correctOption": 1,
+      "decision": "pending",
+      "itemId": "de_b1_d18f30a68fa19531",
+      "explanation": "Besorgt is the adjective worried. Besorgen is a verb meaning to obtain or take care of something.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_023",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-024",
+      "question": "evil",
+      "options": [
+        "beeilt",
+        "begraben",
+        "böse",
+        "bedarf"
+      ],
+      "correctOption": 2,
+      "decision": "pending",
+      "itemId": "de_a2_5a220cfa000b6aaa",
+      "explanation": "Böse can mean evil in this context; in other contexts it can mean angry or cross.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_024",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-025",
+      "question": "invention",
+      "options": [
+        "Ehescheidung",
+        "die erfindung",
+        "ehrung",
+        "einbindung"
+      ],
+      "correctOption": 1,
+      "decision": "pending",
+      "itemId": "de_b1_e270601cf7e9a121",
+      "explanation": "Erfindung is a feminine noun: die Erfindung, plural Erfindungen.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_025",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-026",
+      "question": "foreign",
+      "options": [
+        "fremd",
+        "fällen",
+        "färbender",
+        "fackel"
+      ],
+      "correctOption": 0,
+      "decision": "pending",
+      "itemId": "de_a2_a56ab6dea909c8f6",
+      "explanation": "Fremd means foreign or unfamiliar, depending on the context.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_026",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-027",
+      "question": "against",
+      "options": [
+        "abbestellt",
+        "dagegen",
+        "abgebogen",
+        "abschnitt"
+      ],
+      "correctOption": 1,
+      "decision": "pending",
+      "itemId": "de_b1_dcdcacefcd786b9b",
+      "explanation": "Dagegen refers back to something and means against it or against that. Gegen normally introduces its object directly.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_027",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-028",
+      "question": "feel",
+      "options": [
+        "säufer",
+        "schrumpfend",
+        "betrachten",
+        "spüren"
+      ],
+      "correctOption": 3,
+      "decision": "pending",
+      "itemId": "de_b1_24a6a4522cc9e2d4",
+      "explanation": "Spüren means to feel or sense something, such as cold wind.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_028",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-029",
+      "question": "sacrifice",
+      "options": [
+        "zerstreutheit",
+        "opfern",
+        "die Auffassung",
+        "einheitlich"
+      ],
+      "correctOption": 1,
+      "decision": "pending",
+      "itemId": "de_b2_2f07f2c1eb152e4b",
+      "explanation": "Opfern is a verb: to sacrifice something, for example time. Opfer is the related noun.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_029",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-030",
+      "question": "scare",
+      "options": [
+        "einblick",
+        "einbildung",
+        "erschrecken",
+        "schlimm"
+      ],
+      "correctOption": 2,
+      "decision": "pending",
+      "itemId": "de_b1_f0870615ddfd6bb6",
+      "explanation": "In jemanden erschrecken, the verb is transitive: to frighten or startle someone.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_030",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-031",
+      "question": "burden/load",
+      "options": [
+        "belasten",
+        "ausstrecken",
+        "eindeutig",
+        "ratsam"
+      ],
+      "correctOption": 0,
+      "decision": "pending",
+      "itemId": "de_b2_138db48cf29e7d7c",
+      "explanation": "Belasten is a verb meaning to burden or put a strain on. It is not the noun a burden.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_031",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-032",
+      "question": "persistent",
+      "options": [
+        "Schwäche",
+        "blamieren sich",
+        "anhaltend",
+        "kreieren"
+      ],
+      "correctOption": 2,
+      "decision": "pending",
+      "itemId": "de_b2_b343bc63ebda938f",
+      "explanation": "Anhaltend describes something that continues, such as rain or pain.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_032",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-033",
+      "question": "undetected",
+      "options": [
+        "unerkannt",
+        "unbedingt",
+        "ausgehen",
+        "bewältigen"
+      ],
+      "correctOption": 0,
+      "decision": "pending",
+      "itemId": "de_b2_0e1a28f4ac0f5d61",
+      "explanation": "Unerkannt describes something that has not been recognised or detected.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_033",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-034",
+      "question": "subject",
+      "options": [
+        "fabel",
+        "das Fạch",
+        "fahrer",
+        "feier"
+      ],
+      "correctOption": 1,
+      "decision": "pending",
+      "itemId": "de_a2_a5dca10f1e50a643",
+      "explanation": "Fach means a school subject in this context: das Fach, plural Fächer.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_034",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-035",
+      "question": "gift",
+      "options": [
+        "das Defizit",
+        "donnern",
+        "die Schwäche",
+        "die gabe"
+      ],
+      "correctOption": 3,
+      "decision": "pending",
+      "itemId": "de_b2_a5372b307ee715d4",
+      "explanation": "Gabe can mean a natural gift or talent. A wrapped present is usually ein Geschenk; German Gift means poison.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_035",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-036",
+      "question": "payment",
+      "options": [
+        "die entrichtung",
+        "die Verteilung",
+        "hageln",
+        "der Bestandteil"
+      ],
+      "correctOption": 0,
+      "decision": "pending",
+      "itemId": "de_c1_503e4bb2781907bd",
+      "explanation": "Entrichtung is a formal noun often used for payment of a fee or charge. Ordinary everyday payment is usually Zahlung.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_036",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-037",
+      "question": "doubt",
+      "options": [
+        "blitzen",
+        "bezweifeln",
+        "bewältigen",
+        "überlastet"
+      ],
+      "correctOption": 1,
+      "decision": "pending",
+      "itemId": "de_b2_a67913fa32c54792",
+      "explanation": "Bezweifeln is the verb to doubt. The noun doubt is Zweifel.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_037",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-038",
+      "question": "burst",
+      "options": [
+        "zerplatzen",
+        "hiesig",
+        "abseits",
+        "ertappen"
+      ],
+      "correctOption": 0,
+      "decision": "pending",
+      "itemId": "de_b1_42485655111de8e8",
+      "explanation": "Zerplatzen describes bursting or popping, for example a balloon.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_038",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-039",
+      "question": "hectic",
+      "options": [
+        "vermögen",
+        "erwidern",
+        "hektisch",
+        "stimmig"
+      ],
+      "correctOption": 2,
+      "decision": "pending",
+      "itemId": "de_b1_a15947d7707406ee",
+      "explanation": "Hektisch describes a rushed, hectic situation or manner.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_039",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-040",
+      "question": "nutritional intake",
+      "options": [
+        "nahrungsaufnahme",
+        "verunsichert",
+        "genussorientiert",
+        "hemmungslos"
+      ],
+      "correctOption": 0,
+      "decision": "pending",
+      "itemId": "de_b2_73bbb111078a48d3",
+      "explanation": "Nahrungsaufnahme is a feminine noun for taking in food. The noun begins with a capital letter.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_040",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-041",
+      "question": "chop",
+      "options": [
+        "schildern",
+        "zerhacken",
+        "wiederkehren",
+        "widerspiegeln"
+      ],
+      "correctOption": 1,
+      "decision": "pending",
+      "itemId": "de_b1_df90219df0737998",
+      "explanation": "Zerhacken means to chop something into pieces, as with herbs.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_041",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-042",
+      "question": "happy",
+      "options": [
+        "finster",
+        "ruppig",
+        "vergnügt",
+        "verkrampft"
+      ],
+      "correctOption": 2,
+      "decision": "pending",
+      "itemId": "de_b1_0e39d1cf081afac6",
+      "explanation": "Vergnügt describes someone who is cheerful or enjoying themselves.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_042",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-043",
+      "question": "sustainable",
+      "options": [
+        "einfühlsam",
+        "vordergründig",
+        "berträchtlich",
+        "tragfähig"
+      ],
+      "correctOption": 3,
+      "decision": "pending",
+      "itemId": "de_b2_9658aea5280e773c",
+      "explanation": "Tragfähig describes a workable or viable proposal, or something able to bear a load. Environmentally sustainable is usually nachhaltig.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_043",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-044",
+      "question": "Return",
+      "options": [
+        "zahlen",
+        "zwei",
+        "zurück",
+        "zeug"
+      ],
+      "correctOption": 2,
+      "decision": "pending",
+      "itemId": "de_a1_bbed1ce0166046d0",
+      "explanation": "Zurück is an adverb expressing movement back. The verb to return would require a verb such as zurückkommen.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_044",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-045",
+      "question": "Bright",
+      "options": [
+        "hell",
+        "dunkel",
+        "hacke",
+        "halb"
+      ],
+      "correctOption": 0,
+      "decision": "pending",
+      "itemId": "de_a1_650ec2391bddadce",
+      "explanation": "Hell describes brightness or a light colour, as in ein helles Zimmer.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_045",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-046",
+      "question": "to travel",
+      "options": [
+        "reisen",
+        "rechnen",
+        "rufen",
+        "rennen"
+      ],
+      "correctOption": 0,
+      "decision": "pending",
+      "itemId": "de_a1_39b9e763212f6c7f",
+      "explanation": "Reisen means to travel. Rechnen means to calculate, rufen to call and rennen to run.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_046",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-047",
+      "question": "the weather",
+      "options": [
+        "der Wind",
+        "das Wetter",
+        "die Wolke",
+        "der Wald"
+      ],
+      "correctOption": 1,
+      "decision": "pending",
+      "itemId": "de_a1_92e542cbea5d6d21",
+      "explanation": "Weather is das Wetter. Wind and Wolke name specific weather-related things.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_047",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-048",
+      "question": "breakfast",
+      "options": [
+        "das Abendessen",
+        "das Mittagessen",
+        "das Frühstück",
+        "das Essen"
+      ],
+      "correctOption": 2,
+      "decision": "pending",
+      "itemId": "de_a1_3bbe191bf9a84df1",
+      "explanation": "Frühstück is the morning meal: das Frühstück.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_048",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-049",
+      "question": "money",
+      "options": [
+        "das Geld",
+        "das Gold",
+        "die Münze",
+        "die Mark"
+      ],
+      "correctOption": 0,
+      "decision": "pending",
+      "itemId": "de_a1_bb41b7e121761c1b",
+      "explanation": "Geld means money and takes the article das.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_049",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-050",
+      "question": "apartment",
+      "options": [
+        "das Haus",
+        "die Wohnung",
+        "das Zimmer",
+        "das Gebäude"
+      ],
+      "correctOption": 1,
+      "decision": "pending",
+      "itemId": "de_a1_starter_005",
+      "explanation": "Wohnung is a feminine noun meaning an apartment or flat: die Wohnung.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_050",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-051",
+      "question": "to understand",
+      "options": [
+        "verlieren",
+        "versuchen",
+        "verstehen",
+        "vergessen"
+      ],
+      "correctOption": 2,
+      "decision": "pending",
+      "itemId": "de_a1_1382a97e62895fa7",
+      "explanation": "Verstehen means to understand, as in Ich verstehe die Frage.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_051",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-052",
+      "question": "teacher",
+      "options": [
+        "der Arzt",
+        "der Student",
+        "der Professor",
+        "der Lehrer"
+      ],
+      "correctOption": 3,
+      "decision": "pending",
+      "itemId": "de_a1_55f229e3370b4521",
+      "explanation": "Lehrer is the masculine form for a teacher. The feminine form is Lehrerin.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_052",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-053",
+      "question": "friend",
+      "options": [
+        "der Freund",
+        "der Feind",
+        "der Fremde",
+        "der Fahrer"
+      ],
+      "correctOption": 0,
+      "decision": "pending",
+      "itemId": "de_a1_f53ad42131eea8da",
+      "explanation": "Freund means a male friend and may mean boyfriend depending on context. Freundin is the feminine form.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_053",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-054",
+      "question": "language",
+      "options": [
+        "das Buch",
+        "die Sprache",
+        "das Wort",
+        "der Satz"
+      ],
+      "correctOption": 1,
+      "decision": "pending",
+      "itemId": "de_a1_a6f27bad3ab0fbdb",
+      "explanation": "Sprache means language: die Sprache, plural Sprachen.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_054",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    },
+    {
+      "auditReference": "legacy-quiz-055",
+      "question": "computer",
+      "options": [
+        "das Telefon",
+        "das Tablet",
+        "der Computer",
+        "die Kamera"
+      ],
+      "correctOption": 2,
+      "decision": "pending",
+      "itemId": "de_a1_39bd55bba25ab3ff",
+      "explanation": "Computer is masculine: der Computer. Its plural is also Computer.",
+      "reviewer": null,
+      "proposedQuestionId": "quiz_legacy_055",
+      "proposedDisposition": "corrected-draft; independent editorial approval pending"
+    }
+  ]
+}

@@ -1,0 +1,293 @@
+{
+  "issues": [],
+  "results": [
+    {
+      "name": "owner word get",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "owner word create",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "owner word update",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "owner legacy read",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "owner legacy overwrite",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "owner curated write",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "owner published read",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "owner draft read",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "other word get",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "other word create",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "other word update",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "other legacy read",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "other legacy overwrite",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "other curated write",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "other published read",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "other draft read",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "anonymous word get",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "anonymous word create",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "anonymous word update",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "anonymous legacy read",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "anonymous legacy overwrite",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "anonymous curated write",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "anonymous published read",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "anonymous draft read",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "create rejects extra",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "create rejects oversize",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "create rejects wrongType",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "create rejects missing",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "create rejects wrongId",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "update rejects extra",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "update rejects oversize",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "update rejects wrongType",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "update rejects missing",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "update rejects wrongId",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "immutable lemma",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "unmatched collection",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "owner state create",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "owner state get",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "owner state create",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "owner state update",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "owner state delete",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "owner checkpoint create",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "owner checkpoint update",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "other state get",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "other state create",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "other state update",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "other state delete",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "other checkpoint create",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "other checkpoint update",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "anonymous state get",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "anonymous state create",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "anonymous state update",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "anonymous state delete",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "anonymous checkpoint create",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "anonymous checkpoint update",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "create state rejects negative",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "create state rejects overflow",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "create state rejects extra",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "create state rejects missing",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "create state rejects badDate",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "create state rejects wrongId",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "create incomplete checkpoint",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "update state rejects negative",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "update state rejects overflow",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "update state rejects extra",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "update state rejects missing",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "update state rejects badDate",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "update state rejects wrongId",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "update incomplete checkpoint",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "word list limit 50",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "word list limit 51",
+      "state": "SUCCESS"
+    },
+    {
+      "name": "word list limit null",
+      "state": "SUCCESS"
+    }
+  ]
+}

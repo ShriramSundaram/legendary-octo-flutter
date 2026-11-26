@@ -7,7 +7,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'germanQuizData.dart';
 
 class germanBasicTest extends StatefulWidget {
-  const germanBasicTest({Key? key}) : super(key: key);
+  const germanBasicTest({Key? key, this.loadQuestions}) : super(key: key);
+  final Future<List<GermanQuiz>> Function()? loadQuestions;
 
   @override
   State<germanBasicTest> createState() => _germanBasicTestState();
@@ -28,6 +29,7 @@ class _germanBasicTestState extends State<germanBasicTest> {
   // Add loading state and quiz data list
   bool isLoading = true;
   List<GermanQuiz> quizData = [];
+  bool loadFailed = false;
 
   @override
   void initState() {
@@ -38,14 +40,19 @@ class _germanBasicTestState extends State<germanBasicTest> {
 
   void _loadQuizData() async {
     try {
-      quizData = await loadQuizData();
+      final questions = await (widget.loadQuestions?.call() ?? loadQuizData());
+      if (!mounted) return;
+      quizData = List<GermanQuiz>.of(questions);
       quizData.shuffle(); // Shuffle questions every time
       setState(() {
         isLoading = false;
       });
     } catch (e) {
-      print('Error loading quiz data: $e');
-      // Show error message to user
+      if (!mounted) return;
+      setState(() {
+        isLoading = false;
+        loadFailed = true;
+      });
     }
   }
 
@@ -144,6 +151,29 @@ class _germanBasicTestState extends State<germanBasicTest> {
       );
     }
 
+    if (quizData.isEmpty) {
+      return Scaffold(
+        appBar: AppBar(title: const Text('Vocabulary quiz')),
+        body: Center(
+            child: Padding(
+                padding: const EdgeInsets.all(24),
+                child: Column(mainAxisSize: MainAxisSize.min, children: [
+                  Text(loadFailed
+                      ? 'Quiz content could not be loaded.'
+                      : 'Reviewed quiz content is being prepared.'),
+                  if (loadFailed)
+                    TextButton(
+                        onPressed: () {
+                          setState(() {
+                            isLoading = true;
+                            loadFailed = false;
+                          });
+                          _loadQuizData();
+                        },
+                        child: const Text('Retry')),
+                ]))),
+      );
+    }
     // Format timer as minutes:seconds
     String timerText =
         '${remainingTime ~/ 60}:${(remainingTime % 60).toString().padLeft(2, '0')}';
@@ -197,7 +227,7 @@ class _germanBasicTestState extends State<germanBasicTest> {
               SizedBox(height: 15),
               _buildStatRow(),
               SizedBox(height: 20),
-              Text('Pick the Exact meaning for the German Word',
+              Text('Choose the German translation',
                   style: GoogleFonts.openSans(
                       fontSize: 18, fontWeight: FontWeight.bold)),
               SizedBox(height: 20),

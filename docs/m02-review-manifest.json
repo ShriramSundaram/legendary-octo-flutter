@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "catalogVersion": 4,
+  "wordCount": 269,
+  "quizCount": 55,
+  "legacyCandidateCount": 1059,
+  "priorityLegacyCount": 127,
+  "ownerProvenanceDeclaration": {
+    "date": "2026-11-25",
+    "statement": "Existing Firebase vocabulary is my own original writing",
+    "source": "Project owner chat response",
+    "editorialApproval": false
+  },
+  "inputHashes": {
+    "assets/content_catalog_v1.json": "8d5a4bf3c1586cf8ea6955c2aff19cc33da66862963a3b583a7c254fbf32b6f2",
+    "assets/quiz_catalog_v1.json": "6f6d99672e1424315e53bf03106348d82f4e27dadb5a88a287d1e150d01e0ecd",
+    ".local-tools/legacy-content-candidates.json": "0c634ec259c0f158b116cff95fe9e75843021865cc234b8d7d8fc9abf7da9082"
+  },
+  "localReviewFile": ".local-tools/m02-content-review.html",
+  "publicationDecisionsApplied": false
+}

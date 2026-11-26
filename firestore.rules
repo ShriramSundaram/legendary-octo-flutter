@@ -1,0 +1,69 @@
+rules_version = '2';
+// V1 models: User/{uid} is a read-only legacy snapshot. Its subcollections
+// personalWordsV1: {schemaVersion:1, id:string<=128, lemma:string 1..10000}
+// learningStateV1: {schemaVersion:1, itemId:string<=128, dueAt:timestamp,
+// lastAttempt:timestamp|null, intervalSeconds:int 0..315360000,
+// lapseCount:int 0..1000000, schedulerVersion:int 1..1000000}
+// migrations/personalWordsV1: digest:string(64), bounded integer counts,
+// schemaVersion:1 and reconciled:bool. Checkpoints never grant privileges.
+// contentV1: admin-published ContentItem schema; all client writes denied.
+// Generic: retained legacy reference content; all client writes denied.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function owner(uid) { return request.auth != null && request.auth.uid == uid; }
+    function text(value, max) { return value is string && value.size() > 0 && value.size() <= max; }
+    function count(value) { return value is int && value >= 0 && value <= 1000000; }
+    function bounded() { return request.query.limit != null && request.query.limit <= 50; }
+    function validWord(d, id) {
+      return d.keys().hasAll(['schemaVersion', 'id', 'lemma']) &&
+        d.keys().hasOnly(['schemaVersion', 'id', 'lemma']) &&
+        d.schemaVersion == 1 && d.id == id && text(d.id, 128) &&
+        id.matches('p_[a-f0-9]{64}') && text(d.lemma, 10000);
+    }
+    function validState(d, id) {
+      return d.keys().hasAll(['schemaVersion','itemId','dueAt','lastAttempt','intervalSeconds','lapseCount','schedulerVersion']) &&
+        d.keys().hasOnly(['schemaVersion','itemId','dueAt','lastAttempt','intervalSeconds','lapseCount','schedulerVersion']) &&
+        d.schemaVersion == 1 && text(d.itemId, 128) && d.itemId == id &&
+        d.dueAt is timestamp && (d.lastAttempt == null || d.lastAttempt is timestamp) &&
+        d.intervalSeconds is int && d.intervalSeconds >= 0 && d.intervalSeconds <= 315360000 &&
+        count(d.lapseCount) && count(d.schedulerVersion) && d.schedulerVersion > 0;
+    }
+    function validReport(d) {
+      return d.keys().hasAll(['schemaVersion','sourceDigest','uniqueWords','copiedWords','invalidEntries','reconciled']) &&
+        d.keys().hasOnly(['schemaVersion','sourceDigest','uniqueWords','copiedWords','invalidEntries','reconciled']) &&
+        d.schemaVersion == 1 && d.sourceDigest is string && d.sourceDigest.matches('[a-f0-9]{64}') &&
+        count(d.uniqueWords) && count(d.copiedWords) && d.copiedWords <= d.uniqueWords &&
+        count(d.invalidEntries) && d.reconciled is bool &&
+        (!d.reconciled || (d.invalidEntries == 0 && d.copiedWords == d.uniqueWords));
+    }
+    match /User/{uid} {
+      allow get: if owner(uid);
+      allow list, write: if false;
+      match /personalWordsV1/{id} {
+        allow get: if owner(uid);
+        allow list: if owner(uid) && bounded();
+        allow create: if owner(uid) && validWord(request.resource.data, id);
+        // Identity and exact source text are immutable. Repeated copies are no-ops.
+        allow update: if owner(uid) && validWord(request.resource.data, id) && request.resource.data == resource.data;
+        allow delete: if false;
+      }
+      match /learningStateV1/{id} {
+        allow get: if owner(uid);
+        allow list: if owner(uid) && bounded();
+        allow create, update: if owner(uid) && validState(request.resource.data, id);
+        allow delete: if owner(uid);
+      }
+      match /migrations/{id} {
+        allow get: if owner(uid);
+        allow create, update: if owner(uid) && id == 'personalWordsV1' && validReport(request.resource.data);
+      }
+    }
+    match /Generic/{id} {
+      allow get: if request.auth != null;
+    }
+    match /contentV1/{id} {
+      allow get: if request.auth != null && resource.data.editorialStatus == 'published';
+      allow list: if request.auth != null && bounded() && resource.data.editorialStatus == 'published';
+    }
+  }
+}
