@@ -52,3 +52,49 @@ lib/generated_plugin_registrant.dart
 **/key.properties
 **/*.keystore
 **/*.jks
+
+# Private credentials: keep real values local; only sanitized templates belong in Git.
+.env
+.env.*
+!.env.example
+!.env.template
+**/credentials.json
+**/*-credentials.json
+**/application_default_credentials.json
+**/service-account*.json
+**/service_account*.json
+**/*serviceAccount*.json
+**/secrets.json
+.secrets/
+**/secrets/
+**/*.key
+**/*.p12
+**/*.pfx
+**/*.pem
+
+# Distribution binaries belong in local build/release folders, never source control.
+*.apk
+*.aab
+*.ipa
+
+# Unused platform scaffolding generated locally during Android development.
+/linux/
+/macos/
+/windows/
+/ios/RunnerTests/
+
+# Unused local experiments and temporary files.
+/lib/writeFile_fixed.dart
+/lib/writeFile_new.dart
+/scratch/
+/tmp/
+/temp/
+*.tmp
+*.bak
+*.orig
+*.rej
+
+# Local screenshots are not project source.
+**/screenshots/
+screenshot*.png
+screenshot*.jpg
