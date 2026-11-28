@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'data/learning_audio.dart';
 import 'package:flutter/material.dart';
 import 'data/account_store.dart';
 import 'data/practice_session.dart';
@@ -53,6 +54,9 @@ class _PracticePageState extends State<PracticePage>
       account = AccountStore.current();
     } catch (_) {/* No signed-in storage. */}
     _reset();
+    if (widget.cards.isNotEmpty)
+      unawaited(LearningAudio.instance.play(
+          widget.quickCheck ? LearningCue.quickIntro : LearningCue.testIntro));
     ticker = Timer.periodic(const Duration(milliseconds: 250), (_) {
       if (widget.limit == null ||
           !session.started ||
@@ -76,12 +80,23 @@ class _PracticePageState extends State<PracticePage>
   }
 
   void _change(VoidCallback action) {
+    final wasFeedback = session.feedback;
     setState(action);
+    if (!wasFeedback &&
+        session.feedback &&
+        !session.complete &&
+        session.card.mode != PracticeMode.recall) {
+      unawaited(LearningAudio.instance.play(
+          session.selection == session.card.correctOption
+              ? LearningCue.correct
+              : LearningCue.wrong));
+    }
     _finish();
   }
 
   void _finish() {
     if (!session.complete || summary != null) return;
+    unawaited(LearningAudio.instance.play(LearningCue.complete));
     generation++;
     unawaited(speech.stop());
     summary = {
@@ -163,6 +178,7 @@ class _PracticePageState extends State<PracticePage>
   }
 
   void _advance(VoidCallback action) {
+    unawaited(LearningAudio.instance.play(LearningCue.tap));
     generation++;
     unawaited(speech.stop());
     _change(() {
@@ -184,6 +200,7 @@ class _PracticePageState extends State<PracticePage>
 
   @override
   void dispose() {
+    unawaited(LearningAudio.instance.stop());
     generation++;
     ticker?.cancel();
     session.dispose();
@@ -208,7 +225,12 @@ class _PracticePageState extends State<PracticePage>
         saved: saved,
         saveError: saveError,
         onRetrySave: () => unawaited(_save()),
-        onRetake: () => setState(_reset),
+        onRetake: () {
+          setState(_reset);
+          unawaited(LearningAudio.instance.play(widget.quickCheck
+              ? LearningCue.quickIntro
+              : LearningCue.testIntro));
+        },
         onDone: () => Navigator.pop(context),
         onPractice: () {
           final suggestedLevel = widget.quickCheck
@@ -249,6 +271,7 @@ class _PracticePageState extends State<PracticePage>
             onPressed: widget.cards.isEmpty
                 ? null
                 : () => _change(() {
+                      unawaited(LearningAudio.instance.play(LearningCue.tap));
                       startedAt = DateTime.now().toUtc();
                       session.start();
                     }),
@@ -295,7 +318,12 @@ class _PracticePageState extends State<PracticePage>
                 child: OutlinedButton(
                     onPressed: session.feedback
                         ? null
-                        : () => _change(() => session.select(entry.key)),
+                        : () {
+                            if (!playing)
+                              unawaited(
+                                  LearningAudio.instance.play(LearningCue.tap));
+                            _change(() => session.select(entry.key));
+                          },
                     style: OutlinedButton.styleFrom(
                         backgroundColor: session.selection == entry.key
                             ? theme.colorScheme.secondaryContainer

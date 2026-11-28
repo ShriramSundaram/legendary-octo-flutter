@@ -12,6 +12,19 @@ abstract class ReminderBackend {
   Future<Map<int, String?>> pending();
   Future<void> rebaseClock() async {}
   Future<void> bindOwner(String? owner) async {}
+  Future<void> emergencyDisable() async {
+    await bindOwner(null);
+    Object? failure;
+    for (final id in [reminderTimerId, ...reminderWeeklyIds]) {
+      try {
+        await cancel(id);
+      } catch (e) {
+        failure = e;
+      }
+    }
+    if (failure != null)
+      throw StateError('Reminder cleanup was not confirmed.');
+  }
 }
 
 abstract class ReminderStorage {
@@ -120,7 +133,8 @@ class ReminderController extends ChangeNotifier {
               value.revision == settings.timerRevision &&
               value.level == settings.timerLevel &&
               value.itemId == settings.itemId);
-  Future<void> _apply(ReminderSettings next) async {
+  Future<void> _apply(ReminderSettings next,
+      {bool preserveOnFailure = false}) async {
     _check();
     await storage.write(next.toMap());
     _check();
@@ -159,7 +173,7 @@ class ReminderController extends ChangeNotifier {
       try {
         await _cancelAll();
       } catch (_) {/* The UI must report unconfirmed status. */}
-      if (storage.current && !closed) {
+      if (storage.current && !closed && !preserveOnFailure) {
         settings = next.copy(enabled: false, clearTimer: true);
         try {
           await storage.write(settings.toMap());
@@ -175,7 +189,7 @@ class ReminderController extends ChangeNotifier {
         permissionGranted = await backend.permission();
         _check();
         if (permissionGranted) {
-          await _apply(settings);
+          await _apply(settings, preserveOnFailure: true);
         } else {
           await _cancelAll();
         }

@@ -1,0 +1,17 @@
+{
+  "items": 160,
+  "perLevel": {
+    "B1": 40,
+    "B2": 40,
+    "C1": 40,
+    "C2": 40
+  },
+  "kinds": {
+    "noun": 80,
+    "verb": 48,
+    "adjective": 32
+  },
+  "editorialStatus": "published",
+  "bytes": 170010,
+  "gzipBytes": 16787
+}

@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "testedOn": "2026-11-27",
+  "package": "com.sundaram.germanreminder.releasecheck",
+  "releaseMode": true,
+  "debuggable": false,
+  "networkPermission": false,
+  "firebaseAutoInit": false,
+  "result": "PASS",
+  "checks": [
+    "isolated-nondebuggable-release",
+    "repeated-real-plugin-cancellation",
+    "fresh-reminder-initialization",
+    "retry-recovers-without-reset",
+    "logout-cleanup-survives-initialization-failure"
+  ],
+  "playInstallationChanged": false,
+  "apkSha256": "58567b941acddc4f2d1e67556658d4c124a756a52d652aae8dd493284a65da9a"
+}

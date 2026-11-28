@@ -1,0 +1,22 @@
+{
+  "steps": 300,
+  "package": "com.sundaram.germanreminder.wirelesstest",
+  "apkSha256": "5d312d4fdca7b492d39f2e4179e6d5121f3caf4545724e2943a7e3d674dae849",
+  "productionReady": false,
+  "launch": "Status: ok",
+  "analysis": "No issues found (6 files)",
+  "installedOn": "2026-11-27",
+  "versionName": "1.0.13",
+  "audiblePhoneAcceptance": "Pending owner",
+  "versionCode": 28,
+  "install": "Success",
+  "playVersionUnchanged": true,
+  "audioTestsPassed": 7,
+  "nativeChimeChecks": "Passed",
+  "missions": 30,
+  "choicesPerStep": 3,
+  "dataCleared": false,
+  "flutterTestsPassed": 145,
+  "packagedThreeChoicesVerified": true,
+  "packagedMissionTextCompressedBytes": 135552
+}

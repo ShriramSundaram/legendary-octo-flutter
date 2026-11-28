@@ -1,0 +1,13 @@
+const assert=require('node:assert/strict');
+const editorial=require('../tools/content-editorial-state.cjs');
+const base={id:'word',lemma:'Wort',meaning:'word',version:1,editorialStatus:'draft',reviewer:'',reviewedAt:'',source:'source',rights:'pending'};
+const approved={...base,version:2,editorialStatus:'published',reviewer:'owner',reviewedAt:'2026-11-27',rights:'approved',approvalBasis:'owner inclusion'};
+assert.deepEqual(editorial.word(approved,base),approved);
+const edited=editorial.word(approved,{...base,meaning:'changed'});
+assert.equal(edited.editorialStatus,'draft'); assert.equal(edited.version,3); assert.equal(edited.reviewer,'');
+assert.equal(edited.approvalBasis,undefined);
+const mission={id:'mission',status:'draft',contentDigest:'one',steps:[{prompt:'one'}]};
+const signed={...mission,status:'published',reviewer:'owner',reviewedAt:'2026-11-27'};
+assert.equal(editorial.mission(signed,mission).status,'published');
+assert.equal(editorial.mission(signed,{...mission,contentDigest:'two',steps:[{prompt:'changed'}]}).status,'draft');
+console.log('Editorial checks passed: approvals retained only for unchanged learner content.');

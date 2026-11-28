@@ -90,7 +90,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
     var currentHeight = MediaQuery.of(context).size.width;
 
     if (isEmailVerified) {
-      return MyHomePage(title: 'GermanReminder');
+      return MyHomePage(title: 'German Reminder');
     }
     return Scaffold(
       appBar: AppBar(

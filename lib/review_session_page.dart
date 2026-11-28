@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'dart:async';
+import 'data/learning_audio.dart';
+import 'package:flutter/foundation.dart' show kDebugMode;
+import 'data/learning_catalog_loader.dart';
 import 'data/content_catalog.dart';
 import 'data/review_controller.dart';
 import 'data/review_scheduler.dart';
@@ -14,6 +17,8 @@ class ReviewSessionPage extends StatefulWidget {
   final DateTime Function()? clock;
   final Future<ContentCatalog> Function()? loadCatalog;
   final PracticeSpeech? speech;
+  final Set<String>? itemIds;
+  final bool previewDraftWords;
   const ReviewSessionPage(
       {super.key,
       this.level = 'A1',
@@ -21,6 +26,8 @@ class ReviewSessionPage extends StatefulWidget {
       this.storage,
       this.clock,
       this.speech,
+      this.itemIds,
+      this.previewDraftWords = false,
       this.loadCatalog});
   @override
   State<ReviewSessionPage> createState() => _ReviewSessionPageState();
@@ -34,6 +41,13 @@ class _ReviewSessionPageState extends State<ReviewSessionPage> {
       _revealed = false,
       _includeNew = true;
   String? _error, _notice;
+  bool _announced = false;
+  @override
+  void dispose() {
+    unawaited(LearningAudio.instance.stop());
+    super.dispose();
+  }
+
   @override
   void initState() {
     super.initState();
@@ -49,12 +63,18 @@ class _ReviewSessionPageState extends State<ReviewSessionPage> {
       // Capture the account before awaiting content, so switches cannot rebind it.
       final storage = widget.storage ?? AccountReviewStorage.current();
       final catalog = await (widget.loadCatalog?.call() ??
-          rootBundle
-              .loadString('assets/content_catalog_v1.json')
-              .then(ContentCatalog.decode));
-      final controller =
-          ReviewController(catalog, storage, clock: widget.clock);
+          loadLearningCatalog(includeDrafts: kDebugMode));
+      final controller = ReviewController(catalog, storage,
+          clock: widget.clock,
+          onlyItemIds: widget.itemIds,
+          previewDrafts: kDebugMode);
       if (!mounted) return;
+      if (!_announced) {
+        _announced = true;
+        unawaited(LearningAudio.instance.play(controller.canResume
+            ? LearningCue.resumeIntro
+            : LearningCue.practiceIntro));
+      }
       setState(() {
         _controller = controller;
         _loading = false;
@@ -78,6 +98,8 @@ class _ReviewSessionPageState extends State<ReviewSessionPage> {
     try {
       final started = await _controller!
           .start(widget.level, widget.topic, includeNew: _includeNew);
+      if (mounted && started)
+        unawaited(LearningAudio.instance.play(LearningCue.tap));
       if (mounted)
         setState(() {
           _started = started;
@@ -112,6 +134,10 @@ class _ReviewSessionPageState extends State<ReviewSessionPage> {
     try {
       final saved = await controller.answer(answer,
           expectedPosition: active.position, expectedItemId: id);
+      if (mounted && saved)
+        unawaited(LearningAudio.instance.play(answer == RecallAnswer.remembered
+            ? LearningCue.remembered
+            : LearningCue.again));
       if (mounted && saved)
         setState(() {
           _revealed = false;
@@ -166,6 +192,9 @@ class _ReviewSessionPageState extends State<ReviewSessionPage> {
                                   const Text(
                                       'Self-reported recall, not a quiz score. Progress is saved on this device for your account.'),
                                   const SizedBox(height: 20),
+                                  if (kDebugMode && widget.previewDraftWords)
+                                    const Text(
+                                        'Preview vocabulary · Editorial review pending'),
                                   if (_error != null)
                                     Padding(
                                         padding:
@@ -181,9 +210,11 @@ class _ReviewSessionPageState extends State<ReviewSessionPage> {
                                     const SizedBox(height: 12),
                                     Text(
                                         '${controller.dueCount(widget.level, widget.topic)} due · ${controller.newCount(widget.level, widget.topic)} new words'),
-                                    const Text(
-                                        'Up to 10 words per session. Due words come first.'),
-                                    if (!controller.canResume)
+                                    Text(widget.itemIds == null
+                                        ? 'Up to 10 words per session. Due words come first.'
+                                        : 'Review this mission’s words, including words already scheduled for later. Your normal review dates are preserved for early Remembered answers.'),
+                                    if (!controller.canResume &&
+                                        widget.itemIds == null)
                                       CheckboxListTile(
                                           contentPadding: EdgeInsets.zero,
                                           title:
@@ -216,11 +247,34 @@ class _ReviewSessionPageState extends State<ReviewSessionPage> {
                                               const EdgeInsets.only(top: 16),
                                           child: Text(_notice!)),
                                   ] else if (active!.complete) ...[
+                                    const Icon(Icons.auto_awesome_rounded,
+                                        color: Color(0xff9969cf), size: 56),
+                                    const SizedBox(height: 12),
                                     Text('Session complete',
                                         style: theme.textTheme.headlineMedium),
                                     const SizedBox(height: 16),
                                     Text(
                                         '${active.remembered} Remembered · ${active.again} Again'),
+                                    const SizedBox(height: 16),
+                                    Container(
+                                        padding: const EdgeInsets.all(20),
+                                        decoration: BoxDecoration(
+                                            color: const Color(0xffeee5fb),
+                                            borderRadius:
+                                                BorderRadius.circular(20)),
+                                        child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                  '${controller.progress.on((widget.clock?.call() ?? DateTime.now()).toLocal()).reviews} / ${controller.progress.goal} reviews today',
+                                                  style: theme
+                                                      .textTheme.titleLarge),
+                                              const SizedBox(height: 8),
+                                              const Text(
+                                                  'Every honest answer is a step forward. Your daily activity is saved on this device.')
+                                            ])),
+                                    const SizedBox(height: 16),
                                     const Text(
                                         'Again words return after 10 minutes. Remembered words return at increasing intervals, starting at 1 day.'),
                                     const SizedBox(height: 20),
@@ -291,8 +345,11 @@ class _ReviewSessionPageState extends State<ReviewSessionPage> {
                                     const SizedBox(height: 20),
                                     if (!_revealed)
                                       FilledButton(
-                                          onPressed: () =>
-                                              setState(() => _revealed = true),
+                                          onPressed: () {
+                                            unawaited(LearningAudio.instance
+                                                .play(LearningCue.tap));
+                                            setState(() => _revealed = true);
+                                          },
                                           child: const Text('Reveal meaning')),
                                     if (_revealed)
                                       Wrap(

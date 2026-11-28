@@ -1,4 +1,5 @@
 import 'package:flutter_tts/flutter_tts.dart';
+import 'learning_audio.dart';
 
 abstract class PracticeSpeech {
   Future<bool> prepare();
@@ -11,6 +12,7 @@ class GermanPracticeSpeech implements PracticeSpeech {
   @override
   Future<bool> prepare() async {
     try {
+      await LearningAudio.instance.stop();
       if (await _tts.isLanguageAvailable('de-DE') != true) return false;
       final voices = await _tts.getVoices;
       if (voices is! List) return false;

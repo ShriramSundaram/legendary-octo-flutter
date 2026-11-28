@@ -1,0 +1,4654 @@
+{
+  "schemaVersion": 1,
+  "missions": [
+    {
+      "id": "cafe_a1",
+      "version": 1,
+      "level": "A1",
+      "status": "draft",
+      "title": "At the café",
+      "emoji": "☕",
+      "minutes": 4,
+      "objective": "Order a drink and a snack politely, choose takeaway and understand the price.",
+      "situation": "You have a few minutes before your train. Order a coffee and a piece of cake to take away.",
+      "topic": "Food and drink",
+      "source": "Original app-authored pilot; editorial approval pending",
+      "usefulWords": [
+        "de_a1_c43d6b86986e80e9",
+        "de_a1_bfc0f3aaa54e8183"
+      ],
+      "steps": [
+        {
+          "id": "order",
+          "speaker": "Barista",
+          "prompt": "Guten Morgen! Was möchten Sie?",
+          "translation": "Good morning! What would you like?",
+          "listening": false,
+          "choices": [
+            "Ich hätte gern einen Kaffee, bitte.",
+            "Ich bin ein Kaffee.",
+            "Gestern war ich im Café."
+          ],
+          "correct": 0,
+          "explanation": "Ich hätte gern … is a polite way to order. Ich bin ein Kaffee means I am a coffee; the third reply talks about yesterday."
+        },
+        {
+          "id": "snack",
+          "speaker": "Barista",
+          "prompt": "Möchten Sie auch etwas essen?",
+          "translation": "Would you also like something to eat?",
+          "listening": false,
+          "choices": [
+            "Der Zug fährt um zehn.",
+            "Ja, ein Stück Kuchen, bitte.",
+            "Ich komme aus Berlin."
+          ],
+          "correct": 1,
+          "explanation": "Ein Stück Kuchen means a piece of cake. It answers the offer of food; the other replies describe a train time or where you come from."
+        },
+        {
+          "id": "takeaway",
+          "speaker": "Barista",
+          "prompt": "Möchten Sie hier essen oder alles mitnehmen?",
+          "translation": "Would you like to eat here or take everything away?",
+          "listening": false,
+          "choices": [
+            "Um acht Uhr, bitte.",
+            "Ich heiße Anna.",
+            "Zum Mitnehmen, bitte."
+          ],
+          "correct": 2,
+          "explanation": "Zum Mitnehmen means to take away. Um acht Uhr gives a time, while Ich heiße … introduces your name."
+        },
+        {
+          "id": "price",
+          "speaker": "Barista",
+          "prompt": "Das macht sechs Euro fünfzig.",
+          "translation": "That comes to six euros fifty.",
+          "listening": true,
+          "choices": [
+            "16,50 €",
+            "6,50 €",
+            "5,60 €"
+          ],
+          "correct": 1,
+          "explanation": "Sechs Euro fünfzig is 6,50 €. Sixteen would be sechzehn; 5,60 € would be fünf Euro sechzig."
+        },
+        {
+          "id": "goodbye",
+          "speaker": "Barista",
+          "prompt": "Hier ist Ihre Bestellung. Einen schönen Tag noch!",
+          "translation": "Here is your order. Have a nice day!",
+          "listening": false,
+          "choices": [
+            "Vielen Dank! Ihnen auch.",
+            "Wie alt sind Sie?",
+            "Ich brauche einen Bahnhof."
+          ],
+          "correct": 0,
+          "explanation": "Vielen Dank! Ihnen auch means Thank you very much! You too. It is a friendly reply to the barista’s good wishes."
+        }
+      ]
+    },
+    {
+      "id": "cafe_a1",
+      "version": 2,
+      "level": "A1",
+      "status": "draft",
+      "title": "At the café",
+      "emoji": "☕",
+      "minutes": 6,
+      "objective": "Order politely, choose takeaway and pay.",
+      "situation": "You are buying coffee and cake before catching a train.",
+      "topic": "Food and drink",
+      "source": "Original AI-assisted dialogue; editorial approval pending. tools/content/m11-A1.txt",
+      "contentDigest": "3b39b68ca1bbd3a1f0ef4d52a5b632fa33d32f25369912f1fcf2f5130562b27f",
+      "usefulWords": [
+        "mission_a1_3b5ac25d3f9997bd",
+        "mission_a1_a852cfba62a81301",
+        "mission_a1_881eb309b2aeb066",
+        "mission_a1_62d9fd6a9a859a47"
+      ],
+      "steps": [
+        {
+          "id": "turn_1",
+          "speaker": "Barista",
+          "prompt": "Guten Morgen! Was möchten Sie?",
+          "translation": "Good morning! What would you like?",
+          "listening": false,
+          "choices": [
+            "Ich hätte gern einen Kaffee, bitte.",
+            "Ich bin ein Kaffee."
+          ],
+          "correct": 0,
+          "explanation": "Ich hätte gern is a polite ordering phrase; ich bin describes what you are."
+        },
+        {
+          "id": "turn_2",
+          "speaker": "Barista",
+          "prompt": "Ein kleiner oder ein großer Becher?",
+          "translation": "A small cup or a large one?",
+          "listening": false,
+          "choices": [
+            "Mein Kaffee heißt Paul.",
+            "Ein kleiner Becher, bitte."
+          ],
+          "correct": 1,
+          "explanation": "Choose a cup size; the alternative gives the coffee a name."
+        },
+        {
+          "id": "turn_3",
+          "speaker": "Barista",
+          "prompt": "Möchten Sie auch etwas essen?",
+          "translation": "Would you also like something to eat?",
+          "listening": false,
+          "choices": [
+            "Ja, ein Stück Kuchen, bitte.",
+            "Ich fahre mit dem Bus."
+          ],
+          "correct": 0,
+          "explanation": "A piece of cake answers the offer of food."
+        },
+        {
+          "id": "turn_4",
+          "speaker": "Barista",
+          "prompt": "Wir haben Apfelkuchen und Schokoladenkuchen.",
+          "translation": "We have apple cake and chocolate cake.",
+          "listening": false,
+          "choices": [
+            "Ich möchte morgen arbeiten.",
+            "Den Apfelkuchen, bitte."
+          ],
+          "correct": 1,
+          "explanation": "Name the cake you want; tomorrow's work is unrelated."
+        },
+        {
+          "id": "turn_5",
+          "speaker": "Barista",
+          "prompt": "Möchten Sie hier essen oder alles mitnehmen?",
+          "translation": "Would you like to eat here or take everything away?",
+          "listening": true,
+          "choices": [
+            "Zum Mitnehmen, bitte.",
+            "Um acht Uhr, bitte."
+          ],
+          "correct": 0,
+          "explanation": "Zum Mitnehmen chooses takeaway; um acht Uhr gives a time."
+        },
+        {
+          "id": "turn_6",
+          "speaker": "Barista",
+          "prompt": "Mit Zucker oder ohne Zucker?",
+          "translation": "With sugar or without sugar?",
+          "listening": false,
+          "choices": [
+            "Zucker ist mein Nachname.",
+            "Ohne Zucker, danke."
+          ],
+          "correct": 1,
+          "explanation": "Ohne means without and answers the preference question."
+        },
+        {
+          "id": "turn_7",
+          "speaker": "Barista",
+          "prompt": "Darf es sonst noch etwas sein?",
+          "translation": "Would you like anything else?",
+          "listening": false,
+          "choices": [
+            "Nein danke, das ist alles.",
+            "Ich heiße auch etwas."
+          ],
+          "correct": 0,
+          "explanation": "Das ist alles politely finishes an order."
+        },
+        {
+          "id": "turn_8",
+          "speaker": "Barista",
+          "prompt": "Das macht zusammen neun Euro zwanzig.",
+          "translation": "That comes to nine euros twenty altogether.",
+          "listening": false,
+          "choices": [
+            "Hier sind neun Minuten.",
+            "Hier sind zehn Euro."
+          ],
+          "correct": 1,
+          "explanation": "Euros are money; minutes do not pay the bill."
+        },
+        {
+          "id": "turn_9",
+          "speaker": "Barista",
+          "prompt": "Achtzig Cent zurück, oder möchten Sie Trinkgeld geben?",
+          "translation": "Eighty cents change, or would you like to leave a tip?",
+          "listening": true,
+          "choices": [
+            "Behalten Sie den Rest, bitte.",
+            "Der Rest fährt nach Berlin."
+          ],
+          "correct": 0,
+          "explanation": "Behalten Sie den Rest tells the barista to keep the change."
+        },
+        {
+          "id": "turn_10",
+          "speaker": "Barista",
+          "prompt": "Hier ist Ihre Bestellung. Einen schönen Tag noch!",
+          "translation": "Here is your order. Have a nice day!",
+          "listening": false,
+          "choices": [
+            "Wie alt ist Ihr Bahnhof?",
+            "Vielen Dank! Ihnen auch."
+          ],
+          "correct": 1,
+          "explanation": "Ihnen auch returns a polite good wish."
+        }
+      ]
+    },
+    {
+      "id": "market_a1",
+      "version": 1,
+      "level": "A1",
+      "status": "draft",
+      "title": "A small shopping trip",
+      "emoji": "🛒",
+      "minutes": 6,
+      "objective": "Find everyday groceries and finish your purchase.",
+      "situation": "You have a short shopping list and want to buy only what you need.",
+      "topic": "Shopping",
+      "source": "Original AI-assisted dialogue; editorial approval pending. tools/content/m11-A1.txt",
+      "contentDigest": "0c46143fa2506cb3be72d6a920cb35ce6c52f5b943afcf9705d8646fd8319cb0",
+      "usefulWords": [
+        "mission_a1_b87bc11a9bf3393a",
+        "mission_a1_22cc7ec98fda17b7",
+        "mission_a1_6b0f2a50475b4b86",
+        "mission_a1_437b98683fab7e52"
+      ],
+      "steps": [
+        {
+          "id": "turn_1",
+          "speaker": "Kassierer",
+          "prompt": "Kann ich Ihnen mit Ihrer Einkaufsliste helfen?",
+          "translation": "Can I help you with your shopping list?",
+          "listening": false,
+          "choices": [
+            "Ja, ich bin Milch und Brot.",
+            "Ja, ich suche Milch und Brot."
+          ],
+          "correct": 1,
+          "explanation": "Ich suche means I am looking for."
+        },
+        {
+          "id": "turn_2",
+          "speaker": "Kassierer",
+          "prompt": "Die Milch steht hinten links.",
+          "translation": "The milk is at the back on the left.",
+          "listening": false,
+          "choices": [
+            "Hinten links, danke.",
+            "Links ist mein Geburtstag."
+          ],
+          "correct": 0,
+          "explanation": "Repeat the location to check that you understood."
+        },
+        {
+          "id": "turn_3",
+          "speaker": "Kassierer",
+          "prompt": "Möchten Sie frisches Brot oder Toastbrot?",
+          "translation": "Would you like fresh bread or sliced toast bread?",
+          "listening": false,
+          "choices": [
+            "Brot liest sehr schnell.",
+            "Frisches Brot, bitte."
+          ],
+          "correct": 1,
+          "explanation": "Choose one of the offered kinds of bread."
+        },
+        {
+          "id": "turn_4",
+          "speaker": "Kassierer",
+          "prompt": "Brauchen Sie auch Obst?",
+          "translation": "Do you also need fruit?",
+          "listening": false,
+          "choices": [
+            "Ja, zwei Äpfel, bitte.",
+            "Ja, zwei Bahnhöfe, bitte."
+          ],
+          "correct": 0,
+          "explanation": "Äpfel are fruit; Bahnhöfe are railway stations."
+        },
+        {
+          "id": "turn_5",
+          "speaker": "Kassierer",
+          "prompt": "Die Äpfel kosten zusammen einen Euro achtzig.",
+          "translation": "The apples cost one euro eighty together.",
+          "listening": true,
+          "choices": [
+            "Achtzig Äpfel, bitte.",
+            "Einen Euro achtzig, gut."
+          ],
+          "correct": 1,
+          "explanation": "Confirm the price rather than changing the quantity to eighty apples."
+        },
+        {
+          "id": "turn_6",
+          "speaker": "Kassierer",
+          "prompt": "Haben Sie eine Tasche dabei?",
+          "translation": "Have you brought a bag?",
+          "listening": false,
+          "choices": [
+            "Ja, ich habe meine Tasche dabei.",
+            "Meine Tasche arbeitet heute."
+          ],
+          "correct": 0,
+          "explanation": "Dabei means with you in this situation."
+        },
+        {
+          "id": "turn_7",
+          "speaker": "Kassierer",
+          "prompt": "Haben Sie einen Pfandbon?",
+          "translation": "Do you have a deposit-return receipt?",
+          "listening": false,
+          "choices": [
+            "Ja, hier fährt mein Pfandbon.",
+            "Ja, hier ist mein Pfandbon."
+          ],
+          "correct": 1,
+          "explanation": "Hier ist is used when handing something over."
+        },
+        {
+          "id": "turn_8",
+          "speaker": "Kassierer",
+          "prompt": "Das macht insgesamt sieben Euro.",
+          "translation": "That comes to seven euros in total.",
+          "listening": false,
+          "choices": [
+            "Kann ich mit Karte bezahlen?",
+            "Kann ich mit Donnerstag bezahlen?"
+          ],
+          "correct": 0,
+          "explanation": "Mit Karte names a payment method; Thursday is a day."
+        },
+        {
+          "id": "turn_9",
+          "speaker": "Kassierer",
+          "prompt": "Ja. Möchten Sie den Kassenbon?",
+          "translation": "Yes. Would you like the receipt?",
+          "listening": true,
+          "choices": [
+            "Ja, bitte geben Sie mir die Straße.",
+            "Ja, bitte geben Sie mir den Bon."
+          ],
+          "correct": 1,
+          "explanation": "Bon refers to the receipt in this checkout context."
+        },
+        {
+          "id": "turn_10",
+          "speaker": "Kassierer",
+          "prompt": "Vielen Dank und auf Wiedersehen!",
+          "translation": "Thank you and goodbye!",
+          "listening": false,
+          "choices": [
+            "Auf Wiedersehen, vielen Dank.",
+            "Ich suche noch einen Namen."
+          ],
+          "correct": 0,
+          "explanation": "A farewell closes the purchase naturally."
+        }
+      ]
+    },
+    {
+      "id": "introductions_a1",
+      "version": 1,
+      "level": "A1",
+      "status": "draft",
+      "title": "Meet your course partner",
+      "emoji": "👋",
+      "minutes": 6,
+      "objective": "Introduce yourself and arrange to practise together.",
+      "situation": "It is your first day in an adult German course.",
+      "topic": "Greetings",
+      "source": "Original AI-assisted dialogue; editorial approval pending. tools/content/m11-A1.txt",
+      "contentDigest": "4fa0a750bfe63ed62bac2aa07968e164e9ff5745b5200cd4a76604373ee20552",
+      "usefulWords": [
+        "mission_a1_f5df0b3de314cc4e",
+        "mission_a1_220fe653bc8bcc85",
+        "mission_a1_223203271cfb4aeb",
+        "mission_a1_3adf671b6bf6f9c9"
+      ],
+      "steps": [
+        {
+          "id": "turn_1",
+          "speaker": "Kurskollegin",
+          "prompt": "Guten Morgen! Wie heißen Sie?",
+          "translation": "Good morning! What is your name?",
+          "listening": false,
+          "choices": [
+            "Ich heiße Samira.",
+            "Ich bin aus Uhr."
+          ],
+          "correct": 0,
+          "explanation": "Ich heiße introduces your name."
+        },
+        {
+          "id": "turn_2",
+          "speaker": "Kurskollegin",
+          "prompt": "Und wie ist Ihr Nachname?",
+          "translation": "And what is your surname?",
+          "listening": false,
+          "choices": [
+            "Mein Nachname ist um neun.",
+            "Mein Nachname ist Rahmani."
+          ],
+          "correct": 1,
+          "explanation": "A surname answers the question; um neun gives a time."
+        },
+        {
+          "id": "turn_3",
+          "speaker": "Kurskollegin",
+          "prompt": "Woher kommen Sie?",
+          "translation": "Where do you come from?",
+          "listening": false,
+          "choices": [
+            "Ich komme aus Marokko.",
+            "Ich komme am Mittwoch."
+          ],
+          "correct": 0,
+          "explanation": "Aus names your origin; am Mittwoch names a day."
+        },
+        {
+          "id": "turn_4",
+          "speaker": "Kurskollegin",
+          "prompt": "Wohnen Sie jetzt hier in Köln?",
+          "translation": "Do you live here in Cologne now?",
+          "listening": false,
+          "choices": [
+            "Ja, Köln wohnt in meiner Tasche.",
+            "Ja, ich wohne seit kurzem hier."
+          ],
+          "correct": 1,
+          "explanation": "Answer about your own place of residence."
+        },
+        {
+          "id": "turn_5",
+          "speaker": "Kurskollegin",
+          "prompt": "Welche Sprachen sprechen Sie?",
+          "translation": "Which languages do you speak?",
+          "listening": true,
+          "choices": [
+            "Ich spreche Arabisch, Englisch und ein bisschen Deutsch.",
+            "Ich spreche Kaffee und Bahnhof."
+          ],
+          "correct": 0,
+          "explanation": "Name languages rather than objects or places."
+        },
+        {
+          "id": "turn_6",
+          "speaker": "Kurskollegin",
+          "prompt": "Warum lernen Sie Deutsch?",
+          "translation": "Why are you learning German?",
+          "listening": false,
+          "choices": [
+            "Deutsch möchte mich arbeiten.",
+            "Ich möchte hier arbeiten."
+          ],
+          "correct": 1,
+          "explanation": "Ich möchte expresses your own wish."
+        },
+        {
+          "id": "turn_7",
+          "speaker": "Kurskollegin",
+          "prompt": "Wann haben Sie Zeit zum Üben?",
+          "translation": "When do you have time to practise?",
+          "listening": false,
+          "choices": [
+            "Am Samstag habe ich Zeit.",
+            "Meine Zeit heißt Deutsch."
+          ],
+          "correct": 0,
+          "explanation": "Am Samstag gives a useful time."
+        },
+        {
+          "id": "turn_8",
+          "speaker": "Kurskollegin",
+          "prompt": "Hier ist meine Visitenkarte mit meiner E-Mail-Adresse.",
+          "translation": "Here is my business card with my email address.",
+          "listening": false,
+          "choices": [
+            "Danke, ich esse Ihre E-Mail-Adresse.",
+            "Danke, ich schreibe Ihnen heute."
+          ],
+          "correct": 1,
+          "explanation": "Schreiben is the natural action for contacting someone by email."
+        },
+        {
+          "id": "turn_9",
+          "speaker": "Kurskollegin",
+          "prompt": "Treffen wir uns am Samstag um zehn Uhr?",
+          "translation": "Shall we meet on Saturday at ten?",
+          "listening": true,
+          "choices": [
+            "Ja, Samstag um zehn passt gut.",
+            "Nein, Samstag ist meine Sprache."
+          ],
+          "correct": 0,
+          "explanation": "Confirm the proposed day and time."
+        },
+        {
+          "id": "turn_10",
+          "speaker": "Kurskollegin",
+          "prompt": "Schön, Sie kennenzulernen!",
+          "translation": "Nice to meet you!",
+          "listening": false,
+          "choices": [
+            "Ich heiße zehn Uhr.",
+            "Ich freue mich auch."
+          ],
+          "correct": 1,
+          "explanation": "This reply returns the friendly sentiment."
+        }
+      ]
+    },
+    {
+      "id": "directions_a1",
+      "version": 1,
+      "level": "A1",
+      "status": "draft",
+      "title": "Find the station",
+      "emoji": "🗺️",
+      "minutes": 6,
+      "objective": "Follow simple directions and check the route.",
+      "situation": "You are walking in a new town and need to find the station.",
+      "topic": "Travel",
+      "source": "Original AI-assisted dialogue; editorial approval pending. tools/content/m11-A1.txt",
+      "contentDigest": "7c9705d1b35b8c9711f53f554db4e621bd8997959a9ae51048e407ab4fc9dd3a",
+      "usefulWords": [
+        "mission_a1_77d58211237effb6",
+        "mission_a1_4ca831f12b60bdc7",
+        "mission_a1_e763693e9617a205",
+        "mission_a1_b5ea8d6d796f522a"
+      ],
+      "steps": [
+        {
+          "id": "turn_1",
+          "speaker": "Passantin",
+          "prompt": "Suchen Sie den Bahnhof?",
+          "translation": "Are you looking for the station?",
+          "listening": false,
+          "choices": [
+            "Ja, wie alt ist der Bahnhofskuchen?",
+            "Ja, wie komme ich zum Bahnhof?"
+          ],
+          "correct": 1,
+          "explanation": "Wie komme ich zu asks for directions."
+        },
+        {
+          "id": "turn_2",
+          "speaker": "Passantin",
+          "prompt": "Gehen Sie zuerst geradeaus.",
+          "translation": "First go straight ahead.",
+          "listening": false,
+          "choices": [
+            "Also zuerst geradeaus.",
+            "Also zuerst gestern."
+          ],
+          "correct": 0,
+          "explanation": "Geradeaus is a direction; gestern means yesterday."
+        },
+        {
+          "id": "turn_3",
+          "speaker": "Passantin",
+          "prompt": "An der nächsten Ecke gehen Sie nach links.",
+          "translation": "At the next corner turn left.",
+          "listening": false,
+          "choices": [
+            "Die nächste Ecke heißt Anna.",
+            "An der nächsten Ecke links, richtig?"
+          ],
+          "correct": 1,
+          "explanation": "Repeating the instruction checks your understanding."
+        },
+        {
+          "id": "turn_4",
+          "speaker": "Passantin",
+          "prompt": "Ja, dann gehen Sie bis zur großen Kreuzung.",
+          "translation": "Yes, then walk to the large crossroads.",
+          "listening": false,
+          "choices": [
+            "Bis zur großen Kreuzung, danke.",
+            "Die Kreuzung trinkt Wasser."
+          ],
+          "correct": 0,
+          "explanation": "Bis zu identifies the point you should reach."
+        },
+        {
+          "id": "turn_5",
+          "speaker": "Passantin",
+          "prompt": "An der Ampel gehen Sie nach rechts.",
+          "translation": "Turn right at the traffic light.",
+          "listening": true,
+          "choices": [
+            "Die Ampel wohnt rechts von Montag.",
+            "An der Ampel rechts. Verstanden."
+          ],
+          "correct": 1,
+          "explanation": "The reply confirms both landmark and direction."
+        },
+        {
+          "id": "turn_6",
+          "speaker": "Passantin",
+          "prompt": "Der Bahnhof ist gegenüber der Post.",
+          "translation": "The station is opposite the post office.",
+          "listening": false,
+          "choices": [
+            "Gegenüber der Post, gut.",
+            "Die Post ist mein Zugticket."
+          ],
+          "correct": 0,
+          "explanation": "Gegenüber describes the location."
+        },
+        {
+          "id": "turn_7",
+          "speaker": "Passantin",
+          "prompt": "Brauchen Sie noch Hilfe?",
+          "translation": "Do you need any more help?",
+          "listening": false,
+          "choices": [
+            "Wie viele Namen hat mein Fuß?",
+            "Wie lange dauert der Weg zu Fuß?"
+          ],
+          "correct": 1,
+          "explanation": "Ask for the walking time."
+        },
+        {
+          "id": "turn_8",
+          "speaker": "Passantin",
+          "prompt": "Ungefähr zehn Minuten.",
+          "translation": "About ten minutes.",
+          "listening": false,
+          "choices": [
+            "Zehn Minuten, das ist nicht weit.",
+            "Zehn Minuten kosten drei Sprachen."
+          ],
+          "correct": 0,
+          "explanation": "React to the length of the walk."
+        },
+        {
+          "id": "turn_9",
+          "speaker": "Passantin",
+          "prompt": "Sie sehen links ein großes blaues Schild.",
+          "translation": "You will see a large blue sign on the left.",
+          "listening": true,
+          "choices": [
+            "Das blaue Schild fährt meinen Namen.",
+            "Auf das blaue Schild achte ich."
+          ],
+          "correct": 1,
+          "explanation": "The sign is a helpful landmark."
+        },
+        {
+          "id": "turn_10",
+          "speaker": "Passantin",
+          "prompt": "Gern geschehen! Gute Reise!",
+          "translation": "You are welcome! Have a good trip!",
+          "listening": false,
+          "choices": [
+            "Vielen Dank für Ihre Hilfe!",
+            "Vielen Dank für Ihre Milch!"
+          ],
+          "correct": 0,
+          "explanation": "Thank the person for helping with directions."
+        }
+      ]
+    },
+    {
+      "id": "hotel_a1",
+      "version": 1,
+      "level": "A1",
+      "status": "draft",
+      "title": "Check in at the hotel",
+      "emoji": "🏨",
+      "minutes": 6,
+      "objective": "Check in, find your room and ask about breakfast.",
+      "situation": "You have a reservation and arrive at a small hotel.",
+      "topic": "Home and travel",
+      "source": "Original AI-assisted dialogue; editorial approval pending. tools/content/m11-A1.txt",
+      "contentDigest": "ea95a7b109c844d9776ee4f4f8beb1960aaf48dbb03314114a498588f50e8c1d",
+      "usefulWords": [
+        "mission_a1_d3d39e4a6ed84199",
+        "mission_a1_f27d27b982743176",
+        "mission_a1_83ed7f258953560f",
+        "mission_a1_efa0b4c7248a549f"
+      ],
+      "steps": [
+        {
+          "id": "turn_1",
+          "speaker": "Rezeption",
+          "prompt": "Guten Abend! Haben Sie reserviert?",
+          "translation": "Good evening! Do you have a reservation?",
+          "listening": false,
+          "choices": [
+            "Ja, auf den Namen Ali.",
+            "Ja, auf den Donnerstag Kaffee."
+          ],
+          "correct": 0,
+          "explanation": "Auf den Namen identifies the name on a booking."
+        },
+        {
+          "id": "turn_2",
+          "speaker": "Rezeption",
+          "prompt": "Für wie viele Nächte bleiben Sie?",
+          "translation": "For how many nights are you staying?",
+          "listening": false,
+          "choices": [
+            "Für zwei Sprachen.",
+            "Für zwei Nächte."
+          ],
+          "correct": 1,
+          "explanation": "Nächte answers a question about length of stay."
+        },
+        {
+          "id": "turn_3",
+          "speaker": "Rezeption",
+          "prompt": "Darf ich Ihren Ausweis sehen?",
+          "translation": "May I see your identity document?",
+          "listening": false,
+          "choices": [
+            "Ja, hier ist mein Ausweis.",
+            "Ja, hier ist mein Frühstück."
+          ],
+          "correct": 0,
+          "explanation": "Hand over the requested document."
+        },
+        {
+          "id": "turn_4",
+          "speaker": "Rezeption",
+          "prompt": "Möchten Sie ein ruhiges Zimmer?",
+          "translation": "Would you like a quiet room?",
+          "listening": false,
+          "choices": [
+            "Ja, ein Zimmer spricht laut.",
+            "Ja, ein ruhiges Zimmer wäre schön."
+          ],
+          "correct": 1,
+          "explanation": "A quiet room is a relevant preference."
+        },
+        {
+          "id": "turn_5",
+          "speaker": "Rezeption",
+          "prompt": "Ihre Zimmernummer ist zweihundertzwölf.",
+          "translation": "Your room number is two hundred and twelve.",
+          "listening": true,
+          "choices": [
+            "Zimmer zweihundertzwölf, danke.",
+            "Zimmer zwölfhundert, danke."
+          ],
+          "correct": 0,
+          "explanation": "Zweihundertzwölf means 212, not 1200."
+        },
+        {
+          "id": "turn_6",
+          "speaker": "Rezeption",
+          "prompt": "Der Aufzug ist dort rechts.",
+          "translation": "The lift is over there on the right.",
+          "listening": false,
+          "choices": [
+            "Rechts ist mein Nachname.",
+            "Rechts, gut. Vielen Dank."
+          ],
+          "correct": 1,
+          "explanation": "Acknowledge the direction to the lift."
+        },
+        {
+          "id": "turn_7",
+          "speaker": "Rezeption",
+          "prompt": "Der Frühstücksraum ist im Erdgeschoss.",
+          "translation": "The breakfast room is on the ground floor.",
+          "listening": false,
+          "choices": [
+            "Wann gibt es Frühstück?",
+            "Wie heißt mein Erdgeschoss?"
+          ],
+          "correct": 0,
+          "explanation": "Ask for the breakfast time."
+        },
+        {
+          "id": "turn_8",
+          "speaker": "Rezeption",
+          "prompt": "Von sieben bis zehn Uhr.",
+          "translation": "From seven until ten.",
+          "listening": false,
+          "choices": [
+            "Dann komme ich um zwölf Uhr nachts.",
+            "Dann komme ich um acht Uhr."
+          ],
+          "correct": 1,
+          "explanation": "Eight is within the stated breakfast hours."
+        },
+        {
+          "id": "turn_9",
+          "speaker": "Rezeption",
+          "prompt": "Hier ist Ihr Schlüssel. Brauchen Sie noch etwas?",
+          "translation": "Here is your key. Do you need anything else?",
+          "listening": true,
+          "choices": [
+            "Wie ist das WLAN-Passwort?",
+            "Wie viele Schlüssel isst das WLAN?"
+          ],
+          "correct": 0,
+          "explanation": "Ask a useful practical question about the hotel."
+        },
+        {
+          "id": "turn_10",
+          "speaker": "Rezeption",
+          "prompt": "Das steht auf dieser Karte. Einen schönen Aufenthalt!",
+          "translation": "It is on this card. Enjoy your stay!",
+          "listening": false,
+          "choices": [
+            "Auf Wiedersehen, ich bin Frühstück.",
+            "Vielen Dank. Gute Nacht!"
+          ],
+          "correct": 1,
+          "explanation": "Thank the receptionist and close the conversation."
+        }
+      ]
+    },
+    {
+      "id": "train_a2",
+      "version": 1,
+      "level": "A2",
+      "status": "draft",
+      "title": "Catch your connection",
+      "emoji": "🚆",
+      "minutes": 6,
+      "objective": "Buy a ticket and respond to a platform change.",
+      "situation": "You need to reach Hamburg today and want to check the connection before paying.",
+      "topic": "Travel",
+      "source": "Original AI-assisted dialogue; editorial approval pending. tools/content/m11-A2.txt",
+      "contentDigest": "617a7408a1c10227f81e9dcec47c75acb5d1b1075c0997b63f53627bcd401c96",
+      "usefulWords": [
+        "mission_a2_404b3493afe2640e",
+        "mission_a2_b95fdd66fc7a7f62",
+        "mission_a2_0d98d47075ee75e8",
+        "mission_a2_cbe43ccc03a20426"
+      ],
+      "steps": [
+        {
+          "id": "turn_1",
+          "speaker": "Mitarbeiter",
+          "prompt": "Wohin möchten Sie heute fahren?",
+          "translation": "Where would you like to travel today?",
+          "listening": false,
+          "choices": [
+            "Ich bin gestern aus Hamburg gekommen.",
+            "Ich möchte heute nach Hamburg fahren."
+          ],
+          "correct": 1,
+          "explanation": "State today's destination rather than yesterday's journey."
+        },
+        {
+          "id": "turn_2",
+          "speaker": "Mitarbeiter",
+          "prompt": "Möchten Sie einfach oder hin und zurück fahren?",
+          "translation": "Would you like a one-way or return ticket?",
+          "listening": false,
+          "choices": [
+            "Einfach, bitte. Zurück fahre ich nächste Woche.",
+            "Hin und zurück, aber ich fahre heute nicht zurück."
+          ],
+          "correct": 0,
+          "explanation": "A one-way ticket fits the stated plan for this purchase."
+        },
+        {
+          "id": "turn_3",
+          "speaker": "Mitarbeiter",
+          "prompt": "Die nächste Verbindung fährt um vierzehn Uhr zwanzig.",
+          "translation": "The next connection leaves at fourteen twenty.",
+          "listening": false,
+          "choices": [
+            "Gut, dann fährt der Zug um vier Uhr zwanzig morgens.",
+            "Gut, dann habe ich noch zwanzig Minuten Zeit."
+          ],
+          "correct": 1,
+          "explanation": "Vierzehn Uhr zwanzig means 14:20, not 04:20."
+        },
+        {
+          "id": "turn_4",
+          "speaker": "Mitarbeiter",
+          "prompt": "In Hannover haben Sie zwölf Minuten für den Anschlusszug.",
+          "translation": "In Hanover you have twelve minutes for the connecting train.",
+          "listening": false,
+          "choices": [
+            "Muss ich dort den Zug wechseln?",
+            "Bleibe ich also bis Hamburg im selben Zug?"
+          ],
+          "correct": 0,
+          "explanation": "An Anschlusszug is another train, so clarify the change."
+        },
+        {
+          "id": "turn_5",
+          "speaker": "Mitarbeiter",
+          "prompt": "Ja, Sie steigen in Hannover um.",
+          "translation": "Yes, you change trains in Hanover.",
+          "listening": true,
+          "choices": [
+            "An welchem Tisch fährt der nächste Zug ab?",
+            "Auf welchem Gleis fährt der nächste Zug ab?"
+          ],
+          "correct": 1,
+          "explanation": "Gleis is the platform or track term used for trains."
+        },
+        {
+          "id": "turn_6",
+          "speaker": "Mitarbeiter",
+          "prompt": "Das steht kurz vor der Ankunft auf der Anzeige.",
+          "translation": "It will be on the display shortly before arrival.",
+          "listening": false,
+          "choices": [
+            "Dann schaue ich dort auf die Anzeige.",
+            "Dann brauche ich die Anzeige nicht zu beachten."
+          ],
+          "correct": 0,
+          "explanation": "The display supplies information you do not yet have."
+        },
+        {
+          "id": "turn_7",
+          "speaker": "Mitarbeiter",
+          "prompt": "Die Fahrkarte kostet in diesem Beispiel zweiundvierzig Euro.",
+          "translation": "The ticket costs forty-two euros in this example.",
+          "listening": false,
+          "choices": [
+            "Kann ich mit einem Sitzplatz zahlen?",
+            "Kann ich mit Karte zahlen?"
+          ],
+          "correct": 1,
+          "explanation": "Ask about a payment method."
+        },
+        {
+          "id": "turn_8",
+          "speaker": "Mitarbeiter",
+          "prompt": "Achtung, es gibt eine Gleisänderung: Ihr Zug fährt von Gleis sechs.",
+          "translation": "Attention, there is a platform change: your train leaves from platform six.",
+          "listening": false,
+          "choices": [
+            "Dann gehe ich zu Gleis sechs.",
+            "Dann warte ich weiter auf Gleis drei."
+          ],
+          "correct": 0,
+          "explanation": "Respond to the new platform rather than the old one."
+        },
+        {
+          "id": "turn_9",
+          "speaker": "Mitarbeiter",
+          "prompt": "Der Zug hält zuerst in Celle und dann in Hannover.",
+          "translation": "The train stops first in Celle and then in Hanover.",
+          "listening": true,
+          "choices": [
+            "Ich steige also schon in Celle um.",
+            "Ich steige also erst in Hannover um."
+          ],
+          "correct": 1,
+          "explanation": "The change is in Hanover, not at the first stop."
+        },
+        {
+          "id": "turn_10",
+          "speaker": "Mitarbeiter",
+          "prompt": "Hier ist Ihre Fahrkarte. Gute Fahrt!",
+          "translation": "Here is your ticket. Have a good journey!",
+          "listening": false,
+          "choices": [
+            "Vielen Dank für die Auskunft.",
+            "Vielen Dank, ich möchte jetzt nach München statt Hamburg."
+          ],
+          "correct": 0,
+          "explanation": "Acknowledge the completed booking rather than changing the destination at the farewell."
+        }
+      ]
+    },
+    {
+      "id": "restaurant_a2",
+      "version": 1,
+      "level": "A2",
+      "status": "draft",
+      "title": "Dinner with a friend",
+      "emoji": "🍽️",
+      "minutes": 6,
+      "objective": "Reserve a table, order and explain a preference.",
+      "situation": "You are meeting a friend for dinner and would like a vegetarian meal.",
+      "topic": "Food and drink",
+      "source": "Original AI-assisted dialogue; editorial approval pending. tools/content/m11-A2.txt",
+      "contentDigest": "6b063c56df92fc2405c12d808ea6cabb88e41e1d8774d3f209956eed9db520e7",
+      "usefulWords": [
+        "mission_a2_b8eec1fbb2453a69",
+        "mission_a2_f59c4d317308d239",
+        "mission_a2_bd169f512ac138b4",
+        "mission_a2_74431a956086bec8"
+      ],
+      "steps": [
+        {
+          "id": "turn_1",
+          "speaker": "Servicekraft",
+          "prompt": "Haben Sie einen Tisch reserviert?",
+          "translation": "Have you reserved a table?",
+          "listening": false,
+          "choices": [
+            "Ja, für zwei Personen auf den Namen Kaya.",
+            "Ja, für zwei Nächte auf den Namen Kaya."
+          ],
+          "correct": 0,
+          "explanation": "Personen fits a table booking; Nächte is used for overnight stays."
+        },
+        {
+          "id": "turn_2",
+          "speaker": "Servicekraft",
+          "prompt": "Hier ist die Speisekarte. Möchten Sie schon etwas trinken?",
+          "translation": "Here is the menu. Would you like a drink already?",
+          "listening": false,
+          "choices": [
+            "Zwei Speisekarten zum Trinken, bitte.",
+            "Eine Flasche Wasser für uns beide, bitte."
+          ],
+          "correct": 1,
+          "explanation": "Order a drink rather than treating the menu as one."
+        },
+        {
+          "id": "turn_3",
+          "speaker": "Servicekraft",
+          "prompt": "Haben Sie sich schon entschieden?",
+          "translation": "Have you decided yet?",
+          "listening": false,
+          "choices": [
+            "Ich suche ein vegetarisches Gericht.",
+            "Ich suche einen Zug nach Berlin."
+          ],
+          "correct": 0,
+          "explanation": "State the food preference relevant to the menu."
+        },
+        {
+          "id": "turn_4",
+          "speaker": "Servicekraft",
+          "prompt": "Die Gemüsepfanne ist vegetarisch.",
+          "translation": "The vegetable skillet is vegetarian.",
+          "listening": false,
+          "choices": [
+            "Ist darin auch ein Bahnhof?",
+            "Ist darin auch Käse?"
+          ],
+          "correct": 1,
+          "explanation": "Ask a relevant ingredient question."
+        },
+        {
+          "id": "turn_5",
+          "speaker": "Servicekraft",
+          "prompt": "Als Beilage gibt es Reis oder Kartoffeln.",
+          "translation": "The side dish is rice or potatoes.",
+          "listening": true,
+          "choices": [
+            "Ich nehme Reis als Beilage.",
+            "Ich nehme Reis als Rechnung."
+          ],
+          "correct": 0,
+          "explanation": "Beilage describes the food served with the main dish."
+        },
+        {
+          "id": "turn_6",
+          "speaker": "Servicekraft",
+          "prompt": "Möchten Sie die kleine oder die große Portion?",
+          "translation": "Would you like the small or large portion?",
+          "listening": false,
+          "choices": [
+            "Die kleine Portion heißt Dienstag.",
+            "Die kleine Portion reicht mir, danke."
+          ],
+          "correct": 1,
+          "explanation": "Choose a portion size."
+        },
+        {
+          "id": "turn_7",
+          "speaker": "Servicekraft",
+          "prompt": "Hat alles geschmeckt?",
+          "translation": "Did you enjoy everything?",
+          "listening": false,
+          "choices": [
+            "Ja, vielen Dank. Es war sehr lecker.",
+            "Ja, vielen Dank. Ich fahre morgen ab."
+          ],
+          "correct": 0,
+          "explanation": "Comment on the meal in response to this question."
+        },
+        {
+          "id": "turn_8",
+          "speaker": "Servicekraft",
+          "prompt": "Möchten Sie noch ein Dessert?",
+          "translation": "Would you like a dessert?",
+          "listening": false,
+          "choices": [
+            "Nein danke. Wir hätten gern die Speisekarte von gestern.",
+            "Nein danke. Wir hätten gern die Rechnung."
+          ],
+          "correct": 1,
+          "explanation": "The bill is the practical next step when you have finished."
+        },
+        {
+          "id": "turn_9",
+          "speaker": "Servicekraft",
+          "prompt": "Zusammen oder getrennt?",
+          "translation": "Together or separately?",
+          "listening": true,
+          "choices": [
+            "Getrennt, bitte. Ich zahle mein Essen selbst.",
+            "Zusammen, bitte. Jeder zahlt aber nur sein eigenes Essen."
+          ],
+          "correct": 0,
+          "explanation": "Getrennt matches separate payment for each person's meal."
+        },
+        {
+          "id": "turn_10",
+          "speaker": "Servicekraft",
+          "prompt": "Vielen Dank für Ihren Besuch!",
+          "translation": "Thank you for visiting!",
+          "listening": false,
+          "choices": [
+            "Danke für den pünktlichen Anschlusszug.",
+            "Danke für den freundlichen Service."
+          ],
+          "correct": 1,
+          "explanation": "Thank the restaurant staff for the service."
+        }
+      ]
+    },
+    {
+      "id": "return_a2",
+      "version": 1,
+      "level": "A2",
+      "status": "draft",
+      "title": "Return a jacket",
+      "emoji": "🧥",
+      "minutes": 6,
+      "objective": "Explain a problem and ask about an exchange.",
+      "situation": "You bought a jacket yesterday, but you need a different size.",
+      "topic": "Shopping",
+      "source": "Original AI-assisted dialogue; editorial approval pending. tools/content/m11-A2.txt",
+      "contentDigest": "ca9c95c22147e7abec7a7d66bdf120525809ec1ea00e4f5eb84b1ca6be3888b2",
+      "usefulWords": [
+        "mission_a2_c63e7ae8dd803dd0",
+        "mission_a2_7fe149de9f81d6e3",
+        "mission_a2_3d8a71d677cc7ddc",
+        "mission_a2_cb865313ad4a77a6"
+      ],
+      "steps": [
+        {
+          "id": "turn_1",
+          "speaker": "Verkäuferin",
+          "prompt": "Wie kann ich Ihnen helfen?",
+          "translation": "How can I help you?",
+          "listening": false,
+          "choices": [
+            "Die Jacke ist schön. Kann ich sie unverändert behalten?",
+            "Die Jacke ist mir zu klein. Kann ich sie umtauschen?"
+          ],
+          "correct": 1,
+          "explanation": "Explain why you want an exchange."
+        },
+        {
+          "id": "turn_2",
+          "speaker": "Verkäuferin",
+          "prompt": "Haben Sie den Kassenbon dabei?",
+          "translation": "Do you have the receipt with you?",
+          "listening": false,
+          "choices": [
+            "Ja, hier ist der Bon von gestern.",
+            "Ja, hier ist mein Fahrplan von gestern."
+          ],
+          "correct": 0,
+          "explanation": "The shop asks for proof of purchase, not a timetable."
+        },
+        {
+          "id": "turn_3",
+          "speaker": "Verkäuferin",
+          "prompt": "Welche Größe brauchen Sie?",
+          "translation": "What size do you need?",
+          "listening": false,
+          "choices": [
+            "Eine Stunde später, bitte.",
+            "Eine Nummer größer, bitte."
+          ],
+          "correct": 1,
+          "explanation": "Eine Nummer größer requests a larger size."
+        },
+        {
+          "id": "turn_4",
+          "speaker": "Verkäuferin",
+          "prompt": "Geht es um eine Rückgabe oder möchten Sie eine andere Größe?",
+          "translation": "Is this a return or would you like another size?",
+          "listening": false,
+          "choices": [
+            "Ich möchte lieber eine andere Größe.",
+            "Ich möchte die Jacke zurückgeben und keine andere Größe."
+          ],
+          "correct": 0,
+          "explanation": "Choose the option matching your aim to exchange the jacket."
+        },
+        {
+          "id": "turn_5",
+          "speaker": "Verkäuferin",
+          "prompt": "Ich habe dieselbe Jacke auch in Blau.",
+          "translation": "I also have the same jacket in blue.",
+          "listening": true,
+          "choices": [
+            "Gibt es dieselbe Jacke auch als Fahrkarte?",
+            "Gibt es die größere Größe auch in Schwarz?"
+          ],
+          "correct": 1,
+          "explanation": "Ask about a relevant color and size combination."
+        },
+        {
+          "id": "turn_6",
+          "speaker": "Verkäuferin",
+          "prompt": "Ja. Die Umkleidekabine ist dort links.",
+          "translation": "Yes. The changing room is over there on the left.",
+          "listening": false,
+          "choices": [
+            "Danke, ich probiere sie kurz an.",
+            "Danke, ich probiere die Kasse an."
+          ],
+          "correct": 0,
+          "explanation": "Anprobieren is used for trying on clothing."
+        },
+        {
+          "id": "turn_7",
+          "speaker": "Verkäuferin",
+          "prompt": "Passt diese Jacke besser?",
+          "translation": "Does this jacket fit better?",
+          "listening": false,
+          "choices": [
+            "Ja, diese Größe fährt gut.",
+            "Ja, diese Größe passt gut."
+          ],
+          "correct": 1,
+          "explanation": "Passen describes whether clothing fits."
+        },
+        {
+          "id": "turn_8",
+          "speaker": "Verkäuferin",
+          "prompt": "Der Preis ist gleich. Sie müssen nichts dazuzahlen.",
+          "translation": "The price is the same. You do not have to pay anything extra.",
+          "listening": false,
+          "choices": [
+            "Dann nehme ich diese Jacke, bitte.",
+            "Dann zahle ich den ganzen Preis noch einmal."
+          ],
+          "correct": 0,
+          "explanation": "No additional payment is needed in this fictional exchange."
+        },
+        {
+          "id": "turn_9",
+          "speaker": "Verkäuferin",
+          "prompt": "Möchten Sie einen neuen Beleg?",
+          "translation": "Would you like a new receipt?",
+          "listening": true,
+          "choices": [
+            "Ja, den fahre ich auf.",
+            "Ja, den bewahre ich auf."
+          ],
+          "correct": 1,
+          "explanation": "Aufbewahren means keep for later reference."
+        },
+        {
+          "id": "turn_10",
+          "speaker": "Verkäuferin",
+          "prompt": "Sonst noch etwas?",
+          "translation": "Anything else?",
+          "listening": false,
+          "choices": [
+            "Nein, danke für Ihre Hilfe.",
+            "Nein, ich suche den Sommer von gestern."
+          ],
+          "correct": 0,
+          "explanation": "Close the exchange politely."
+        }
+      ]
+    },
+    {
+      "id": "weekend_a2",
+      "version": 1,
+      "level": "A2",
+      "status": "draft",
+      "title": "Plan a weekend outing",
+      "emoji": "🌳",
+      "minutes": 6,
+      "objective": "Agree a time, place and backup plan.",
+      "situation": "You and a friend want to spend Saturday outdoors.",
+      "topic": "Free time",
+      "source": "Original AI-assisted dialogue; editorial approval pending. tools/content/m11-A2.txt",
+      "contentDigest": "7fa82800f635dd7798ba65076809d0d7daed80737397a9ed7e9d48949d86db6a",
+      "usefulWords": [
+        "mission_a2_8cd0b744b8a5f2a5",
+        "mission_a2_cf19fec902cc5257",
+        "mission_a2_b34236311d06e014",
+        "mission_a2_146453f3c65808b7"
+      ],
+      "steps": [
+        {
+          "id": "turn_1",
+          "speaker": "Freund",
+          "prompt": "Hast du am Samstag Lust auf einen Ausflug?",
+          "translation": "Would you like to go on an outing on Saturday?",
+          "listening": false,
+          "choices": [
+            "Ja, gern. Wohin möchtest du fahren?",
+            "Ja, gern. Gestern war Dienstag."
+          ],
+          "correct": 0,
+          "explanation": "Ask a relevant follow-up about the destination."
+        },
+        {
+          "id": "turn_2",
+          "speaker": "Freund",
+          "prompt": "Wir könnten zum See fahren.",
+          "translation": "We could go to the lake.",
+          "listening": false,
+          "choices": [
+            "Das klingt gut. Fahren wir mit dem Kühlschrank?",
+            "Das klingt gut. Fahren wir mit dem Bus?"
+          ],
+          "correct": 1,
+          "explanation": "Suggest a realistic way to travel."
+        },
+        {
+          "id": "turn_3",
+          "speaker": "Freund",
+          "prompt": "Als Treffpunkt schlage ich die Haltestelle am Rathaus vor.",
+          "translation": "I suggest the stop by the town hall as our meeting point.",
+          "listening": false,
+          "choices": [
+            "Gut, dort finde ich dich leicht.",
+            "Gut, dann treffe ich dich an einem anderen Ort."
+          ],
+          "correct": 0,
+          "explanation": "Confirm the proposed meeting point."
+        },
+        {
+          "id": "turn_4",
+          "speaker": "Freund",
+          "prompt": "Passt dir zehn Uhr?",
+          "translation": "Does ten o'clock suit you?",
+          "listening": false,
+          "choices": [
+            "Kann es eine halbe Tasche später sein?",
+            "Kann es eine halbe Stunde später sein?"
+          ],
+          "correct": 1,
+          "explanation": "Use a unit of time when proposing a later meeting."
+        },
+        {
+          "id": "turn_5",
+          "speaker": "Freund",
+          "prompt": "Dann treffen wir uns um halb elf.",
+          "translation": "Then we will meet at half past ten.",
+          "listening": true,
+          "choices": [
+            "Abgemacht, um zehn Uhr dreißig.",
+            "Abgemacht, um elf Uhr dreißig."
+          ],
+          "correct": 0,
+          "explanation": "Halb elf means 10:30 in German."
+        },
+        {
+          "id": "turn_6",
+          "speaker": "Freund",
+          "prompt": "Bringst du etwas zu essen mit?",
+          "translation": "Will you bring something to eat?",
+          "listening": false,
+          "choices": [
+            "Ja, ich mache einen neuen Bahnhof.",
+            "Ja, ich mache ein paar belegte Brote."
+          ],
+          "correct": 1,
+          "explanation": "Respond to the practical request about food."
+        },
+        {
+          "id": "turn_7",
+          "speaker": "Freund",
+          "prompt": "Was machen wir, wenn es regnet?",
+          "translation": "What will we do if it rains?",
+          "listening": false,
+          "choices": [
+            "Dann könnten wir ins Museum gehen.",
+            "Dann müssen wir ohne jeden Plan draußen bleiben."
+          ],
+          "correct": 0,
+          "explanation": "Offer an indoor alternative."
+        },
+        {
+          "id": "turn_8",
+          "speaker": "Freund",
+          "prompt": "Ich schicke Lea auch eine Einladung.",
+          "translation": "I will also send Lea an invitation.",
+          "listening": false,
+          "choices": [
+            "Gute Idee, Einladungen kann man nicht verschicken.",
+            "Gute Idee, sie kommt bestimmt gern mit."
+          ],
+          "correct": 1,
+          "explanation": "Welcome the suggestion rather than denying what an invitation is."
+        },
+        {
+          "id": "turn_9",
+          "speaker": "Freund",
+          "prompt": "Der Bus fährt um zehn Uhr vierzig ab.",
+          "translation": "The bus leaves at ten forty.",
+          "listening": true,
+          "choices": [
+            "Dann haben wir am Treffpunkt zehn Minuten Zeit.",
+            "Dann kommen wir erst um elf Uhr zum Treffpunkt."
+          ],
+          "correct": 0,
+          "explanation": "The agreed 10:30 meeting leaves ten minutes before departure."
+        },
+        {
+          "id": "turn_10",
+          "speaker": "Freund",
+          "prompt": "Also bis Samstag!",
+          "translation": "So, see you on Saturday!",
+          "listening": false,
+          "choices": [
+            "Bis gestern, ich freue mich!",
+            "Bis Samstag, ich freue mich!"
+          ],
+          "correct": 1,
+          "explanation": "Use the future meeting day in the farewell."
+        }
+      ]
+    },
+    {
+      "id": "delivery_a2",
+      "version": 1,
+      "level": "A2",
+      "status": "draft",
+      "title": "Arrange a delivery",
+      "emoji": "📦",
+      "minutes": 6,
+      "objective": "Check an order and arrange a suitable delivery.",
+      "situation": "You are calling because a parcel has not arrived at the expected time.",
+      "topic": "Everyday tasks",
+      "source": "Original AI-assisted dialogue; editorial approval pending. tools/content/m11-A2.txt",
+      "contentDigest": "17c1ac63e9fa665710cb5123c84c12a62496548cc032af7d31a7a56fa5af24e0",
+      "usefulWords": [
+        "mission_a2_b7ceee813974730a",
+        "mission_a2_f14354aed9697ff1",
+        "mission_a2_df382c20b0841627",
+        "mission_a2_8923c2aa3a7b7066"
+      ],
+      "steps": [
+        {
+          "id": "turn_1",
+          "speaker": "Kundenservice",
+          "prompt": "Worum geht es bei Ihrem Anruf?",
+          "translation": "What is your call about?",
+          "listening": false,
+          "choices": [
+            "Meine Bestellung ist gestern schon vollständig angekommen.",
+            "Meine Bestellung ist noch nicht angekommen."
+          ],
+          "correct": 1,
+          "explanation": "Explain the reason for calling."
+        },
+        {
+          "id": "turn_2",
+          "speaker": "Kundenservice",
+          "prompt": "Wie lautet Ihre Bestellnummer?",
+          "translation": "What is your order number?",
+          "listening": false,
+          "choices": [
+            "Die Bestellnummer ist vier sieben zwei acht.",
+            "Die Bestellnummer ist irgendwann nächste Woche."
+          ],
+          "correct": 0,
+          "explanation": "Give the requested identifier."
+        },
+        {
+          "id": "turn_3",
+          "speaker": "Kundenservice",
+          "prompt": "Welcher Liefertermin wurde Ihnen genannt?",
+          "translation": "What delivery date were you given?",
+          "listening": false,
+          "choices": [
+            "Als Liefertermin war ein roter Karton angegeben.",
+            "Als Liefertermin war gestern angegeben."
+          ],
+          "correct": 1,
+          "explanation": "A Liefertermin is a date or time, not packaging."
+        },
+        {
+          "id": "turn_4",
+          "speaker": "Kundenservice",
+          "prompt": "Das Paket ist noch unterwegs. Sind Sie morgen zu Hause?",
+          "translation": "The parcel is still on its way. Will you be at home tomorrow?",
+          "listening": false,
+          "choices": [
+            "Ja, aber erst ab vierzehn Uhr.",
+            "Ja, aber ich bin den ganzen Tag nicht zu Hause."
+          ],
+          "correct": 0,
+          "explanation": "State your actual availability clearly."
+        },
+        {
+          "id": "turn_5",
+          "speaker": "Kundenservice",
+          "prompt": "Wir können zwischen vierzehn und sechzehn Uhr liefern.",
+          "translation": "We can deliver between two and four in the afternoon.",
+          "listening": true,
+          "choices": [
+            "Dann warte ich zwischen acht und zehn Uhr.",
+            "Dieses Zeitfenster passt mir."
+          ],
+          "correct": 1,
+          "explanation": "Confirm the offered delivery window."
+        },
+        {
+          "id": "turn_6",
+          "speaker": "Kundenservice",
+          "prompt": "Darf die Lieferung bei einer Nachbarin abgegeben werden?",
+          "translation": "May the delivery be left with a female neighbor?",
+          "listening": false,
+          "choices": [
+            "Bitte nur bei Frau Weber im Erdgeschoss.",
+            "Bitte bei einer beliebigen Person ohne weitere Angaben."
+          ],
+          "correct": 0,
+          "explanation": "Give a clear, limited delivery instruction."
+        },
+        {
+          "id": "turn_7",
+          "speaker": "Kundenservice",
+          "prompt": "Möchten Sie eine Nachricht vor der Lieferung?",
+          "translation": "Would you like a message before delivery?",
+          "listening": false,
+          "choices": [
+            "Ja, eine Nachricht nach drei Monaten wäre hilfreich.",
+            "Ja, eine kurze Nachricht wäre hilfreich."
+          ],
+          "correct": 1,
+          "explanation": "A message beforehand is relevant to this delivery."
+        },
+        {
+          "id": "turn_8",
+          "speaker": "Kundenservice",
+          "prompt": "Ihre Adresse ist weiterhin Parkstraße acht?",
+          "translation": "Is your address still Parkstraße eight?",
+          "listening": false,
+          "choices": [
+            "Ja, die Adresse stimmt.",
+            "Ja, meine Adresse ist eine Bestellnummer."
+          ],
+          "correct": 0,
+          "explanation": "Confirm the address the agent read out."
+        },
+        {
+          "id": "turn_9",
+          "speaker": "Kundenservice",
+          "prompt": "Ich bestätige morgen, vierzehn bis sechzehn Uhr.",
+          "translation": "I confirm tomorrow, two until four in the afternoon.",
+          "listening": true,
+          "choices": [
+            "Danke, ich komme gestern um vier vorbei.",
+            "Danke, ich habe den Termin notiert."
+          ],
+          "correct": 1,
+          "explanation": "Repeat or acknowledge the agreed future appointment."
+        },
+        {
+          "id": "turn_10",
+          "speaker": "Kundenservice",
+          "prompt": "Kann ich noch etwas für Sie tun?",
+          "translation": "Can I do anything else for you?",
+          "listening": false,
+          "choices": [
+            "Nein, damit ist meine Frage geklärt.",
+            "Nein, ich brauche eine Speisekarte."
+          ],
+          "correct": 0,
+          "explanation": "Close the support conversation once the problem is clarified."
+        }
+      ]
+    },
+    {
+      "id": "room_b1",
+      "version": 1,
+      "level": "B1",
+      "status": "draft",
+      "title": "View a shared apartment",
+      "emoji": "🏠",
+      "minutes": 7,
+      "objective": "Ask useful questions and arrange a viewing.",
+      "situation": "You are considering a room in a shared apartment and need to understand the offer.",
+      "topic": "Housing",
+      "source": "Original AI-assisted dialogue; editorial approval pending. tools/content/m11-B1.txt",
+      "contentDigest": "225888430829ac6261fe5292c1b2340dd7c58316247136ffa4ca533544f8a2c5",
+      "usefulWords": [
+        "mission_b1_04b318487b277ce7",
+        "mission_b1_d3288d194f619102",
+        "mission_b1_8cf55ec36ec5066f",
+        "mission_b1_c3cb305e7f7fa0b2"
+      ],
+      "steps": [
+        {
+          "id": "turn_1",
+          "speaker": "Vermieterin",
+          "prompt": "Sie interessieren sich für eine Besichtigung?",
+          "translation": "Are you interested in a viewing?",
+          "listening": false,
+          "choices": [
+            "Ja, ich würde das Zimmer gern persönlich ansehen.",
+            "Ja, ich möchte sofort zusagen, ohne das Zimmer zu sehen."
+          ],
+          "correct": 0,
+          "explanation": "A viewing lets you check the room before committing."
+        },
+        {
+          "id": "turn_2",
+          "speaker": "Vermieterin",
+          "prompt": "Was möchten Sie zuerst über das Zimmer wissen?",
+          "translation": "What would you like to know about the room first?",
+          "listening": false,
+          "choices": [
+            "Welche Urlaubsziele mögen die Nachbarn?",
+            "Wie groß ist das Zimmer und ist es möbliert?"
+          ],
+          "correct": 1,
+          "explanation": "Ask about the room before unrelated personal preferences."
+        },
+        {
+          "id": "turn_3",
+          "speaker": "Vermieterin",
+          "prompt": "Das Zimmer ist achtzehn Quadratmeter groß und teilweise möbliert.",
+          "translation": "The room is eighteen square meters and partly furnished.",
+          "listening": false,
+          "choices": [
+            "Welche Möbel bleiben denn im Zimmer?",
+            "Dann muss ich also überhaupt keine eigenen Möbel mitbringen."
+          ],
+          "correct": 0,
+          "explanation": "Partly furnished does not mean everything is provided."
+        },
+        {
+          "id": "turn_4",
+          "speaker": "Vermieterin",
+          "prompt": "Die Miete beträgt fünfhundert Euro zuzüglich Nebenkosten.",
+          "translation": "The rent is five hundred euros plus additional costs.",
+          "listening": false,
+          "choices": [
+            "Dann sind sämtliche Kosten schon in den fünfhundert Euro enthalten.",
+            "Wie hoch sind die Nebenkosten ungefähr?"
+          ],
+          "correct": 1,
+          "explanation": "Zuzüglich means in addition to, so clarify the extra amount."
+        },
+        {
+          "id": "turn_5",
+          "speaker": "Vermieterin",
+          "prompt": "In diesem Angebot sind dafür etwa einhundert Euro vorgesehen.",
+          "translation": "This offer provides for about one hundred euros for those costs.",
+          "listening": true,
+          "choices": [
+            "Dann rechne ich zunächst mit insgesamt sechshundert Euro.",
+            "Dann beträgt die Gesamtmiete vierhundert Euro."
+          ],
+          "correct": 0,
+          "explanation": "Add the quoted amounts rather than subtracting the extra costs."
+        },
+        {
+          "id": "turn_6",
+          "speaker": "Vermieterin",
+          "prompt": "Die Küche und das Bad werden gemeinsam genutzt.",
+          "translation": "The kitchen and bathroom are shared.",
+          "listening": false,
+          "choices": [
+            "Dann gehört die Küche also nur zu meinem Zimmer.",
+            "Wie organisieren die Bewohner die Reinigung?"
+          ],
+          "correct": 1,
+          "explanation": "Gemeinsam genutzt means the facilities are shared."
+        },
+        {
+          "id": "turn_7",
+          "speaker": "Vermieterin",
+          "prompt": "Ein Einzug wäre ab Anfang nächsten Monats möglich.",
+          "translation": "Moving in would be possible from the beginning of next month.",
+          "listening": false,
+          "choices": [
+            "Das würde zeitlich zu meinem Umzug passen.",
+            "Dann ziehe ich bereits letzten Monat ein."
+          ],
+          "correct": 0,
+          "explanation": "Respond to the proposed future move-in time."
+        },
+        {
+          "id": "turn_8",
+          "speaker": "Vermieterin",
+          "prompt": "Können Sie am Donnerstag um siebzehn Uhr kommen?",
+          "translation": "Can you come on Thursday at five in the afternoon?",
+          "listening": false,
+          "choices": [
+            "Ja, ich warte am Freitag ohne weitere Nachricht.",
+            "Ja, könnten Sie mir bitte die genaue Adresse schicken?"
+          ],
+          "correct": 1,
+          "explanation": "Confirm the offered appointment and request the details you need."
+        },
+        {
+          "id": "turn_9",
+          "speaker": "Vermieterin",
+          "prompt": "Ich schicke Ihnen die Adresse und eine Liste der gewünschten Unterlagen.",
+          "translation": "I will send you the address and a list of the requested documents.",
+          "listening": true,
+          "choices": [
+            "Vielen Dank, ich sehe mir die Liste vor dem Termin an.",
+            "Vielen Dank, dann muss ich die Liste nicht lesen."
+          ],
+          "correct": 0,
+          "explanation": "Check the requested information before attending."
+        },
+        {
+          "id": "turn_10",
+          "speaker": "Vermieterin",
+          "prompt": "Falls Sie verhindert sind, geben Sie uns bitte Bescheid.",
+          "translation": "If you cannot attend, please let us know.",
+          "listening": false,
+          "choices": [
+            "Natürlich, dann komme ich einfach nicht.",
+            "Natürlich, dann sage ich rechtzeitig ab."
+          ],
+          "correct": 1,
+          "explanation": "Rechtzeitig absagen is a considerate response to the request."
+        }
+      ]
+    },
+    {
+      "id": "appointment_b1",
+      "version": 1,
+      "level": "B1",
+      "status": "draft",
+      "title": "Arrange a routine appointment",
+      "emoji": "🗓️",
+      "minutes": 7,
+      "objective": "Explain your appointment request and clarify practical details.",
+      "situation": "You are arranging a routine check-up, not seeking medical advice in the app.",
+      "topic": "Appointments",
+      "source": "Original AI-assisted dialogue; editorial approval pending. tools/content/m11-B1.txt",
+      "contentDigest": "4388bc6efac202e3ab208320093a9f6d8e696e3e362c2c09265e2f3c179739dc",
+      "usefulWords": [
+        "mission_b1_bf7bfea35c4d7199",
+        "mission_b1_4e99fc29ad50b472",
+        "mission_b1_5f3261c31ffacc39",
+        "mission_b1_377f250f72608994"
+      ],
+      "steps": [
+        {
+          "id": "turn_1",
+          "speaker": "Praxisassistenz",
+          "prompt": "Guten Tag, wie können wir Ihnen helfen?",
+          "translation": "Good afternoon, how can we help you?",
+          "listening": false,
+          "choices": [
+            "Ich möchte einen Termin vereinbaren, aber ich nenne Ihnen keinen Anlass.",
+            "Ich möchte einen Termin für eine Routinekontrolle vereinbaren."
+          ],
+          "correct": 1,
+          "explanation": "Briefly stating the reason helps the practice understand the request."
+        },
+        {
+          "id": "turn_2",
+          "speaker": "Praxisassistenz",
+          "prompt": "Sind Sie bereits bei uns in Behandlung?",
+          "translation": "Are you already a patient here?",
+          "listening": false,
+          "choices": [
+            "Ja, ich war im letzten Jahr schon einmal bei Ihnen.",
+            "Nein, ich war im letzten Jahr schon einmal bei Ihnen."
+          ],
+          "correct": 0,
+          "explanation": "Answer consistently about your previous visit."
+        },
+        {
+          "id": "turn_3",
+          "speaker": "Praxisassistenz",
+          "prompt": "Unsere Sprechstunde beginnt dienstags um acht Uhr.",
+          "translation": "Our consultation hours begin at eight on Tuesdays.",
+          "listening": false,
+          "choices": [
+            "Dann sind Termine am Nachmittag bestimmt ausgeschlossen.",
+            "Gibt es auch Termine am späten Nachmittag?"
+          ],
+          "correct": 1,
+          "explanation": "Ask about another time instead of assuming it is impossible."
+        },
+        {
+          "id": "turn_4",
+          "speaker": "Praxisassistenz",
+          "prompt": "Ein Termin wäre am nächsten Dienstag um sechzehn Uhr frei.",
+          "translation": "An appointment would be available next Tuesday at four.",
+          "listening": false,
+          "choices": [
+            "Diesen Termin würde ich gern nehmen.",
+            "Diesen Termin nehme ich am übernächsten Mittwoch."
+          ],
+          "correct": 0,
+          "explanation": "Accept the actual date and time offered."
+        },
+        {
+          "id": "turn_5",
+          "speaker": "Praxisassistenz",
+          "prompt": "Wie lautet Ihr vollständiger Name?",
+          "translation": "What is your full name?",
+          "listening": true,
+          "choices": [
+            "Mein Name ist nächsten Dienstag um vier.",
+            "Mein Name ist Nora Yilmaz, Yilmaz mit Y."
+          ],
+          "correct": 1,
+          "explanation": "Give identifying information and clarify the spelling if useful."
+        },
+        {
+          "id": "turn_6",
+          "speaker": "Praxisassistenz",
+          "prompt": "Unter welcher Nummer können wir Sie erreichen?",
+          "translation": "At what number can we reach you?",
+          "listening": false,
+          "choices": [
+            "Ich kann Ihnen meine aktuelle Telefonnummer nennen.",
+            "Ich kann Ihnen stattdessen die Uhrzeit nennen."
+          ],
+          "correct": 0,
+          "explanation": "A reachable contact number answers the question."
+        },
+        {
+          "id": "turn_7",
+          "speaker": "Praxisassistenz",
+          "prompt": "Bringen Sie bitte Ihre Versichertenkarte mit.",
+          "translation": "Please bring your health insurance card.",
+          "listening": false,
+          "choices": [
+            "Gut, die Karte lasse ich zu Hause.",
+            "Gut, die Versichertenkarte nehme ich mit."
+          ],
+          "correct": 1,
+          "explanation": "Acknowledge the requested document in this roleplay."
+        },
+        {
+          "id": "turn_8",
+          "speaker": "Praxisassistenz",
+          "prompt": "Kommen Sie bitte zehn Minuten vor dem Termin.",
+          "translation": "Please arrive ten minutes before the appointment.",
+          "listening": false,
+          "choices": [
+            "Dann bin ich um fünfzehn Uhr fünfzig da.",
+            "Dann bin ich um sechzehn Uhr zehn da."
+          ],
+          "correct": 0,
+          "explanation": "Ten minutes before 16:00 is 15:50."
+        },
+        {
+          "id": "turn_9",
+          "speaker": "Praxisassistenz",
+          "prompt": "Falls Sie absagen müssen, rufen Sie uns bitte an.",
+          "translation": "If you need to cancel, please call us.",
+          "listening": true,
+          "choices": [
+            "Ja, ich komme bei Änderungen ohne Nachricht nicht.",
+            "Ja, ich melde mich, falls sich etwas ändert."
+          ],
+          "correct": 1,
+          "explanation": "Confirm how you will communicate a change."
+        },
+        {
+          "id": "turn_10",
+          "speaker": "Praxisassistenz",
+          "prompt": "Möchten Sie, dass ich den Termin noch einmal wiederhole?",
+          "translation": "Would you like me to repeat the appointment?",
+          "listening": false,
+          "choices": [
+            "Ja bitte, damit ich alles richtig notiere.",
+            "Nein danke, auch wenn ich das Datum nicht verstanden habe."
+          ],
+          "correct": 0,
+          "explanation": "Checking a detail is more useful than pretending to understand it."
+        }
+      ]
+    },
+    {
+      "id": "jobcall_b1",
+      "version": 1,
+      "level": "B1",
+      "status": "draft",
+      "title": "Follow up on an application",
+      "emoji": "📞",
+      "minutes": 7,
+      "objective": "Introduce your request and arrange the next step.",
+      "situation": "You sent an application and are calling politely to ask about its status.",
+      "topic": "Work",
+      "source": "Original AI-assisted dialogue; editorial approval pending. tools/content/m11-B1.txt",
+      "contentDigest": "4e2b2ecd9da817b10e5354bd7ecdb2a6cc5f911aee2c35ac7ff96c2d21e38ade",
+      "usefulWords": [
+        "mission_b1_45f46b981cffdc89",
+        "mission_b1_9ca5bf9215823ac6",
+        "mission_b1_90eb74c7051a18cc",
+        "mission_b1_e86e20f15a06381a"
+      ],
+      "steps": [
+        {
+          "id": "turn_1",
+          "speaker": "Personalmitarbeiter",
+          "prompt": "Guten Tag, Personalabteilung. Worum geht es?",
+          "translation": "Good afternoon, human resources. What is this about?",
+          "listening": false,
+          "choices": [
+            "Ich habe mich als Büroassistenz beworben und hätte eine kurze Frage.",
+            "Ich fordere sofort eine Entscheidung, bevor ich mich vorstelle."
+          ],
+          "correct": 0,
+          "explanation": "Introduce the application and the purpose of the call politely."
+        },
+        {
+          "id": "turn_2",
+          "speaker": "Personalmitarbeiter",
+          "prompt": "Wann haben Sie Ihre Unterlagen geschickt?",
+          "translation": "When did you send your documents?",
+          "listening": false,
+          "choices": [
+            "Ich werde sie erst morgen schicken, obwohl ich nach dem Eingang frage.",
+            "Ich habe sie vor zwei Wochen per E-Mail geschickt."
+          ],
+          "correct": 1,
+          "explanation": "Give a clear past reference for an application already sent."
+        },
+        {
+          "id": "turn_3",
+          "speaker": "Personalmitarbeiter",
+          "prompt": "Haben Sie eine Eingangsbestätigung erhalten?",
+          "translation": "Did you receive an acknowledgment of receipt?",
+          "listening": false,
+          "choices": [
+            "Ja, aber seitdem habe ich nichts mehr gehört.",
+            "Ja, deshalb frage ich nicht nach dem weiteren Verfahren."
+          ],
+          "correct": 0,
+          "explanation": "Distinguish receipt of the application from news about the process."
+        },
+        {
+          "id": "turn_4",
+          "speaker": "Personalmitarbeiter",
+          "prompt": "Die Prüfung der Bewerbungen dauert noch an.",
+          "translation": "The review of applications is still ongoing.",
+          "listening": false,
+          "choices": [
+            "Dann ist meine Bewerbung sicher schon abgelehnt.",
+            "Können Sie ungefähr sagen, wann die nächsten Schritte geplant sind?"
+          ],
+          "correct": 1,
+          "explanation": "Ongoing review does not mean rejection."
+        },
+        {
+          "id": "turn_5",
+          "speaker": "Personalmitarbeiter",
+          "prompt": "Ihr Ansprechpartner ist Herr Becker.",
+          "translation": "Your contact person is Mr Becker.",
+          "listening": true,
+          "choices": [
+            "Könnten Sie mich mit Herrn Becker verbinden?",
+            "Könnten Sie meine Bewerbung ohne Rückfrage zurückziehen?"
+          ],
+          "correct": 0,
+          "explanation": "Ask to speak to the person responsible."
+        },
+        {
+          "id": "turn_6",
+          "speaker": "Personalmitarbeiter",
+          "prompt": "Er ist gerade in einer Besprechung.",
+          "translation": "He is in a meeting at the moment.",
+          "listening": false,
+          "choices": [
+            "Dann erwarte ich, dass Sie die Besprechung sofort unterbrechen.",
+            "Kann ich ihm eine Nachricht hinterlassen?"
+          ],
+          "correct": 1,
+          "explanation": "Leaving a message respects the stated availability."
+        },
+        {
+          "id": "turn_7",
+          "speaker": "Personalmitarbeiter",
+          "prompt": "Sie erhalten voraussichtlich bis Freitag eine Rückmeldung.",
+          "translation": "You will probably receive a response by Friday.",
+          "listening": false,
+          "choices": [
+            "Vielen Dank, dann warte ich zunächst bis Freitag.",
+            "Vielen Dank, dann steht die Entscheidung also schon endgültig fest."
+          ],
+          "correct": 0,
+          "explanation": "Voraussichtlich signals an expectation rather than certainty."
+        },
+        {
+          "id": "turn_8",
+          "speaker": "Personalmitarbeiter",
+          "prompt": "Hat sich Ihre Telefonnummer geändert?",
+          "translation": "Has your phone number changed?",
+          "listening": false,
+          "choices": [
+            "Nein, aber verwenden Sie lieber irgendeine andere Nummer.",
+            "Nein, die Nummer in meiner Bewerbung ist weiterhin aktuell."
+          ],
+          "correct": 1,
+          "explanation": "Confirm the correct contact details."
+        },
+        {
+          "id": "turn_9",
+          "speaker": "Personalmitarbeiter",
+          "prompt": "Falls Unterlagen fehlen, melden wir uns bei Ihnen.",
+          "translation": "If documents are missing, we will contact you.",
+          "listening": true,
+          "choices": [
+            "Gut, ich reiche fehlende Unterlagen dann gern nach.",
+            "Gut, dann lösche ich vorsorglich alle Unterlagen."
+          ],
+          "correct": 0,
+          "explanation": "Nachreichen means providing documents afterward when needed."
+        },
+        {
+          "id": "turn_10",
+          "speaker": "Personalmitarbeiter",
+          "prompt": "Vielen Dank für Ihren Anruf.",
+          "translation": "Thank you for your call.",
+          "listening": false,
+          "choices": [
+            "Ich rufe jetzt trotzdem jede Stunde wieder an.",
+            "Danke für die Auskunft und einen schönen Tag."
+          ],
+          "correct": 1,
+          "explanation": "A polite closing fits the agreed next step."
+        }
+      ]
+    },
+    {
+      "id": "travelproblem_b1",
+      "version": 1,
+      "level": "B1",
+      "status": "draft",
+      "title": "When the train is cancelled",
+      "emoji": "🧳",
+      "minutes": 7,
+      "objective": "Explain a disruption and clarify an alternative route.",
+      "situation": "Your train has been cancelled and you need information about getting to your destination.",
+      "topic": "Travel",
+      "source": "Original AI-assisted dialogue; editorial approval pending. tools/content/m11-B1.txt",
+      "contentDigest": "1bd953c960387977e5e65dcf69b6c6abaf90f23e3f907f76f6c52b864a6fb6a3",
+      "usefulWords": [
+        "mission_b1_abb1844d77ab31f0",
+        "mission_b1_e87bb0ebfb5d3a72",
+        "mission_b1_f7328b863d90d231",
+        "mission_b1_16b4aead8491e6a5"
+      ],
+      "steps": [
+        {
+          "id": "turn_1",
+          "speaker": "Serviceberaterin",
+          "prompt": "Welcher Zug ist betroffen?",
+          "translation": "Which train is affected?",
+          "listening": false,
+          "choices": [
+            "Mein Zug fährt pünktlich, aber ich behaupte das Gegenteil.",
+            "Mein Zug nach Bremen um dreizehn Uhr fällt aus."
+          ],
+          "correct": 1,
+          "explanation": "Give the destination, departure time and actual problem."
+        },
+        {
+          "id": "turn_2",
+          "speaker": "Serviceberaterin",
+          "prompt": "Müssen Sie heute noch in Bremen ankommen?",
+          "translation": "Do you still need to arrive in Bremen today?",
+          "listening": false,
+          "choices": [
+            "Ja, ich habe dort am Abend einen Termin.",
+            "Nein, obwohl mein Termin dort heute Abend stattfindet."
+          ],
+          "correct": 0,
+          "explanation": "Explain the timing that matters for the alternative."
+        },
+        {
+          "id": "turn_3",
+          "speaker": "Serviceberaterin",
+          "prompt": "Wir schauen nach einer anderen Möglichkeit.",
+          "translation": "We will look for another option.",
+          "listening": false,
+          "choices": [
+            "Danke, nennen Sie mir bitte ausschließlich unmögliche Verbindungen.",
+            "Danke, auch eine Verbindung mit Umsteigen wäre in Ordnung."
+          ],
+          "correct": 1,
+          "explanation": "Clarify an acceptable option to help the search."
+        },
+        {
+          "id": "turn_4",
+          "speaker": "Serviceberaterin",
+          "prompt": "Eine Ersatzverbindung fährt in vierzig Minuten über Hannover.",
+          "translation": "An alternative connection leaves in forty minutes via Hanover.",
+          "listening": false,
+          "choices": [
+            "Wie spät würde ich damit in Bremen ankommen?",
+            "Wie spät war ich gestern in Bremen?"
+          ],
+          "correct": 0,
+          "explanation": "Ask about arrival on the proposed route."
+        },
+        {
+          "id": "turn_5",
+          "speaker": "Serviceberaterin",
+          "prompt": "Sie wären voraussichtlich um siebzehn Uhr dort.",
+          "translation": "You would probably be there at five.",
+          "listening": true,
+          "choices": [
+            "Das bedeutet, dass die Ankunftszeit garantiert unveränderlich ist.",
+            "Das wäre noch rechtzeitig für meinen Termin."
+          ],
+          "correct": 1,
+          "explanation": "Voraussichtlich is an estimate, not a guarantee."
+        },
+        {
+          "id": "turn_6",
+          "speaker": "Serviceberaterin",
+          "prompt": "Bitte prüfen Sie die aktuellen Anzeigen vor der Abfahrt.",
+          "translation": "Please check the current displays before departure.",
+          "listening": false,
+          "choices": [
+            "Das mache ich. Wo finde ich die nächste Anzeige?",
+            "Das mache ich nicht, weil Anzeigen sich nie ändern."
+          ],
+          "correct": 0,
+          "explanation": "Ask how to check the information the adviser recommends."
+        },
+        {
+          "id": "turn_7",
+          "speaker": "Serviceberaterin",
+          "prompt": "Sie finden sie direkt hinter dem Informationsschalter.",
+          "translation": "You will find it directly behind the information desk.",
+          "listening": false,
+          "choices": [
+            "Danke, dann suche ich ausschließlich draußen auf der Straße.",
+            "Danke, dann schaue ich dort zuerst nach."
+          ],
+          "correct": 1,
+          "explanation": "Follow the stated location."
+        },
+        {
+          "id": "turn_8",
+          "speaker": "Serviceberaterin",
+          "prompt": "Fragen zu einer möglichen Erstattung klärt unser Serviceformular.",
+          "translation": "Questions about a possible reimbursement are handled through our service form.",
+          "listening": false,
+          "choices": [
+            "Wo finde ich das Formular und welche Angaben brauche ich?",
+            "Dann ist mir ohne weitere Prüfung schon jede Erstattung zugesagt."
+          ],
+          "correct": 0,
+          "explanation": "A possible reimbursement still requires clarification; ask about the process."
+        },
+        {
+          "id": "turn_9",
+          "speaker": "Serviceberaterin",
+          "prompt": "Ich gebe Ihnen die Informationen schriftlich mit.",
+          "translation": "I will give you the information in writing.",
+          "listening": true,
+          "choices": [
+            "Dann brauche ich die Informationen weder zu lesen noch aufzubewahren.",
+            "Das hilft mir, die Einzelheiten später nachzulesen."
+          ],
+          "correct": 1,
+          "explanation": "Written information is useful for checking details."
+        },
+        {
+          "id": "turn_10",
+          "speaker": "Serviceberaterin",
+          "prompt": "Haben Sie zur Verbindung noch eine Frage?",
+          "translation": "Do you have another question about the connection?",
+          "listening": false,
+          "choices": [
+            "Nein, die Route ist jetzt klar. Vielen Dank.",
+            "Ja, ich möchte lieber über die Hotel-Speisekarte sprechen."
+          ],
+          "correct": 0,
+          "explanation": "Close the specific issue once the route is understood."
+        }
+      ]
+    },
+    {
+      "id": "neighborhood_b1",
+      "version": 1,
+      "level": "B1",
+      "status": "draft",
+      "title": "Organize a neighborhood event",
+      "emoji": "🌻",
+      "minutes": 7,
+      "objective": "Agree practical tasks for a small community event.",
+      "situation": "You would like to help with a Saturday gathering in your neighborhood.",
+      "topic": "Community",
+      "source": "Original AI-assisted dialogue; editorial approval pending. tools/content/m11-B1.txt",
+      "contentDigest": "06b9a2e76467d5d16dd73d03360a71e10a95e2ea66be8bb5cfae4b50a669c540",
+      "usefulWords": [
+        "mission_b1_368cbb168dd3c5b2",
+        "mission_b1_6e22bb97d3ebe7cb",
+        "mission_b1_b4095b741c1b03c7",
+        "mission_b1_d7ced6da84376de4"
+      ],
+      "steps": [
+        {
+          "id": "turn_1",
+          "speaker": "Nachbarin",
+          "prompt": "Wir planen ein Treffen für die Nachbarschaft. Möchtest du mithelfen?",
+          "translation": "We are planning a neighborhood gathering. Would you like to help?",
+          "listening": false,
+          "choices": [
+            "Ja, welche Aufgaben sind noch offen?",
+            "Ja, aber ich möchte keine einzige Aufgabe besprechen."
+          ],
+          "correct": 0,
+          "explanation": "Ask how you can contribute."
+        },
+        {
+          "id": "turn_2",
+          "speaker": "Nachbarin",
+          "prompt": "Wir brauchen Unterstützung beim Aufbau und bei den Getränken.",
+          "translation": "We need help with setting up and with drinks.",
+          "listening": false,
+          "choices": [
+            "Ich könnte stattdessen den Termin heimlich ändern.",
+            "Ich könnte beim Aufbau helfen und Wasser mitbringen."
+          ],
+          "correct": 1,
+          "explanation": "Offer help with the tasks mentioned."
+        },
+        {
+          "id": "turn_3",
+          "speaker": "Nachbarin",
+          "prompt": "Für den Aushang fehlt uns noch ein kurzer Text.",
+          "translation": "We still need a short text for the notice.",
+          "listening": false,
+          "choices": [
+            "Den Text kann ich heute Abend entwerfen.",
+            "Den Text kann ich erst nach der Veranstaltung schreiben."
+          ],
+          "correct": 0,
+          "explanation": "Offer to prepare the notice before the event."
+        },
+        {
+          "id": "turn_4",
+          "speaker": "Nachbarin",
+          "prompt": "Er sollte auch sagen, dass neue Nachbarn willkommen sind.",
+          "translation": "It should also say that new neighbors are welcome.",
+          "listening": false,
+          "choices": [
+            "Dann schreibe ich, dass nur bekannte Personen kommen dürfen.",
+            "Dann formuliere ich die Einladung besonders offen."
+          ],
+          "correct": 1,
+          "explanation": "An open invitation fits the stated aim."
+        },
+        {
+          "id": "turn_5",
+          "speaker": "Nachbarin",
+          "prompt": "Wir treffen uns am Samstag um elf Uhr zum Aufbau.",
+          "translation": "We will meet on Saturday at eleven to set up.",
+          "listening": true,
+          "choices": [
+            "Ich bin um elf da und bringe ein paar Becher mit.",
+            "Ich komme erst am Abend, um beim morgendlichen Aufbau zu helfen."
+          ],
+          "correct": 0,
+          "explanation": "Confirm a time consistent with the task."
+        },
+        {
+          "id": "turn_6",
+          "speaker": "Nachbarin",
+          "prompt": "Hast du einen Vorschlag für schlechtes Wetter?",
+          "translation": "Do you have a suggestion for bad weather?",
+          "listening": false,
+          "choices": [
+            "Wir könnten schlechtes Wetter grundsätzlich ausschließen.",
+            "Wir könnten vorher fragen, ob der Gemeinschaftsraum frei ist."
+          ],
+          "correct": 1,
+          "explanation": "Propose a workable backup instead of assuming the weather."
+        },
+        {
+          "id": "turn_7",
+          "speaker": "Nachbarin",
+          "prompt": "Kannst du das mit der Hausverwaltung klären?",
+          "translation": "Can you clarify that with the building management?",
+          "listening": false,
+          "choices": [
+            "Ja, ich frage morgen nach und gebe dir Bescheid.",
+            "Ja, ich verspreche sofort die Nutzung, ohne nachzufragen."
+          ],
+          "correct": 0,
+          "explanation": "Clarify availability before promising the room."
+        },
+        {
+          "id": "turn_8",
+          "speaker": "Nachbarin",
+          "prompt": "Wir wollen auch an die Kinder denken.",
+          "translation": "We also want to think about the children.",
+          "listening": false,
+          "choices": [
+            "Vielleicht verbieten wir deshalb jede gemeinsame Aktivität.",
+            "Vielleicht stellen wir eine kleine Spielecke bereit."
+          ],
+          "correct": 1,
+          "explanation": "Offer an inclusive practical suggestion."
+        },
+        {
+          "id": "turn_9",
+          "speaker": "Nachbarin",
+          "prompt": "Ich fasse unsere Aufgaben noch einmal zusammen.",
+          "translation": "I will summarize our tasks once more.",
+          "listening": true,
+          "choices": [
+            "Gut, dann merken wir, ob noch etwas fehlt.",
+            "Gut, dann müssen wir nicht mehr zuhören."
+          ],
+          "correct": 0,
+          "explanation": "A summary helps confirm shared responsibilities."
+        },
+        {
+          "id": "turn_10",
+          "speaker": "Nachbarin",
+          "prompt": "Danke, dass du dich beteiligst.",
+          "translation": "Thank you for taking part.",
+          "listening": false,
+          "choices": [
+            "Gern, obwohl ich niemandem begegnen möchte.",
+            "Gern, ich freue mich darauf, die Leute kennenzulernen."
+          ],
+          "correct": 1,
+          "explanation": "The reply reflects the community purpose of the event."
+        }
+      ]
+    },
+    {
+      "id": "interview_b2",
+      "version": 1,
+      "level": "B2",
+      "status": "draft",
+      "title": "A job interview",
+      "emoji": "💼",
+      "minutes": 7,
+      "objective": "Present your experience and ask informed questions.",
+      "situation": "You are interviewing for a role that combines team coordination and customer contact.",
+      "topic": "Work",
+      "source": "Original AI-assisted dialogue; editorial approval pending. tools/content/m11-B2.txt",
+      "contentDigest": "01004e5a49f66daf89162d0fb47aa58b8f1f79654ef7213e34e0452e9e631c8a",
+      "usefulWords": [
+        "mission_b2_cb453a7f47f0997c",
+        "mission_b2_c90172131c068b28",
+        "mission_b2_0fa50bd79a62c9be",
+        "mission_b2_75e43e27442e64f0"
+      ],
+      "steps": [
+        {
+          "id": "turn_1",
+          "speaker": "Interviewer",
+          "prompt": "Was hat Sie an dieser Stelle besonders angesprochen?",
+          "translation": "What particularly appealed to you about this position?",
+          "listening": false,
+          "choices": [
+            "Mich interessiert vor allem, dass ich mich nicht mit den Aufgaben beschäftigen muss.",
+            "Mich reizt die Verbindung aus Organisation und direktem Kundenkontakt."
+          ],
+          "correct": 1,
+          "explanation": "Connect your motivation to the actual responsibilities."
+        },
+        {
+          "id": "turn_2",
+          "speaker": "Interviewer",
+          "prompt": "Welche Erfahrung bringen Sie in der Zusammenarbeit mit Teams mit?",
+          "translation": "What experience do you bring in working with teams?",
+          "listening": false,
+          "choices": [
+            "In meiner letzten Stelle habe ich die Abstimmung zwischen drei Bereichen koordiniert.",
+            "Ich würde lieber ausschließlich über Erfahrungen sprechen, die mit Teams nichts zu tun haben."
+          ],
+          "correct": 0,
+          "explanation": "A concrete relevant example answers the question."
+        },
+        {
+          "id": "turn_3",
+          "speaker": "Interviewer",
+          "prompt": "Wie sind Sie mit unterschiedlichen Erwartungen umgegangen?",
+          "translation": "How did you handle differing expectations?",
+          "listening": false,
+          "choices": [
+            "Ich habe widersprüchliche Erwartungen grundsätzlich als Zustimmung verstanden.",
+            "Ich habe die Ziele zunächst gemeinsam geklärt und die Prioritäten schriftlich festgehalten."
+          ],
+          "correct": 1,
+          "explanation": "Describe a method for resolving differences rather than overlooking them."
+        },
+        {
+          "id": "turn_4",
+          "speaker": "Interviewer",
+          "prompt": "Können Sie ein Beispiel für eine schwierige Situation nennen?",
+          "translation": "Can you give an example of a difficult situation?",
+          "listening": false,
+          "choices": [
+            "Bei einer Verzögerung habe ich früh informiert und mit dem Team einen Ersatzplan erstellt.",
+            "Ich kann Schwierigkeiten nur daran erkennen, dass nie etwas vom Plan abweicht."
+          ],
+          "correct": 0,
+          "explanation": "A specific challenge and response demonstrate your approach."
+        },
+        {
+          "id": "turn_5",
+          "speaker": "Interviewer",
+          "prompt": "Die Stelle verlangt gelegentlich wechselnde Arbeitszeiten.",
+          "translation": "The role occasionally requires varying working hours.",
+          "listening": true,
+          "choices": [
+            "Dann gehe ich davon aus, dass die Zeiten jeden Tag ohne Absprache wechseln.",
+            "Wie werden diese Zeiten geplant und wie früh stehen sie fest?"
+          ],
+          "correct": 1,
+          "explanation": "Ask for clarification rather than assuming an extreme arrangement."
+        },
+        {
+          "id": "turn_6",
+          "speaker": "Interviewer",
+          "prompt": "Was möchten Sie fachlich noch weiterentwickeln?",
+          "translation": "What professional skills would you like to develop further?",
+          "listening": false,
+          "choices": [
+            "Ich möchte meine Kenntnisse in der Auswertung von Kundendaten vertiefen.",
+            "Ich halte jede fachliche Weiterentwicklung grundsätzlich für überflüssig."
+          ],
+          "correct": 0,
+          "explanation": "Name a realistic development goal."
+        },
+        {
+          "id": "turn_7",
+          "speaker": "Interviewer",
+          "prompt": "Unsere Einarbeitung dauert mehrere Wochen und wird begleitet.",
+          "translation": "Our onboarding takes several weeks and includes support.",
+          "listening": false,
+          "choices": [
+            "Dann muss ich in diesen Wochen vermutlich keine Fragen mehr stellen.",
+            "Welche Stationen sind während der Einarbeitung vorgesehen?"
+          ],
+          "correct": 1,
+          "explanation": "Ask about the structure of the support offered."
+        },
+        {
+          "id": "turn_8",
+          "speaker": "Interviewer",
+          "prompt": "Welche Gehaltsvorstellung haben Sie?",
+          "translation": "What salary expectation do you have?",
+          "listening": false,
+          "choices": [
+            "Ich würde gern zuerst den genauen Verantwortungsumfang einbeziehen und dann eine Spanne besprechen.",
+            "Ich möchte eine verbindliche Zahl nennen, obwohl mir wesentliche Aufgaben noch unklar sind."
+          ],
+          "correct": 0,
+          "explanation": "This response explains how you want to discuss the question rather than guessing without context."
+        },
+        {
+          "id": "turn_9",
+          "speaker": "Interviewer",
+          "prompt": "Wir melden uns voraussichtlich in der kommenden Woche.",
+          "translation": "We expect to contact you next week.",
+          "listening": true,
+          "choices": [
+            "Dann werte ich jedes Ausbleiben einer Nachricht bis morgen als endgültige Absage.",
+            "Vielen Dank. Gibt es bis dahin noch Unterlagen, die ich ergänzen sollte?"
+          ],
+          "correct": 1,
+          "explanation": "A tentative timeline is not a decision deadline for tomorrow."
+        },
+        {
+          "id": "turn_10",
+          "speaker": "Interviewer",
+          "prompt": "Welche Frage haben Sie zum Abschluss noch?",
+          "translation": "What final question would you like to ask?",
+          "listening": false,
+          "choices": [
+            "Woran würden Sie nach sechs Monaten erkennen, dass die Zusammenarbeit erfolgreich ist?",
+            "Können wir zum Abschluss sämtliche bereits geklärten Punkte ignorieren?"
+          ],
+          "correct": 0,
+          "explanation": "Ask a forward-looking question about expectations and success."
+        }
+      ]
+    },
+    {
+      "id": "meeting_b2",
+      "version": 1,
+      "level": "B2",
+      "status": "draft",
+      "title": "A productive team meeting",
+      "emoji": "🧩",
+      "minutes": 7,
+      "objective": "Clarify priorities, responsibilities and a decision.",
+      "situation": "Your team must agree how to handle two competing customer requests.",
+      "topic": "Work",
+      "source": "Original AI-assisted dialogue; editorial approval pending. tools/content/m11-B2.txt",
+      "contentDigest": "621e8897393e0da85deb9df694546ceb95c765d692097dbfb7efa9755e4fc59a",
+      "usefulWords": [
+        "mission_b2_d8cfa12de36ed688",
+        "mission_b2_2abcaf8bdbbd3495",
+        "mission_b2_8ae47dddd875ccbc",
+        "mission_b2_8d4ce340292726ed"
+      ],
+      "steps": [
+        {
+          "id": "turn_1",
+          "speaker": "Teamleitung",
+          "prompt": "Auf der Tagesordnung stehen heute zwei dringende Kundenanfragen.",
+          "translation": "There are two urgent customer requests on today's agenda.",
+          "listening": false,
+          "choices": [
+            "Könnten wir zunächst klären, nach welchen Kriterien wir priorisieren?",
+            "Könnten wir beide Anfragen als gleich wichtig behandeln, ohne die Fristen zu prüfen?"
+          ],
+          "correct": 0,
+          "explanation": "Establish criteria before deciding how to allocate limited time."
+        },
+        {
+          "id": "turn_2",
+          "speaker": "Teamleitung",
+          "prompt": "Die erste Anfrage hat eine feste Frist, die zweite einen größeren Umfang.",
+          "translation": "The first request has a fixed deadline, while the second has a larger scope.",
+          "listening": false,
+          "choices": [
+            "Dann hat der größere Umfang automatisch Vorrang vor jeder Frist.",
+            "Dann sollten wir Frist und Aufwand getrennt betrachten."
+          ],
+          "correct": 1,
+          "explanation": "Avoid treating one factor as decisive without examining the other."
+        },
+        {
+          "id": "turn_3",
+          "speaker": "Teamleitung",
+          "prompt": "Ein Teil der notwendigen Informationen fehlt noch.",
+          "translation": "Some of the necessary information is still missing.",
+          "listening": false,
+          "choices": [
+            "Wer kann die fehlenden Angaben bis morgen beschaffen?",
+            "Wir könnten die fehlenden Angaben zunächst als bereits bestätigt darstellen."
+          ],
+          "correct": 0,
+          "explanation": "Assign a practical next step rather than assuming unknown information."
+        },
+        {
+          "id": "turn_4",
+          "speaker": "Teamleitung",
+          "prompt": "Der Kundenkontakt liegt bei unserem Vertriebsteam.",
+          "translation": "Our sales team handles customer contact.",
+          "listening": false,
+          "choices": [
+            "Dann sollten wir ohne Rücksprache neue Zusagen im Namen des Vertriebs machen.",
+            "Dann sollten wir den Vertrieb früh in die Klärung einbeziehen."
+          ],
+          "correct": 1,
+          "explanation": "Involve the responsible team before making commitments."
+        },
+        {
+          "id": "turn_5",
+          "speaker": "Teamleitung",
+          "prompt": "Bei der technischen Prüfung ist die Zuständigkeit noch offen.",
+          "translation": "Responsibility for the technical review is still undecided.",
+          "listening": true,
+          "choices": [
+            "Lassen Sie uns dafür eine konkrete Person und eine Rückmeldefrist festlegen.",
+            "Lassen Sie uns offenlassen, wer sich irgendwann darum kümmert."
+          ],
+          "correct": 0,
+          "explanation": "A named owner and deadline make the task actionable."
+        },
+        {
+          "id": "turn_6",
+          "speaker": "Teamleitung",
+          "prompt": "Nicht alle können diese Woche zusätzliche Aufgaben übernehmen.",
+          "translation": "Not everyone can take on extra work this week.",
+          "listening": false,
+          "choices": [
+            "Welche bestehenden Zusagen könnten wir ohne Information der Betroffenen streichen?",
+            "Welche Aufgaben könnten wir verschieben, ohne bestehende Zusagen zu gefährden?"
+          ],
+          "correct": 1,
+          "explanation": "Consider trade-offs and communication rather than silently dropping commitments."
+        },
+        {
+          "id": "turn_7",
+          "speaker": "Teamleitung",
+          "prompt": "Wir könnten einen ersten Entwurf statt einer vollständigen Lösung anbieten.",
+          "translation": "We could offer an initial draft rather than a complete solution.",
+          "listening": false,
+          "choices": [
+            "Das wäre sinnvoll, wenn wir den Umfang mit dem Kunden eindeutig abstimmen.",
+            "Das wäre sinnvoll, wenn wir den Entwurf als fertige Lösung bezeichnen."
+          ],
+          "correct": 0,
+          "explanation": "Make the reduced scope explicit."
+        },
+        {
+          "id": "turn_8",
+          "speaker": "Teamleitung",
+          "prompt": "Gibt es noch einen Einwand gegen diesen Vorschlag?",
+          "translation": "Does anyone still have an objection to this proposal?",
+          "listening": false,
+          "choices": [
+            "Ich möchte ein bekanntes Risiko erst nach der Abgabe erwähnen.",
+            "Ich sehe ein Risiko bei der Datenqualität; das sollten wir im Entwurf kennzeichnen."
+          ],
+          "correct": 1,
+          "explanation": "Raise a specific concern while a response is still possible."
+        },
+        {
+          "id": "turn_9",
+          "speaker": "Teamleitung",
+          "prompt": "Wir halten die offenen Punkte im Protokoll fest.",
+          "translation": "We will record the outstanding points in the minutes.",
+          "listening": true,
+          "choices": [
+            "Bitte nehmen Sie auch Verantwortliche und Termine mit auf.",
+            "Bitte führen Sie offene Punkte als erledigt auf."
+          ],
+          "correct": 0,
+          "explanation": "The record should distinguish assigned work from completed work."
+        },
+        {
+          "id": "turn_10",
+          "speaker": "Teamleitung",
+          "prompt": "Können wir damit die Entscheidung abschließen?",
+          "translation": "Can we finalize the decision on that basis?",
+          "listening": false,
+          "choices": [
+            "Ja, allerdings ohne die soeben vereinbarten Einschränkungen zu beachten.",
+            "Ja, mit den genannten Einschränkungen und den vereinbarten nächsten Schritten."
+          ],
+          "correct": 1,
+          "explanation": "Confirm the actual agreement, including its conditions."
+        }
+      ]
+    },
+    {
+      "id": "complaint_b2",
+      "version": 1,
+      "level": "B2",
+      "status": "draft",
+      "title": "Resolve a purchase problem",
+      "emoji": "🎧",
+      "minutes": 7,
+      "objective": "Describe a fault and agree a clear next step.",
+      "situation": "Your new headphones stop working intermittently and you are contacting the seller.",
+      "topic": "Shopping",
+      "source": "Original AI-assisted dialogue; editorial approval pending. tools/content/m11-B2.txt",
+      "contentDigest": "3dcab9b1bd38e0c6749d5a4f470d59116a6e761ca9a1970bda72f756225416e8",
+      "usefulWords": [
+        "mission_b2_56133cd7e9d63ca5",
+        "mission_b2_368e4b51864a1206",
+        "mission_b2_60ee43b01ba9db58",
+        "mission_b2_7cced044ead1d4f4"
+      ],
+      "steps": [
+        {
+          "id": "turn_1",
+          "speaker": "Serviceberater",
+          "prompt": "Sie haben eine Reklamation zu Ihren Kopfhörern?",
+          "translation": "You have a complaint about your headphones?",
+          "listening": false,
+          "choices": [
+            "Ja, ich möchte ausschließlich über ein anderes, bisher ungeprüftes Gerät sprechen.",
+            "Ja, der Ton fällt seit gestern immer wieder aus."
+          ],
+          "correct": 1,
+          "explanation": "Describe the specific fault in the item concerned."
+        },
+        {
+          "id": "turn_2",
+          "speaker": "Serviceberater",
+          "prompt": "Liegt Ihnen der Kaufbeleg vor?",
+          "translation": "Do you have proof of purchase?",
+          "listening": false,
+          "choices": [
+            "Ja, ich kann Ihnen den Kaufbeleg und die Bestellnummer schicken.",
+            "Ja, ich könnte stattdessen einen beliebigen fremden Beleg schicken."
+          ],
+          "correct": 0,
+          "explanation": "Provide documents matching your own purchase."
+        },
+        {
+          "id": "turn_3",
+          "speaker": "Serviceberater",
+          "prompt": "Unter welchen Umständen tritt das Problem auf?",
+          "translation": "Under what circumstances does the problem occur?",
+          "listening": false,
+          "choices": [
+            "Es tritt bestimmt unter allen denkbaren Umständen auf, obwohl ich nur einmal getestet habe.",
+            "Es tritt sowohl am Laptop als auch am Telefon auf."
+          ],
+          "correct": 1,
+          "explanation": "Report observations without overstating what you tested."
+        },
+        {
+          "id": "turn_4",
+          "speaker": "Serviceberater",
+          "prompt": "Haben Sie bereits eine andere Verbindung ausprobiert?",
+          "translation": "Have you already tried another connection?",
+          "listening": false,
+          "choices": [
+            "Ja, bei einer zweiten Verbindung trat derselbe Fehler auf.",
+            "Nein, deshalb behaupte ich, eine zweite Verbindung habe sicher nichts geändert."
+          ],
+          "correct": 0,
+          "explanation": "Keep the description consistent with what you actually tried."
+        },
+        {
+          "id": "turn_5",
+          "speaker": "Serviceberater",
+          "prompt": "Wir möchten das Gerät zunächst prüfen.",
+          "translation": "We would first like to inspect the device.",
+          "listening": true,
+          "choices": [
+            "Dann steht ohne Prüfung bereits fest, dass es keine Lösung gibt.",
+            "Wie läuft die Prüfung ab und wie lange dauert sie voraussichtlich?"
+          ],
+          "correct": 1,
+          "explanation": "Ask about the proposed process rather than assuming its outcome."
+        },
+        {
+          "id": "turn_6",
+          "speaker": "Serviceberater",
+          "prompt": "Sie erhalten von uns Hinweise zum sicheren Versand.",
+          "translation": "We will send you instructions for safe shipping.",
+          "listening": false,
+          "choices": [
+            "Bitte teilen Sie mir mit, welches Zubehör ich beilegen soll.",
+            "Dann schicke ich vorsorglich sämtliche Gegenstände aus meinem Haushalt."
+          ],
+          "correct": 0,
+          "explanation": "Clarify exactly what should be sent."
+        },
+        {
+          "id": "turn_7",
+          "speaker": "Serviceberater",
+          "prompt": "Die weitere Lösung hängt vom Ergebnis der Prüfung ab.",
+          "translation": "The next solution depends on the inspection result.",
+          "listening": false,
+          "choices": [
+            "Dann ist mir unabhängig vom Ergebnis schon jede mögliche Lösung zugesagt.",
+            "Welche Möglichkeiten würden Sie danach mit mir besprechen?"
+          ],
+          "correct": 1,
+          "explanation": "The agent has not promised an outcome; ask about the options."
+        },
+        {
+          "id": "turn_8",
+          "speaker": "Serviceberater",
+          "prompt": "Wir informieren Sie per E-Mail, sobald das Ergebnis vorliegt.",
+          "translation": "We will inform you by email as soon as the result is available.",
+          "listening": false,
+          "choices": [
+            "Könnten Sie mir bitte eine Vorgangsnummer nennen?",
+            "Könnten Sie den Vorgang ohne jede Zuordnung zu meiner Anfrage bearbeiten?"
+          ],
+          "correct": 0,
+          "explanation": "A reference helps track the request."
+        },
+        {
+          "id": "turn_9",
+          "speaker": "Serviceberater",
+          "prompt": "Falls weitere Angaben nötig sind, melden wir uns.",
+          "translation": "If more details are needed, we will contact you.",
+          "listening": true,
+          "choices": [
+            "Ich ändere meine Kontaktdaten, ohne Sie darüber zu informieren.",
+            "Ich bin unter der angegebenen E-Mail-Adresse erreichbar."
+          ],
+          "correct": 1,
+          "explanation": "Confirm a reliable contact method."
+        },
+        {
+          "id": "turn_10",
+          "speaker": "Serviceberater",
+          "prompt": "Ist das weitere Vorgehen für Sie so nachvollziehbar?",
+          "translation": "Is the next procedure clear to you on that basis?",
+          "listening": false,
+          "choices": [
+            "Ja, ich warte auf die Versandhinweise und bewahre die Vorgangsnummer auf.",
+            "Ja, ich gehe davon aus, dass bereits alles abschließend entschieden ist."
+          ],
+          "correct": 0,
+          "explanation": "Summarize the next step without confusing it with a final decision."
+        }
+      ]
+    },
+    {
+      "id": "project_b2",
+      "version": 1,
+      "level": "B2",
+      "status": "draft",
+      "title": "Plan a realistic project",
+      "emoji": "🗂️",
+      "minutes": 7,
+      "objective": "Negotiate scope, milestones and a realistic plan.",
+      "situation": "Your team wants to launch a small service improvement with limited resources.",
+      "topic": "Work",
+      "source": "Original AI-assisted dialogue; editorial approval pending. tools/content/m11-B2.txt",
+      "contentDigest": "5cd01b89a0cf5595f9a2faae97ba284d039fc702558be6f37e8858635689ffa0",
+      "usefulWords": [
+        "mission_b2_e58b56170d9c65cf",
+        "mission_b2_0be86d19ebfd5310",
+        "mission_b2_0413058e9bec0de3",
+        "mission_b2_0df5e527ee77aecc"
+      ],
+      "steps": [
+        {
+          "id": "turn_1",
+          "speaker": "Projektpartnerin",
+          "prompt": "Was muss zum Start unbedingt funktionieren?",
+          "translation": "What absolutely has to work at launch?",
+          "listening": false,
+          "choices": [
+            "Wir sollten die Kernfunktion von späteren Ergänzungen unterscheiden.",
+            "Wir sollten sämtliche denkbaren Ergänzungen sofort als unverzichtbar einstufen."
+          ],
+          "correct": 0,
+          "explanation": "Separate essentials from optional scope."
+        },
+        {
+          "id": "turn_2",
+          "speaker": "Projektpartnerin",
+          "prompt": "Der bisherige Zeitplan lässt kaum Raum für Tests.",
+          "translation": "The current schedule leaves hardly any room for testing.",
+          "listening": false,
+          "choices": [
+            "Dann sollten wir den Zeitplan unverändert als risikofrei bezeichnen.",
+            "Dann müssen wir entweder den Umfang oder den Termin anpassen."
+          ],
+          "correct": 1,
+          "explanation": "Acknowledge the trade-off instead of denying it."
+        },
+        {
+          "id": "turn_3",
+          "speaker": "Projektpartnerin",
+          "prompt": "Der Termin ist wichtig, aber nicht jeder Wunsch hat dieselbe Priorität.",
+          "translation": "The date matters, but not every request has the same priority.",
+          "listening": false,
+          "choices": [
+            "Welche Anforderungen können wir für eine spätere Version vorsehen?",
+            "Welche Anforderungen können wir ungeprüft als bereits umgesetzt melden?"
+          ],
+          "correct": 0,
+          "explanation": "Discuss a phased plan rather than overstating completion."
+        },
+        {
+          "id": "turn_4",
+          "speaker": "Projektpartnerin",
+          "prompt": "Welchen ersten Meilenstein schlagen Sie vor?",
+          "translation": "What first milestone do you suggest?",
+          "listening": false,
+          "choices": [
+            "Die sofortige Freigabe aller Funktionen ohne Rückmeldung.",
+            "Einen getesteten Ablauf mit einer kleinen Nutzergruppe."
+          ],
+          "correct": 1,
+          "explanation": "Choose a milestone that provides usable evidence."
+        },
+        {
+          "id": "turn_5",
+          "speaker": "Projektpartnerin",
+          "prompt": "Für zusätzliche Gestaltung fehlt momentan Kapazität.",
+          "translation": "There is currently no capacity for extra design work.",
+          "listening": true,
+          "choices": [
+            "Können wir vorhandene Komponenten nutzen und gezielt vereinfachen?",
+            "Können wir fehlende Kapazität durch zusätzliche ungeplante Arbeit ersetzen?"
+          ],
+          "correct": 0,
+          "explanation": "Reuse and focus respond to the actual constraint."
+        },
+        {
+          "id": "turn_6",
+          "speaker": "Projektpartnerin",
+          "prompt": "Wie gehen wir mit Änderungswünschen um?",
+          "translation": "How will we handle change requests?",
+          "listening": false,
+          "choices": [
+            "Wir behandeln jeden neuen Wunsch automatisch als bereits vereinbart.",
+            "Wir dokumentieren sie und prüfen ihren Einfluss auf Ziel und Termin."
+          ],
+          "correct": 1,
+          "explanation": "Assess changes before committing to them."
+        },
+        {
+          "id": "turn_7",
+          "speaker": "Projektpartnerin",
+          "prompt": "Eine wichtige Rückmeldung ist noch offen.",
+          "translation": "One important response is still outstanding.",
+          "listening": false,
+          "choices": [
+            "Dann sollten wir die davon abhängige Entscheidung ausdrücklich offenlassen.",
+            "Dann sollten wir das Ausbleiben der Antwort als endgültige Zustimmung werten."
+          ],
+          "correct": 0,
+          "explanation": "Missing feedback is not the same as approval."
+        },
+        {
+          "id": "turn_8",
+          "speaker": "Projektpartnerin",
+          "prompt": "Wer übernimmt die Abstimmung mit den Beteiligten?",
+          "translation": "Who will coordinate with the people involved?",
+          "listening": false,
+          "choices": [
+            "Ich kann den Stand ohne Rücksprache als vollständig geklärt darstellen.",
+            "Ich kann die Rückmeldungen sammeln und den Stand transparent festhalten."
+          ],
+          "correct": 1,
+          "explanation": "Offer a clear coordination task."
+        },
+        {
+          "id": "turn_9",
+          "speaker": "Projektpartnerin",
+          "prompt": "Wir prüfen den Fortschritt am nächsten Mittwoch.",
+          "translation": "We will review progress next Wednesday.",
+          "listening": true,
+          "choices": [
+            "Bis dahin liefere ich einen kurzen Überblick über Ergebnisse und Risiken.",
+            "Bis dahin melde ich ausschließlich Erfolge, unabhängig vom tatsächlichen Stand."
+          ],
+          "correct": 0,
+          "explanation": "A useful review includes both progress and risks."
+        },
+        {
+          "id": "turn_10",
+          "speaker": "Projektpartnerin",
+          "prompt": "Können wir den Plan so festhalten?",
+          "translation": "Can we record the plan on that basis?",
+          "listening": false,
+          "choices": [
+            "Ja, aber ohne die gerade vereinbarten Prioritäten.",
+            "Ja, mit den vereinbarten Prioritäten und dem eingeplanten Testschritt."
+          ],
+          "correct": 1,
+          "explanation": "Confirm the plan as actually discussed."
+        }
+      ]
+    },
+    {
+      "id": "news_b2",
+      "version": 1,
+      "level": "B2",
+      "status": "draft",
+      "title": "Discuss a news report",
+      "emoji": "📰",
+      "minutes": 7,
+      "objective": "Evaluate a report and express a balanced view.",
+      "situation": "You and a friend are discussing a report about changing commuting habits.",
+      "topic": "Media",
+      "source": "Original AI-assisted dialogue; editorial approval pending. tools/content/m11-B2.txt",
+      "contentDigest": "a058dd5d2f11e96aca0725ff7194511900940909d9cb1513e554b6d4638ccd16",
+      "usefulWords": [
+        "mission_b2_3e5ebeb0b4db88da",
+        "mission_b2_e9a54553a2b9d00a",
+        "mission_b2_cd8917f59f447cd8",
+        "mission_b2_4f5f2196e5f79531"
+      ],
+      "steps": [
+        {
+          "id": "turn_1",
+          "speaker": "Gesprächspartner",
+          "prompt": "Der Artikel behauptet, dass sich das Pendeln stark verändert.",
+          "translation": "The article claims that commuting is changing substantially.",
+          "listening": false,
+          "choices": [
+            "Dann muss jede einzelne Person ihr Verhalten geändert haben.",
+            "Mich interessiert, worauf diese Aussage beruht."
+          ],
+          "correct": 1,
+          "explanation": "A broad claim does not describe every individual."
+        },
+        {
+          "id": "turn_2",
+          "speaker": "Gesprächspartner",
+          "prompt": "Als Datenquelle wird eine Befragung genannt.",
+          "translation": "A survey is named as the data source.",
+          "listening": false,
+          "choices": [
+            "Wissen wir, wer die Befragung durchgeführt hat?",
+            "Dann spielt die Herkunft der Daten keine Rolle mehr."
+          ],
+          "correct": 0,
+          "explanation": "Ask about the source rather than treating any survey as self-explanatory."
+        },
+        {
+          "id": "turn_3",
+          "speaker": "Gesprächspartner",
+          "prompt": "Die Überschrift klingt eindeutiger als der Text.",
+          "translation": "The headline sounds more definite than the text.",
+          "listening": false,
+          "choices": [
+            "Dann können wir den differenzierteren Text vollständig ignorieren.",
+            "Dann sollten wir zwischen der Zuspitzung und den eigentlichen Ergebnissen unterscheiden."
+          ],
+          "correct": 1,
+          "explanation": "Read the claim in context."
+        },
+        {
+          "id": "turn_4",
+          "speaker": "Gesprächspartner",
+          "prompt": "Im Text werden nur bestimmte Berufsgruppen erwähnt.",
+          "translation": "Only particular occupational groups are mentioned in the text.",
+          "listening": false,
+          "choices": [
+            "Das begrenzt, auf wen wir die Ergebnisse übertragen können.",
+            "Das belegt ohne Weiteres eine Aussage über alle Berufsgruppen."
+          ],
+          "correct": 0,
+          "explanation": "Recognize the scope of the evidence."
+        },
+        {
+          "id": "turn_5",
+          "speaker": "Gesprächspartner",
+          "prompt": "Auch die Größe der Stichprobe wird angegeben.",
+          "translation": "The size of the sample is also given.",
+          "listening": true,
+          "choices": [
+            "Die Zusammensetzung ist grundsätzlich bedeutungslos, sobald eine Zahl genannt wird.",
+            "Neben der Größe wäre auch ihre Zusammensetzung wichtig."
+          ],
+          "correct": 1,
+          "explanation": "Sample size alone does not describe whom the data represent."
+        },
+        {
+          "id": "turn_6",
+          "speaker": "Gesprächspartner",
+          "prompt": "Eine Person im Artikel zieht einen direkten Vergleich mit früher.",
+          "translation": "One person in the article draws a direct comparison with the past.",
+          "listening": false,
+          "choices": [
+            "Sind die früheren und heutigen Daten auf dieselbe Weise erhoben worden?",
+            "Dann sind die Daten automatisch vollständig vergleichbar."
+          ],
+          "correct": 0,
+          "explanation": "Check comparability before drawing a trend conclusion."
+        },
+        {
+          "id": "turn_7",
+          "speaker": "Gesprächspartner",
+          "prompt": "Du findest die Entwicklung also grundsätzlich positiv?",
+          "translation": "So you find the development positive in principle?",
+          "listening": false,
+          "choices": [
+            "Ja, und deshalb darf es keinerlei offene Fragen geben.",
+            "In manchen Punkten ja, aber ich sehe auch offene Fragen."
+          ],
+          "correct": 1,
+          "explanation": "Express a position without pretending all uncertainty has disappeared."
+        },
+        {
+          "id": "turn_8",
+          "speaker": "Gesprächspartner",
+          "prompt": "Welche Frage würdest du weiterverfolgen?",
+          "translation": "Which question would you explore further?",
+          "listening": false,
+          "choices": [
+            "Mich interessiert, welche Gruppen von der Veränderung profitieren.",
+            "Mich interessiert nur, wie sich die Überschrift noch stärker zuspitzen lässt."
+          ],
+          "correct": 0,
+          "explanation": "Choose a substantive follow-up."
+        },
+        {
+          "id": "turn_9",
+          "speaker": "Gesprächspartner",
+          "prompt": "Wir sollten noch eine zweite Darstellung lesen.",
+          "translation": "We should read another account as well.",
+          "listening": true,
+          "choices": [
+            "Gute Idee, aber nur, wenn sie exakt dasselbe behauptet.",
+            "Gute Idee, dann können wir Perspektiven und Belege vergleichen."
+          ],
+          "correct": 1,
+          "explanation": "A comparison is useful when differing accounts can be examined."
+        },
+        {
+          "id": "turn_10",
+          "speaker": "Gesprächspartner",
+          "prompt": "Wie würdest du deine Einschätzung kurz zusammenfassen?",
+          "translation": "How would you briefly summarize your assessment?",
+          "listening": false,
+          "choices": [
+            "Die Entwicklung wirkt interessant, doch die Reichweite der Aussagen bleibt zu prüfen.",
+            "Der Artikel beweist unabhängig von seinen Grenzen alles, was wir vermuten."
+          ],
+          "correct": 0,
+          "explanation": "A balanced summary separates interest from certainty."
+        }
+      ]
+    },
+    {
+      "id": "scope_c1",
+      "version": 1,
+      "level": "C1",
+      "status": "draft",
+      "title": "Negotiate a workable scope",
+      "emoji": "🤝",
+      "minutes": 8,
+      "objective": "Make trade-offs explicit and agree a conditional commitment.",
+      "situation": "A partner wants a broader service while keeping the original budget and deadline.",
+      "topic": "Professional communication",
+      "source": "Original AI-assisted dialogue; editorial approval pending. tools/content/m11-C1.txt",
+      "contentDigest": "1da898f94c590beb79831b47d6730cbeab5f1cf3c7470cb30127440580170335",
+      "usefulWords": [
+        "mission_c1_571d96eab347d6df",
+        "mission_c1_c2ac1b1f513f62f0",
+        "mission_c1_c9b80408115066dd",
+        "mission_c1_1ce5e7b657c9eca4"
+      ],
+      "steps": [
+        {
+          "id": "turn_1",
+          "speaker": "Projektpartner",
+          "prompt": "Unser Wunsch wäre, die zusätzliche Funktion noch vor dem Start einzubeziehen.",
+          "translation": "We would like to include the extra function before launch.",
+          "listening": false,
+          "choices": [
+            "Welches konkrete Ergebnis soll diese Ergänzung für die Nutzer ermöglichen?",
+            "Welche Farbe soll die neue Schaltfläche bekommen?"
+          ],
+          "correct": 0,
+          "explanation": "Clarify the intended benefit before discussing surface details."
+        },
+        {
+          "id": "turn_2",
+          "speaker": "Projektpartner",
+          "prompt": "Wir sehen den Zielkonflikt zwischen Umfang und Termin, möchten aber beides halten.",
+          "translation": "We see the conflict between scope and deadline, but would like to keep both.",
+          "listening": false,
+          "choices": [
+            "Dann sollten wir zunächst nur den ursprünglichen Termin erneut bestätigen.",
+            "Dann sollten wir offenlegen, welche Annahmen dafür gleichzeitig erfüllt sein müssten."
+          ],
+          "correct": 1,
+          "explanation": "Repeating a date does not resolve the competing objectives."
+        },
+        {
+          "id": "turn_3",
+          "speaker": "Projektpartner",
+          "prompt": "Eine Vorabversion mit eingeschränktem Umfang wäre denkbar.",
+          "translation": "A preliminary version with limited scope would be conceivable.",
+          "listening": false,
+          "choices": [
+            "Welche Einschränkungen wären aus Ihrer Sicht gegenüber den Nutzern vertretbar?",
+            "Wie könnten wir die Einschränkungen im Namen der Funktion möglichst verdecken?"
+          ],
+          "correct": 0,
+          "explanation": "The goal is a transparent preliminary offer, not ambiguity about its limits."
+        },
+        {
+          "id": "turn_4",
+          "speaker": "Projektpartner",
+          "prompt": "Wir müssten auf eine automatische Auswertung verzichten.",
+          "translation": "We would have to do without automated analysis.",
+          "listening": false,
+          "choices": [
+            "Dann sollten wir bereits über die Gestaltung der späteren Auswertung entscheiden.",
+            "Dann sollten wir prüfen, ob der verbleibende Ablauf den Kernnutzen noch erfüllt."
+          ],
+          "correct": 1,
+          "explanation": "Test the usefulness of the reduced scope before designing the omitted feature."
+        },
+        {
+          "id": "turn_5",
+          "speaker": "Projektpartner",
+          "prompt": "Aus Ihrer Sicht ist also nicht jede Kürzung gleich sinnvoll?",
+          "translation": "So, from your perspective, not every reduction is equally sensible?",
+          "listening": true,
+          "choices": [
+            "Genau, entscheidend ist, welche Abhängigkeiten und Nutzungssituationen betroffen sind.",
+            "Genau, wir können deshalb nur den vollständigen ursprünglichen Umfang besprechen."
+          ],
+          "correct": 0,
+          "explanation": "Differentiate reductions rather than treating the choice as all or nothing."
+        },
+        {
+          "id": "turn_6",
+          "speaker": "Projektpartner",
+          "prompt": "Wo sehen Sie noch Verhandlungsspielraum?",
+          "translation": "Where do you still see room for negotiation?",
+          "listening": false,
+          "choices": [
+            "Vor allem bei Punkten, über deren Bedeutung wir noch gar nicht gesprochen haben.",
+            "Bei der Reihenfolge der Ausbaustufen, weniger bei den zugesagten Schutzfunktionen."
+          ],
+          "correct": 1,
+          "explanation": "Specify a reasoned boundary instead of leaving the negotiable area undefined."
+        },
+        {
+          "id": "turn_7",
+          "speaker": "Projektpartner",
+          "prompt": "Könnten wir diese Unterscheidung schriftlich festhalten?",
+          "translation": "Could we record this distinction in writing?",
+          "listening": false,
+          "choices": [
+            "Ja, einschließlich der Voraussetzungen, unter denen die Zusage gilt.",
+            "Ja, zunächst ausschließlich als allgemeine Absichtserklärung ohne Voraussetzungen."
+          ],
+          "correct": 0,
+          "explanation": "A conditional commitment needs its conditions documented."
+        },
+        {
+          "id": "turn_8",
+          "speaker": "Projektpartner",
+          "prompt": "Was geschieht, wenn eine Voraussetzung nicht rechtzeitig erfüllt ist?",
+          "translation": "What happens if a condition is not met in time?",
+          "listening": false,
+          "choices": [
+            "Dann sollten wir zunächst die Formulierung der ursprünglichen Zusage unverändert weiterverwenden.",
+            "Dann greifen die vereinbarte Rückfalloption und eine frühzeitige Information der Beteiligten."
+          ],
+          "correct": 1,
+          "explanation": "Explain the agreed response to changed circumstances."
+        },
+        {
+          "id": "turn_9",
+          "speaker": "Projektpartner",
+          "prompt": "Die zusätzliche Funktion folgt also in einer späteren Stufe.",
+          "translation": "So the additional function will follow in a later stage.",
+          "listening": true,
+          "choices": [
+            "Ja, sofern die Rückmeldungen ihren Nutzen bestätigen und die Abhängigkeiten geklärt sind.",
+            "Ja, als bereits erfüllter Bestandteil der ersten Stufe."
+          ],
+          "correct": 0,
+          "explanation": "Keep a planned later addition distinct from delivered scope."
+        },
+        {
+          "id": "turn_10",
+          "speaker": "Projektpartner",
+          "prompt": "Ist das für beide Seiten eine tragfähige Vereinbarung?",
+          "translation": "Is this a workable agreement for both sides?",
+          "listening": false,
+          "choices": [
+            "Aus meiner Sicht ja; weitere Zuordnungen können wir deshalb grundsätzlich offenlassen.",
+            "Aus meiner Sicht ja; lassen Sie uns die offenen Prüfaufträge noch konkret zuordnen."
+          ],
+          "correct": 1,
+          "explanation": "Close the negotiation with actionable ownership of remaining work."
+        }
+      ]
+    },
+    {
+      "id": "seminar_c1",
+      "version": 1,
+      "level": "C1",
+      "status": "draft",
+      "title": "Discuss a research presentation",
+      "emoji": "🔎",
+      "minutes": 8,
+      "objective": "Separate a research question, evidence and interpretation.",
+      "situation": "You are discussing a fictional study after a seminar presentation.",
+      "topic": "Study and research",
+      "source": "Original AI-assisted dialogue; editorial approval pending. tools/content/m11-C1.txt",
+      "contentDigest": "1bbedf3e0d7086760899bec516599dfc5a71212bc5d304f764637952bb58712d",
+      "usefulWords": [
+        "mission_c1_e5237c090a33e58a",
+        "mission_c1_972b3a974ef3f9f1",
+        "mission_c1_cace8dea363b02eb",
+        "mission_c1_1036bc860e38f471"
+      ],
+      "steps": [
+        {
+          "id": "turn_1",
+          "speaker": "Seminarleitung",
+          "prompt": "Wie würden Sie die Forschungsfrage der vorgestellten Studie einordnen?",
+          "translation": "How would you characterize the research question of the study presented?",
+          "listening": false,
+          "choices": [
+            "Sie lässt sich bereits allein aus der anschaulichen Grafik abschließend beantworten.",
+            "Sie zielt eher auf einen Zusammenhang als auf den Nachweis einer Ursache."
+          ],
+          "correct": 1,
+          "explanation": "Identify the question's scope rather than treating its visualization as an answer."
+        },
+        {
+          "id": "turn_2",
+          "speaker": "Seminarleitung",
+          "prompt": "Welche Beobachtung stützt Ihre Einordnung?",
+          "translation": "Which observation supports your interpretation?",
+          "listening": false,
+          "choices": [
+            "Die Untersuchung vergleicht bestehende Gruppen, ohne die Bedingungen gezielt zu verändern.",
+            "Der Vortrag war sprachlich sehr überzeugend aufgebaut."
+          ],
+          "correct": 0,
+          "explanation": "Refer to the study design rather than presentation style."
+        },
+        {
+          "id": "turn_3",
+          "speaker": "Seminarleitung",
+          "prompt": "Welche Grenzen sehen Sie bei der Erhebungsmethode?",
+          "translation": "What limitations do you see in the data collection method?",
+          "listening": false,
+          "choices": [
+            "Die Methode ist verbreitet und sollte deshalb nicht weiter beschrieben werden.",
+            "Selbstauskünfte können von Erinnerung und sozial erwünschten Antworten beeinflusst sein."
+          ],
+          "correct": 1,
+          "explanation": "State a relevant limitation without claiming the method is worthless."
+        },
+        {
+          "id": "turn_4",
+          "speaker": "Seminarleitung",
+          "prompt": "Heißt das, die Ergebnisse seien unbrauchbar?",
+          "translation": "Does that mean the results are unusable?",
+          "listening": false,
+          "choices": [
+            "Nein, aber ihre Aussage sollte innerhalb der erkennbaren Grenzen formuliert werden.",
+            "Ja, jede methodische Einschränkung macht eine Untersuchung vollständig bedeutungslos."
+          ],
+          "correct": 0,
+          "explanation": "A limitation calls for qualification, not automatic dismissal."
+        },
+        {
+          "id": "turn_5",
+          "speaker": "Seminarleitung",
+          "prompt": "Wie ließe sich die Interpretation vorsichtiger formulieren?",
+          "translation": "How could the interpretation be phrased more cautiously?",
+          "listening": true,
+          "choices": [
+            "Die Befunde legen fest, wie jede einzelne Person sich künftig verhalten wird.",
+            "Die Befunde sprechen für einen möglichen Zusammenhang, nicht für einen eindeutigen Ursache-Wirkungs-Nachweis."
+          ],
+          "correct": 1,
+          "explanation": "Use language proportionate to the evidence described."
+        },
+        {
+          "id": "turn_6",
+          "speaker": "Seminarleitung",
+          "prompt": "Im Vortrag wurden auch abweichende Befunde erwähnt.",
+          "translation": "The presentation also mentioned divergent findings.",
+          "listening": false,
+          "choices": [
+            "Gerade diese Abweichungen könnten Hinweise auf zusätzliche Einflussfaktoren liefern.",
+            "Wir sollten nur die Befunde wiederholen, die sich am einfachsten zusammenfassen lassen."
+          ],
+          "correct": 0,
+          "explanation": "Consider variation as potentially informative."
+        },
+        {
+          "id": "turn_7",
+          "speaker": "Seminarleitung",
+          "prompt": "Welche Rückfrage würden Sie an die Vortragende richten?",
+          "translation": "What follow-up question would you ask the presenter?",
+          "listening": false,
+          "choices": [
+            "Welche Überschrift würde die Ergebnisse am entschiedensten erscheinen lassen?",
+            "Wie wurden alternative Erklärungen geprüft und bei der Auswertung berücksichtigt?"
+          ],
+          "correct": 1,
+          "explanation": "Ask about a substantive uncertainty."
+        },
+        {
+          "id": "turn_8",
+          "speaker": "Seminarleitung",
+          "prompt": "Eine weitere Untersuchung müsste also nicht alles neu beginnen?",
+          "translation": "So a further study would not have to start everything from scratch?",
+          "listening": false,
+          "choices": [
+            "Sie könnte gezielt an den offenen Punkten ansetzen und die bisherigen Befunde ergänzen.",
+            "Sie sollte dieselben offenen Punkte von vornherein als erledigt behandeln."
+          ],
+          "correct": 0,
+          "explanation": "Explain how follow-up work can build on evidence."
+        },
+        {
+          "id": "turn_9",
+          "speaker": "Seminarleitung",
+          "prompt": "Worin liegt trotz der Grenzen ein Erkenntnisgewinn?",
+          "translation": "What insight is gained despite the limitations?",
+          "listening": true,
+          "choices": [
+            "Der Erkenntnisgewinn besteht ausschließlich darin, dass nun keine Fragen mehr offen sind.",
+            "Die Studie präzisiert, welche Zusammenhänge eine genauere Untersuchung verdienen."
+          ],
+          "correct": 1,
+          "explanation": "Describe a contribution without overstating finality."
+        },
+        {
+          "id": "turn_10",
+          "speaker": "Seminarleitung",
+          "prompt": "Formulieren Sie bitte ein kurzes Fazit.",
+          "translation": "Please formulate a brief conclusion.",
+          "listening": false,
+          "choices": [
+            "Interessante Hinweise, deren Reichweite sich erst durch weitere Prüfung genauer bestimmen lässt.",
+            "Ein endgültiger Beweis, unabhängig von den erläuterten Grenzen."
+          ],
+          "correct": 0,
+          "explanation": "Your conclusion should remain consistent with the preceding qualifications."
+        }
+      ]
+    },
+    {
+      "id": "conflict_c1",
+      "version": 1,
+      "level": "C1",
+      "status": "draft",
+      "title": "Clarify a workplace misunderstanding",
+      "emoji": "🗣️",
+      "minutes": 8,
+      "objective": "Address a disagreement without assigning premature blame.",
+      "situation": "A disagreement arose after responsibilities were discussed in a rushed meeting.",
+      "topic": "Professional communication",
+      "source": "Original AI-assisted dialogue; editorial approval pending. tools/content/m11-C1.txt",
+      "contentDigest": "9f796d0f6d8de3a876737497fd71e88aafbe7d21677f960ff34cd75a25761bee",
+      "usefulWords": [
+        "mission_c1_38fa52014a3b3362",
+        "mission_c1_d3c57c74eb9f84b4",
+        "mission_c1_848e157f1349fa72",
+        "mission_c1_87609742c5b66266"
+      ],
+      "steps": [
+        {
+          "id": "turn_1",
+          "speaker": "Kollegin",
+          "prompt": "Ich hatte den Eindruck, dass meine Aufgabe ohne Rücksprache geändert wurde.",
+          "translation": "I had the impression that my task was changed without consulting me.",
+          "listening": false,
+          "choices": [
+            "Lass uns zunächst klären, was wir jeweils als vereinbart verstanden haben.",
+            "Lass uns zunächst darüber entscheiden, wer grundsätzlich recht hat."
+          ],
+          "correct": 0,
+          "explanation": "Establish the different understandings before deciding blame."
+        },
+        {
+          "id": "turn_2",
+          "speaker": "Kollegin",
+          "prompt": "Möglicherweise liegt tatsächlich ein Missverständnis vor.",
+          "translation": "There may indeed be a misunderstanding.",
+          "listening": false,
+          "choices": [
+            "Welche Formulierung beweist, dass deine Erinnerung ausgeschlossen ist?",
+            "Welche Formulierung hat bei dir den Eindruck einer festen Zusage ausgelöst?"
+          ],
+          "correct": 1,
+          "explanation": "Invite clarification rather than disqualifying the other person's account."
+        },
+        {
+          "id": "turn_3",
+          "speaker": "Kollegin",
+          "prompt": "Für mich klang die Aussage am Ende des Treffens eindeutig.",
+          "translation": "To me, the statement at the end of the meeting sounded unambiguous.",
+          "listening": false,
+          "choices": [
+            "Ich verstehe, weshalb du sie so aufgefasst hast; meine Absicht war enger gefasst.",
+            "Wenn die Aussage für mich anders klang, ist deine Wahrnehmung damit erledigt."
+          ],
+          "correct": 0,
+          "explanation": "Acknowledge the perception while explaining the different intention."
+        },
+        {
+          "id": "turn_4",
+          "speaker": "Kollegin",
+          "prompt": "Dann haben wir offenbar über unterschiedliche Umfänge gesprochen.",
+          "translation": "Then apparently we were talking about different scopes.",
+          "listening": false,
+          "choices": [
+            "Genau, deshalb müssen wir alle bisherigen Absprachen vollständig verwerfen.",
+            "Genau, wir sollten den gemeinsamen und den offenen Teil jetzt auseinanderhalten."
+          ],
+          "correct": 1,
+          "explanation": "Differentiate the issue rather than discarding everything."
+        },
+        {
+          "id": "turn_5",
+          "speaker": "Kollegin",
+          "prompt": "Ich sehe trotzdem noch Gesprächsbedarf bei der Verteilung der Aufgaben.",
+          "translation": "I still see a need to discuss how the tasks are allocated.",
+          "listening": true,
+          "choices": [
+            "Lass uns die verfügbare Zeit und die Abhängigkeiten gemeinsam durchgehen.",
+            "Lass uns erst über die Verteilung sprechen, wenn alle Aufgaben schon abgeschlossen sind."
+          ],
+          "correct": 0,
+          "explanation": "Address the practical concern while changes are possible."
+        },
+        {
+          "id": "turn_6",
+          "speaker": "Kollegin",
+          "prompt": "Mir ist wichtig, nicht erneut vor vollendete Tatsachen gestellt zu werden.",
+          "translation": "It matters to me not to be presented with a fait accompli again.",
+          "listening": false,
+          "choices": [
+            "Dann versuchen wir, Änderungen künftig nur noch beiläufig zu erwähnen.",
+            "Dann vereinbaren wir, Änderungen vor einer Zusage direkt miteinander abzustimmen."
+          ],
+          "correct": 1,
+          "explanation": "Propose a clear process that addresses the concern."
+        },
+        {
+          "id": "turn_7",
+          "speaker": "Kollegin",
+          "prompt": "Wie halten wir das fest, ohne alles unnötig zu verkomplizieren?",
+          "translation": "How do we record that without making everything unnecessarily complicated?",
+          "listening": false,
+          "choices": [
+            "Eine kurze Notiz mit Zuständigkeiten und offenen Punkten sollte genügen.",
+            "Wir könnten nur die bereits unstrittigen Namen notieren und alle offenen Punkte weglassen."
+          ],
+          "correct": 0,
+          "explanation": "A concise record can still include the unresolved details."
+        },
+        {
+          "id": "turn_8",
+          "speaker": "Kollegin",
+          "prompt": "Wir sollten nächste Woche prüfen, ob die Aufteilung funktioniert.",
+          "translation": "We should check next week whether the allocation works.",
+          "listening": false,
+          "choices": [
+            "Einverstanden, aber ohne einen Zeitpunkt oder einen Maßstab zu nennen.",
+            "Einverstanden, und wir benennen vorher, woran wir das erkennen wollen."
+          ],
+          "correct": 1,
+          "explanation": "Make the review concrete."
+        },
+        {
+          "id": "turn_9",
+          "speaker": "Kollegin",
+          "prompt": "Damit wäre mein wichtigster Einwand aufgegriffen.",
+          "translation": "That would address my main objection.",
+          "listening": true,
+          "choices": [
+            "Gut, gibt es noch etwas, das wir für eine verlässliche Zusammenarbeit klären sollten?",
+            "Gut, dann sind weitere Rückfragen grundsätzlich unerwünscht."
+          ],
+          "correct": 0,
+          "explanation": "Allow a final check without reopening every settled detail."
+        },
+        {
+          "id": "turn_10",
+          "speaker": "Kollegin",
+          "prompt": "Danke, dass wir das in Ruhe besprechen konnten.",
+          "translation": "Thank you for discussing this calmly.",
+          "listening": false,
+          "choices": [
+            "Mir war nur daran gelegen, die Verantwortung für das Gespräch abzugeben.",
+            "Mir war auch daran gelegen, wieder eine klare gemeinsame Grundlage zu haben."
+          ],
+          "correct": 1,
+          "explanation": "Close by emphasizing the restored working relationship."
+        }
+      ]
+    },
+    {
+      "id": "hearing_c1",
+      "version": 1,
+      "level": "C1",
+      "status": "draft",
+      "title": "Contribute to a public consultation",
+      "emoji": "🏙️",
+      "minutes": 8,
+      "objective": "Raise a concrete concern and ask how feedback will be used.",
+      "situation": "A fictional town is discussing a redesign of a neighborhood square.",
+      "topic": "Community",
+      "source": "Original AI-assisted dialogue; editorial approval pending. tools/content/m11-C1.txt",
+      "contentDigest": "ca192e691e7fc69950b935ac4cf7af5969b3614ae91fd237a0112ce53e52a9a3",
+      "usefulWords": [
+        "mission_c1_0fe8b6c7fa424b19",
+        "mission_c1_a9ddaa17ee858ff1",
+        "mission_c1_642587bc10eb908b",
+        "mission_c1_85a2df39a268ceda"
+      ],
+      "steps": [
+        {
+          "id": "turn_1",
+          "speaker": "Moderation",
+          "prompt": "Welche Veränderung am Platz ist Ihnen besonders wichtig?",
+          "translation": "Which change to the square is particularly important to you?",
+          "listening": false,
+          "choices": [
+            "Mir geht es zunächst nur darum, dass überhaupt keine anderen Interessen genannt werden.",
+            "Mir geht es um eine bessere Nutzbarkeit für unterschiedliche Gruppen."
+          ],
+          "correct": 1,
+          "explanation": "State your concern while recognizing the setting is shared."
+        },
+        {
+          "id": "turn_2",
+          "speaker": "Moderation",
+          "prompt": "Was erwarten Sie von diesem Beteiligungsverfahren?",
+          "translation": "What do you expect from this participation process?",
+          "listening": false,
+          "choices": [
+            "Dass nachvollziehbar wird, wie Hinweise geprüft und in Entscheidungen einbezogen werden.",
+            "Dass jede einzelne Äußerung unabhängig von Widersprüchen unmittelbar umgesetzt wird."
+          ],
+          "correct": 0,
+          "explanation": "Ask for a transparent process without assuming every suggestion can prevail."
+        },
+        {
+          "id": "turn_3",
+          "speaker": "Moderation",
+          "prompt": "Es gibt unterschiedliche Wünsche zu Ruhe, Bewegung und Veranstaltungen.",
+          "translation": "There are differing wishes concerning quiet, activity and events.",
+          "listening": false,
+          "choices": [
+            "Vielleicht sollte nur das zuerst geäußerte Interesse berücksichtigt werden.",
+            "Vielleicht lassen sich räumliche oder zeitliche Lösungen miteinander kombinieren."
+          ],
+          "correct": 1,
+          "explanation": "Explore a way to reconcile interests."
+        },
+        {
+          "id": "turn_4",
+          "speaker": "Moderation",
+          "prompt": "Welche Information fehlt Ihnen für eine fundierte Einschätzung?",
+          "translation": "What information do you lack for an informed assessment?",
+          "listening": false,
+          "choices": [
+            "Eine verständliche Darstellung der Varianten und ihrer jeweiligen Folgen.",
+            "Eine möglichst entschiedene Bewertung, bevor die Varianten beschrieben sind."
+          ],
+          "correct": 0,
+          "explanation": "Ask for information before a judgment."
+        },
+        {
+          "id": "turn_5",
+          "speaker": "Moderation",
+          "prompt": "Ein Teil der Fläche soll entsiegelt werden.",
+          "translation": "Part of the surface is to be unsealed.",
+          "listening": true,
+          "choices": [
+            "Welche endgültige Wirkung können wir ohne weitere Angaben bereits garantieren?",
+            "Welche Auswirkungen hat das auf Zugänglichkeit und Pflege im Alltag?"
+          ],
+          "correct": 1,
+          "explanation": "Clarify practical effects instead of demanding unsupported certainty."
+        },
+        {
+          "id": "turn_6",
+          "speaker": "Moderation",
+          "prompt": "Diese Fragen werden in der nächsten Planungsstufe vertieft.",
+          "translation": "These questions will be examined more closely at the next planning stage.",
+          "listening": false,
+          "choices": [
+            "Dann wäre hilfreich zu wissen, wann und in welcher Form die Ergebnisse veröffentlicht werden.",
+            "Dann sollten wir diese Fragen bis auf Weiteres als bereits beantwortet behandeln."
+          ],
+          "correct": 0,
+          "explanation": "Keep outstanding questions visible and ask about follow-up."
+        },
+        {
+          "id": "turn_7",
+          "speaker": "Moderation",
+          "prompt": "Auch die Folgekosten müssen noch genauer geschätzt werden.",
+          "translation": "The subsequent costs also need more precise estimates.",
+          "listening": false,
+          "choices": [
+            "Könnten wir die fehlende Schätzung bereits als Kostenfreiheit auslegen?",
+            "Werden die Annahmen und Unsicherheiten dieser Schätzung mit ausgewiesen?"
+          ],
+          "correct": 1,
+          "explanation": "An absent estimate does not establish zero cost."
+        },
+        {
+          "id": "turn_8",
+          "speaker": "Moderation",
+          "prompt": "Wie könnten weniger mobile Bewohner besser beteiligt werden?",
+          "translation": "How could residents with limited mobility be involved better?",
+          "listening": false,
+          "choices": [
+            "Durch ergänzende, gut zugängliche Formate statt ausschließlich einer Abendveranstaltung.",
+            "Indem wir ihre Rückmeldungen erst nach Abschluss des Verfahrens erbitten."
+          ],
+          "correct": 0,
+          "explanation": "Suggest a way to participate while input can still matter."
+        },
+        {
+          "id": "turn_9",
+          "speaker": "Moderation",
+          "prompt": "Wir dokumentieren die heutigen Hinweise im Protokoll.",
+          "translation": "We will record today's comments in the minutes.",
+          "listening": true,
+          "choices": [
+            "Bitte fassen Sie alle Hinweise unabhängig von ihrem Status als Beschluss zusammen.",
+            "Bitte unterscheiden Sie dabei zwischen offenen Fragen, Vorschlägen und bereits geklärten Punkten."
+          ],
+          "correct": 1,
+          "explanation": "Preserve the status of each contribution."
+        },
+        {
+          "id": "turn_10",
+          "speaker": "Moderation",
+          "prompt": "Was möchten Sie als abschließenden Punkt festhalten?",
+          "translation": "What would you like to record as your final point?",
+          "listening": false,
+          "choices": [
+            "Dass die nächsten Schritte transparent bleiben und Rückmeldungen nachvollziehbar beantwortet werden.",
+            "Dass nach dieser Runde keinerlei weitere Information mehr erforderlich ist."
+          ],
+          "correct": 0,
+          "explanation": "A process-oriented conclusion fits the consultation."
+        }
+      ]
+    },
+    {
+      "id": "culture_c1",
+      "version": 1,
+      "level": "C1",
+      "status": "draft",
+      "title": "Discuss a novel with others",
+      "emoji": "📚",
+      "minutes": 8,
+      "objective": "Support an interpretation while leaving room for alternatives.",
+      "situation": "Your reading group is discussing an invented novel with an unreliable narrator.",
+      "topic": "Culture",
+      "source": "Original AI-assisted dialogue; editorial approval pending. tools/content/m11-C1.txt",
+      "contentDigest": "3214e1abb8dbc8c4a0fea77c959b6c4bb5f34da5885a5b89433bee1b4831472f",
+      "usefulWords": [
+        "mission_c1_dca3e3fd3ee31026",
+        "mission_c1_b7f01177fb7bad7c",
+        "mission_c1_a30f04c5e1e81f58",
+        "mission_c1_3152bc28fd7694c2"
+      ],
+      "steps": [
+        {
+          "id": "turn_1",
+          "speaker": "Lesekreisleitung",
+          "prompt": "Was hat Sie an der Darstellung der Hauptfigur irritiert?",
+          "translation": "What unsettled you about the portrayal of the main character?",
+          "listening": false,
+          "choices": [
+            "Die Figur erklärt ihre Entscheidungen anders, als die geschilderten Handlungen vermuten lassen.",
+            "Die Figur muss eindeutig beurteilt werden, bevor wir die Darstellung betrachten."
+          ],
+          "correct": 0,
+          "explanation": "Identify a textual tension rather than beginning with a final verdict."
+        },
+        {
+          "id": "turn_2",
+          "speaker": "Lesekreisleitung",
+          "prompt": "Welche Lesart ergibt sich daraus für Sie?",
+          "translation": "What interpretation does that suggest to you?",
+          "listening": false,
+          "choices": [
+            "Ich lese jeden Widerspruch automatisch als bedeutungslosen Fehler.",
+            "Ich lese die Widersprüche als Hinweis darauf, dass wir den Selbstauskünften nicht uneingeschränkt trauen sollten."
+          ],
+          "correct": 1,
+          "explanation": "Connect your interpretation to the observed feature."
+        },
+        {
+          "id": "turn_3",
+          "speaker": "Lesekreisleitung",
+          "prompt": "Können Sie eine Stelle nennen, die diese Deutung stützt?",
+          "translation": "Can you name a passage supporting that interpretation?",
+          "listening": false,
+          "choices": [
+            "Im Gespräch am Ende behauptet die Figur Gelassenheit, während ihre Wortwahl deutliche Unruhe erkennen lässt.",
+            "Die Deutung stützt sich ausschließlich darauf, dass mir die Figur persönlich unsympathisch ist."
+          ],
+          "correct": 0,
+          "explanation": "Use evidence from the described text."
+        },
+        {
+          "id": "turn_4",
+          "speaker": "Lesekreisleitung",
+          "prompt": "Eine andere Person sieht darin eher Selbsttäuschung als bewusste Irreführung.",
+          "translation": "Another reader sees self-deception rather than deliberate deception.",
+          "listening": false,
+          "choices": [
+            "Diese Möglichkeit müssen wir allein deshalb ausschließen, weil sie von meiner ersten Deutung abweicht.",
+            "Diese Möglichkeit leuchtet mir ein; entscheidend wäre, was die Figur selbst erkennen kann."
+          ],
+          "correct": 1,
+          "explanation": "Consider an alternative and identify a way to compare it."
+        },
+        {
+          "id": "turn_5",
+          "speaker": "Lesekreisleitung",
+          "prompt": "Welche Rolle spielt dabei die Erzählperspektive?",
+          "translation": "What role does the narrative perspective play here?",
+          "listening": true,
+          "choices": [
+            "Sie begrenzt unseren Einblick und macht die Lücken der Darstellung selbst bedeutsam.",
+            "Sie verschafft uns unabhängig von der Darstellung vollständiges Wissen über alle Figuren."
+          ],
+          "correct": 0,
+          "explanation": "An unreliable perspective limits what can be concluded."
+        },
+        {
+          "id": "turn_6",
+          "speaker": "Lesekreisleitung",
+          "prompt": "Der Schluss löst nicht alle Fragen auf.",
+          "translation": "The ending does not resolve every question.",
+          "listening": false,
+          "choices": [
+            "Dann kann der Schluss grundsätzlich nichts zur Wirkung des Romans beitragen.",
+            "Vielleicht liegt darin gerade die Einladung, die eigene Deutung noch einmal zu prüfen."
+          ],
+          "correct": 1,
+          "explanation": "An open ending can still shape interpretation."
+        },
+        {
+          "id": "turn_7",
+          "speaker": "Lesekreisleitung",
+          "prompt": "Wie würden Sie die Wirkung des Sprachstils beschreiben?",
+          "translation": "How would you describe the effect of the style?",
+          "listening": false,
+          "choices": [
+            "Die knappen Sätze erzeugen Distanz, ohne jede emotionale Beteiligung auszuschließen.",
+            "Kurze Sätze können unabhängig vom Zusammenhang nur Gleichgültigkeit ausdrücken."
+          ],
+          "correct": 0,
+          "explanation": "Describe an effect without making it a universal rule."
+        },
+        {
+          "id": "turn_8",
+          "speaker": "Lesekreisleitung",
+          "prompt": "Wo bleibt Ihre Deutung vorläufig?",
+          "translation": "Where does your interpretation remain provisional?",
+          "listening": false,
+          "choices": [
+            "Bei keiner Frage, weil eine begründete Lesart alle anderen Möglichkeiten beseitigt.",
+            "Bei der Frage, ob die Auslassungen als Schutz oder als bewusste Steuerung der Lesenden zu verstehen sind."
+          ],
+          "correct": 1,
+          "explanation": "Identify a remaining ambiguity."
+        },
+        {
+          "id": "turn_9",
+          "speaker": "Lesekreisleitung",
+          "prompt": "Welche Rückfrage würden Sie der Gruppe stellen?",
+          "translation": "What follow-up question would you ask the group?",
+          "listening": true,
+          "choices": [
+            "An welcher Stelle verändert sich unser Vertrauen in die erzählende Stimme?",
+            "Welche persönliche Vorliebe ersetzt am zuverlässigsten den Blick auf den Text?"
+          ],
+          "correct": 0,
+          "explanation": "Invite a text-based comparison."
+        },
+        {
+          "id": "turn_10",
+          "speaker": "Lesekreisleitung",
+          "prompt": "Können wir eine gemeinsame Beobachtung festhalten?",
+          "translation": "Can we record a shared observation?",
+          "listening": false,
+          "choices": [
+            "Dass die Diskussion nur dann sinnvoll war, wenn alle dieselbe endgültige Deutung übernehmen.",
+            "Dass die Spannung zwischen Selbstdarstellung und Handlung mehrere begründbare Deutungen eröffnet."
+          ],
+          "correct": 1,
+          "explanation": "Shared observations need not eliminate justified differences."
+        }
+      ]
+    },
+    {
+      "id": "policy_c2",
+      "version": 1,
+      "level": "C2",
+      "status": "draft",
+      "title": "Weigh a proposal",
+      "emoji": "⚖️",
+      "minutes": 8,
+      "objective": "Weigh competing aims without losing nuance.",
+      "situation": "A fictional committee is considering an access policy for a shared workspace.",
+      "topic": "Civic discussion",
+      "source": "Original AI-assisted dialogue; editorial approval pending. tools/content/m11-C2.txt",
+      "contentDigest": "6048f4dc190d2be9785581ab0733426e85c473f50e4eb2ab20a868e013ead97d",
+      "usefulWords": [
+        "mission_c2_ac4545c5b8b54446",
+        "mission_c2_aff2c01d3c97a9ae",
+        "mission_c2_2d72e07e638c59f2",
+        "mission_c2_a4b8ece0caa61839"
+      ],
+      "steps": [
+        {
+          "id": "turn_1",
+          "speaker": "Moderator",
+          "prompt": "Welche Zielsetzung sollte bei unserem Vorschlag im Vordergrund stehen?",
+          "translation": "Which objective should be central to our proposal?",
+          "listening": false,
+          "choices": [
+            "Vorrangig sollten wir die Formulierung des Titels abschließen.",
+            "Ein verlässlicher Zugang, ohne berechtigte Schutzinteressen auszublenden."
+          ],
+          "correct": 1,
+          "explanation": "The first reply identifies both the main aim and a competing interest."
+        },
+        {
+          "id": "turn_2",
+          "speaker": "Moderator",
+          "prompt": "Ist eine einheitliche Regel für alle Fälle überzeugend?",
+          "translation": "Is a single rule for all cases convincing?",
+          "listening": false,
+          "choices": [
+            "Sie schafft Klarheit, könnte aber atypische Fälle unverhältnismäßig belasten.",
+            "Sie schafft Klarheit; deshalb erübrigt sich die Prüfung atypischer Fälle."
+          ],
+          "correct": 0,
+          "explanation": "Clarity is an advantage, but it does not settle every exceptional case."
+        },
+        {
+          "id": "turn_3",
+          "speaker": "Moderator",
+          "prompt": "Wie vermeiden wir eine uferlose Ausnahmeregelung?",
+          "translation": "How can we avoid an open-ended exception system?",
+          "listening": false,
+          "choices": [
+            "Indem wir jede Ausnahme ausschließlich dem spontanen Ermessen überlassen.",
+            "Durch eng gefasste Kriterien und eine nachvollziehbare Begründungspflicht."
+          ],
+          "correct": 1,
+          "explanation": "Defined criteria make exceptions accountable rather than arbitrary."
+        },
+        {
+          "id": "turn_4",
+          "speaker": "Moderator",
+          "prompt": "Eine Kollegin hält den Entwurf für zu restriktiv. Was fragen Sie?",
+          "translation": "A colleague considers the draft too restrictive. What do you ask?",
+          "listening": false,
+          "choices": [
+            "An welchen konkreten Auswirkungen machen Sie diese Einschätzung fest?",
+            "Können wir diese Einschätzung bis nach der endgültigen Entscheidung vertagen?"
+          ],
+          "correct": 0,
+          "explanation": "A concrete question opens examination of the concern before deciding."
+        },
+        {
+          "id": "turn_5",
+          "speaker": "Moderator",
+          "prompt": "Wie dokumentieren wir den Abwägungsprozess?",
+          "translation": "How do we document the weighing-up process?",
+          "listening": true,
+          "choices": [
+            "Wir halten nur das Ergebnis fest, damit die Darstellung möglichst eindeutig wirkt.",
+            "Wir benennen die Alternativen und begründen, weshalb wir bestimmte Nachteile in Kauf nehmen."
+          ],
+          "correct": 1,
+          "explanation": "A transparent record includes alternatives and acknowledged trade-offs."
+        },
+        {
+          "id": "turn_6",
+          "speaker": "Moderator",
+          "prompt": "Müssen wir damit sämtliche Einwände ausräumen?",
+          "translation": "Must we resolve every objection in doing so?",
+          "listening": false,
+          "choices": [
+            "Nicht zwingend; verbleibende Einwände sollten jedoch sichtbar und ernst genommen werden.",
+            "Ja; ein nicht ausgeräumter Einwand macht jede Entscheidung grundsätzlich unmöglich."
+          ],
+          "correct": 0,
+          "explanation": "Acknowledging unresolved objections allows an honest decision without claiming unanimity."
+        },
+        {
+          "id": "turn_7",
+          "speaker": "Moderator",
+          "prompt": "Wie formulieren wir eine zeitlich begrenzte Erprobung?",
+          "translation": "How do we phrase a time-limited trial?",
+          "listening": false,
+          "choices": [
+            "Die Regelung gilt vorläufig, wobei die Bewertungskriterien erst nach dem Versuch feststehen.",
+            "Die Regelung wird zunächst erprobt und anhand vorab benannter Kriterien überprüft."
+          ],
+          "correct": 1,
+          "explanation": "Advance criteria reduce the risk of judging a trial opportunistically."
+        },
+        {
+          "id": "turn_8",
+          "speaker": "Moderator",
+          "prompt": "Was wäre ein geeigneter Hinweis auf Unsicherheit?",
+          "translation": "What would be a suitable acknowledgement of uncertainty?",
+          "listening": false,
+          "choices": [
+            "Die bisherigen Erfahrungen sind aufschlussreich, lassen aber noch keine belastbare Langzeitbewertung zu.",
+            "Die bisherigen Erfahrungen sind aufschlussreich und ersetzen daher jede weitere Beobachtung."
+          ],
+          "correct": 0,
+          "explanation": "The qualification distinguishes useful early evidence from a firm long-term conclusion."
+        },
+        {
+          "id": "turn_9",
+          "speaker": "Moderator",
+          "prompt": "Wie gehen wir mit einer abweichenden Stellungnahme um?",
+          "translation": "How do we handle a dissenting statement?",
+          "listening": true,
+          "choices": [
+            "Wir erwähnen nur, dass die Diskussion insgesamt konstruktiv verlaufen ist.",
+            "Wir fügen sie bei und erläutern sachlich, an welchem Punkt die Bewertungen auseinandergehen."
+          ],
+          "correct": 1,
+          "explanation": "A constructive tone should not conceal the substance of disagreement."
+        },
+        {
+          "id": "turn_10",
+          "speaker": "Moderator",
+          "prompt": "Wie schließen Sie die Beratung ab?",
+          "translation": "How do you close the discussion?",
+          "listening": false,
+          "choices": [
+            "Wir beschließen die befristete Erprobung und halten die offenen Prüfaufträge ausdrücklich fest.",
+            "Wir beschließen die Erprobung und behandeln damit sämtliche offenen Fragen als beantwortet."
+          ],
+          "correct": 0,
+          "explanation": "The closing reply links the decision to continuing responsibilities."
+        }
+      ]
+    },
+    {
+      "id": "editorial_c2",
+      "version": 1,
+      "level": "C2",
+      "status": "draft",
+      "title": "Discuss an editorial",
+      "emoji": "📰",
+      "minutes": 8,
+      "objective": "Distinguish evidence, framing and interpretation.",
+      "situation": "An editorial team is revising a fictional article about changes in a town centre.",
+      "topic": "Media",
+      "source": "Original AI-assisted dialogue; editorial approval pending. tools/content/m11-C2.txt",
+      "contentDigest": "dd00e24d060418f86987594c66e58aee9bb1c8de73b3dd0db2c739b351a7b4fb",
+      "usefulWords": [
+        "mission_c2_b4b63181efc6fafb",
+        "mission_c2_671e8a3cf1fb3316",
+        "mission_c2_7b769042213d441b",
+        "mission_c2_1c81855626d42a18"
+      ],
+      "steps": [
+        {
+          "id": "turn_1",
+          "speaker": "Editor",
+          "prompt": "Welchen Deutungsrahmen legt unsere Überschrift nahe?",
+          "translation": "What interpretive frame does our headline suggest?",
+          "listening": false,
+          "choices": [
+            "Sie deutet den Wandel als Verlust, bevor die unterschiedlichen Erfahrungen zur Sprache kommen.",
+            "Sie benennt lediglich einen Wandel und kann daher keine Wertung nahelegen."
+          ],
+          "correct": 0,
+          "explanation": "A headline can frame a subject even without an explicit judgement."
+        },
+        {
+          "id": "turn_2",
+          "speaker": "Editor",
+          "prompt": "Ist das Zitat einer Anwohnerin repräsentativ?",
+          "translation": "Is one resident's quotation representative?",
+          "listening": false,
+          "choices": [
+            "Es ist anschaulich genug, um die Erfahrungen aller Anwohner zusammenzufassen.",
+            "Es veranschaulicht eine Perspektive; seine Reichweite sollten wir nicht überdehnen."
+          ],
+          "correct": 1,
+          "explanation": "A vivid example does not automatically represent an entire group."
+        },
+        {
+          "id": "turn_3",
+          "speaker": "Editor",
+          "prompt": "Wie stellen wir die Gegenposition fair dar?",
+          "translation": "How do we present the opposing view fairly?",
+          "listening": false,
+          "choices": [
+            "Wir geben ihre tragenden Gründe wieder, bevor wir deren Grenzen diskutieren.",
+            "Wir wählen ihre schwächste Formulierung, um die Kritik leichter nachvollziehbar zu machen."
+          ],
+          "correct": 0,
+          "explanation": "A fair account addresses a position's substantive reasoning."
+        },
+        {
+          "id": "turn_4",
+          "speaker": "Editor",
+          "prompt": "Diese Zuschreibung ist nicht belegt. Wie ändern wir den Satz?",
+          "translation": "This attribution is unsupported. How do we change the sentence?",
+          "listening": false,
+          "choices": [
+            "Wir versehen die vermutete Absicht mit einem besonders nachdrücklichen Adjektiv.",
+            "Wir beschreiben das beobachtete Verhalten, ohne daraus eine Absicht abzuleiten."
+          ],
+          "correct": 1,
+          "explanation": "Observable conduct and inferred motives should be distinguished."
+        },
+        {
+          "id": "turn_5",
+          "speaker": "Editor",
+          "prompt": "Wie kennzeichnen wir eine unsichere Schlussfolgerung?",
+          "translation": "How do we mark an uncertain inference?",
+          "listening": true,
+          "choices": [
+            "Die Entwicklung könnte darauf hindeuten; andere Erklärungen bleiben jedoch möglich.",
+            "Die Entwicklung beweist den Zusammenhang, sofern keine andere Erklärung genannt wird."
+          ],
+          "correct": 0,
+          "explanation": "Absence of a stated alternative is not proof of a causal link."
+        },
+        {
+          "id": "turn_6",
+          "speaker": "Editor",
+          "prompt": "Ein Absatz wiederholt nur die Einleitung. Was schlagen Sie vor?",
+          "translation": "A paragraph merely repeats the introduction. What do you suggest?",
+          "listening": false,
+          "choices": [
+            "Wir behalten den Absatz und ändern ausschließlich die Reihenfolge der Adjektive.",
+            "Wir ersetzen die Wiederholung durch ein Beispiel, das den zentralen Spannungsbogen konkretisiert."
+          ],
+          "correct": 1,
+          "explanation": "A substantive example adds information rather than cosmetic variation."
+        },
+        {
+          "id": "turn_7",
+          "speaker": "Editor",
+          "prompt": "Wie zitieren wir eine zugespitzte Aussage?",
+          "translation": "How do we quote a pointed statement?",
+          "listening": false,
+          "choices": [
+            "Mit dem notwendigen Kontext, damit die Zuspitzung nicht eine andere Bedeutung erhält.",
+            "Ohne den einschränkenden Folgesatz, weil das Zitat dadurch prägnanter wird."
+          ],
+          "correct": 0,
+          "explanation": "Conciseness should not change the quoted speaker's intended meaning."
+        },
+        {
+          "id": "turn_8",
+          "speaker": "Editor",
+          "prompt": "Ist die Gegenüberstellung zweier Stimmen ausreichend?",
+          "translation": "Is contrasting two voices sufficient?",
+          "listening": false,
+          "choices": [
+            "Ja; jede weitere Differenzierung würde die Darstellung zwangsläufig verzerren.",
+            "Sie kann hilfreich sein, darf aber nicht den Eindruck erwecken, es gebe nur zwei denkbare Positionen."
+          ],
+          "correct": 1,
+          "explanation": "A clear contrast can still leave room for additional perspectives."
+        },
+        {
+          "id": "turn_9",
+          "speaker": "Editor",
+          "prompt": "Was soll der Schluss leisten?",
+          "translation": "What should the ending achieve?",
+          "listening": true,
+          "choices": [
+            "Er sollte die offene Frage schärfen, statt eine nicht belegte Gewissheit zu erzeugen.",
+            "Er sollte eine eindeutige Antwort liefern, auch wenn die Recherche sie nicht trägt."
+          ],
+          "correct": 0,
+          "explanation": "The ending should remain proportionate to the evidence."
+        },
+        {
+          "id": "turn_10",
+          "speaker": "Editor",
+          "prompt": "Wie fassen Sie die Überarbeitung zusammen?",
+          "translation": "How do you summarise the revision?",
+          "listening": false,
+          "choices": [
+            "Wir haben alle Deutungen entfernt und damit jede mögliche Wirkung des Textes ausgeschlossen.",
+            "Wir haben Wertungen kenntlich gemacht und die Trennung zwischen Beobachtung und Deutung geschärft."
+          ],
+          "correct": 1,
+          "explanation": "An editorial text can acknowledge interpretation without pretending to eliminate it."
+        }
+      ]
+    },
+    {
+      "id": "literature_c2",
+      "version": 1,
+      "level": "C2",
+      "status": "draft",
+      "title": "Explore a literary passage",
+      "emoji": "📖",
+      "minutes": 8,
+      "objective": "Support a nuanced reading with textual details.",
+      "situation": "A reading group discusses an invented passage in which a narrator returns to an empty childhood home.",
+      "topic": "Literature",
+      "source": "Original AI-assisted dialogue; editorial approval pending. tools/content/m11-C2.txt",
+      "contentDigest": "1ae26d4a0370c3fec9ae1677e05b1e202f02d3ed30f5a70b1a82ffcf7762b836",
+      "usefulWords": [
+        "mission_c2_0862d2023ca697e2",
+        "mission_c2_68d8b70ffef44602",
+        "mission_c2_a9add589575d9988",
+        "mission_c2_91814f5cb82df72b"
+      ],
+      "steps": [
+        {
+          "id": "turn_1",
+          "speaker": "Reading partner",
+          "prompt": "Was fällt Ihnen an der wiederholten Beschreibung der Tür auf?",
+          "translation": "What strikes you about the repeated description of the door?",
+          "listening": false,
+          "choices": [
+            "Sie belegt eindeutig, dass die Figur das Haus unmittelbar wieder verlassen wird.",
+            "Sie könnte den Wunsch nach Rückkehr ebenso markieren wie die Schwierigkeit, wirklich anzukommen."
+          ],
+          "correct": 1,
+          "explanation": "A possible symbolic reading should not be presented as a certain future event."
+        },
+        {
+          "id": "turn_2",
+          "speaker": "Reading partner",
+          "prompt": "Welche Funktion hat die Mehrdeutigkeit des letzten Satzes?",
+          "translation": "What function does the ambiguity of the final sentence serve?",
+          "listening": false,
+          "choices": [
+            "Sie hält offen, ob die Erinnerung Trost spendet oder die Gegenwart verstellt.",
+            "Sie zeigt, dass für den Satz keine nachvollziehbare Interpretation möglich ist."
+          ],
+          "correct": 0,
+          "explanation": "Ambiguity can sustain more than one supported interpretation."
+        },
+        {
+          "id": "turn_3",
+          "speaker": "Reading partner",
+          "prompt": "Eine andere Leserin versteht die Szene als Versöhnung. Wie reagieren Sie?",
+          "translation": "Another reader sees the scene as reconciliation. How do you respond?",
+          "listening": false,
+          "choices": [
+            "Der ruhigere Ton genügt, um alle gegenläufigen Details für bedeutungslos zu erklären.",
+            "Das lässt sich mit dem ruhigeren Ton begründen; die abgebrochene Geste könnte diese Lesart allerdings einschränken."
+          ],
+          "correct": 1,
+          "explanation": "A nuanced response acknowledges both supporting and complicating evidence."
+        },
+        {
+          "id": "turn_4",
+          "speaker": "Reading partner",
+          "prompt": "Wie beziehen Sie die Erzählperspektive ein?",
+          "translation": "How do you account for narrative perspective?",
+          "listening": false,
+          "choices": [
+            "Wir erfahren die Szene durch die Erinnerung der Figur und sollten diese Vermittlung mitbedenken.",
+            "Da die Figur sich erinnert, müssen sämtliche geschilderten Vorgänge erfunden sein."
+          ],
+          "correct": 0,
+          "explanation": "A mediated account warrants attention without automatically being false."
+        },
+        {
+          "id": "turn_5",
+          "speaker": "Reading partner",
+          "prompt": "Welchen Unterton hören Sie in der scheinbar höflichen Bemerkung?",
+          "translation": "What undertone do you hear in the apparently polite remark?",
+          "listening": true,
+          "choices": [
+            "Eine höfliche Formulierung schließt einen verletzten Unterton grundsätzlich aus.",
+            "Die Höflichkeit könnte eine Kränkung verdecken; entscheidend ist ihr Kontrast zur anschließenden Pause."
+          ],
+          "correct": 1,
+          "explanation": "Tone can be shaped by context beyond the literal wording."
+        },
+        {
+          "id": "turn_6",
+          "speaker": "Reading partner",
+          "prompt": "Müssen wir die biografische Absicht des Autors kennen?",
+          "translation": "Must we know the author's biographical intention?",
+          "listening": false,
+          "choices": [
+            "Sie könnte zusätzlichen Kontext liefern, ersetzt aber nicht die Arbeit am vorliegenden Text.",
+            "Ohne gesicherte Absicht lässt sich keine sprachliche Beobachtung begründen."
+          ],
+          "correct": 0,
+          "explanation": "Textual observations do not depend entirely on knowing authorial intent."
+        },
+        {
+          "id": "turn_7",
+          "speaker": "Reading partner",
+          "prompt": "Wie vermeiden Sie eine Überinterpretation des Gegenstands auf dem Tisch?",
+          "translation": "How do you avoid overinterpreting the object on the table?",
+          "listening": false,
+          "choices": [
+            "Ich behandle seine symbolische Bedeutung als gesichert, weil Gegenstände immer symbolisch sind.",
+            "Ich prüfe, ob seine Bedeutung durch Wiederholungen oder andere Details im Text gestützt wird."
+          ],
+          "correct": 1,
+          "explanation": "A symbolic claim needs support from this particular passage."
+        },
+        {
+          "id": "turn_8",
+          "speaker": "Reading partner",
+          "prompt": "Was verändert der Wechsel vom Präsens ins Präteritum?",
+          "translation": "What does the shift from present to past tense change?",
+          "listening": false,
+          "choices": [
+            "Er kann Distanz herstellen und den eben noch unmittelbaren Eindruck nachträglich rahmen.",
+            "Er hat ausschließlich grammatische Bedeutung und kann keine Wirkung auf die Darstellung haben."
+          ],
+          "correct": 0,
+          "explanation": "Tense choices can contribute to the way a scene is experienced."
+        },
+        {
+          "id": "turn_9",
+          "speaker": "Reading partner",
+          "prompt": "Wie formulieren Sie einen begründeten Widerspruch?",
+          "translation": "How do you express a reasoned disagreement?",
+          "listening": true,
+          "choices": [
+            "Ihre Lesart ist anders als meine und muss deshalb auf einem Missverständnis beruhen.",
+            "Ihre Lesart erklärt den Anfang überzeugend; beim Schluss sehe ich jedoch ein Detail, das dagegen spricht."
+          ],
+          "correct": 1,
+          "explanation": "A reasoned disagreement identifies a textual issue without dismissing the reader."
+        },
+        {
+          "id": "turn_10",
+          "speaker": "Reading partner",
+          "prompt": "Was nehmen Sie aus dem Austausch mit?",
+          "translation": "What do you take from the discussion?",
+          "listening": false,
+          "choices": [
+            "Die konkurrierenden Lesarten machen die Spannung des Textes sichtbar, ohne dass wir sie vorschnell auflösen müssen.",
+            "Die Diskussion ist erst sinnvoll, wenn alle dieselbe eindeutige Deutung übernehmen."
+          ],
+          "correct": 0,
+          "explanation": "Literary discussion can clarify productive tension without forcing consensus."
+        }
+      ]
+    },
+    {
+      "id": "mediation_c2",
+      "version": 1,
+      "level": "C2",
+      "status": "draft",
+      "title": "Mediate a disagreement",
+      "emoji": "🕊️",
+      "minutes": 8,
+      "objective": "Clarify interests and formulate a workable agreement.",
+      "situation": "Two fictional project partners disagree over recognition and responsibility.",
+      "topic": "Collaboration",
+      "source": "Original AI-assisted dialogue; editorial approval pending. tools/content/m11-C2.txt",
+      "contentDigest": "585facc3643e3221cb4d1bb3a59a78db054dd342ce0d771253387c860017ffb9",
+      "usefulWords": [
+        "mission_c2_5f9a0e7b96c7eb09",
+        "mission_c2_44aadef4d069bc33",
+        "mission_c2_dad0169064ea78da",
+        "mission_c2_9106e9dd1446e21f"
+      ],
+      "steps": [
+        {
+          "id": "turn_1",
+          "speaker": "Mediator",
+          "prompt": "Wie beschreiben Sie Ihre Vermittlerrolle zu Beginn?",
+          "translation": "How do you describe your mediator role at the start?",
+          "listening": false,
+          "choices": [
+            "Ich unterstütze die Klärung Ihrer Anliegen, ohne Ihnen eine bestimmte Lösung vorzugeben.",
+            "Ich werde feststellen, wessen Darstellung insgesamt zutreffend ist, und danach die Lösung bestimmen."
+          ],
+          "correct": 0,
+          "explanation": "The opening establishes a facilitative role rather than imposing a verdict."
+        },
+        {
+          "id": "turn_2",
+          "speaker": "Mediator",
+          "prompt": "Beide bestehen darauf, im Recht zu sein. Was fragen Sie?",
+          "translation": "Both insist they are right. What do you ask?",
+          "listening": false,
+          "choices": [
+            "Können wir die Zusammenarbeit fortsetzen, ohne über Ihre Erwartungen zu sprechen?",
+            "Was müsste sich konkret ändern, damit eine weitere Zusammenarbeit für Sie tragfähig wäre?"
+          ],
+          "correct": 1,
+          "explanation": "The question shifts from fixed positions towards conditions for cooperation."
+        },
+        {
+          "id": "turn_3",
+          "speaker": "Mediator",
+          "prompt": "Wie spiegeln Sie einen Vorwurf, ohne ihn zu übernehmen?",
+          "translation": "How do you reflect an accusation without adopting it?",
+          "listening": false,
+          "choices": [
+            "Sie erleben die bisherige Verteilung als unfair und wünschen sich nachvollziehbare Kriterien.",
+            "Die bisherige Verteilung ist unfair; darüber brauchen wir nicht weiter zu sprechen."
+          ],
+          "correct": 0,
+          "explanation": "Reflecting a person's experience does not require endorsing an accusation as fact."
+        },
+        {
+          "id": "turn_4",
+          "speaker": "Mediator",
+          "prompt": "Eine Partnerin schweigt. Wie beziehen Sie sie ein?",
+          "translation": "One partner is silent. How do you include her?",
+          "listening": false,
+          "choices": [
+            "Da Sie nichts ergänzen, halte ich Ihre Zustimmung zur bisherigen Darstellung fest.",
+            "Möchten Sie ergänzen, was aus Ihrer Sicht bisher zu wenig berücksichtigt wurde?"
+          ],
+          "correct": 1,
+          "explanation": "An invitation creates space without treating silence as consent."
+        },
+        {
+          "id": "turn_5",
+          "speaker": "Mediator",
+          "prompt": "Wie unterscheiden Sie Anerkennung und Zustimmung?",
+          "translation": "How do you distinguish acknowledgement from agreement?",
+          "listening": true,
+          "choices": [
+            "Ich kann nachvollziehen, dass Sie sich übergangen fühlen, ohne jede Schlussfolgerung daraus zu teilen.",
+            "Wenn ich Ihr Gefühl anerkenne, muss ich auch sämtliche Forderungen unterstützen."
+          ],
+          "correct": 0,
+          "explanation": "Acknowledging feelings leaves room to discuss interpretations and requests."
+        },
+        {
+          "id": "turn_6",
+          "speaker": "Mediator",
+          "prompt": "Was tun Sie mit einer nur allgemein formulierten Zusage?",
+          "translation": "What do you do with a promise phrased only in general terms?",
+          "listening": false,
+          "choices": [
+            "Ich lasse sie allgemein, damit später möglichst unterschiedliche Auslegungen möglich bleiben.",
+            "Ich frage nach einem beobachtbaren Verhalten und einem Zeitpunkt für die Rückmeldung."
+          ],
+          "correct": 1,
+          "explanation": "Specific commitments can be checked and reduce future misunderstandings."
+        },
+        {
+          "id": "turn_7",
+          "speaker": "Mediator",
+          "prompt": "Wie gehen Sie mit einem noch ungeklärten Punkt um?",
+          "translation": "How do you handle a point that remains unresolved?",
+          "listening": false,
+          "choices": [
+            "Wir halten ihn ausdrücklich fest und vereinbaren, wie und wann wir ihn erneut aufgreifen.",
+            "Wir streichen ihn aus der Zusammenfassung, damit die Einigung vollständig erscheint."
+          ],
+          "correct": 0,
+          "explanation": "An honest agreement can include a clear process for unresolved issues."
+        },
+        {
+          "id": "turn_8",
+          "speaker": "Mediator",
+          "prompt": "Woran messen wir, ob dieser Vermittlungsversuch hilfreich war?",
+          "translation": "How do we assess whether this mediation attempt helped?",
+          "listening": false,
+          "choices": [
+            "Ausschließlich daran, ob das Gespräch ohne erkennbare Meinungsverschiedenheiten endet.",
+            "Daran, ob die Vereinbarungen im Alltag tragen und beide Seiten ihre Anliegen darin wiederfinden."
+          ],
+          "correct": 1,
+          "explanation": "A calm ending alone does not demonstrate a workable agreement."
+        },
+        {
+          "id": "turn_9",
+          "speaker": "Mediator",
+          "prompt": "Wie sichern Sie das gemeinsame Verständnis?",
+          "translation": "How do you secure a shared understanding?",
+          "listening": true,
+          "choices": [
+            "Ich bitte beide, die vereinbarten nächsten Schritte in eigenen Worten zusammenzufassen.",
+            "Ich lese meine Zusammenfassung vor und werte fehlenden Widerspruch als vollständiges Verständnis."
+          ],
+          "correct": 0,
+          "explanation": "Restating an agreement helps uncover differences in understanding."
+        },
+        {
+          "id": "turn_10",
+          "speaker": "Mediator",
+          "prompt": "Wie schließen Sie die Sitzung ab?",
+          "translation": "How do you close the session?",
+          "listening": false,
+          "choices": [
+            "Wir erklären den Konflikt endgültig für erledigt und verzichten auf jede Rückmeldung.",
+            "Wir halten die nächsten Schritte schriftlich fest und verabreden eine gemeinsame Überprüfung."
+          ],
+          "correct": 1,
+          "explanation": "A follow-up checks how the agreement works beyond the meeting."
+        }
+      ]
+    },
+    {
+      "id": "negotiation_c2",
+      "version": 1,
+      "level": "C2",
+      "status": "draft",
+      "title": "Refine a formal agreement",
+      "emoji": "🤝",
+      "minutes": 8,
+      "objective": "Clarify reservations and reach a precise conditional agreement.",
+      "situation": "You are discussing a fictional collaboration proposal; this is language practice rather than legal advice.",
+      "topic": "Negotiation",
+      "source": "Original AI-assisted dialogue; editorial approval pending. tools/content/m11-C2.txt",
+      "contentDigest": "bbf37de8c507afb2b3e4313f0634cb18e1eab1976d5dc6e3f29208ea3ac4b880",
+      "usefulWords": [
+        "mission_c2_4004603de6a8709b",
+        "mission_c2_f6248a0831078ada",
+        "mission_c2_72721459a7f066ee",
+        "mission_c2_7b529121b6718f9d"
+      ],
+      "steps": [
+        {
+          "id": "turn_1",
+          "speaker": "Negotiating partner",
+          "prompt": "Welchen Vorbehalt möchten Sie vor der Zustimmung festhalten?",
+          "translation": "Which reservation would you like to record before agreeing?",
+          "listening": false,
+          "choices": [
+            "Ich stimme uneingeschränkt zu und werde meine Bedingungen erst nach Beginn erläutern.",
+            "Meine Zustimmung steht unter dem Vorbehalt, dass die offenen Zuständigkeiten vor Beginn geklärt werden."
+          ],
+          "correct": 1,
+          "explanation": "A reservation states the condition clearly before agreement is finalised."
+        },
+        {
+          "id": "turn_2",
+          "speaker": "Negotiating partner",
+          "prompt": "Wie präzisieren Sie eine mehrdeutige Formulierung?",
+          "translation": "How do you clarify ambiguous wording?",
+          "listening": false,
+          "choices": [
+            "Was genau verstehen wir hier unter einer zeitnahen Rückmeldung?",
+            "Wir sollten zeitnah bewusst undefiniert lassen, damit jeder eine andere Frist annehmen kann."
+          ],
+          "correct": 0,
+          "explanation": "Asking for a shared meaning helps prevent incompatible expectations."
+        },
+        {
+          "id": "turn_3",
+          "speaker": "Negotiating partner",
+          "prompt": "Die Gegenseite wünscht mehr Flexibilität. Was schlagen Sie vor?",
+          "translation": "The other party wants more flexibility. What do you propose?",
+          "listening": false,
+          "choices": [
+            "Wir könnten sämtliche Rahmenbedingungen streichen und ihre Klärung auf später verschieben.",
+            "Wir könnten einen festen Rahmen mit einem ausdrücklich geregelten Anpassungsverfahren verbinden."
+          ],
+          "correct": 1,
+          "explanation": "Flexibility can be structured rather than leaving all conditions open."
+        },
+        {
+          "id": "turn_4",
+          "speaker": "Negotiating partner",
+          "prompt": "Wie trennen Sie eine Präferenz von einer notwendigen Bedingung?",
+          "translation": "How do you distinguish a preference from a necessary condition?",
+          "listening": false,
+          "choices": [
+            "Der frühere Termin wäre wünschenswert; unverzichtbar ist für uns jedoch die geklärte Zuständigkeit.",
+            "Beides ist gleichermaßen unverzichtbar, auch wenn wir über den Termin verhandeln können."
+          ],
+          "correct": 0,
+          "explanation": "The reply distinguishes a negotiable preference from a firm requirement."
+        },
+        {
+          "id": "turn_5",
+          "speaker": "Negotiating partner",
+          "prompt": "Welche Zusicherung benötigen Sie zur Planung?",
+          "translation": "Which assurance do you need for planning?",
+          "listening": true,
+          "choices": [
+            "Eine unverbindliche Absichtserklärung reicht aus, um die Verfügbarkeit als gesichert zu behandeln.",
+            "Wir benötigen eine verbindliche Rückmeldung dazu, ob die benannten Ressourcen tatsächlich verfügbar sind."
+          ],
+          "correct": 1,
+          "explanation": "Planning should distinguish an intention from confirmed availability."
+        },
+        {
+          "id": "turn_6",
+          "speaker": "Negotiating partner",
+          "prompt": "Wie reagieren Sie auf eine vorschnelle Zusammenfassung?",
+          "translation": "How do you respond to a premature summary?",
+          "listening": false,
+          "choices": [
+            "Im Grundsatz nähern wir uns an; bei den Fristen besteht allerdings noch Klärungsbedarf.",
+            "Da wir uns im Grundsatz annähern, können alle Einzelheiten bereits als vereinbart gelten."
+          ],
+          "correct": 0,
+          "explanation": "Agreement in principle does not mean every detail is settled."
+        },
+        {
+          "id": "turn_7",
+          "speaker": "Negotiating partner",
+          "prompt": "Was fragen Sie bei einer vorgeschlagenen Ausnahme?",
+          "translation": "What do you ask about a proposed exception?",
+          "listening": false,
+          "choices": [
+            "Können wir die Ausnahme ohne Voraussetzungen aufnehmen und später unterschiedlich auslegen?",
+            "Unter welchen klar benannten Voraussetzungen soll diese Ausnahme greifen?"
+          ],
+          "correct": 1,
+          "explanation": "Specific conditions give an exception a shared scope."
+        },
+        {
+          "id": "turn_8",
+          "speaker": "Negotiating partner",
+          "prompt": "Wie halten Sie ein Zugeständnis fest?",
+          "translation": "How do you record a concession?",
+          "listening": false,
+          "choices": [
+            "Wir kommen Ihnen beim Beginn entgegen, sofern der vereinbarte Prüftermin bestehen bleibt.",
+            "Wir kommen Ihnen beim Beginn entgegen; die damit verbundene Bedingung lassen wir unerwähnt."
+          ],
+          "correct": 0,
+          "explanation": "A conditional concession makes the relationship between the two points explicit."
+        },
+        {
+          "id": "turn_9",
+          "speaker": "Negotiating partner",
+          "prompt": "Wie prüfen Sie die abschließende Fassung?",
+          "translation": "How do you check the final wording?",
+          "listening": true,
+          "choices": [
+            "Wir prüfen nur den Stil, weil inhaltliche Abweichungen nach einer Verhandlung ausgeschlossen sind.",
+            "Wir gleichen sie mit den besprochenen Bedingungen ab und benennen verbleibende Abweichungen."
+          ],
+          "correct": 1,
+          "explanation": "A final check should cover substance as well as style."
+        },
+        {
+          "id": "turn_10",
+          "speaker": "Negotiating partner",
+          "prompt": "Wie formulieren Sie den Abschluss?",
+          "translation": "How do you phrase the conclusion?",
+          "listening": false,
+          "choices": [
+            "Unter den festgehaltenen Bedingungen können wir der Zusammenarbeit zustimmen.",
+            "Wir stimmen unabhängig von der endgültigen Fassung sämtlichen denkbaren Änderungen zu."
+          ],
+          "correct": 0,
+          "explanation": "The conclusion confirms agreement within its explicitly defined scope."
+        }
+      ]
+    }
+  ]
+}

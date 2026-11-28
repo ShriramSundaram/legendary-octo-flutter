@@ -3,6 +3,7 @@ import 'data/account_store.dart';
 import 'data/reminder_controller.dart';
 import 'data/reminder_models.dart';
 import 'notification_api.dart';
+import 'data/reminder_logout.dart';
 
 /// One serialized device scheduler, even if several home/profile routes exist.
 class ReminderRuntime {
@@ -13,7 +14,10 @@ class ReminderRuntime {
   static Future<void> bindAccount(String? uid) {
     final bind = _binding.catchError((Object _) {}).then((_) async {
       if (uid != AccountStore.activeUid) return;
-      if (_uid == uid && _controller != null && !_controller!.closed) return;
+      if (_uid == uid &&
+          _controller != null &&
+          !_controller!.closed &&
+          initializationError == null) return;
       final old = _controller;
       old?.closed = true;
       await old?.idle;
@@ -22,12 +26,13 @@ class ReminderRuntime {
       initializationError = null;
       final box = Hive.box('LocalDatabase');
       final owner = uid == null ? null : reminderOwner(uid);
+      // Invalidate the old owner before any legacy cancellation can fail.
+      await NotificationApi.instance.bindOwner(owner);
       if (box.get('reminderDeviceOwnerV1') != owner || uid == null) {
         for (final id in [0, reminderTimerId, ...reminderWeeklyIds]) {
           await NotificationApi.instance.cancel(id);
         }
       }
-      await NotificationApi.instance.bindOwner(owner);
       await box.put('reminderDeviceOwnerV1', owner);
       if (uid == null || uid != AccountStore.activeUid) return;
       try {
@@ -38,13 +43,8 @@ class ReminderRuntime {
           await _controller!.disableAll();
         await _controller!.refresh();
       } catch (_) {
-        for (final id in [reminderTimerId, ...reminderWeeklyIds]) {
-          try {
-            await NotificationApi.instance.cancel(id);
-          } catch (_) {}
-        }
         try {
-          await NotificationApi.instance.bindOwner(null);
+          await NotificationApi.instance.emergencyDisable();
         } catch (_) {}
         initializationError =
             'Could not restore reminder settings. Your saved settings have not been reset.';
@@ -56,28 +56,33 @@ class ReminderRuntime {
   }
 
   static Future<ReminderController> current() async {
-    await _binding;
+    // Retry must rebuild a failed binding, not re-await the same failed future.
+    await bindAccount(AccountStore.activeUid);
     final current = _controller;
     if (current == null || current.closed || _uid != AccountStore.activeUid)
       throw StateError(initializationError ?? 'Sign in to manage reminders.');
     return current;
   }
 
-  static Future<void> disableBeforeSignOut() async {
+  static Future<bool> disableBeforeSignOut() async {
     final uid = AccountStore.activeUid;
-    if (uid != null)
-      await Hive.box('LocalDatabase')
-          .put('reminderSuppressed:' + reminderOwner(uid), true);
     try {
-      final current = await ReminderRuntime.current();
-      await current.disableAll();
-    } catch (_) {
-      /* Native cancellation still runs if stored preferences are corrupt. */
+      return await cleanRemindersForSignOut(
+        suppressRestore: () async {
+          if (uid != null)
+            await Hive.box('LocalDatabase')
+                .put('reminderSuppressed:' + reminderOwner(uid), true);
+        },
+        disableSavedSettings: () async {
+          final current = await ReminderRuntime.current();
+          if (AccountStore.activeUid != uid)
+            throw StateError('Account changed.');
+          await current.disableAll();
+        },
+        emergencyDisable: NotificationApi.instance.emergencyDisable,
+      );
+    } finally {
+      NotificationApi.pendingPayload = null;
     }
-    for (final id in [reminderTimerId, ...reminderWeeklyIds]) {
-      await NotificationApi.instance.cancel(id);
-    }
-    await NotificationApi.instance.bindOwner(null);
-    NotificationApi.pendingPayload = null;
   }
 }

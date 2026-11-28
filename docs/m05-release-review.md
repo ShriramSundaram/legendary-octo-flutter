@@ -2,6 +2,8 @@
 
 Version **1.0.6 (21)** has been built and verified as a signed release candidate at the owner's request. This does not mark M05's remaining physical acceptance gates as passed.
 
+**27 November update:** The owner found a reminder startup/logout regression in the Play installation. Its optimized release stripped Gson TypeToken metadata. Version 21 is affected; see [the hotfix review](m05-play-reminder-hotfix.md) for version 1.0.7 (22), release-check evidence and delivery status. Earlier signature/content checks did not cover this runtime failure.
+
 ## Owner acceptance and timing observation
 
 - Owner accepted the new timer UI and its Start / Stop / Cancel flow, and reported that notifications arrive.
@@ -27,6 +29,6 @@ Implementation review found no new code blocker. The timing observation is an ac
 - Signed artifact verification: [m05-release-candidate.json](m05-release-candidate.json), generated only after build/signature/content checks pass.
 - Release notes: [m05-play-release-notes.txt](m05-play-release-notes.txt).
 - Owner will upload/publish; no production upload or Google publication is claimed.
-- The M05 source checkpoint is local on `work/m05`; remote push remains pending. This branch includes M04 checkpoint `5acf20b`; `work/m04` also retains that checkpoint. Issue #6 closure remains pending.
+- M05 checkpoint `180d077` was pushed to `origin/work/m05` and includes M04 checkpoint `5acf20b`. The subsequent Play hotfix is a separate working-tree change until committed. Issue #6 closure remains pending.
 
 References: [Android alarm timing](https://developer.android.com/develop/background-work/services/alarms), [Android stopped-state behavior](https://developer.android.com/about/versions/15/behavior-changes-all#stopped-state).

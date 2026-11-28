@@ -249,6 +249,10 @@ void main() {
           expectedPosition: 0, expectedItemId: c.current!.item.id);
       AccountStore.activeUid = 'B';
       expect(AccountReviewStorage(AccountStore(box, 'B')).read(), isNull);
+      final b = ReviewController(reviewCatalog(), AccountReviewStorage(AccountStore(box, 'B')));
+      expect(b.progress.goal, 10);
+      expect(b.progress.days, isEmpty);
+      await b.setDailyGoal(5);
       expect(() => storeA.read(), throwsStateError);
       await expectLater(storeA.write({'schemaVersion': 1}), throwsStateError);
       await box.close();
@@ -259,6 +263,8 @@ void main() {
           clock: () => reviewNow);
       expect(resumed.session!.position, 1);
       expect(resumed.states.length, 1);
+      expect(resumed.progress.goal, 10);
+      expect(resumed.progress.on(reviewNow.toLocal()).reviews, 1);
     } finally {
       AccountStore.activeUid = null;
       await box.close();

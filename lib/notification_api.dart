@@ -8,6 +8,8 @@ import 'data/reminder_controller.dart';
 import 'data/reminder_models.dart';
 
 class NotificationApi extends ReminderBackend {
+  NotificationApi({bool? android}) : _android = android ?? Platform.isAndroid;
+  final bool _android;
   static const _native = MethodChannel('german_reminder/reminders');
   static final instance = NotificationApi();
   final plugin = FlutterLocalNotificationsPlugin();
@@ -70,7 +72,7 @@ class NotificationApi extends ReminderBackend {
   @override
   Future<void> schedule(int id, tz.TZDateTime date, ReminderPayload payload,
       {bool weekly = false, int? wallHour, int? wallMinute}) async {
-    if (Platform.isAndroid) {
+    if (_android) {
       await _native.invokeMethod<void>('schedule', {
         'id': id,
         'payload': payload.encode(),
@@ -104,14 +106,18 @@ class NotificationApi extends ReminderBackend {
 
   @override
   Future<void> cancel(int id) async {
-    await plugin.cancel(id);
-    if (Platform.isAndroid)
+    // Our Android alarms are native, not plugin-cache schedules. Do not make
+    // their cleanup depend on deserializing the legacy plugin's Gson cache.
+    if (_android) {
       await _native.invokeMethod<void>('cancel', {'id': id});
+    } else {
+      await plugin.cancel(id);
+    }
   }
 
   @override
   Future<Map<int, String?>> pending() async {
-    if (Platform.isAndroid) {
+    if (_android) {
       final rows =
           await _native.invokeMapMethod<String, String>('pending') ?? {};
       return {for (final row in rows.entries) int.parse(row.key): row.value};
@@ -124,12 +130,20 @@ class NotificationApi extends ReminderBackend {
 
   @override
   Future<void> rebaseClock() async {
-    if (Platform.isAndroid) await _native.invokeMethod<void>('reconcile');
+    if (_android) await _native.invokeMethod<void>('reconcile');
   }
 
   @override
   Future<void> bindOwner(String? owner) async {
-    if (Platform.isAndroid)
-      await _native.invokeMethod<void>('owner', {'owner': owner});
+    if (_android) await _native.invokeMethod<void>('owner', {'owner': owner});
+  }
+
+  @override
+  Future<void> emergencyDisable() async {
+    if (_android) {
+      await _native.invokeMethod<void>('disable');
+    } else {
+      await super.emergencyDisable();
+    }
   }
 }

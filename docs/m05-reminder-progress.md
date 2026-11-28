@@ -1,6 +1,8 @@
 # M05 — durable study reminders and timer UI
 
-Release candidate prepared on `work/m05`, based on the local M04 checkpoint **5acf20b**. M04's signed 1.0.5 (20) artifact is unchanged. Signed M05 **1.0.6 (21)** bundle and release notes are ready for the owner to upload. Full M05 physical acceptance is not yet complete; issue #7 remains open. No production upload/publication is claimed.
+**27 November Play regression:** Version 1.0.6 (21) has a confirmed release-only reminder startup/logout failure. [Hotfix 1.0.7 (22)](m05-play-reminder-hotfix.md) adds Gson retention rules, native cleanup, working Retry and independent sign-out. The source checkpoint `180d077` is pushed to `origin/work/m05`; hotfix work is subsequent and uncommitted. Keep issue #7 open for the remaining acceptance gates.
+
+Release candidate prepared on `work/m05`, based on the local M04 checkpoint **5acf20b**. M04's signed 1.0.5 (20) artifact is unchanged. Signed M05 **1.0.6 (21)** was handed off and the owner installed it from Play; it is now superseded by the hotfix work above. Full M05 physical acceptance is not yet complete; issue #7 remains open. No production upload/publication is claimed.
 
 ## Implemented
 

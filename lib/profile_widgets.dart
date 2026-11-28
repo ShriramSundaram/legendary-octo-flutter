@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'learning_sound_settings.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({
@@ -65,6 +66,8 @@ class ProfileView extends StatelessWidget {
                           color: Colors.deepOrangeAccent),
                     ]),
                   ),
+                  const SizedBox(height: 12),
+                  const LearningSoundSettings(),
                   const SizedBox(height: 12),
                   OutlinedButton(
                     onPressed: onDelete,

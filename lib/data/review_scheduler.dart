@@ -19,7 +19,8 @@ class ReviewScheduler {
   ReviewScheduler({DateTime Function()? clock}) : clock = clock ?? DateTime.now;
 
   LearningState answer(
-      String itemId, LearningState? previous, RecallAnswer answer) {
+      String itemId, LearningState? previous, RecallAnswer answer,
+      {bool preserveEarlyInterval = false}) {
     if (previous != null &&
         (previous.itemId != itemId || previous.schedulerVersion != version)) {
       throw const FormatException('Unsupported review state');
@@ -30,16 +31,21 @@ class ReviewScheduler {
       now = previous.lastAttempt!;
     }
     var interval = 600;
+    final early = preserveEarlyInterval &&
+        previous != null &&
+        previous.dueAt.isAfter(now) &&
+        answer == RecallAnswer.remembered;
     if (answer == RecallAnswer.remembered) {
-      interval = steps.firstWhere(
-          (step) => step > (previous?.intervalSeconds ?? 0),
-          orElse: () => steps.last);
+      interval = early
+          ? previous.intervalSeconds
+          : steps.firstWhere((step) => step > (previous?.intervalSeconds ?? 0),
+              orElse: () => steps.last);
     }
     final lapses =
         (previous?.lapseCount ?? 0) + (answer == RecallAnswer.again ? 1 : 0);
     return LearningState(
         itemId: itemId,
-        dueAt: now.add(Duration(seconds: interval)),
+        dueAt: early ? previous.dueAt : now.add(Duration(seconds: interval)),
         lastAttempt: now,
         intervalSeconds: interval,
         lapseCount: lapses.clamp(0, 1000000),

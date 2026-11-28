@@ -1,0 +1,20 @@
+{
+  "correctEffect": "Original synthesized applause, 0.92 seconds",
+  "install": "Success",
+  "installedOn": "2026-11-27",
+  "systemVolumeChanged": false,
+  "package": "com.sundaram.germanreminder.wirelesstest",
+  "nativeChecks": "Passed: signal, RMS, peaks, fades, distinct events, duration",
+  "productionReady": false,
+  "wrongEffect": "Gentle descending wah-wah, 0.43 seconds",
+  "nativeBuild": "Passed",
+  "dataCleared": false,
+  "tapGain": 0.75,
+  "versionName": "1.0.14",
+  "effectsGain": 0.95,
+  "versionCode": 29,
+  "launch": "Status: ok",
+  "apkSha256": "dd4f6335363912f61484af70acaea50e288fabf9e7d414aa9a4d08df0c4a2ee7",
+  "audiblePreferenceAcceptance": "Pending owner",
+  "playVersionUnchanged": true
+}

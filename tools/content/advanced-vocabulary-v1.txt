@@ -1,0 +1,164 @@
+@B1
+Mietvertrag|noun|der|Mietverträge|rental agreement|Work|Wir lesen den Mietvertrag vor der Unterschrift.|We read the rental agreement before signing.
+Hausordnung|noun|die|Hausordnungen|house rules|Relationships|In der Hausordnung stehen die Ruhezeiten.|The house rules list the quiet hours.
+Nachmieter|noun|der|Nachmieter|replacement tenant|Planning|Wir suchen einen Nachmieter für unsere Wohnung.|We are looking for a replacement tenant for our flat.
+Arbeitsvertrag|noun|der|Arbeitsverträge|employment contract|Work|Im Arbeitsvertrag steht meine wöchentliche Arbeitszeit.|My employment contract states my weekly working hours.
+Probezeit|noun|die|Probezeiten|probationary period|Work|Während der Probezeit lerne ich die Abläufe kennen.|During the probationary period I get to know the procedures.
+Weiterbildung|noun|die|Weiterbildungen|further training|Learning|Die Firma bezahlt eine Weiterbildung für das Team.|The company pays for further training for the team.
+Lernziel|noun|das|Lernziele|learning goal|Learning|Mein Lernziel ist ein kurzes Gespräch ohne Hilfe.|My learning goal is a short conversation without help.
+Lerngruppe|noun|die|Lerngruppen|study group|Learning|Unsere Lerngruppe trifft sich jeden Mittwoch.|Our study group meets every Wednesday.
+Lernmethode|noun|die|Lernmethoden|learning method|Learning|Diese Lernmethode hilft mir, Wörter länger zu behalten.|This learning method helps me remember words for longer.
+Lernplan|noun|der|Lernpläne|study plan|Learning|Ich passe meinen Lernplan an meine Arbeitszeiten an.|I adapt my study plan to my working hours.
+Vorschrift|noun|die|Vorschriften|rule; regulation|Work|Diese Vorschrift gilt für alle Beschäftigten.|This rule applies to all employees.
+Kostenvoranschlag|noun|der|Kostenvoranschläge|cost estimate|Planning|Vor der Reparatur bitte ich um einen Kostenvoranschlag.|Before the repair I ask for a cost estimate.
+Ehrenamt|noun|das|Ehrenämter|voluntary role|Relationships|Ihr Ehrenamt im Sportverein macht ihr Freude.|Her voluntary role at the sports club brings her joy.
+Warteschlange|noun|die|Warteschlangen|queue|Time and daily life|Die Warteschlange vor dem Schalter wird länger.|The queue in front of the counter is getting longer.
+Sprechstundentermin|noun|der|Sprechstundentermine|appointment during consultation hours|Health|Ich vereinbare einen Sprechstundentermin für nächste Woche.|I arrange an appointment during consultation hours for next week.
+Antrag|noun|der|Anträge|application; formal request|Planning|Für den Zuschuss müssen Sie einen Antrag stellen.|You need to submit an application for the grant.
+Frist|noun|die|Fristen|deadline; time limit|Planning|Die Frist endet am Freitag um zwölf Uhr.|The deadline is Friday at twelve o'clock.
+Nachweis|noun|der|Nachweise|proof; supporting document|Work|Als Nachweis schicke ich eine Kopie meines Zeugnisses.|As proof I send a copy of my certificate.
+Unterlage|noun|die|Unterlagen|document; paperwork|Work|Bitte bringen Sie die fehlenden Unterlagen mit.|Please bring the missing documents with you.
+Verbesserung|noun|die|Verbesserungen|improvement|Learning|Ich merke eine Verbesserung beim Lesen.|I notice an improvement in my reading.
+verlängern|verb|||to extend; to renew|Planning|Ich möchte die Leihfrist um eine Woche verlängern.|I would like to extend the loan period by a week.
+verschieben|verb|||to postpone; to move|Planning|Können wir den Termin auf Donnerstag verschieben?|Can we move the appointment to Thursday?
+nachfragen|verb|||to ask for clarification; to enquire again|Learning|Wenn ich etwas nicht verstehe, frage ich nach.|If I do not understand something, I ask for clarification.
+ausfüllen|verb|||to fill in|Work|Bitte füllen Sie das Formular vollständig aus.|Please fill in the form completely.
+einreichen|verb|||to submit|Work|Sie reicht ihre Bewerbung bis Montag ein.|She submits her application by Monday.
+teilnehmen an|verb|||to participate in|Learning|Ich nehme an einem Sprachkurs teil.|I am taking part in a language course.|an + dative; separable verb: nimmt teil.
+sich kümmern um|verb|||to take care of|Relationships|Wir kümmern uns um die Pflanzen unserer Nachbarin.|We take care of our neighbour's plants.|um + accusative.
+nachholen|verb|||to catch up on; to make up|Learning|Ich hole die verpasste Unterrichtsstunde nach.|I make up the lesson I missed.
+aufteilen|verb|||to divide up; to share out|Planning|Wir teilen die Aufgaben gerecht auf.|We divide up the tasks fairly.
+nachschlagen|verb|||to look up|Learning|Ich schlage das neue Wort im Wörterbuch nach.|I look up the new word in the dictionary.
+zusammenfassen|verb|||to summarise|Learning|Kannst du den Text in drei Sätzen zusammenfassen?|Can you summarise the text in three sentences?
+vorschlagen|verb|||to suggest|Opinions|Ich schlage vor, dass wir früher beginnen.|I suggest that we start earlier.
+zuständig|adjective|||responsible; in charge|Work|Für diese Frage ist Frau Weber zuständig.|Ms Weber is responsible for this matter.|für + accusative.
+geduldig|adjective|||patient|Relationships|Unsere Kursleiterin bleibt auch bei vielen Fragen geduldig.|Our course instructor remains patient even when there are many questions.
+freiwillig|adjective|||voluntary|Relationships|Die Teilnahme an der Aktion ist freiwillig.|Participation in the activity is voluntary.
+verständlich|adjective|||understandable; clear|Learning|Die Erklärung ist auch für Anfänger verständlich.|The explanation is understandable even for beginners.
+erledigt|adjective|||done; completed|Work|Die wichtigste Aufgabe ist bereits erledigt.|The most important task has already been completed.
+erreichbar|adjective|||reachable; available to contact|Work|Ich bin morgen ab neun Uhr telefonisch erreichbar.|I can be reached by phone from nine tomorrow.
+selbstständig|adjective|||independent; independently|Learning|Die Kinder lösen die Aufgabe selbstständig.|The children solve the task independently.
+rechtzeitig|adjective|||in good time; before it is too late|Planning|Wir müssen rechtzeitig am Bahnhof sein.|We need to be at the station in good time.
+@B2
+Wettbewerb|noun|der|Wettbewerbe|competition|Work|Der Wettbewerb zwischen den Anbietern nimmt zu.|Competition between the providers is increasing.
+Lieferkette|noun|die|Lieferketten|supply chain|Work|Eine Störung in der Lieferkette verzögert die Produktion.|A disruption in the supply chain delays production.
+Interessenvertretung|noun|die|Interessenvertretungen|representation of interests; representative body|Society|Die Interessenvertretung sammelt die Anliegen der Beschäftigten.|The representative body gathers employees' concerns.
+Kompromiss|noun|der|Kompromisse|compromise|Discussion|Beide Seiten sind zu einem Kompromiss bereit.|Both sides are willing to compromise.
+Verhandlung|noun|die|Verhandlungen|negotiation|Work|Die Verhandlungen über den neuen Vertrag dauern an.|Negotiations on the new contract are continuing.
+Rückschlag|noun|der|Rückschläge|setback|Learning|Ein Rückschlag bedeutet nicht, dass das ganze Projekt gescheitert ist.|A setback does not mean that the entire project has failed.
+Umfrage|noun|die|Umfragen|survey|Society|Die Umfrage erfasst die Wünsche der Fahrgäste.|The survey records passengers' wishes.
+Beleg|noun|der|Belege|evidence; supporting example|Discussion|Für diese Behauptung fehlt noch ein überzeugender Beleg.|There is still no convincing evidence for this claim.
+Stellungnahme|noun|die|Stellungnahmen|statement; formal response|Discussion|Der Verein veröffentlicht eine Stellungnahme zum Entwurf.|The association publishes a statement on the draft.
+Zielgruppe|noun|die|Zielgruppen|target group; intended audience|Work|Wir passen die Sprache an die Zielgruppe an.|We adapt the language to the intended audience.
+Kennzahl|noun|die|Kennzahlen|key figure; indicator|Work|Diese Kennzahl allein sagt wenig über die Qualität aus.|This indicator alone says little about quality.
+Engpass|noun|der|Engpässe|bottleneck; shortage|Work|Ein personeller Engpass erschwert die Planung.|A staffing shortage makes planning more difficult.
+Rahmenbedingung|noun|die|Rahmenbedingungen|general condition; framework condition|Work|Veränderte Rahmenbedingungen machen eine neue Planung nötig.|Changed conditions make new planning necessary.
+Lösungsansatz|noun|der|Lösungsansätze|approach to solving a problem|Discussion|Dieser Lösungsansatz berücksichtigt beide Interessen.|This approach takes both interests into account.
+Fortschrittsbericht|noun|der|Fortschrittsberichte|progress report|Work|Der Fortschrittsbericht nennt auch die offenen Probleme.|The progress report also identifies the unresolved problems.
+Wissenslücke|noun|die|Wissenslücken|gap in knowledge|Learning|Mit gezielten Übungen schließen wir unsere Wissenslücken.|We close gaps in our knowledge through targeted exercises.
+Aufgabenverteilung|noun|die|Aufgabenverteilungen|allocation of tasks|Work|Eine klare Aufgabenverteilung verhindert doppelte Arbeit.|A clear allocation of tasks prevents duplicated work.
+Abstimmung|noun|die|Abstimmungen|coordination; vote|Work|Die enge Abstimmung mit dem Vertrieb spart Zeit.|Close coordination with sales saves time.|Can also mean a vote; here it means coordination.
+Arbeitsbelastung|noun|die|Arbeitsbelastungen|workload|Work|Die hohe Arbeitsbelastung führt zu längeren Bearbeitungszeiten.|The heavy workload leads to longer processing times.
+Anforderung|noun|die|Anforderungen|requirement; demand|Work|Die neue Software muss mehrere Anforderungen erfüllen.|The new software must meet several requirements.
+einschätzen|verb|||to assess; to estimate|Opinions|Wie schätzen Sie die Erfolgsaussichten ein?|How do you assess the prospects of success?
+nachweisen|verb|||to demonstrate; to provide evidence of|Discussion|Der Bericht kann diesen Zusammenhang nicht nachweisen.|The report cannot demonstrate this connection.
+einschränken|verb|||to restrict; to qualify|Discussion|Diese Ausnahme schränkt die allgemeine Aussage ein.|This exception qualifies the general statement.
+aushandeln|verb|||to negotiate|Work|Die Partner handeln einen neuen Zeitrahmen aus.|The partners negotiate a new time frame.
+sich anpassen an|verb|||to adapt to|Society|Die Organisation passt sich an neue Bedingungen an.|The organisation adapts to new conditions.|an + accusative.
+sich auswirken auf|verb|||to affect; to have an impact on|Environment|Der trockene Sommer wirkt sich auf die Ernte aus.|The dry summer has an impact on the harvest.|auf + accusative.
+vertreten|verb|||to represent; to advocate|Opinions|Im Gespräch vertritt sie eine andere Position.|In the discussion she advocates a different position.
+voraussetzen|verb|||to require; to presuppose|Learning|Der Kurs setzt grundlegende Sprachkenntnisse voraus.|The course requires basic language skills.
+herleiten|verb|||to derive; to deduce|Discussion|Wie lässt sich diese Annahme aus den Daten herleiten?|How can this assumption be derived from the data?
+auswerten|verb|||to analyse; to evaluate|Learning|Wir werten die Antworten nach einheitlichen Kriterien aus.|We analyse the answers using consistent criteria.
+abstimmen|verb|||to coordinate; to vote|Work|Wir stimmen die Termine mit allen Beteiligten ab.|We coordinate the dates with everyone involved.|etwas mit jemandem abstimmen means to coordinate something with someone.
+aufrechterhalten|verb|||to maintain; to keep up|Work|Trotz der Störung halten wir den Betrieb aufrecht.|Despite the disruption we keep operations running.
+aussagekräftig|adjective|||informative; meaningful as evidence|Discussion|Eine größere Stichprobe kann aussagekräftigere Ergebnisse liefern.|A larger sample can produce more informative results.
+widersprüchlich|adjective|||contradictory|Discussion|Die beiden Berichte enthalten widersprüchliche Angaben.|The two reports contain contradictory information.
+umsetzbar|adjective|||feasible; capable of being implemented|Work|Wir suchen eine finanziell umsetzbare Lösung.|We are looking for a financially feasible solution.
+angemessen|adjective|||appropriate; proportionate|Society|Eine angemessene Reaktion berücksichtigt die Umstände.|An appropriate response takes the circumstances into account.
+verbindlich|adjective|||binding; firm|Work|Wir brauchen eine verbindliche Zusage bis Freitag.|We need a firm commitment by Friday.
+differenziert|adjective|||nuanced; differentiated|Discussion|Der Artikel zeichnet ein differenziertes Bild der Lage.|The article presents a nuanced picture of the situation.
+zielführend|adjective|||effective in achieving the aim|Work|Weitere Schuldzuweisungen sind jetzt nicht zielführend.|Further accusations will not help achieve the aim now.
+ausgewogen|adjective|||balanced|Opinions|Die Zusammenfassung sollte Chancen und Risiken ausgewogen darstellen.|The summary should present opportunities and risks in a balanced way.
+@C1
+Abwägung|noun|die|Abwägungen|weighing up; balancing considerations|Discussion|Die Entscheidung erfordert eine sorgfältige Abwägung der Folgen.|The decision requires careful consideration of the consequences.
+Deutung|noun|die|Deutungen|interpretation|Discussion|Diese Deutung erklärt nicht alle Einzelheiten des Textes.|This interpretation does not explain every detail of the text.
+Befund|noun|der|Befunde|finding|Academic language|Der Befund steht im Widerspruch zur ursprünglichen Annahme.|The finding contradicts the original assumption.|Here used for a research finding.
+Erklärungsansatz|noun|der|Erklärungsansätze|explanatory approach|Academic language|Der neue Erklärungsansatz verbindet mehrere Beobachtungen.|The new explanatory approach links several observations.
+Geltungsbereich|noun|der|Geltungsbereiche|scope of application; domain of validity|Academic language|Der Geltungsbereich dieser Aussage ist klar begrenzt.|The scope of this statement is clearly limited.
+Wechselwirkung|noun|die|Wechselwirkungen|interaction; reciprocal effect|Academic language|Die Studie untersucht die Wechselwirkung zwischen Sprache und Wahrnehmung.|The study examines the interaction between language and perception.
+Randbedingung|noun|die|Randbedingungen|boundary condition; constraint|Academic language|Unter anderen Randbedingungen könnte das Ergebnis anders ausfallen.|Under different conditions the result could be different.
+Interessenkonflikt|noun|der|Interessenkonflikte|conflict of interest|Society|Ein möglicher Interessenkonflikt sollte offengelegt werden.|A possible conflict of interest should be disclosed.
+Handlungsempfehlung|noun|die|Handlungsempfehlungen|recommendation for action|Work|Die Handlungsempfehlung ergibt sich aus der Analyse.|The recommendation for action follows from the analysis.
+Vergleichsmaßstab|noun|der|Vergleichsmaßstäbe|standard of comparison|Academic language|Ohne gemeinsamen Vergleichsmaßstab bleiben die Zahlen schwer einzuordnen.|Without a common standard of comparison the figures remain difficult to interpret.
+Spannungsverhältnis|noun|das|Spannungsverhältnisse|tension between competing elements|Discussion|Zwischen Flexibilität und Verlässlichkeit besteht ein Spannungsverhältnis.|There is a tension between flexibility and reliability.
+Gegenargument|noun|das|Gegenargumente|counterargument|Discussion|Das Gegenargument betrifft eine andere Voraussetzung.|The counterargument concerns a different prerequisite.
+Einschränkung|noun|die|Einschränkungen|limitation; qualification|Academic language|Diese Einschränkung muss bei der Interpretation berücksichtigt werden.|This limitation must be taken into account in the interpretation.
+Vorgehensweise|noun|die|Vorgehensweisen|procedure; approach|Work|Eine transparente Vorgehensweise erleichtert die Zusammenarbeit.|A transparent approach facilitates collaboration.
+Erkenntnisgewinn|noun|der|Erkenntnisgewinne|gain in knowledge; new insight|Academic language|Die zusätzliche Untersuchung verspricht einen erheblichen Erkenntnisgewinn.|The additional investigation promises substantial new insight.
+Vorannahme|noun|die|Vorannahmen|prior assumption|Academic language|Die Analyse macht ihre eigenen Vorannahmen ausdrücklich sichtbar.|The analysis explicitly reveals its own prior assumptions.
+Verzerrung|noun|die|Verzerrungen|distortion; bias|Academic language|Die Auswahl der Befragten kann zu einer Verzerrung führen.|The selection of respondents can lead to bias.
+Gewichtung|noun|die|Gewichtungen|weighting; relative importance|Discussion|Eine andere Gewichtung der Kriterien verändert das Ergebnis.|A different weighting of the criteria changes the result.
+Begründung|noun|die|Begründungen|justification; reasoning|Discussion|Eine nachvollziehbare Begründung nennt auch die verworfenen Alternativen.|Understandable reasoning also identifies the rejected alternatives.
+Beweisführung|noun|die|Beweisführungen|line of proof; argument establishing a claim|Academic language|An dieser Stelle weist die Beweisführung eine Lücke auf.|At this point the line of proof has a gap.
+präzisieren|verb|||to specify more precisely; to clarify|Academic language|Könnten Sie den verwendeten Begriff präzisieren?|Could you define the term used more precisely?
+untermauern|verb|||to substantiate; to support with evidence|Discussion|Weitere Beispiele untermauern ihre These.|Further examples substantiate her thesis.
+widerlegen|verb|||to refute; to disprove|Academic language|Ein einziges Gegenbeispiel kann diese allgemeine Behauptung widerlegen.|A single counterexample can refute this general claim.
+einordnen|verb|||to contextualise; to classify|Academic language|Wir müssen den Befund in den historischen Zusammenhang einordnen.|We need to place the finding in its historical context.
+entkräften|verb|||to rebut; to weaken an argument|Discussion|Die neue Information entkräftet einen wichtigen Einwand.|The new information weakens an important objection.
+vorausgreifen|verb|||to anticipate; to get ahead of a later point|Discussion|Ich möchte dem Ergebnis der Beratung nicht vorausgreifen.|I do not want to anticipate the outcome of the discussion.
+veranschaulichen|verb|||to illustrate; to make clear through an example|Learning|Die Grafik veranschaulicht den Zusammenhang.|The chart illustrates the connection.
+nachjustieren|verb|||to fine-tune; to readjust|Work|Nach der Erprobung müssen wir die Kriterien nachjustieren.|After the trial we need to fine-tune the criteria.
+offenlegen|verb|||to disclose; to lay open|Society|Die Beteiligten legen ihre Interessen offen.|Those involved disclose their interests.
+verorten|verb|||to locate within a context|Academic language|Der Beitrag ist in einer längeren Debatte zu verorten.|The contribution should be situated within a longer debate.
+zuspitzen|verb|||to sharpen; to bring into sharper focus|Discussion|Die Autorin spitzt den Gegensatz im letzten Absatz zu.|The author sharpens the contrast in the final paragraph.
+vernachlässigen|verb|||to neglect; to give insufficient attention to|Academic language|Das Modell vernachlässigt mögliche Wechselwirkungen.|The model neglects possible interactions.
+übertragbar|adjective|||transferable; applicable to other cases|Academic language|Die Ergebnisse sind nicht ohne Weiteres auf andere Gruppen übertragbar.|The results cannot readily be applied to other groups.
+schlüssig|adjective|||coherent; logically convincing|Discussion|Die Erklärung klingt schlüssig, lässt aber eine Frage offen.|The explanation sounds coherent but leaves one question unanswered.
+belastbar|adjective|||robust; reliable enough to support a conclusion|Academic language|Für eine belastbare Aussage fehlen noch Daten.|There is still insufficient data for a robust conclusion.
+mehrschichtig|adjective|||multilayered|Discussion|Der Roman entwirft ein mehrschichtiges Bild der Familie.|The novel presents a multilayered picture of the family.
+ergebnisoffen|adjective|||open as to the outcome|Discussion|Eine ergebnisoffene Diskussion setzt echte Alternativen voraus.|An open-ended discussion requires genuine alternatives.
+absehbar|adjective|||foreseeable|Work|Die Folgen sind derzeit nur teilweise absehbar.|The consequences are currently only partly foreseeable.
+unzulänglich|adjective|||inadequate; insufficient|Academic language|Diese Erklärung bleibt angesichts der Befunde unzulänglich.|This explanation remains inadequate in light of the findings.
+kontextabhängig|adjective|||context-dependent|Academic language|Die Bedeutung dieser Formulierung ist kontextabhängig.|The meaning of this wording depends on the context.
+@C2
+Fehlschluss|noun|der|Fehlschlüsse|fallacy; faulty inference|Argumentation|Der Schluss von der Reihenfolge auf eine Ursache ist hier ein Fehlschluss.|Inferring a cause from the sequence of events is a fallacy here.
+Zirkelschluss|noun|der|Zirkelschlüsse|circular reasoning|Argumentation|Die Begründung setzt bereits voraus, was sie beweisen soll: ein Zirkelschluss.|The reasoning already assumes what it is meant to prove: circular reasoning.
+Zäsur|noun|die|Zäsuren|watershed; marked break|Nuance and style|Der Perspektivwechsel bildet eine deutliche Zäsur im Text.|The change in perspective forms a marked break in the text.
+Zwischenton|noun|der|Zwischentöne|nuance; subtle shade of meaning|Nuance and style|In der Übersetzung gehen einige Zwischentöne verloren.|Some nuances are lost in the translation.
+Vorbehaltsklausel|noun|die|Vorbehaltsklauseln|reservation clause; qualifying clause|Argumentation|Die Vorbehaltsklausel begrenzt die Reichweite der Zusage.|The qualifying clause limits the scope of the commitment.
+Implikation|noun|die|Implikationen|implication|Argumentation|Die langfristigen Implikationen dieser Annahme bleiben unklar.|The long-term implications of this assumption remain unclear.
+Unterstellung|noun|die|Unterstellungen|insinuation; unfounded imputation|Nuance and style|Die Unterstellung einer versteckten Absicht ist durch den Text nicht gedeckt.|The text does not support imputing a hidden intention.
+Gratwanderung|noun|die|Gratwanderungen|delicate balancing act|Idioms|Die Vermittlung zwischen beiden Positionen ist eine Gratwanderung.|Mediating between the two positions is a delicate balancing act.
+Deutungsangebot|noun|das|Deutungsangebote|proposed interpretation|Nuance and style|Der Schluss eröffnet ein weiteres Deutungsangebot.|The ending opens up another possible interpretation.
+Scheinargument|noun|das|Scheinargumente|specious argument|Argumentation|Die Berufung auf bloße Beliebtheit dient hier als Scheinargument.|Here an appeal to mere popularity serves as a specious argument.
+Gedankengang|noun|der|Gedankengänge|line of thought|Argumentation|Er unterbricht seinen Gedankengang, um eine Voraussetzung zu klären.|He interrupts his line of thought to clarify a premise.
+Lesererwartung|noun|die|Lesererwartungen|reader expectation|Nuance and style|Der abrupte Schluss unterläuft die zuvor aufgebaute Lesererwartung.|The abrupt ending subverts the reader expectation built up earlier.
+Bedeutungsverschiebung|noun|die|Bedeutungsverschiebungen|shift in meaning|Nuance and style|Das Wort erfährt in diesem Zusammenhang eine Bedeutungsverschiebung.|The word undergoes a shift in meaning in this context.
+Doppeldeutigkeit|noun|die|Doppeldeutigkeiten|double meaning; ambiguity|Nuance and style|Die Doppeldeutigkeit der Bemerkung trägt zur Ironie bei.|The remark's double meaning contributes to the irony.
+Auslegungsfrage|noun|die|Auslegungsfragen|question of interpretation|Argumentation|Ob die Einschränkung auch hier gilt, bleibt eine Auslegungsfrage.|Whether the qualification also applies here remains a question of interpretation.
+Zuspitzung|noun|die|Zuspitzungen|pointed formulation; intensification|Nuance and style|Die rhetorische Zuspitzung macht den Gegensatz sichtbar.|The pointed rhetorical formulation makes the contrast visible.
+Relativierung|noun|die|Relativierungen|qualification; putting into perspective|Argumentation|Die Relativierung nimmt der Aussage nicht jeden Gehalt.|The qualification does not deprive the statement of all substance.
+Gegenentwurf|noun|der|Gegenentwürfe|alternative vision; counterproposal|Argumentation|Der Essay entwickelt einen Gegenentwurf zur vorherrschenden Sicht.|The essay develops an alternative to the prevailing view.
+Abgrenzung|noun|die|Abgrenzungen|distinction; delimitation|Argumentation|Die begriffliche Abgrenzung bleibt an dieser Stelle unscharf.|At this point the conceptual distinction remains unclear.
+Vorzeichen|noun|das|Vorzeichen|sign; indication; governing circumstances|Nuance and style|Unter veränderten Vorzeichen erhält die Debatte eine neue Bedeutung.|Under changed circumstances the debate takes on a new meaning.|unter anderen/veränderten Vorzeichen is a figurative expression.
+unterminieren|verb|||to undermine|Argumentation|Der ungeklärte Widerspruch unterminiert die Glaubwürdigkeit der These.|The unresolved contradiction undermines the thesis's credibility.
+unterstellen|verb|||to assume; to impute|Argumentation|Diese Lesart unterstellt eine Absicht, die nicht ausdrücklich genannt wird.|This reading imputes an intention that is not explicitly stated.
+insinuieren|verb|||to insinuate|Nuance and style|Die Formulierung insinuiert einen Zusammenhang, ohne ihn zu belegen.|The wording insinuates a connection without substantiating it.|Formal; implies an indirect, often critical suggestion.
+ausdifferenzieren|verb|||to differentiate in greater detail|Argumentation|Im weiteren Verlauf wird die ursprüngliche Unterscheidung ausdifferenziert.|As the discussion progresses the original distinction is developed in greater detail.
+durchdringen|verb|||to penetrate; to grasp thoroughly|Argumentation|Um den Gedankengang zu durchdringen, muss man seine Voraussetzungen prüfen.|To grasp the line of thought thoroughly one must examine its premises.
+vorwegnehmen|verb|||to anticipate; to pre-empt|Nuance and style|Der erste Absatz nimmt die spätere Wendung bereits vorweg.|The first paragraph already anticipates the later turn.
+entlarven|verb|||to expose; to unmask|Argumentation|Das Gegenbeispiel entlarvt die vermeintliche Regel als vorschnelle Verallgemeinerung.|The counterexample exposes the supposed rule as a hasty generalisation.
+exemplifizieren|verb|||to exemplify|Argumentation|Die Autorin exemplifiziert ihre These an einem kurzen Dialog.|The author exemplifies her thesis through a short dialogue.|Formal academic register.
+sich erschließen|verb|||to become apparent; to reveal itself to understanding|Nuance and style|Die Ironie erschließt sich erst beim zweiten Lesen.|The irony becomes apparent only on a second reading.
+verkennen|verb|||to misjudge; to fail to recognise|Argumentation|Diese Deutung verkennt die Funktion des Perspektivwechsels.|This interpretation fails to recognise the function of the change in perspective.
+vereinnahmen|verb|||to appropriate for one's own purposes|Nuance and style|Die vieldeutige Passage lässt sich nicht für eine einzige Position vereinnahmen.|The ambiguous passage cannot be appropriated for a single position.
+nivellieren|verb|||to level out; to flatten distinctions|Argumentation|Eine pauschale Zusammenfassung würde wichtige Unterschiede nivellieren.|A sweeping summary would flatten important distinctions.
+nuanciert|adjective|||nuanced; subtly differentiated|Nuance and style|Die Rezension fällt kritisch, aber nuanciert aus.|The review is critical but nuanced.
+triftig|adjective|||cogent; well-founded|Argumentation|Für diese Ausnahme gibt es einen triftigen Grund.|There is a cogent reason for this exception.
+anfechtbar|adjective|||open to challenge; disputable|Argumentation|Die Prämisse ist plausibel, aber durchaus anfechtbar.|The premise is plausible but certainly open to challenge.
+inhärent|adjective|||inherent|Argumentation|Der Widerspruch ist dem gewählten Ansatz inhärent.|The contradiction is inherent in the chosen approach.|Often used with a dative complement: einer Sache inhärent.
+latent|adjective|||latent; present but not openly expressed|Nuance and style|Zwischen den Figuren bleibt ein latenter Konflikt spürbar.|A latent conflict remains perceptible between the characters.
+pointiert|adjective|||pointed; sharply expressed|Nuance and style|Ihre pointierte Antwort bringt die Schwierigkeit präzise zum Ausdruck.|Her pointed reply expresses the difficulty precisely.
+unvereinbar|adjective|||incompatible; irreconcilable|Argumentation|Diese beiden Voraussetzungen sind miteinander unvereinbar.|These two premises are mutually incompatible.
+apodiktisch|adjective|||categorical; asserted as indisputable|Nuance and style|Der apodiktische Ton lässt kaum Raum für eine Gegenposition.|The categorical tone leaves little room for an opposing view.|Formal, often critical description of an assertion's tone.

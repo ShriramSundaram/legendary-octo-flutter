@@ -51,7 +51,7 @@ class _OnBoardingScreen extends State<OnBoardingScreen> {
       if (user != null && user.emailVerified) {
         // Navigate to main page on successful login
         Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (_) => MyHomePage(title: 'GermanReminder')));
+            builder: (_) => MyHomePage(title: 'German Reminder')));
       } else {
         // Navigate to verify email page
         Navigator.of(context).pushReplacement(

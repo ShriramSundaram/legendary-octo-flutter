@@ -24,6 +24,23 @@ void main() {
     expect(backend.requests, 0);
     expect(backend.jobs, isEmpty);
   });
+  test('failed restore preserves saved settings and a later restore recovers',
+      () async {
+    await controller.startTimer(const Duration(minutes: 5),
+        level: 'B1', itemId: 'word_1');
+    await controller.saveDaily(
+        enabled: true, hour: 18, minute: 0, days: {1, 3}, level: 'A2');
+    final original = store.read();
+    backend.failSchedule = true;
+    await expectLater(controller.refresh(), throwsStateError);
+    expect(store.read(), original);
+    expect(backend.jobs, isEmpty);
+    backend.failSchedule = false;
+    final restored = ReminderController(store, backend, clock: () => now);
+    await restored.refresh();
+    expect(backend.jobs.keys.toSet(), {2100, 2101, 2103});
+    expect(restored.settings.itemId, 'word_1');
+  });
   test('selected days use stable IDs; edits replace rather than duplicate',
       () async {
     await controller.saveDaily(

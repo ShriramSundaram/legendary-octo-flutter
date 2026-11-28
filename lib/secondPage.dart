@@ -9,7 +9,7 @@ class SecondPage extends StatelessWidget {
   void goToHomeScreen(context) =>
       Navigator.of(context).pushReplacement(MaterialPageRoute(
           builder: (_) => MyHomePage(
-                title: 'GermanReminder',
+                title: 'German Reminder',
               )));
 
   @override

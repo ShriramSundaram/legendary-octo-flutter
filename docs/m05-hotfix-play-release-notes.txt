@@ -1,0 +1,3 @@
+Fixed reminders failing to open after installing from Google Play.
+Fixed reminder errors preventing logout.
+Improved Retry so reminder settings can recover without being reset.

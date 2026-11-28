@@ -31,13 +31,39 @@ public final class ReminderAlarms {
     long target = Math.max(System.currentTimeMillis()+1000, row.getLong("at"));
     ((AlarmManager)c.getSystemService(Context.ALARM_SERVICE)).setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, target, alarmIntent(c,id,row));
   }
-  public static synchronized void cancel(Context c, int id) throws JSONException {
-    if (!managed(id)) return;
-    Intent intent = new Intent(c, ReminderReceiver.class).setAction("com.sundaram.germanreminder.ALARM");
+  private static void cancelAlarm(Context c, int id, boolean legacy) {
+    Intent intent = legacy
+      ? new Intent().setClassName(c,"com.dexterous.flutterlocalnotifications.ScheduledNotificationReceiver")
+      : new Intent(c, ReminderReceiver.class).setAction("com.sundaram.germanreminder.ALARM");
     PendingIntent pending = PendingIntent.getBroadcast(c,id,intent,PendingIntent.FLAG_NO_CREATE | PendingIntent.FLAG_IMMUTABLE);
     if (pending != null) { ((AlarmManager)c.getSystemService(Context.ALARM_SERVICE)).cancel(pending); pending.cancel(); }
     ((NotificationManager)c.getSystemService(Context.NOTIFICATION_SERVICE)).cancel(id);
+  }
+  public static synchronized void cancel(Context c, int id) throws JSONException {
+    // Legacy ID 0 must not deserialize the notification plugin's Gson cache.
+    if(id==0) { cancelAlarm(c,id,true);clearLegacySchedules(c);return; }
+    if(!managed(id))return;
+    cancelAlarm(c,id,false);
     JSONObject rows=plans(c); rows.remove(String.valueOf(id)); save(c,rows);
+  }
+  private static void clearLegacySchedules(Context c) {
+    // All current schedules use our native registry. Drop only the obsolete
+    // plugin execution cache so its boot receiver cannot resurrect old alarms.
+    // This is not the user's saved reminder settings.
+    if(!c.getSharedPreferences("scheduled_notifications",Context.MODE_PRIVATE)
+        .edit().remove("scheduled_notifications").commit())
+      throw new IllegalStateException("Legacy reminder cleanup could not be saved");
+  }
+  public static synchronized void disable(Context c) {
+    // This emergency path intentionally works even if the registry JSON is bad.
+    boolean persisted=prefs(c).edit().putString("owner","").putString("plans","{}").commit();
+    RuntimeException failure=null;
+    for(int id=2100;id<=2107;id++) {
+      try { cancelAlarm(c,id,false); } catch(RuntimeException e) { failure=e; }
+    }
+    try { cancelAlarm(c,0,true); } catch(RuntimeException e) { failure=e; }
+    try { clearLegacySchedules(c); } catch(RuntimeException e) { failure=e; }
+    if(!persisted||failure!=null)throw new IllegalStateException("Reminder shutdown could not be confirmed");
   }
   private static void setOwner(Context c, String owner) throws JSONException {
     if (owner != null && !owner.matches("[a-f0-9]{64}")) throw new IllegalArgumentException("Invalid owner");
@@ -122,6 +148,11 @@ public final class ReminderAlarms {
         case "schedule":schedule(c,args);result.success(null);break;
         case "cancel":cancel(c,((Number)args.get("id")).intValue());result.success(null);break;
         case "reconcile":reconcile(c);result.success(null);break;
+        case "disable":disable(c);result.success(null);break;
+        case "context":
+          Map<String,Object> context=new HashMap<>();context.put("packageName",c.getPackageName());
+          context.put("debuggable",(c.getApplicationInfo().flags & android.content.pm.ApplicationInfo.FLAG_DEBUGGABLE)!=0);
+          result.success(context);break;
         case "pending":
           Map<String,String> pending=new HashMap<>();JSONObject rows=plans(c);
           for(int id=2100;id<=2107;id++) { JSONObject row=rows.optJSONObject(String.valueOf(id));if(row!=null)pending.put(String.valueOf(id),row.getString("payload")); }

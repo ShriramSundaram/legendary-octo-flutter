@@ -15,7 +15,8 @@ import 'profile_widgets.dart';
 import 'reminder_runtime.dart';
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+  const ProfilePage({Key? key, this.onHome}) : super(key: key);
+  final VoidCallback? onHome;
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -43,6 +44,10 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   void goToHomePage(BuildContext context) {
+    if (widget.onHome != null) {
+      widget.onHome!();
+      return;
+    }
     Navigator.of(context).push(MaterialPageRoute(
         builder: (_) => MyHomePage(
               title: 'German Reminder',
