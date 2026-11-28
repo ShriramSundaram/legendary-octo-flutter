@@ -116,6 +116,7 @@ void main() {
     expect(find.textContaining('Reviewed A1 content is being prepared'),
         findsOneWidget);
     expect(find.text('Hallo, ich heiße Anna.'), findsNothing);
+    await reveal(tester, find.text('B2 (0 words)'));
     await tester.tap(find.text('B2 (0 words)'));
     await tester.pumpAndSettle();
     expect(find.textContaining('Reviewed B2 content is being prepared'),

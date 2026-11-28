@@ -51,7 +51,7 @@ class _OnBoardingScreen extends State<OnBoardingScreen> {
       if (user != null && user.emailVerified) {
         // Navigate to main page on successful login
         Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (_) => MyHomePage(title: 'GermanReminder')));
+            builder: (_) => MyHomePage(title: 'German Reminder')));
       } else {
         // Navigate to verify email page
         Navigator.of(context).pushReplacement(
@@ -151,8 +151,8 @@ class _OnBoardingScreen extends State<OnBoardingScreen> {
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 20)),
                           TextSpan(
-                              text: ' If displayed word needs to be reminded, User can select the Time(HH::MM::SS) Above and Press TimerIcon.\nThe selected word will be reminded after specified time.' +
-                                  ' Alternatively user can click on PLAY button repeatedly until user finds unfamilier word.\nEnable/Allow Notification for this App.')
+                              text: ' Choose a preset or Custom, then tap Start timer to save the displayed word. Pause, resume or cancel any time.' +
+                                  ' Open Make it a habit for weekday reminders. Allow notifications when asked; Android may deliver after the countdown.')
                         ]),
                   )
                 ],

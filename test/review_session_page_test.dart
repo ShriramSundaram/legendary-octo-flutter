@@ -3,9 +3,61 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:germanreminder/data/content_catalog.dart';
 import 'package:germanreminder/review_session_page.dart';
+import 'package:germanreminder/data/practice_speech.dart';
 import 'review_test_support.dart';
 
+class CardSpeech implements PracticeSpeech {
+  bool available = true;
+  final spoken = <String>[];
+  int stops = 0;
+  @override
+  Future<bool> prepare() async => available;
+  @override
+  Future<bool> speak(String text) async {
+    spoken.add(text);
+    return true;
+  }
+
+  @override
+  Future<void> stop() async {
+    stops++;
+  }
+}
+
 void main() {
+  testWidgets(
+      'pronunciation stays inside the recall card without revealing meaning',
+      (tester) async {
+    final speech = CardSpeech();
+    await tester.pumpWidget(MaterialApp(
+        home: ReviewSessionPage(
+            speech: speech,
+            storage: MemoryReviewStorage(),
+            loadCatalog: () async => reviewCatalog(count: 2))));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Start practice'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Hear pronunciation'));
+    await tester.pumpAndSettle();
+    expect(speech.spoken.length, 1);
+    expect(find.text('meaning-0'), findsNothing);
+    await tester.tap(find.text('Hear pronunciation'));
+    await tester.pumpAndSettle();
+    expect(speech.spoken.length, 2);
+    await tester.tap(find.text('Reveal meaning'));
+    await tester.pumpAndSettle();
+    await tester.ensureVisible(find.text('Remembered'));
+    await tester.tap(find.text('Remembered'));
+    await tester.pumpAndSettle();
+    expect(speech.stops, greaterThan(0));
+    expect(find.text('meaning-1'), findsNothing);
+    speech.available = false;
+    await tester.tap(find.text('Hear pronunciation'));
+    await tester.pumpAndSettle();
+    expect(find.textContaining('German audio is unavailable.'), findsOneWidget);
+    expect(find.text('Reveal meaning'), findsOneWidget);
+    await tester.pumpWidget(const SizedBox());
+  });
   testWidgets('recall hides meaning until reveal, then saves honest summary',
       (tester) async {
     final storage = MemoryReviewStorage();
@@ -73,6 +125,7 @@ void main() {
         find.textContaining('Your answer was not confirmed'), findsOneWidget);
     expect(find.text('Word 1 of 2'), findsOneWidget);
     storage.fail = false;
+    await tester.ensureVisible(find.text('Again'));
     await tester.tap(find.text('Again'));
     await tester.pumpAndSettle();
     expect(find.text('Word 2 of 2'), findsOneWidget);

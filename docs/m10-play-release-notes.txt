@@ -1,0 +1,3 @@
+Fresh new lavender icon with GR lettering and a reminder bell.
+The app name now appears as German Reminder.
+Includes fixes for reminders failing to open and reminder errors preventing logout.

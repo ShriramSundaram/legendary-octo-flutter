@@ -1,0 +1,6 @@
+Enjoy a redesigned timer with presets, custom durations, pause, resume and cancel.
+Save a word to review when your reminder arrives.
+Choose optional study reminders by time and weekday.
+Reminder settings stay saved on your device, separately for each account.
+Tap a notification to return to your word or review session.
+Notification timing follows Android and battery settings.

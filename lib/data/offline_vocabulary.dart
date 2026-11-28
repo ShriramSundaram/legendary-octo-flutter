@@ -4,16 +4,25 @@ import 'content_catalog.dart';
 /// Shared vocabulary is packaged with the app. Personal words remain separate.
 class OfflineWord {
   final String id, level, german, meaning, original;
+  final bool preview;
   const OfflineWord(
-      this.id, this.level, this.german, this.meaning, this.original);
+      this.id, this.level, this.german, this.meaning, this.original,
+      {this.preview = false});
   String get display => '$german - $meaning';
 }
 
 class OfflineVocabulary {
   final List<OfflineWord> words;
   OfflineVocabulary._(this.words);
-  factory OfflineVocabulary.decode(String contentSource, String legacySource) {
-    final catalog = ContentCatalog.decode(contentSource);
+  factory OfflineVocabulary.decode(String contentSource, String legacySource,
+      {String? supplementalSource,
+      Iterable<String> additionalSources = const [],
+      bool includeDrafts = false}) {
+    final catalog = ContentCatalog.combine([
+      ContentCatalog.decode(contentSource),
+      if (supplementalSource != null) ContentCatalog.decode(supplementalSource),
+      ...additionalSources.map(ContentCatalog.decode),
+    ], includeDrafts: includeDrafts);
     final legacy = jsonDecode(legacySource) as Map<String, dynamic>;
     if (legacy['schemaVersion'] != 1 ||
         legacy['version'] is! int ||
@@ -28,13 +37,15 @@ class OfflineVocabulary {
     }
     final words = <OfflineWord>[
       for (final word in catalog.words)
-        if (word.item.editorialStatus == 'published')
+        if (word.item.editorialStatus == 'published' ||
+            (includeDrafts && word.item.editorialStatus == 'draft'))
           OfflineWord(
               word.item.id,
               word.item.level,
               '${word.item.article} ${word.item.lemma}'.trim(),
               word.item.meaning,
-              ''),
+              '',
+              preview: word.item.editorialStatus != 'published'),
     ];
     final ids = words.map((w) => w.id).toSet();
     for (final raw in legacy['items'] as List) {

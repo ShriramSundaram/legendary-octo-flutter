@@ -60,7 +60,7 @@ void main() {
   test('cold asset load needs no Firebase initialization or network client',
       () async {
     final deck = await loadOfflineVocabulary();
-    expect(deck.words.length, 1328);
-    expect(deck.atLevel('A1').length, 495);
+    expect(deck.words.length, 1608);
+    expect(deck.atLevel('A1').length, 515);
   });
 }

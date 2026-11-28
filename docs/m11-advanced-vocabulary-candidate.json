@@ -1,0 +1,25 @@
+{
+  "install": "Success",
+  "versionName": "1.0.15",
+  "package": "com.sundaram.germanreminder.wirelesstest",
+  "playVersionUnchanged": true,
+  "vocabularyAdded": 160,
+  "launch": "Status: ok",
+  "packagedAssetVerified": true,
+  "analysis": "No issues found (4 files)",
+  "productionReady": false,
+  "packagedAssetCompressedBytes": 19154,
+  "perLevel": {
+    "B1": 40,
+    "C2": 40,
+    "C1": 40,
+    "B2": 40
+  },
+  "apkSha256": "a0615721221cbe4baec8513c420d57061ab4426b06878471e768100ee12fb1d4",
+  "installedOn": "2026-11-27",
+  "cloudRecoveryImplemented": false,
+  "contentStatus": "Draft preview; editorial acceptance pending",
+  "versionCode": 30,
+  "dataCleared": false,
+  "flutterTestsPassed": 149
+}

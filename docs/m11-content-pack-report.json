@@ -1,0 +1,28 @@
+{
+  "missions": 30,
+  "steps": 300,
+  "dialogueTurns": 600,
+  "newVocabulary": 120,
+  "kinds": {
+    "noun": 58,
+    "phrase": 62
+  },
+  "editorialStatus": "published",
+  "sizes": [
+    {
+      "file": "assets/missions_catalog_v1.json",
+      "bytes": 223879,
+      "gzipBytes": 49048
+    },
+    {
+      "file": "assets/missions_archive_v1.json",
+      "bytes": 192581,
+      "gzipBytes": 42925
+    },
+    {
+      "file": "assets/mission_vocabulary_v1.json",
+      "bytes": 157189,
+      "gzipBytes": 16680
+    }
+  ]
+}

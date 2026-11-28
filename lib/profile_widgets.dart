@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'learning_sound_settings.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({
@@ -47,7 +48,8 @@ class ProfileView extends StatelessWidget {
                       label: 'Verified Email Status',
                       value: verified ? 'Yes' : 'No'),
                   _ProfileField(label: 'Email', value: email),
-                  _ProfileField(label: 'Your German Level', value: level),
+                  _ProfileField(
+                      label: 'Your chosen starter level', value: level),
                   OutlinedButton(
                     onPressed: onTest,
                     style: OutlinedButton.styleFrom(
@@ -56,7 +58,7 @@ class ProfileView extends StatelessWidget {
                     ),
                     child: const Row(children: [
                       Expanded(
-                          child: Text("Let's Test your German Level!",
+                          child: Text('Quick vocabulary check',
                               style: TextStyle(
                                   fontSize: 18, fontWeight: FontWeight.bold))),
                       SizedBox(width: 8),
@@ -64,6 +66,8 @@ class ProfileView extends StatelessWidget {
                           color: Colors.deepOrangeAccent),
                     ]),
                   ),
+                  const SizedBox(height: 12),
+                  const LearningSoundSettings(),
                   const SizedBox(height: 12),
                   OutlinedButton(
                     onPressed: onDelete,

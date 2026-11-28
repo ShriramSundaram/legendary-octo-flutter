@@ -17,9 +17,38 @@ mismatches. Avoid `flutter run` when switching signing keys: it can uninstall
 the existing application automatically, clearing local data.
 
 ```powershell
-./tools/build-wireless-debug.ps1
+./tools/build-wireless-debug.ps1 -Isolated
 adb -s <phone-IP:connection-port> install -r build/app/outputs/flutter-apk/app-debug.apk
 ```
+
+With `-Isolated`, the full application is named **GermanReminder Test**, package
+`com.sundaram.germanreminder.wirelesstest`. It uses `lib/main.dart`, has separate
+local storage, and leaves the Play package untouched. Sign in separately; local
+preferences do not carry over. Firebase account data still belongs to the same
+backend, so use the normal test account and avoid deleting real accounts.
+
+The wrapper derives an ignored local Google Services configuration from the
+existing Firebase app configuration, retaining its app ID and private registered
+test credential. No Firebase console registration or enforcement is changed.
+The isolated full-app flag is rejected for release/profile builds. Before any
+installation, inspect the actual APK package and label; never install a debug APK
+over the Play package. Without `-Isolated`, the legacy wrapper still builds the
+original package and must not be used for an existing Play installation.
+
+**GermanReminder Release Check** is a different, minimal app used for optimized
+release regression checks. Its single pass/fail screen is intentional; it is not
+the interactive test app.
+
+On 2026-11-27 the full isolated debug app, version 1.0.7 (22), was built from
+`lib/main.dart`, inspected for its separate package/label/debug mode, installed
+successfully over wireless and launched with `Status: ok`. Generated Firebase
+app ID was verified against the original configuration without printing it.
+The Play package version remained unchanged; no app was uninstalled or cleared.
+The available startup log buffers did not contain an App Check validation result.
+The owner subsequently confirmed successful login, timer Start/Stop/Cancel and
+logout in this full installation on 2026-11-27. This confirms the interactive
+debug-app flow; it does not claim a Play-distributed update was tested.
+The separate optimized release-check app had already passed all five checks.
 
 The debug APK cannot be published to Google Play as a production release.
 

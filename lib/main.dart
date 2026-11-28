@@ -1,32 +1,32 @@
 import 'dart:async';
 import 'dart:math';
-import 'data/learning_repository.dart';
-import 'data/learning_models.dart';
+
 import 'data/account_store.dart';
 import 'data/offline_vocabulary.dart';
 import 'data/offline_vocabulary_loader.dart';
 
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/foundation.dart' show kDebugMode;
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:germanreminder/frontPage.dart';
-import 'package:germanreminder/profilePage.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:hive_flutter/adapters.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 // import 'package:responsive_framework/responsive_wrapper.dart';
 import 'notification_api.dart';
 import 'home_widgets.dart';
-import 'secondPage.dart';
+import 'reminder_panel.dart';
+import 'reminder_runtime.dart';
+import 'reminder_destination.dart';
+import 'data/reminder_models.dart';
+import 'data/reminder_logout.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'databaseFirebase.dart';
-import 'userCollectionDatabase.dart';
-import 'content_library_page.dart';
-import 'review_session_page.dart';
-import 'package:flip_card/flip_card.dart';
+
+import 'learning_shell.dart';
+import 'learning_progress_panel.dart';
+
 import 'package:firebase_app_check/firebase_app_check.dart';
 
 void main() async {
@@ -55,14 +55,18 @@ void main() async {
   await Hive.initFlutter();
 
   // Initialize notifications
-  NotificationApi.initialize();
-  await NotificationApi.requestPermissions();
+
   // Enable edge-to-edge
   //SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
   // Initialize local database
   await Hive.openBox('LocalDatabase');
+  await NotificationApi.instance.initialize();
+  AccountStore.activeUid = FirebaseAuth.instance.currentUser?.uid;
   FirebaseAuth.instance.authStateChanges().listen((user) {
     AccountStore.activeUid = user?.uid;
+    unawaited(ReminderRuntime.bindAccount(user?.uid).catchError((Object _) {
+      debugPrint('Study reminder settings could not be restored.');
+    }));
   });
   runApp(const MyApp());
 }
@@ -85,6 +89,7 @@ class MyApp extends StatelessWidget {
         ],
       ),
       debugShowCheckedModeBanner: false,
+      navigatorObservers: [learningProgressRoutes],
       home: FrontPage(),
     );
   }
@@ -100,25 +105,19 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int hhInput = 0;
-  int mmInput = 0;
-  int ssInput = 0;
   int _index = 0;
-  final items_hh = [00, 01, 02, 03, 04, 05];
-  final items_mm = [00, 05, 10, 15, 20, 30];
-  final items_ss = [00, 05, 10, 15, 20, 30];
-  int? _dropDownValueHH;
-  int? _dropDownValueMM;
-  int? _dropDownValueSS;
+  int _homeRevision = 0;
+  List<OfflineWord> _offlineWords = [];
+  bool _routingReminder = false;
+  String? _activeReminderPayload;
+  late final VoidCallback _notificationHandler =
+      () => unawaited(_routeReminder());
 
   String? databaseSelection;
 
   final hiveDB = AccountStore.current();
 
   final currentUser = FirebaseAuth.instance.currentUser;
-  final learningRepository = LearningRepository.current();
-
-  final myTextController = TextEditingController();
 
   List genericCollection = ["Guten Morgen", "Guten Abend"];
 
@@ -134,15 +133,15 @@ class _MyHomePageState extends State<MyHomePage> {
   Future<void> loadGeneric(String id) async {
     try {
       final vocabulary = await loadOfflineVocabulary();
-      final words = vocabulary
-          .atLevel(OfflineVocabulary.levelForCollection(id))
-          .map((word) => word.display)
-          .toList();
+      final entries =
+          vocabulary.atLevel(OfflineVocabulary.levelForCollection(id));
+      final words = entries.map((word) => word.display).toList();
       if (words.isEmpty)
         throw const FormatException('No vocabulary for this level');
       if (!mounted) return;
       setState(() {
         genericCollection = words;
+        _offlineWords = entries;
         _index = 0;
       });
     } catch (_) {
@@ -156,6 +155,8 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
+    NotificationApi.registerTapHandler(_notificationHandler);
+    WidgetsBinding.instance.addPostFrameCallback((_) => _notificationHandler());
 
     if (hiveDB.containsKey('CurrentLevel')) {
       print('Yeah it contains');
@@ -198,71 +199,69 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-  void notificationEnable() {
-    NotificationApi.initialize();
-    NotificationApi.requestPermissions();
-    listenNotification();
-  }
-
-  void timerStart() {
-    Timer(Duration(hours: (hhInput), minutes: (mmInput), seconds: (ssInput)),
-        () {
-      NotificationApi.showNotification(
-          title: Text(genericCollection[_index]).data,
-          body: "Reminder Word",
-          description: 'The word',
-          payload: Text(genericCollection[_index]).data);
-    });
-  }
-
-  void onDidReceiveNotificationResponse(payload) async {
-    if (payload != null) {
-      debugPrint('notification payload: $payload');
+  Future<void> _routeReminder() async {
+    if (_routingReminder) {
+      if (NotificationApi.pendingPayload == _activeReminderPayload)
+        NotificationApi.pendingPayload = null;
+      return;
     }
-    await Navigator.push(
-      context,
-      MaterialPageRoute<void>(
-          builder: (context) => SecondPage(payload: payload)),
-    );
+    if (!mounted ||
+        NotificationApi.pendingPayload == null ||
+        FirebaseAuth.instance.currentUser?.emailVerified != true) return;
+    _routingReminder = true;
+    var navigated = false;
+    try {
+      final controller = await ReminderRuntime.current();
+      if (!mounted) return;
+      final raw = NotificationApi.pendingPayload;
+      final payload = ReminderPayload.parse(raw);
+      NotificationApi.pendingPayload = null;
+      if (payload == null || !controller.accepts(payload)) return;
+      _activeReminderPayload = raw;
+      navigated = true;
+      await Navigator.of(context).push(MaterialPageRoute(
+          builder: (_) => ReminderDestination(payload: payload)));
+    } catch (_) {
+      /* Keep a pending notification until authenticated settings are ready. */
+    } finally {
+      _routingReminder = false;
+      _activeReminderPayload = null;
+      if (navigated && mounted && NotificationApi.pendingPayload != null)
+        WidgetsBinding.instance
+            .addPostFrameCallback((_) => _notificationHandler());
+    }
   }
 
-  void listenNotification() =>
-      NotificationApi.onNotifications.stream.listen((onClickedNotification));
+  @override
+  void dispose() {
+    NotificationApi.unregisterTapHandler(_notificationHandler);
 
-  void onClickedNotification(String? payload) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-          builder: (context) => SecondPage(
-                payload: payload,
-              )),
-    );
-  }
-
-  void OnClickedLoadDatabase() {
-    Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => ViewGenericDatabase(
-              GermanLevel: databaseSelection!,
-            )));
-  }
-
-  void OnClickedUserDatabase() {
-    Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => UserCollectionDatabase()));
-  }
-
-  void OnClickedProfilePage() {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => ProfilePage()));
+    unawaited(flutterTts.stop());
+    super.dispose();
   }
 
   void goToFrontScreen(context) => Navigator.of(context)
       .push(MaterialPageRoute(builder: (_) => FrontPage()));
 
   void signOut() async {
-    await FirebaseAuth.instance.signOut();
-    if (!mounted) return;
-    Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (_) => const FrontPage()), (_) => false);
+    try {
+      final cleaned = await signOutWithReminderCleanup(
+        cleanup: ReminderRuntime.disableBeforeSignOut,
+        signOut: FirebaseAuth.instance.signOut,
+      );
+      if (!mounted) return;
+      final messenger = ScaffoldMessenger.of(context);
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (_) => const FrontPage()), (_) => false);
+      if (!cleaned)
+        messenger.showSnackBar(const SnackBar(
+            content: Text(
+                'Signed out. Reminder cleanup could not be confirmed and will be retried.')));
+    } catch (_) {
+      if (mounted)
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text('Could not sign out. Please try again.')));
+    }
   }
 
   void speak(String text) async {
@@ -273,90 +272,41 @@ class _MyHomePageState extends State<MyHomePage> {
     await flutterTts.speak(text);
   }
 
-  GlobalKey<FlipCardState> cardKey = GlobalKey<FlipCardState>();
-
   @override
-  Widget build(BuildContext context) {
-    var currentWidth = MediaQuery.of(context).size.width;
-    final double statusbarHeight = MediaQuery.of(context).padding.top;
-    print(statusbarHeight);
+  Widget build(BuildContext context) => LearningShell(
+      home: _buildHome(context),
+      onDestinationChanged: () {
+        unawaited(
+            flutterTts.stop().then<void>((_) {}).catchError((Object _) {}));
+      },
+      onHomeSelected: () {
+        if (mounted) setState(() => _homeRevision++);
+      });
+
+  Widget _buildHome(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-          child: AppBar(
-            title: Center(
-              child: Container(
-                width: currentWidth * 0.6,
-                height: statusbarHeight,
-                alignment: Alignment.center,
-                padding: EdgeInsets.symmetric(horizontal: 30),
-                child: Text(
-                  " German Reminder",
-                  style: GoogleFonts.roboto(
-                      fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-            centerTitle: true,
-            flexibleSpace: SafeArea(
-              child: SizedBox(
-                height: statusbarHeight * 5,
-                child: Padding(
-                  padding: EdgeInsets.only(top: 50),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: 80,
-                        child: Text(
-                          "Welcome ",
-                          style: GoogleFonts.roboto(
-                              fontSize: 16, color: Colors.white),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            automaticallyImplyLeading: false,
-            actions: [
-              IconButton(
-                tooltip: 'Learning library',
-                icon: const Icon(Icons.library_books),
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-                    builder: (_) => const ContentLibraryPage())),
-              ),
-              IconButton(
-                onPressed: () {
-                  showDialog(
-                      context: context,
-                      builder: (context) => CupertinoAlertDialog(
-                            title: Text(' Logout !!'),
-                            content: Text(' Are you sure You want to Logout?'),
-                            actions: [
-                              TextButton(
-                                onPressed: () {
-                                  signOut();
-                                },
-                                child: Text(' YES'),
-                              ),
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                child: Text(' NO '),
-                              )
-                            ],
-                          ));
-                },
-                icon: Icon(Icons.logout_rounded),
-                tooltip: "LogOut",
-                iconSize: 25,
-                color: Colors.deepOrangeAccent,
-              ),
-            ],
-          ),
-          preferredSize: Size.fromHeight(80)),
+      appBar: AppBar(title: const Text('German Reminder'), actions: [
+        IconButton(
+            tooltip: 'Log out',
+            icon: const Icon(Icons.logout_rounded),
+            onPressed: () => showDialog(
+                context: context,
+                builder: (dialogContext) => AlertDialog(
+                        title: const Text('Log out?'),
+                        content: const Text(
+                            'You can sign back in to continue learning.'),
+                        actions: [
+                          TextButton(
+                              onPressed: () => Navigator.pop(dialogContext),
+                              child: const Text('Cancel')),
+                          FilledButton(
+                              onPressed: () {
+                                Navigator.pop(dialogContext);
+                                signOut();
+                              },
+                              child: const Text('Log out'))
+                        ]))),
+      ]),
       body: SafeArea(
         bottom: false,
         child: SingleChildScrollView(
@@ -370,64 +320,26 @@ class _MyHomePageState extends State<MyHomePage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  FilledButton.icon(
-                    onPressed: () => Navigator.of(context).push(
-                        MaterialPageRoute(
-                            builder: (_) => ReviewSessionPage(
-                                level: ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
-                                        .contains(hiveDB.get('CurrentLevel'))
-                                    ? hiveDB.get('CurrentLevel') as String
-                                    : 'A1'))),
-                    icon: const Icon(Icons.school),
-                    label: const Text('Review words'),
+                  LearningProgressPanel(
+                      key: ValueKey(_homeRevision),
+                      level: ['A1', 'A2', 'B1', 'B2', 'C1', 'C2']
+                              .contains(hiveDB.get('CurrentLevel'))
+                          ? hiveDB.get('CurrentLevel') as String
+                          : 'A1'),
+                  const SizedBox(height: 12),
+                  const SizedBox(height: 20),
+                  ReminderPanel(
+                    level: OfflineVocabulary.levelForCollection(
+                        databaseSelection ?? 'GenericCollections'),
+                    itemId:
+                        _offlineWords.isEmpty ? null : _offlineWords[_index].id,
+                    word: genericCollection[_index],
                   ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  SizedBox(
-                    width: 300.0,
-                    child: Text(
-                      " Set time to remind",
-                      style: TextStyle(
-                          fontSize: 20.0,
-                          color: Color.fromRGBO(33, 150, 243, 1)),
-                    ),
-                  ),
-                  ReminderTimeSelector(
-                    values: [
-                      _dropDownValueHH,
-                      _dropDownValueMM,
-                      _dropDownValueSS
-                    ],
-                    items: [items_hh, items_mm, items_ss],
-                    onChanged: [
-                      (value) => setState(() {
-                            hhInput = value ?? 0;
-                            _dropDownValueHH = value;
-                          }),
-                      (value) => setState(() {
-                            mmInput = value ?? 0;
-                            _dropDownValueMM = value;
-                          }),
-                      (value) => setState(() {
-                            ssInput = value ?? 0;
-                            _dropDownValueSS = value;
-                          }),
-                    ],
-                    onStart: () {
-                      if (hhInput != 0 || mmInput != 0 || ssInput != 0)
-                        timerStart();
-                    },
-                  ),
-                  SizedBox(
-                    height: 70,
-                  ),
-                  FlipCard(
-                    key: cardKey,
-                    flipOnTouch: false,
-                    front: HomeWordCard(word: genericCollection[_index]),
-                    back: HomeWordCard(word: genericCollection[_index]),
-                  ),
+                  const SizedBox(height: 28),
+                  const Text('Reminder word',
+                      style: TextStyle(fontWeight: FontWeight.bold)),
+                  const SizedBox(height: 8),
+                  HomeWordCard(word: genericCollection[_index]),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -446,13 +358,13 @@ class _MyHomePageState extends State<MyHomePage> {
                         icon: const Icon(Icons.play_arrow),
                         color: Colors.deepOrangeAccent,
                         iconSize: 45.0,
-                        tooltip: "Start",
+                        tooltip: "Choose another reminder word",
                         splashRadius: 25.0,
                         splashColor: Colors.orangeAccent,
                         onPressed: () {
                           setState(() {
                             //_index++;
-                            cardKey.currentState!.toggleCard();
+
                             var ran = Random();
                             _index = ran.nextInt(genericCollection.length);
                           });
@@ -461,42 +373,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ],
                   ),
                   SizedBox(
-                    height: 70,
-                  ),
-                  HomeWordInput(controller: myTextController),
-                  IconButton(
-                    icon: const Icon(Icons.add),
-                    color: Colors.deepOrangeAccent,
-                    splashRadius: 25.0,
-                    splashColor: Colors.yellowAccent,
-                    iconSize: 45.0,
-                    onPressed: () {
-                      setState(() {
-                        if (!genericCollection
-                                .contains(myTextController.text.trim()) &&
-                            myTextController.text.trim().isNotEmpty) {
-                          WriteToCloud(word: myTextController.text.trim());
-                        } else if (myTextController.text.trim().isNotEmpty) {
-                          showDialog(
-                            context: context,
-                            builder: (context) => CupertinoAlertDialog(
-                              title: Text('Alert'),
-                              content: Text('Word is already present'),
-                              actions: [
-                                TextButton(
-                                  onPressed: () => Navigator.pop(context),
-                                  child: Text('Close'),
-                                ),
-                              ],
-                            ),
-                          );
-                        }
-                        myTextController.text = "";
-                      });
-                    },
-                  ),
-                  SizedBox(
-                    height: 40,
+                    height: 16,
                   ),
                 ],
               ),
@@ -504,62 +381,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
-      bottomNavigationBar: CurvedNavigationBar(
-        color: Colors.blue,
-        backgroundColor: Colors.white,
-        items: <Widget>[
-          const Icon(
-            Icons.home,
-            color: Colors.deepOrangeAccent,
-            size: 30.0,
-          ),
-          IconButton(
-            icon: const Icon(Icons.storage),
-            color: Colors.deepOrangeAccent,
-            tooltip: "Storage",
-            splashRadius: 25.0,
-            splashColor: Colors.orangeAccent,
-            onPressed: () {
-              OnClickedLoadDatabase();
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.description_outlined),
-            color: Colors.deepOrangeAccent,
-            tooltip: "User Storage",
-            splashRadius: 25.0,
-            splashColor: Colors.orangeAccent,
-            onPressed: () {
-              OnClickedUserDatabase();
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.face_sharp),
-            color: Colors.deepOrangeAccent,
-            tooltip: "User Page",
-            splashRadius: 25.0,
-            splashColor: Colors.orangeAccent,
-            onPressed: () {
-              OnClickedProfilePage();
-            },
-          )
-        ],
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
-  }
-
-  void WriteToCloud({required String word}) async {
-    if (word.isEmpty) return;
-    try {
-      await learningRepository.ensureWord(PersonalWord.fromText(word));
-      if (!mounted) return;
-      ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text('Word saved.')));
-    } catch (_) {
-      if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text('Could not save your word. Please try again.')));
-    }
   }
 
   DropdownMenuItem<int> buildMenuItem(int item) => DropdownMenuItem(

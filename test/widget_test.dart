@@ -35,16 +35,6 @@ void main() {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      ReminderTimeSelector(
-                        values: const [5, 30, 30],
-                        items: const [
-                          [0, 5],
-                          [0, 30],
-                          [0, 30]
-                        ],
-                        onChanged: [(_) {}, (_) {}, (_) {}],
-                        onStart: () {},
-                      ),
                       FlipCard(
                         front: const HomeWordCard(
                             word: 'Donaudampfschifffahrtsgesellschaft'),
@@ -60,11 +50,7 @@ void main() {
         ));
         await tester.pumpAndSettle();
         expect(tester.takeException(), isNull);
-        for (final type in [
-          ReminderTimeSelector,
-          HomeWordCard,
-          HomeWordInput
-        ]) {
+        for (final type in [HomeWordCard, HomeWordInput]) {
           for (final element in find.byType(type).first.evaluate()) {
             final box = element.renderObject! as RenderBox;
             final left = box.localToGlobal(Offset.zero).dx;

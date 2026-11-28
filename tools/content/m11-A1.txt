@@ -1,0 +1,65 @@
+@cafe_a1|At the café|☕|Food and drink|Barista|Order politely, choose takeaway and pay.|You are buying coffee and cake before catching a train.
+#Becher|cup|der|Becher|2
+#Trinkgeld|tip|das|Trinkgelder|9
+Guten Morgen! Was möchten Sie?|Good morning! What would you like?|Ich hätte gern einen Kaffee, bitte.|I would like a coffee, please.|Ich bin ein Kaffee.|Ich hätte gern is a polite ordering phrase; ich bin describes what you are.
+Ein kleiner oder ein großer Becher?|A small cup or a large one?|Ein kleiner Becher, bitte.|A small cup, please.|Mein Kaffee heißt Paul.|Choose a cup size; the alternative gives the coffee a name.
+Möchten Sie auch etwas essen?|Would you also like something to eat?|Ja, ein Stück Kuchen, bitte.|Yes, a piece of cake, please.|Ich fahre mit dem Bus.|A piece of cake answers the offer of food.
+Wir haben Apfelkuchen und Schokoladenkuchen.|We have apple cake and chocolate cake.|Den Apfelkuchen, bitte.|The apple cake, please.|Ich möchte morgen arbeiten.|Name the cake you want; tomorrow's work is unrelated.
+Möchten Sie hier essen oder alles mitnehmen?|Would you like to eat here or take everything away?|Zum Mitnehmen, bitte.|To take away, please.|Um acht Uhr, bitte.|Zum Mitnehmen chooses takeaway; um acht Uhr gives a time.
+Mit Zucker oder ohne Zucker?|With sugar or without sugar?|Ohne Zucker, danke.|Without sugar, thank you.|Zucker ist mein Nachname.|Ohne means without and answers the preference question.
+Darf es sonst noch etwas sein?|Would you like anything else?|Nein danke, das ist alles.|No thank you, that is all.|Ich heiße auch etwas.|Das ist alles politely finishes an order.
+Das macht zusammen neun Euro zwanzig.|That comes to nine euros twenty altogether.|Hier sind zehn Euro.|Here are ten euros.|Hier sind neun Minuten.|Euros are money; minutes do not pay the bill.
+Achtzig Cent zurück, oder möchten Sie Trinkgeld geben?|Eighty cents change, or would you like to leave a tip?|Behalten Sie den Rest, bitte.|Keep the change, please.|Der Rest fährt nach Berlin.|Behalten Sie den Rest tells the barista to keep the change.
+Hier ist Ihre Bestellung. Einen schönen Tag noch!|Here is your order. Have a nice day!|Vielen Dank! Ihnen auch.|Thank you very much! You too.|Wie alt ist Ihr Bahnhof?|Ihnen auch returns a polite good wish.
+@market_a1|A small shopping trip|🛒|Shopping|Kassierer|Find everyday groceries and finish your purchase.|You have a short shopping list and want to buy only what you need.
+#Einkaufsliste|shopping list|die|Einkaufslisten|1
+#Pfandbon|deposit-return receipt|der|Pfandbons|7
+Kann ich Ihnen mit Ihrer Einkaufsliste helfen?|Can I help you with your shopping list?|Ja, ich suche Milch und Brot.|Yes, I am looking for milk and bread.|Ja, ich bin Milch und Brot.|Ich suche means I am looking for.
+Die Milch steht hinten links.|The milk is at the back on the left.|Hinten links, danke.|At the back on the left, thank you.|Links ist mein Geburtstag.|Repeat the location to check that you understood.
+Möchten Sie frisches Brot oder Toastbrot?|Would you like fresh bread or sliced toast bread?|Frisches Brot, bitte.|Fresh bread, please.|Brot liest sehr schnell.|Choose one of the offered kinds of bread.
+Brauchen Sie auch Obst?|Do you also need fruit?|Ja, zwei Äpfel, bitte.|Yes, two apples, please.|Ja, zwei Bahnhöfe, bitte.|Äpfel are fruit; Bahnhöfe are railway stations.
+Die Äpfel kosten zusammen einen Euro achtzig.|The apples cost one euro eighty together.|Einen Euro achtzig, gut.|One euro eighty, all right.|Achtzig Äpfel, bitte.|Confirm the price rather than changing the quantity to eighty apples.
+Haben Sie eine Tasche dabei?|Have you brought a bag?|Ja, ich habe meine Tasche dabei.|Yes, I have my bag with me.|Meine Tasche arbeitet heute.|Dabei means with you in this situation.
+Haben Sie einen Pfandbon?|Do you have a deposit-return receipt?|Ja, hier ist mein Pfandbon.|Yes, here is my deposit-return receipt.|Ja, hier fährt mein Pfandbon.|Hier ist is used when handing something over.
+Das macht insgesamt sieben Euro.|That comes to seven euros in total.|Kann ich mit Karte bezahlen?|Can I pay by card?|Kann ich mit Donnerstag bezahlen?|Mit Karte names a payment method; Thursday is a day.
+Ja. Möchten Sie den Kassenbon?|Yes. Would you like the receipt?|Ja, bitte geben Sie mir den Bon.|Yes, please give me the receipt.|Ja, bitte geben Sie mir die Straße.|Bon refers to the receipt in this checkout context.
+Vielen Dank und auf Wiedersehen!|Thank you and goodbye!|Auf Wiedersehen, vielen Dank.|Goodbye, thank you very much.|Ich suche noch einen Namen.|A farewell closes the purchase naturally.
+@introductions_a1|Meet your course partner|👋|Greetings|Kurskollegin|Introduce yourself and arrange to practise together.|It is your first day in an adult German course.
+#Nachname|surname|der|Nachnamen|2
+#Visitenkarte|business card|die|Visitenkarten|8
+Guten Morgen! Wie heißen Sie?|Good morning! What is your name?|Ich heiße Samira.|My name is Samira.|Ich bin aus Uhr.|Ich heiße introduces your name.
+Und wie ist Ihr Nachname?|And what is your surname?|Mein Nachname ist Rahmani.|My surname is Rahmani.|Mein Nachname ist um neun.|A surname answers the question; um neun gives a time.
+Woher kommen Sie?|Where do you come from?|Ich komme aus Marokko.|I come from Morocco.|Ich komme am Mittwoch.|Aus names your origin; am Mittwoch names a day.
+Wohnen Sie jetzt hier in Köln?|Do you live here in Cologne now?|Ja, ich wohne seit kurzem hier.|Yes, I have lived here for a short time.|Ja, Köln wohnt in meiner Tasche.|Answer about your own place of residence.
+Welche Sprachen sprechen Sie?|Which languages do you speak?|Ich spreche Arabisch, Englisch und ein bisschen Deutsch.|I speak Arabic, English and a little German.|Ich spreche Kaffee und Bahnhof.|Name languages rather than objects or places.
+Warum lernen Sie Deutsch?|Why are you learning German?|Ich möchte hier arbeiten.|I would like to work here.|Deutsch möchte mich arbeiten.|Ich möchte expresses your own wish.
+Wann haben Sie Zeit zum Üben?|When do you have time to practise?|Am Samstag habe ich Zeit.|I have time on Saturday.|Meine Zeit heißt Deutsch.|Am Samstag gives a useful time.
+Hier ist meine Visitenkarte mit meiner E-Mail-Adresse.|Here is my business card with my email address.|Danke, ich schreibe Ihnen heute.|Thank you, I will write to you today.|Danke, ich esse Ihre E-Mail-Adresse.|Schreiben is the natural action for contacting someone by email.
+Treffen wir uns am Samstag um zehn Uhr?|Shall we meet on Saturday at ten?|Ja, Samstag um zehn passt gut.|Yes, Saturday at ten works well.|Nein, Samstag ist meine Sprache.|Confirm the proposed day and time.
+Schön, Sie kennenzulernen!|Nice to meet you!|Ich freue mich auch.|I am pleased too.|Ich heiße zehn Uhr.|This reply returns the friendly sentiment.
+@directions_a1|Find the station|🗺️|Travel|Passantin|Follow simple directions and check the route.|You are walking in a new town and need to find the station.
+#Ecke|corner|die|Ecken|3
+#Ampel|traffic light|die|Ampeln|5
+Suchen Sie den Bahnhof?|Are you looking for the station?|Ja, wie komme ich zum Bahnhof?|Yes, how do I get to the station?|Ja, wie alt ist der Bahnhofskuchen?|Wie komme ich zu asks for directions.
+Gehen Sie zuerst geradeaus.|First go straight ahead.|Also zuerst geradeaus.|So first straight ahead.|Also zuerst gestern.|Geradeaus is a direction; gestern means yesterday.
+An der nächsten Ecke gehen Sie nach links.|At the next corner turn left.|An der nächsten Ecke links, richtig?|Left at the next corner, right?|Die nächste Ecke heißt Anna.|Repeating the instruction checks your understanding.
+Ja, dann gehen Sie bis zur großen Kreuzung.|Yes, then walk to the large crossroads.|Bis zur großen Kreuzung, danke.|To the large crossroads, thank you.|Die Kreuzung trinkt Wasser.|Bis zu identifies the point you should reach.
+An der Ampel gehen Sie nach rechts.|Turn right at the traffic light.|An der Ampel rechts. Verstanden.|Right at the traffic light. Understood.|Die Ampel wohnt rechts von Montag.|The reply confirms both landmark and direction.
+Der Bahnhof ist gegenüber der Post.|The station is opposite the post office.|Gegenüber der Post, gut.|Opposite the post office, all right.|Die Post ist mein Zugticket.|Gegenüber describes the location.
+Brauchen Sie noch Hilfe?|Do you need any more help?|Wie lange dauert der Weg zu Fuß?|How long does the walk take?|Wie viele Namen hat mein Fuß?|Ask for the walking time.
+Ungefähr zehn Minuten.|About ten minutes.|Zehn Minuten, das ist nicht weit.|Ten minutes, that is not far.|Zehn Minuten kosten drei Sprachen.|React to the length of the walk.
+Sie sehen links ein großes blaues Schild.|You will see a large blue sign on the left.|Auf das blaue Schild achte ich.|I will look out for the blue sign.|Das blaue Schild fährt meinen Namen.|The sign is a helpful landmark.
+Gern geschehen! Gute Reise!|You are welcome! Have a good trip!|Vielen Dank für Ihre Hilfe!|Thank you very much for your help!|Vielen Dank für Ihre Milch!|Thank the person for helping with directions.
+@hotel_a1|Check in at the hotel|🏨|Home and travel|Rezeption|Check in, find your room and ask about breakfast.|You have a reservation and arrive at a small hotel.
+#Zimmernummer|room number|die|Zimmernummern|5
+#Frühstücksraum|breakfast room|der|Frühstücksräume|7
+Guten Abend! Haben Sie reserviert?|Good evening! Do you have a reservation?|Ja, auf den Namen Ali.|Yes, under the name Ali.|Ja, auf den Donnerstag Kaffee.|Auf den Namen identifies the name on a booking.
+Für wie viele Nächte bleiben Sie?|For how many nights are you staying?|Für zwei Nächte.|For two nights.|Für zwei Sprachen.|Nächte answers a question about length of stay.
+Darf ich Ihren Ausweis sehen?|May I see your identity document?|Ja, hier ist mein Ausweis.|Yes, here is my identity document.|Ja, hier ist mein Frühstück.|Hand over the requested document.
+Möchten Sie ein ruhiges Zimmer?|Would you like a quiet room?|Ja, ein ruhiges Zimmer wäre schön.|Yes, a quiet room would be nice.|Ja, ein Zimmer spricht laut.|A quiet room is a relevant preference.
+Ihre Zimmernummer ist zweihundertzwölf.|Your room number is two hundred and twelve.|Zimmer zweihundertzwölf, danke.|Room two hundred and twelve, thank you.|Zimmer zwölfhundert, danke.|Zweihundertzwölf means 212, not 1200.
+Der Aufzug ist dort rechts.|The lift is over there on the right.|Rechts, gut. Vielen Dank.|On the right, all right. Thank you.|Rechts ist mein Nachname.|Acknowledge the direction to the lift.
+Der Frühstücksraum ist im Erdgeschoss.|The breakfast room is on the ground floor.|Wann gibt es Frühstück?|When is breakfast served?|Wie heißt mein Erdgeschoss?|Ask for the breakfast time.
+Von sieben bis zehn Uhr.|From seven until ten.|Dann komme ich um acht Uhr.|Then I will come at eight.|Dann komme ich um zwölf Uhr nachts.|Eight is within the stated breakfast hours.
+Hier ist Ihr Schlüssel. Brauchen Sie noch etwas?|Here is your key. Do you need anything else?|Wie ist das WLAN-Passwort?|What is the Wi-Fi password?|Wie viele Schlüssel isst das WLAN?|Ask a useful practical question about the hotel.
+Das steht auf dieser Karte. Einen schönen Aufenthalt!|It is on this card. Enjoy your stay!|Vielen Dank. Gute Nacht!|Thank you very much. Good night!|Auf Wiedersehen, ich bin Frühstück.|Thank the receptionist and close the conversation.

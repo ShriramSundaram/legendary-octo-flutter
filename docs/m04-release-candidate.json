@@ -1,0 +1,32 @@
+{
+  "versionName": "1.0.5",
+  "versionCode": 20,
+  "builtOn": "2026-11-26",
+  "artifact": "build/releases/1.0.5+20/app-release.aab",
+  "bytes": 48016981,
+  "sha256": "32f68d96831111f618ee4f03c1cef63272781905ad74742a0157b2583bd2ebaf",
+  "signatureVerified": true,
+  "releaseMode": true,
+  "debugCredentialPresent": false,
+  "signingCertificateMatchesPreviousRelease": true,
+  "applicationId": "com.sundaram.germanreminder.app",
+  "mergedManifestVersionVerified": true,
+  "packagedAssetSha256": {
+    "content_catalog_v1.json": "8d5a4bf3c1586cf8ea6955c2aff19cc33da66862963a3b583a7c254fbf32b6f2",
+    "legacy_vocabulary_v1.json": "9b562ff43ca13210a599212df510a4f1b33ef5b8a64c592aae898109b396f942",
+    "quiz_catalog_v1.json": "6f6d99672e1424315e53bf03106348d82f4e27dadb5a88a287d1e150d01e0ecd"
+  },
+  "sourceBranch": "work/m04",
+  "sourceChangesCommitted": false,
+  "packagedAssets": {
+    "content_catalog_v1.json": 269,
+    "legacy_vocabulary_v1.json": 1059,
+    "quiz_catalog_v1.json": 55
+  },
+  "flutterTests": 81,
+  "targetedAnalysis": "No issues found",
+  "phoneAcceptance": "User accepted practice pronunciation, recognition/listening tests, profile quick check and results styling",
+  "releaseNotes": "docs/m04-play-release-notes.txt",
+  "productionUpload": "To be performed by project owner",
+  "googlePublication": "Not claimed"
+}

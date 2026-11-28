@@ -37,3 +37,10 @@ secrets need to be configured for this workflow.
 
 Actions are pinned to full commit hashes. Flutter/pub and Gradle dependencies
 are cached; APKs alone are uploaded, never the workspace or signing files.
+
+CI uses Google's public Maven Central mirror, including for Flutter's included
+Gradle plugin build. Google Android and Gradle Plugin Portal repositories remain
+available. The init script is installed only on the disposable runner; local and
+release builds keep their existing repositories. Dependency HTTP 429/502/503/504
+failures receive up to two retries with 30/60-second delays. Other build failures
+fail immediately, and exhausted retries still fail the check.

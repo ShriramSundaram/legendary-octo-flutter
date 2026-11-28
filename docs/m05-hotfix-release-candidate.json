@@ -1,0 +1,53 @@
+{
+  "versionName": "1.0.7",
+  "versionCode": 22,
+  "builtOn": "2026-11-27",
+  "artifact": "build/releases/1.0.7+22/phone-accepted/app-release.aab",
+  "bytes": 49006063,
+  "sha256": "ab7a60a63039caf6d907b18cf440b75b4a512f63b405b3060cd21ced46c68437",
+  "signatureVerified": true,
+  "releaseMode": true,
+  "debugCredentialPresent": false,
+  "signingCertificateMatchesPreviousRelease": true,
+  "applicationId": "com.sundaram.germanreminder.app",
+  "mergedManifestVersionVerified": true,
+  "packagedAssetSha256": {
+    "content_catalog_v1.json": "8d5a4bf3c1586cf8ea6955c2aff19cc33da66862963a3b583a7c254fbf32b6f2",
+    "legacy_vocabulary_v1.json": "9b562ff43ca13210a599212df510a4f1b33ef5b8a64c592aae898109b396f942",
+    "quiz_catalog_v1.json": "6f6d99672e1424315e53bf03106348d82f4e27dadb5a88a287d1e150d01e0ecd"
+  },
+  "sourceBranch": "work/m05",
+  "sourceChangesCommitted": false,
+  "packagedAssets": {
+    "content_catalog_v1.json": 269,
+    "legacy_vocabulary_v1.json": 1059,
+    "quiz_catalog_v1.json": 55
+  },
+  "flutterTests": 109,
+  "targetedAnalysis": "No issues found",
+  "optimizedReleasePhoneCheck": "PASS",
+  "optimizedReleaseChecks": 5,
+  "nativeClockChecks": 11,
+  "reminderReceiverVerified": true,
+  "notificationIconPackaged": true,
+  "exactAlarmPermissionRequested": false,
+  "m05AcceptanceComplete": false,
+  "githubIssueState": "open",
+  "pendingPhoneChecks": [
+    "Reboot restoration/delivery",
+    "Timezone and schedule edits",
+    "Permission-denial behavior",
+    "Pending-reminder account switch/deletion cancellation",
+    "Notification taps across cold start and sign-in"
+  ],
+  "timingObservation": {
+    "additionalDelaySeconds": "approximately 5-10 on the tested phone",
+    "ownerAccepted": true,
+    "status": "Nonblocking; investigate later",
+    "exactDeliveryGuaranteed": false
+  },
+  "phoneAcceptance": "2026-11-27: owner confirmed login, timer Start/Stop/Cancel and successful logout in the full isolated debug app. Optimized release companion passed five checks. Pending-reminder cancellation, deletion, reboot/timezone and tap matrix remain unconfirmed",
+  "releaseNotes": "docs/m05-hotfix-play-release-notes.txt",
+  "productionUpload": "To be performed by project owner",
+  "googlePublication": "Not claimed"
+}

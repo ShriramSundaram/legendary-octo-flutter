@@ -1,0 +1,51 @@
+{
+  "versionName": "1.0.6",
+  "versionCode": 21,
+  "builtOn": "2026-11-26",
+  "artifact": "build/releases/1.0.6+21/app-release.aab",
+  "bytes": 48991617,
+  "sha256": "4bba658e2483fce6196942c82686fe971b13a98a6e6fe57341f9a01b78311d90",
+  "signatureVerified": true,
+  "releaseMode": true,
+  "debugCredentialPresent": false,
+  "signingCertificateMatchesPreviousRelease": true,
+  "applicationId": "com.sundaram.germanreminder.app",
+  "mergedManifestVersionVerified": true,
+  "packagedAssetSha256": {
+    "content_catalog_v1.json": "8d5a4bf3c1586cf8ea6955c2aff19cc33da66862963a3b583a7c254fbf32b6f2",
+    "legacy_vocabulary_v1.json": "9b562ff43ca13210a599212df510a4f1b33ef5b8a64c592aae898109b396f942",
+    "quiz_catalog_v1.json": "6f6d99672e1424315e53bf03106348d82f4e27dadb5a88a287d1e150d01e0ecd"
+  },
+  "sourceBranch": "work/m05",
+  "sourceChangesCommittedAtBuild": false,
+  "packagedAssets": {
+    "content_catalog_v1.json": 269,
+    "legacy_vocabulary_v1.json": 1059,
+    "quiz_catalog_v1.json": 55
+  },
+  "flutterTests": 102,
+  "targetedAnalysis": "No issues found",
+  "nativeClockChecks": 11,
+  "reminderReceiverVerified": true,
+  "notificationIconPackaged": true,
+  "exactAlarmPermissionRequested": false,
+  "m05AcceptanceComplete": false,
+  "githubIssueState": "open",
+  "pendingPhoneChecks": [
+    "Reboot restoration/delivery",
+    "Timezone and schedule edits",
+    "Permission-denial behavior",
+    "Sign-out/account-deletion cancellation",
+    "Notification taps across cold start and sign-in"
+  ],
+  "timingObservation": {
+    "additionalDelaySeconds": "approximately 5-10 on the tested phone",
+    "ownerAccepted": true,
+    "status": "Nonblocking; investigate later",
+    "exactDeliveryGuaranteed": false
+  },
+  "phoneAcceptance": "User accepted timer controls and reported notification delivery; 5-10 second delay accepted as nonblocking; full reboot/timezone/account-cancellation checks remain unconfirmed",
+  "releaseNotes": "docs/m05-play-release-notes.txt",
+  "productionUpload": "To be performed by project owner",
+  "googlePublication": "Not claimed"
+}

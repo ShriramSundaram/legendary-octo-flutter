@@ -1,0 +1,62 @@
+{
+  "versionName": "1.0.9",
+  "versionCode": 24,
+  "builtOn": "2026-11-27",
+  "artifact": "build/releases/1.0.9+24/app-release.aab",
+  "bytes": 50518599,
+  "sha256": "025b83ed2e42a0de4358ee44a88d9597bbe7ec65257326e9ceb975bbbc71f9a2",
+  "signatureVerified": true,
+  "releaseMode": true,
+  "debugCredentialPresent": false,
+  "signingCertificateMatchesPreviousRelease": true,
+  "applicationId": "com.sundaram.germanreminder.app",
+  "mergedManifestVersionVerified": true,
+  "packagedAssetSha256": {
+    "content_catalog_v1.json": "8d5a4bf3c1586cf8ea6955c2aff19cc33da66862963a3b583a7c254fbf32b6f2",
+    "legacy_vocabulary_v1.json": "9b562ff43ca13210a599212df510a4f1b33ef5b8a64c592aae898109b396f942",
+    "quiz_catalog_v1.json": "6f6d99672e1424315e53bf03106348d82f4e27dadb5a88a287d1e150d01e0ecd"
+  },
+  "packagedApprovedIconVerified": true,
+  "brandingIssue": 18,
+  "displayName": "German Reminder",
+  "approvedIconSha256": "5abefdb2b3510e9f549b94362acb1b5f34d892dc7d250855ca9a83b67a6fbd06",
+  "sourceBranch": "work/m05",
+  "sourceChangesCommitted": false,
+  "packagedAssets": {
+    "content_catalog_v1.json": 269,
+    "legacy_vocabulary_v1.json": 1059,
+    "quiz_catalog_v1.json": 55
+  },
+  "flutterTests": 120,
+  "targetedAnalysis": "No issues found",
+  "historicalReminderReleaseCheck": "PASS",
+  "historicalReminderReleaseCheckVersion": "1.0.7 (22)",
+  "historicalReminderReleaseChecks": 5,
+  "historicalNativeClockChecks": 11,
+  "reminderReceiverVerified": true,
+  "notificationIconPackaged": true,
+  "exactAlarmPermissionRequested": false,
+  "m07AcceptanceComplete": false,
+  "m06CloudSyncImplemented": false,
+  "m07PhoneAcceptance": "Pending owner",
+  "m07WirelessDebugInstalled": true,
+  "m05AcceptanceComplete": false,
+  "githubIssueState": "open",
+  "pendingPhoneChecks": [
+    "Reboot restoration/delivery",
+    "Timezone and schedule edits",
+    "Permission-denial behavior",
+    "Pending-reminder account switch/deletion cancellation",
+    "Notification taps across cold start and sign-in"
+  ],
+  "timingObservation": {
+    "additionalDelaySeconds": "approximately 5-10 on the tested phone",
+    "ownerAccepted": true,
+    "status": "Nonblocking; investigate later",
+    "exactDeliveryGuaranteed": false
+  },
+  "historicalReminderPhoneAcceptance": "Owner confirmed login, timer Start/Stop/Cancel and logout before M07. M07 debug installation succeeded; new M07 owner acceptance is pending",
+  "releaseNotes": "docs/m07-play-release-notes.txt",
+  "productionUpload": "To be performed by project owner",
+  "googlePublication": "Not claimed"
+}

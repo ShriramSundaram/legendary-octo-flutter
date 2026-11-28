@@ -1,0 +1,18 @@
+{
+  "versionName": "1.0.10",
+  "versionCode": 25,
+  "installedOn": "2026-11-27",
+  "package": "com.sundaram.germanreminder.wirelesstest",
+  "displayName": "German Reminder Test",
+  "mode": "debug",
+  "install": "Success",
+  "launch": "Status: ok",
+  "playVersionUnchanged": true,
+  "dataCleared": false,
+  "flutterTests": 130,
+  "targetedAnalysis": "No issues found (11 files)",
+  "missionStatus": "Draft pilot, content approval pending",
+  "missionCloudRecoveryImplemented": false,
+  "productionReady": false,
+  "phoneAcceptance": "Pending owner"
+}

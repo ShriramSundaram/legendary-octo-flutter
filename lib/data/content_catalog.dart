@@ -47,6 +47,26 @@ class ContentCatalog {
   final List<CatalogWord> words;
   ContentCatalog._(this.version, this.words);
 
+  factory ContentCatalog.combine(Iterable<ContentCatalog> catalogs,
+      {bool includeDrafts = false}) {
+    final words = <CatalogWord>[], ids = <String>{}, lemmas = <String>{};
+    var version = 1;
+    for (final catalog in catalogs) {
+      if (catalog.version > version) version = catalog.version;
+      for (final word in catalog.words) {
+        if (word.item.editorialStatus != 'published' &&
+            !(includeDrafts && word.item.editorialStatus == 'draft')) continue;
+        if (!ids.add(word.item.id) ||
+            !lemmas.add(
+                '${word.item.level}:${word.item.lemma.toLowerCase().trim()}')) {
+          throw const FormatException('Duplicate content across packs');
+        }
+        words.add(word);
+      }
+    }
+    return ContentCatalog._(version, List.unmodifiable(words));
+  }
+
   factory ContentCatalog.decode(String source) {
     final data = jsonDecode(source) as Map<String, dynamic>;
     if (data['schemaVersion'] != 1 ||

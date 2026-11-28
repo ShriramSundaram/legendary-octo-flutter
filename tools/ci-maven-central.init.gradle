@@ -1,0 +1,24 @@
+// CI only: avoid Maven Central throttling on shared GitHub runner addresses.
+// Init scripts also apply to Flutter's included Gradle plugin build.
+def centralMirror = 'https://maven-central.storage-download.googleapis.com/maven2/'
+def useMirror = { repositories ->
+    repositories.withType(org.gradle.api.artifacts.repositories.MavenArtifactRepository).configureEach { repository ->
+        if (repository.url.host in ['repo.maven.apache.org', 'repo1.maven.org']) {
+            repository.setUrl(centralMirror)
+        }
+    }
+}
+
+gradle.beforeSettings { settings ->
+    // Put Central ahead of the plugin portal, which can redirect to Central.
+    settings.pluginManagement.repositories.maven { url = uri(centralMirror) }
+    // An explicit repository disables Gradle's implicit portal default.
+    settings.pluginManagement.repositories.gradlePluginPortal()
+    useMirror(settings.pluginManagement.repositories)
+    useMirror(settings.dependencyResolutionManagement.repositories)
+}
+
+gradle.beforeProject { project ->
+    useMirror(project.buildscript.repositories)
+    useMirror(project.repositories)
+}

@@ -1,0 +1,20 @@
+{
+  "productionReady": false,
+  "flutterTests": 143,
+  "installedOn": "2026-11-27",
+  "nativeCompilation": "Passed",
+  "package": "com.sundaram.germanreminder.wirelesstest",
+  "launch": "Status: ok",
+  "audiblePhoneAcceptance": "Pending owner",
+  "cloudRecoveryImplemented": false,
+  "analysis": "No issues found (9 files)",
+  "playVersionUnchanged": true,
+  "soundSettings": "Profile > Learning audio",
+  "install": "Success",
+  "apkSha256": "67713b277f471270152eeff15ae5caa5db85988e9e2d76d42c4ad5e740cf4e3b",
+  "displayName": "German Reminder Test",
+  "dataCleared": false,
+  "versionName": "1.0.12",
+  "mode": "debug",
+  "versionCode": 27
+}

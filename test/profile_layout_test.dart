@@ -60,7 +60,7 @@ void main() {
         await tester.pumpAndSettle();
         expect(tester.getRect(delete).bottom,
             lessThanOrEqualTo(tester.getRect(back).top));
-        final quiz = find.text("Let's Test your German Level!");
+        final quiz = find.text('Quick vocabulary check');
         await tester.ensureVisible(quiz);
         await tester.tap(quiz);
         expect(testCount, 1);
